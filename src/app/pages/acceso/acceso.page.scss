@@ -1,0 +1,100 @@
+
+#TextYaLlegue{
+    padding: 0%;
+    margin: 0%;
+}
+
+.tamaño-letra{
+    font-size: 1rem;
+}
+
+#aqui{
+   color: #2fdf75;
+}
+
+#aqui:hover{
+    color: #2fdf75ab;
+ }
+
+ .card{
+    
+
+    background-color: rgb(30,30,30);
+    border-radius: 10px;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-bottom: 5%;
+    padding-top: 8%;
+ }
+
+ .login{
+    background-color: rgb(30,30,30);
+ }
+
+
+ .card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: #ffffff67 solid 1px;
+  }
+
+
+  @media (max-width: 600px)
+  {
+      .card{
+          width: 90%;
+      }
+  }
+
+.border-abajo{
+    border-bottom: #ffffff81 solid 1px;
+}
+
+img{
+    display:block;
+    margin:auto;
+}
+
+@media (max-width: 877px)
+  {
+      .card{
+        padding-top: 12%;
+      }
+  }
+
+  @media (max-width: 677px)
+  {
+      .card{
+        padding-top: 12%;
+      }
+  }
+
+  @media (max-width: 597px)
+  {
+      .card{
+        padding-top: 15%;
+      }
+  }
+
+  @media (max-width: 470px)
+  {
+      .card{
+        padding-top: 18%;
+      }
+  }
+
+  @media (max-width: 400px)
+  {
+      .card{
+        padding-top: 19%;
+      }
+  }
+
+  @media (max-width: 360px)
+  {
+      .card{
+        padding-top: 23%;
+      }
+  }
