@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, PatternValidator, Validators } from '@angular/forms';
 
+
 @Component({
-  selector: 'app-acceso',
-  templateUrl: './acceso.page.html',
-  styleUrls: ['./acceso.page.scss'],
+  selector: 'app-registro',
+  templateUrl: './registro.page.html',
+  styleUrls: ['./registro.page.scss'],
 })
-export class AccesoPage implements OnInit {
+export class RegistroPage implements OnInit {
 
   constructor() { }
 
@@ -14,9 +15,13 @@ export class AccesoPage implements OnInit {
   }
 
   users = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required)
   });
 
+  saveData(): void{
+    console.log(this.users.value);
+  }
 
 }

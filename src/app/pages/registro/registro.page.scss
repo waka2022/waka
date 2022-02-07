@@ -1,0 +1,34 @@
+.tamaño-letra{
+    font-size: 1rem;
+}
+  .card{
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    padding-left: 4%;
+    padding-right: 4%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    border: #ffffff67 solid 1px;
+}
+
+.border-abajo{
+    border-bottom: #ffffff81 solid 1px;
+}
+  
+#aqui{
+    color: #2fdf75;
+ }
+ 
+ #aqui:hover{
+     color: #2fdf75ab;
+  }
+
+@media (max-width: 600px)
+  {
+    .card{
+          width: 90%;
+      }
+  }
+  

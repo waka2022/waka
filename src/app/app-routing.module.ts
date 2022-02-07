@@ -40,6 +40,10 @@ const routes: Routes = [
     path: 'agregar-parqueadero',
     loadChildren: () => import('./pages/agregar-parqueadero/agregar-parqueadero.module').then( m => m.AgregarParqueaderoPageModule)
   },
+  {
+    path: 'registro',
+    loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
+  },
 ];
 
 @NgModule({

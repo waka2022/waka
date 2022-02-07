@@ -10,8 +10,12 @@
     </div>
 
     <ion-card-content>
-      <form [formGroup]="users">
+      <form [formGroup]="users" (ngSubmit)="saveData()">
 
+        <ion-item class="border-abajo">
+          <ion-label color="dark" position="floating">Nombre:</ion-label>
+          <ion-input class="text-white" formControlName="name"></ion-input>
+        </ion-item>
 
         <ion-item class="border-abajo">
           <ion-label color="dark" position="floating">Email:</ion-label>
@@ -25,18 +29,18 @@
 
         <ion-button class="mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast"
           color="success" size="large" (click)="addMyClass()" type="submit" [disabled]="!users.valid">
-          <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Ingresar</p>
+          <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Registrarse</p>
         </ion-button>
       </form>
 
       <ion-button class="mb-4 mt-1 d-flex justify-content-center animate__animated animate__pulse animate__fast"
-        color="light" size="large">
+        color="light" size="large" (click)="addMyClass()">
         <p id="text_icon" class="tamaño-letra m-0 animate__animated animate__bounceIn animate__fast text-dark"><i
             class="fab fa-google me-2"></i>Ingresar con Google</p>
       </ion-button>
 
       <h3 class="mb-4 text-white text-center tamaño-letra">
-        ¿ No tienes una cuenta ? crea <a id="aqui" href="#">aqui </a>
+        ¿ Ya tienes cuenta ? inicia <a id="aqui" href="#">aqui </a>
       </h3>
 
     </ion-card-content>

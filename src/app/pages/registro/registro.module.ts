@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AccesoPageRoutingModule } from './acceso-routing.module';
+import { RegistroPageRoutingModule } from './registro-routing.module';
 
-import { AccesoPage } from './acceso.page';
+import { RegistroPage } from './registro.page';
 import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
@@ -14,10 +14,10 @@ import { ComponentsModule } from '../../components/components.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    AccesoPageRoutingModule,
+    RegistroPageRoutingModule,
     ComponentsModule,
     ReactiveFormsModule
   ],
-  declarations: [AccesoPage]
+  declarations: [RegistroPage]
 })
-export class AccesoPageModule {}
+export class RegistroPageModule {}
