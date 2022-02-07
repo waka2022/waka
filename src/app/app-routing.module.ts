@@ -5,7 +5,7 @@ const routes: Routes = [
   
   {
     path: '',
-    redirectTo: 'tabs/mapa',
+    redirectTo: 'agregar-parqueadero',
     pathMatch: 'full',
   },
   {
@@ -35,6 +35,10 @@ const routes: Routes = [
   {
     path: 'acceso',
     loadChildren: () => import('./pages/acceso/acceso.module').then( m => m.AccesoPageModule)
+  },
+  {
+    path: 'agregar-parqueadero',
+    loadChildren: () => import('./pages/agregar-parqueadero/agregar-parqueadero.module').then( m => m.AgregarParqueaderoPageModule)
   },
 ];
 
