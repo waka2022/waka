@@ -18,3 +18,5 @@ import { InfoVehiculoPage } from './info-vehiculo.page';
   declarations: [InfoVehiculoPage]
 })
 export class InfoVehiculoPageModule {}
+
+

@@ -3,6 +3,7 @@ import { IonRouterOutlet, ModalController } from '@ionic/angular';
 import { InfoVehiculoPage } from '../info-vehiculo/info-vehiculo.page';
 import { MapboxService } from '../../services/mapbox.service';
 import { AlertController } from '@ionic/angular';
+import { FormularioAgregarVehiculoPage } from '../formulario-agregar-vehiculo/formulario-agregar-vehiculo.page';
 
 @Component({
   selector: 'app-mapa',
@@ -68,13 +69,15 @@ export class MapaPage implements OnInit {
       component: InfoVehiculoPage,
       initialBreakpoint: 0.8,
       breakpoints: [0.0, 0.8, 1],
-      showBackdrop: true
+      showBackdrop: true,
+      mode: 'ios'
 
 
     });
 
     await modal.present();
   }
+
 
 }
 

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { IonRouterOutlet, ModalController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
+import { FormularioAgregarVehiculoPage } from '../formulario-agregar-vehiculo/formulario-agregar-vehiculo.page';
 
 @Component({
   selector: 'app-info-vehiculo',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InfoVehiculoPage implements OnInit {
 
-  constructor() { }
+  constructor(private modalController: ModalController ) { }
 
   ngOnInit() {
+  }
+
+  async presentModa2() {
+
+    const modal = await this.modalController.create({
+      component: FormularioAgregarVehiculoPage,
+      initialBreakpoint: 0.8,
+      breakpoints: [0.0, 0.8, 1],
+      showBackdrop: true,
+      mode: 'ios'
+
+
+    });
+
+    await modal.present();
   }
 
 }

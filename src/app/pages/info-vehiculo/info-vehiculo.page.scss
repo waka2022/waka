@@ -17,10 +17,9 @@
     border: 1px solid transparent;
     width: 100%;
     border-radius: 5px;
-    border-color: rgba(75, 75, 77, 0.385);
 }
 
-.checkeable input:checked  + .icon {
+.checkeable input:checked + .icon {
     border-color: rgba(75, 75, 77, 0.385);
     -webkit-box-shadow: 0px 0px 47px 7px rgba(191,191,191,1);
     -moz-box-shadow: 0px 0px 47px 7px rgba(191,191,191,1);
@@ -28,5 +27,10 @@
     box-shadow: 0px 0px 71px -12px rgba(191,191,191,0.94);
     transform: scale(1.02);
     transition: all 0.1s;
+}
 
+.btnMas{
+    width: 100%;
+    color: black;
+    background-color: rgba(255, 255, 255, 0);
 }

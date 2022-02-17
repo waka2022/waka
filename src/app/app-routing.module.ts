@@ -5,7 +5,7 @@ const routes: Routes = [
   
   {
     path: '',
-    redirectTo: 'formulario-bp',
+    redirectTo: 'formulario-agregar-vehiculo',
     pathMatch: 'full',
   },
   {
@@ -56,6 +56,16 @@ const routes: Routes = [
     path: 'formulario-bp',
     loadChildren: () => import('./pages/formulario-bp/formulario-bp.module').then( m => m.FormularioBPPageModule)
   },
+  {
+    path: 'vehiculos-parqueadero',
+    loadChildren: () => import('./pages/vehiculos-parqueadero/vehiculos-parqueadero.module').then( m => m.VehiculosParqueaderoPageModule)
+  },
+  {
+    path: 'formulario-agregar-vehiculo',
+    loadChildren: () => import('./pages/formulario-agregar-vehiculo/formulario-agregar-vehiculo.module').then( m => m.FormularioAgregarVehiculoPageModule)
+  },
+
+
 
 
 
