@@ -5,7 +5,7 @@ const routes: Routes = [
   
   {
     path: '',
-    redirectTo: 'agregar-parqueadero',
+    redirectTo: 'formulario-bp',
     pathMatch: 'full',
   },
   {
@@ -44,6 +44,21 @@ const routes: Routes = [
     path: 'registro',
     loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
   },
+  {
+    path: 'inicio',
+    loadChildren: () => import('./pages/inicio/inicio.module').then( m => m.InicioPageModule)
+  },
+  {
+    path: 'seleccionar-rol',
+    loadChildren: () => import('./pages/seleccionar-rol/seleccionar-rol.module').then( m => m.SeleccionarRolPageModule)
+  },
+  {
+    path: 'formulario-bp',
+    loadChildren: () => import('./pages/formulario-bp/formulario-bp.module').then( m => m.FormularioBPPageModule)
+  },
+
+
+
 ];
 
 @NgModule({

@@ -1,0 +1,19 @@
+#contenedor{
+    position: relative;
+    height: 100%;
+}
+#contenedorFormulario{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    height: 490px;
+    width: 90%;
+}
+
+.linea{
+    background-color: rgba(255, 255, 255, 0.651);
+    height: 1px;
+}
