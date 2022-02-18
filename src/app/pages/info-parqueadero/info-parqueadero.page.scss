@@ -36,9 +36,7 @@ p {
      
  }
 
- .heightConteiner{
-     
- }
+
 
 .centrarVertText{
     display: flex;
@@ -49,6 +47,21 @@ p {
 
 .width100{
 width: 100%;
+}
+
+.btnReservar{
+    --background: #209E3C;
+    color: white;
+    font-size: 1.6rem;
+    height: 48px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+
+.btn-meVoy{
+    --background: #9E2020 !important;
 }
 
 

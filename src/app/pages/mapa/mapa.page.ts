@@ -12,44 +12,21 @@ import { FormularioAgregarVehiculoPage } from '../formulario-agregar-vehiculo/fo
 })
 export class MapaPage implements OnInit {
 
+  estado:boolean = false
+
   constructor(private routerOutlet: IonRouterOutlet, private modalController: ModalController,
     private servicioMapBox: MapboxService, private renderer: Renderer2,
     public alertController: AlertController) {
   }
 
+
   ngOnInit() {
     this.cargarMapa()
   }
 
-  async presentAlertConfirm() {
-    const alert = await this.alertController.create({
-      cssClass: '',
-      header: 'Confirm!',
-      message: '¿ Que metodo de pago vas a usar ?',
-      buttons: [
-        {
-          text: 'tarjeta',
-          cssClass: 'btn-alert',
-          id: 'cancel-button',
-
-          handler: () => {
-            console.log('tarjeta');
-          }
-        },{
-          text: 'efectivo',
-          id: 'confirm-button',
-          cssClass: 'btn-alert',
-          handler: () => {
-            console.log('efectivo');
-          }
-        }
-      ],
-      backdropDismiss: false,
-    });
-
-    await alert.present();
+  cambiarEstado(){
+    this.estado = !this.estado;
   }
-
 
   cargarMapa() {
 

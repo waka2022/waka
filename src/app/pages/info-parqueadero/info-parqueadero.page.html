@@ -39,7 +39,12 @@
                 <p class="fs-4">Precio pora</p>
                 <p class="fs-5 mb-4">$4.000</p>
 
+                <p class="fs-4"></p>
+                <p class="fs-5 mb-4"></p>
+
             </ion-col>
+
+            <ion-button expand="full"  class="btnReservar" (click)="cambiarEstado()" [ngClass]="{'btn-meVoy': estado}">{{ estado == false ? 'Reservar' : 'Cancelar' }}</ion-button>
                 
         </ion-row>
 

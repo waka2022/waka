@@ -7,8 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InfoParqueaderoPage implements OnInit {
 
+  estado:boolean = false
+
   constructor() { }
 
   ngOnInit() {
   }
+
+  cambiarEstado(){
+    this.estado = !this.estado;
+  }
+  
 }
