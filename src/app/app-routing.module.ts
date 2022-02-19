@@ -5,48 +5,16 @@ const routes: Routes = [
   
   {
     path: '',
-    redirectTo: 'formulario-agregar-vehiculo',
+    redirectTo: 'inicio',
     pathMatch: 'full',
-  },
-  {
-    path: 'mapa',
-    loadChildren: () => import('./pages/mapa/mapa.module').then( m => m.MapaPageModule)
-  },
-  {
-    path: 'perfil',
-    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
-  },
-  {
-    path: 'tabs',
-    loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
-  },
-  {
-    path: 'info-parqueadero',
-    loadChildren: () => import('./pages/info-parqueadero/info-parqueadero.module').then( m => m.InfoParqueaderoPageModule)
-  },
-  {
-    path: 'recibo',
-    loadChildren: () => import('./pages/recibo/recibo.module').then( m => m.ReciboPageModule)
-  },
-  {
-    path: 'info-vehiculo',
-    loadChildren: () => import('./pages/info-vehiculo/info-vehiculo.module').then( m => m.InfoVehiculoPageModule)
-  },
-  {
-    path: 'acceso',
-    loadChildren: () => import('./pages/acceso/acceso.module').then( m => m.AccesoPageModule)
-  },
-  {
-    path: 'agregar-parqueadero',
-    loadChildren: () => import('./pages/agregar-parqueadero/agregar-parqueadero.module').then( m => m.AgregarParqueaderoPageModule)
-  },
-  {
-    path: 'registro',
-    loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
   },
   {
     path: 'inicio',
     loadChildren: () => import('./pages/inicio/inicio.module').then( m => m.InicioPageModule)
+  },
+  {
+    path: 'registro',
+    loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
   },
   {
     path: 'seleccionar-rol',
@@ -57,18 +25,17 @@ const routes: Routes = [
     loadChildren: () => import('./pages/formulario-bp/formulario-bp.module').then( m => m.FormularioBPPageModule)
   },
   {
-    path: 'vehiculos-parqueadero',
-    loadChildren: () => import('./pages/vehiculos-parqueadero/vehiculos-parqueadero.module').then( m => m.VehiculosParqueaderoPageModule)
+    path: 'acceso',
+    loadChildren: () => import('./pages/acceso/acceso.module').then( m => m.AccesoPageModule)
   },
   {
-    path: 'formulario-agregar-vehiculo',
-    loadChildren: () => import('./pages/formulario-agregar-vehiculo/formulario-agregar-vehiculo.module').then( m => m.FormularioAgregarVehiculoPageModule)
+    path: 'tabs',
+    loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
   },
-
-
-
-
-
+  {
+    path: 'tabs2',
+    loadChildren: () => import('./pages/tabs2/tabs2.module').then( m => m.Tabs2PageModule)
+  },
 ];
 
 @NgModule({
