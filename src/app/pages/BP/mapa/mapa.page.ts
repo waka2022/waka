@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild, Renderer2 } from '@angular/core';
 import { IonRouterOutlet, ModalController } from '@ionic/angular';
 import { InfoVehiculoPage } from '../info-vehiculo/info-vehiculo.page';
-import { MapboxService } from '../../services/mapbox.service';
+import { MapboxService } from '../../../services/mapbox.service';
 import { AlertController } from '@ionic/angular';
 import { FormularioAgregarVehiculoPage } from '../formulario-agregar-vehiculo/formulario-agregar-vehiculo.page';
 

@@ -4,19 +4,19 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ReciboPageRoutingModule } from './recibo-routing.module';
+import { PerfilPageRoutingModule } from './perfil-routing.module';
 
-import { ReciboPage } from './recibo.page';
-import { ComponentsModule } from '../../components/components.module';
+import { PerfilPage } from './perfil.page';
+import { ComponentsModule } from '../../../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ReciboPageRoutingModule,
+    PerfilPageRoutingModule,
     ComponentsModule
   ],
-  declarations: [ReciboPage]
+  declarations: [PerfilPage]
 })
-export class ReciboPageModule {}
+export class PerfilPageModule {}

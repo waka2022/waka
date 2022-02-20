@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { AgregarParqueaderoPageRoutingModule } from './agregar-parqueadero-routing.module';
 
 import { AgregarParqueaderoPage } from './agregar-parqueadero.page';
-import { ComponentsModule } from '../../components/components.module';
+import { ComponentsModule } from '../../../components/components.module';
 
 @NgModule({
   imports: [

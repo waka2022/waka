@@ -1,0 +1,29 @@
+#contenedor{
+    position: relative;
+    height: 100%;
+}
+#contenedorFormulario{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    height: 700px;
+    width: 90%;
+}
+
+.linea{
+    background-color: rgba(255, 255, 255, 0.651);
+    height: 1px;
+}
+
+.btnMas{
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    color: black;
+    background-color: rgba(255, 255, 255, 0);
+}

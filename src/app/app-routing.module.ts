@@ -22,7 +22,7 @@ const routes: Routes = [
   },
   {
     path: 'formulario-bp',
-    loadChildren: () => import('./pages/formulario-bp/formulario-bp.module').then( m => m.FormularioBPPageModule)
+    loadChildren: () => import('./pages/BP/formulario-bp/formulario-bp.module').then( m => m.FormularioBPPageModule)
   },
   {
     path: 'acceso',
@@ -36,6 +36,9 @@ const routes: Routes = [
     path: 'tabs2',
     loadChildren: () => import('./pages/tabs2/tabs2.module').then( m => m.Tabs2PageModule)
   },
+  
+  
+
 ];
 
 @NgModule({

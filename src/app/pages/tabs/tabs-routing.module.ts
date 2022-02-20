@@ -10,20 +10,24 @@ const routes: Routes = [
     children: [
       {
         path: 'mapa',
-        loadChildren: () => import('../mapa/mapa.module').then(m => m.MapaPageModule)
+        loadChildren: () => import('../BP/mapa/mapa.module').then(m => m.MapaPageModule)
       },
       {
         path: 'info-parqueadero',
-        loadChildren: () => import('../info-parqueadero/info-parqueadero.module').then(m => m.InfoParqueaderoPageModule),
+        loadChildren: () => import('../PP/info-parqueadero/info-parqueadero.module').then(m => m.InfoParqueaderoPageModule),
       },
       {
         path: 'recibo',
-        loadChildren: () => import('../recibo/recibo.module').then(m => m.ReciboPageModule),
+        loadChildren: () => import('../BP/recibo/recibo.module').then(m => m.ReciboPageModule),
       },
       {
         path: 'perfil',
-        loadChildren: () => import('../perfil/perfil.module').then(m => m.PerfilPageModule)
-      }
+        loadChildren: () => import('../BP/perfil/perfil.module').then(m => m.PerfilPageModule)
+      },
+      {
+        path: 'novedades',
+        loadChildren: () => import('../BP/novedades/novedades.module').then( m => m.NovedadesPageModule)
+      },
         
     ]
   }

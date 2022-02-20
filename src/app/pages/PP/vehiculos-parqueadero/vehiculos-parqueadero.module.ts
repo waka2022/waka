@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { VehiculosParqueaderoPageRoutingModule } from './vehiculos-parqueadero-routing.module';
 
 import { VehiculosParqueaderoPage } from './vehiculos-parqueadero.page';
-import { ComponentsModule } from '../../components/components.module';
+import { ComponentsModule } from '../../../components/components.module';
 
 @NgModule({
   imports: [

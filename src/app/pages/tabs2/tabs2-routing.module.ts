@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { Tabs2Page } from './tabs2.page';
-import { AgregarParqueaderoPageModule } from '../agregar-parqueadero/agregar-parqueadero.module';
+import { AgregarParqueaderoPageModule } from '../PP/agregar-parqueadero/agregar-parqueadero.module';
 
 const routes: Routes = [
   {
@@ -11,20 +11,24 @@ const routes: Routes = [
     children: [
       {
         path: 'Mis-parqueaderos',
-        loadChildren: () => import('../agregar-parqueadero/agregar-parqueadero.module').then(m => m.AgregarParqueaderoPageModule)
+        loadChildren: () => import('../PP/agregar-parqueadero/agregar-parqueadero.module').then(m => m.AgregarParqueaderoPageModule)
       },
       {
         path: 'info-parqueadero',
-        loadChildren: () => import('../info-parqueadero/info-parqueadero.module').then(m => m.InfoParqueaderoPageModule),
+        loadChildren: () => import('../PP/info-parqueadero/info-parqueadero.module').then(m => m.InfoParqueaderoPageModule),
       },
       {
         path: 'recibo',
-        loadChildren: () => import('../vehiculos-parqueadero/vehiculos-parqueadero.module').then(m => m.VehiculosParqueaderoPageModule),
+        loadChildren: () => import('../PP/vehiculos-parqueadero/vehiculos-parqueadero.module').then(m => m.VehiculosParqueaderoPageModule),
       },
       {
         path: 'perfil',
-        loadChildren: () => import('../perfil/perfil.module').then(m => m.PerfilPageModule)
-      }
+        loadChildren: () => import('../PP/perfil-parqueadero/perfil-parqueadero.module').then( m => m.PerfilParqueaderoPageModule)
+      },
+      {
+        path: 'ver-mas',
+        loadChildren: () => import('../PP/ver-mas/ver-mas.module').then( m => m.VerMasPageModule)
+      },
         
     ]
   }

@@ -1,0 +1,20 @@
+.contenedor{
+    width: 100%;
+    margin: 0%;
+    background-color: #050b18;
+    padding: 13px;
+    border-radius: 7px;
+}
+
+#img-carro{
+    height: 100px;
+    object-fit: contain;
+    width: 100%;
+}
+#volver{
+    background-color: rgb(80,200,255);
+    padding: 5px;
+    border-radius: 7px;
+    width: 100%;
+    text-align: center;
+}
