@@ -3,7 +3,7 @@
 <ion-content color="light">
     <ion-grid>
         <ion-row >
-            <ion-col size="12" size-sm="6" size-md="6" class="animate__animated animate__zoomIn animate__faste mx-auto pb-1 pt-0"  *ngFor="let item of [1,1,1]">
+            <ion-col size="12" size-sm="6" size-md="6" class="animate__animated animate__zoomIn animate__faste mx-auto pb-1 pt-0"  *ngFor="let item of [1]">
 
                 <ion-row class="p-2 border-radius contenedorAzulPrincipal referenciaPosicion">
 
@@ -22,6 +22,9 @@
 
                         <ion-row class="posicionAbajo">
                             <ion-col>
+                                <ion-button routerLink="/novedades" expand="block" color="primary">
+                                    Ver novedades de mi vehicuo
+                                </ion-button>
                                 <app-modal></app-modal>
                                 <app-modal-calificar></app-modal-calificar>
                             </ion-col>

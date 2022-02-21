@@ -37,6 +37,18 @@ const routes: Routes = [
     path: 'tabs2',
     loadChildren: () => import('./pages/tabs2/tabs2.module').then( m => m.Tabs2PageModule)
   },
+  {
+    path: 'novedades',
+    loadChildren: () => import('./pages/BP/novedades/novedades.module').then( m => m.NovedadesPageModule)
+  },
+  {
+    path: 'ver',
+    loadChildren: () => import('./pages/PP/ver-mas/ver-mas.module').then( m => m.VerMasPageModule)
+  },  {
+    path: 'agregar-foto',
+    loadChildren: () => import('./pages/PP/agregar-foto/agregar-foto.module').then( m => m.AgregarFotoPageModule)
+  },
+
   
 
   
