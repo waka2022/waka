@@ -31,4 +31,47 @@
     color: white;
 }
 
+.btn-alert{
+    background-color: #209E3C !important;
+    color: white !important;
+}
+
+.alert-title{
+    color: white !important;
+}
+
+
+.btn-modal{
+   background-color: #209E3C!important;
+   color: white !important;
+   width: 247px !important;
+   text-align: center !important;
+
+}
+
+.custom-modal{
+    text-align: center !important;
+    font-size: 500px !important;
+}
+
+
+.alert-button-inner{
+    justify-content: center !important;
+    font-size:larger;
+}
+
+
+
+#rating {
+    text-align: center !important;
+    justify-content: center !important;
+    width: auto;
+    height: auto;
+ }
+
+ 
+ .rating__star {
+    cursor: pointer;
+    color: #dabd18b2;
+ }
 

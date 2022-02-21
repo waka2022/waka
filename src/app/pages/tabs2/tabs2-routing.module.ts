@@ -29,6 +29,10 @@ const routes: Routes = [
         path: 'info-vehiculo',
         loadChildren: () => import('../BP/info-vehiculo/info-vehiculo.module').then( m => m.InfoVehiculoPageModule)
       },
+      {
+        path: 'acceso-estadisticas',
+        loadChildren: () => import('../PP/acceso-estadisticas/acceso-estadisticas.module').then( m => m.AccesoEstadisticasPageModule)
+      },
         
     ]
   }

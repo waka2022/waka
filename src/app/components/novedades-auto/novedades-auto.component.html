@@ -1,0 +1,21 @@
+<ion-card class="card">
+  <ion-card-content >
+    <form [formGroup]="new_auto"  (ngSubmit)="xxxxx()">
+
+      <ion-item color="dark" class=" mb-2 border-abajo">
+        <ion-label color="light" class="text-dark" position="stacked">Agregar Fotos</ion-label>
+        <ion-input class="ml-4" type="file"  class="text-dark" formControlName="img"></ion-input>
+      </ion-item>
+
+      <ion-item color="dark" class="border-abajo">
+      <ion-label color="light" class="text-dark"  position="stacked">Descripcion:</ion-label>
+        <ion-textarea class="ml-4"   class="text-dark" formControlName="des"></ion-textarea>
+      </ion-item>
+
+      <ion-button class="mb-4 mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast"
+        color="success" size="large" (click)="addMyClass()" type="submit" [disabled]="!new_auto.valid">
+        <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Agregar</p>
+      </ion-button>
+    </form>
+  </ion-card-content>
+</ion-card>

@@ -38,6 +38,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tabs2/tabs2.module').then( m => m.Tabs2PageModule)
   },
   
+
+  
 ];
 
 @NgModule({
