@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, PatternValidator, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-acceso',
@@ -8,7 +9,7 @@ import { FormControl, FormGroup, PatternValidator, Validators } from '@angular/f
 })
 export class AccesoPage implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
   }
@@ -18,5 +19,9 @@ export class AccesoPage implements OnInit {
     password: new FormControl('', Validators.required)
   });
 
+  Ingresar(){
 
+    this.router.navigate(['tabs/mapa'])
+    
+  }
 }

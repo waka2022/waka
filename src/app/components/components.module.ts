@@ -5,6 +5,7 @@ import { LogoWakaComponent } from './logo-waka/logo-waka.component';
 
 
 
+
 @NgModule({
   declarations: [
     MenuComponent,
@@ -15,7 +16,7 @@ import { LogoWakaComponent } from './logo-waka/logo-waka.component';
   ],
   exports:[
    MenuComponent,
-   LogoWakaComponent
+   LogoWakaComponent,
 
   ]
 })

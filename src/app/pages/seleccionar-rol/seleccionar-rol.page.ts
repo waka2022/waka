@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-seleccionar-rol',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SeleccionarRolPage implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
+  }
+
+  siguiente(){
+    this.router.navigate(['formulario-bp'])
   }
 
 }

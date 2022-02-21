@@ -8,8 +8,7 @@
         <i class="fas fa-car fa-3x"></i>
     </ion-tab-button>
 
-    <ion-button class="fixed-bottom m-0 p-0 animate__animated animate__pulse animate__fast btn-yaLlegue" expand="full" size="large" [ngClass]="{'btn-meVoy': estado}" (click)="cambiarEstado()"> 
-
+    <ion-button class="animate__animated animate__pulse animate__fast fixed-bottom m-0 p-0 btn-yaLlegue verde" expand="full" size="large" [ngClass]="{'rojo': estado}" (click)="cambiarEstado()"> 
         <p id="TextYaLlegue" class="animate__animated animate__bounceIn animate__fast">{{ estado == false ? 'Ya llegue' : 'Ya me voy' }}</p> 
     </ion-button>
 

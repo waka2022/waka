@@ -1,10 +1,15 @@
 <ion-header>
+  <ion-toolbar color="primarioApp">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
-
+  
   <ion-card class="card">
+
     <div class="mt-5 bt-5 d-flex justify-content-center ">
       <app-logo-waka></app-logo-waka>
     </div>
@@ -21,17 +26,18 @@
           <ion-input class="text-white" type="password" formControlName="password"></ion-input>
         </ion-item>
 
-        <ion-button class="mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast"
-          color="success" size="large" (click)="addMyClass()" type="submit" [disabled]="!users.valid">
+        <ion-button class="mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast verde" size="large" type="submit" [disabled]="!users.valid">
           <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Ingresar</p>
         </ion-button>
       </form>
 
       <ion-button class="mb-4 mt-1 d-flex justify-content-center animate__animated animate__pulse animate__fast"
-        color="light" size="large">
+        color="light" size="large" (click)="Ingresar()">
         <p id="text_icon" class="tamaño-letra m-0 animate__animated animate__bounceIn animate__fast text-dark"><i
             class="fab fa-google me-2"></i>Ingresar con Google</p>
       </ion-button>
+
+      <a routerLink="/tabs2/mis-parqueaderos">Entrar como PP :V</a>
 
       <h3 class="mb-4 text-white text-center tamaño-letra">
         ¿ No tienes una cuenta ? crea <a id="aqui" href="#">aqui </a>

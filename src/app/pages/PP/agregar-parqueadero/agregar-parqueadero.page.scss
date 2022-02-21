@@ -14,28 +14,20 @@
 }
 
 #disponibilidad{
-    background-color: red;
+    background-color: #9E2020;
     padding: 5px;
     border-radius: 7px;
     text-align: center;
 }
 
-#btn-agregar{
-    height: 100px;
-    width: 100px;
-    border-radius: 100%;
-    background-color: aqua;
-    position: relative;
-}
-
-.btn-infoModal{
+.btn-agregar{
     height: 60px;
     width: 60px;
     border-radius: 100%;
     background-color: #050b18;
     color: rgb(255, 255, 255);
     margin-bottom: 9px;
-    margin-right: 6px;
+    margin-right: 10px;
 }
 
 .agregar-parqueadero{

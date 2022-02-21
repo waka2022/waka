@@ -1,9 +1,15 @@
 <ion-header>
+  <ion-toolbar color="primarioApp">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div id="contenedor">
     <div id="contenedorRol">
+
       <ion-item color="primarioApp">
         <ion-label>¿ Para que vas a usar waka ?</ion-label>
         <ion-select class="option" interface="popover">
@@ -12,6 +18,9 @@
         </ion-select>
       </ion-item>
       <div class="linea"></div>
+      <ion-button class="mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast verde" (click)="siguiente()">
+        <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Siguiente</p>
+      </ion-button>
     </div>
   </div>
   

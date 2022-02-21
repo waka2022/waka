@@ -10,12 +10,8 @@ const routes: Routes = [
     component: Tabs2Page,
     children: [
       {
-        path: 'Mis-parqueaderos',
+        path: 'mis-parqueaderos',
         loadChildren: () => import('../PP/agregar-parqueadero/agregar-parqueadero.module').then(m => m.AgregarParqueaderoPageModule)
-      },
-      {
-        path: 'info-parqueadero',
-        loadChildren: () => import('../PP/info-parqueadero/info-parqueadero.module').then(m => m.InfoParqueaderoPageModule),
       },
       {
         path: 'recibo',
@@ -28,6 +24,10 @@ const routes: Routes = [
       {
         path: 'ver-mas',
         loadChildren: () => import('../PP/ver-mas/ver-mas.module').then( m => m.VerMasPageModule)
+      },
+      {
+        path: 'info-vehiculo',
+        loadChildren: () => import('../BP/info-vehiculo/info-vehiculo.module').then( m => m.InfoVehiculoPageModule)
       },
         
     ]

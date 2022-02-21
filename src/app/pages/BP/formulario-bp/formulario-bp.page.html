@@ -1,5 +1,9 @@
 <ion-header>
-
+  <ion-toolbar color="primarioApp">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
@@ -43,9 +47,8 @@
 
         <div class="linea"></div>
         
-        <ion-button class="mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast"
-          color="success" type="submit">
-          <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Continuar</p>
+        <ion-button class="mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast verde" (click)="registrar()">
+          <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Registrarse</p>
         </ion-button>
       </form>
 

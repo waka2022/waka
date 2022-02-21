@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PerfilParqueaderoPageRoutingModule } from './perfil-parqueadero-routing.module';
+import { PerfilParqueaderoPageRoutingModule } from './perfil-routing.module';
 
 import { PerfilParqueaderoPage } from './perfil-parqueadero.page';
 import { ComponentsModule } from '../../../components/components.module';

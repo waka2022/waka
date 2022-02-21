@@ -14,7 +14,7 @@ const routes: Routes = [
       },
       {
         path: 'info-parqueadero',
-        loadChildren: () => import('../PP/info-parqueadero/info-parqueadero.module').then(m => m.InfoParqueaderoPageModule),
+        loadChildren: () => import('../BP/info-parqueadero/info-parqueadero.module').then(m => m.InfoParqueaderoPageModule),
       },
       {
         path: 'recibo',

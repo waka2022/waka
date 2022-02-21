@@ -13,7 +13,7 @@ import { InfoVehiculoPage } from './info-vehiculo.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    InfoVehiculoPageRoutingModule
+    InfoVehiculoPageRoutingModule,
   ],
   declarations: [InfoVehiculoPage]
 })

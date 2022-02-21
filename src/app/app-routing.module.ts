@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { InfoVehiculoPageModule } from './pages/BP/info-vehiculo/info-vehiculo.module';
 
 const routes: Routes = [
   
@@ -37,8 +38,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tabs2/tabs2.module').then( m => m.Tabs2PageModule)
   },
   
-  
-
 ];
 
 @NgModule({

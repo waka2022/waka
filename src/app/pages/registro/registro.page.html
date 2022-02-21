@@ -1,4 +1,9 @@
 <ion-header>
+  <ion-toolbar color="primarioApp">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 
@@ -27,16 +32,17 @@
           <ion-input class="text-white" type="password" formControlName="password"></ion-input>
         </ion-item>
 
-        <ion-button class="mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast"
-          color="success" size="large" (click)="addMyClass()" type="submit" [disabled]="!users.valid">
+        <ion-button class="mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast verde"
+          size="large" type="submit" [disabled]="!users.valid">
           <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Registrarse</p>
         </ion-button>
       </form>
 
       <ion-button class="mb-4 mt-1 d-flex justify-content-center animate__animated animate__pulse animate__fast"
-        color="light" size="large" (click)="addMyClass()">
-        <p id="text_icon" class="tamaño-letra m-0 animate__animated animate__bounceIn animate__fast text-dark"><i
-            class="fab fa-google me-2"></i>Ingresar con Google</p>
+        color="light" size="large" (click)="Registrarse()">
+        <p id="text_icon" class="tamaño-letra m-0 animate__animated animate__bounceIn animate__fast text-dark">
+          <i class="fab fa-google me-2"></i>Registrarse con Google
+        </p>
       </ion-button>
 
       <h3 class="mb-4 text-white text-center tamaño-letra">

@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { SeleccionarRolPageRoutingModule } from './seleccionar-rol-routing.module';
 
 import { SeleccionarRolPage } from './seleccionar-rol.page';
+import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SeleccionarRolPageRoutingModule
+    SeleccionarRolPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [SeleccionarRolPage]
 })
