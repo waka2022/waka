@@ -6,7 +6,7 @@ const routes: Routes = [
   
   {
     path: '',
-    redirectTo: 'inicio',
+    redirectTo: 'error404',
     pathMatch: 'full',
   },
   {
@@ -44,9 +44,14 @@ const routes: Routes = [
   {
     path: 'ver',
     loadChildren: () => import('./pages/PP/ver-mas/ver-mas.module').then( m => m.VerMasPageModule)
-  },  {
+  },
+  {
     path: 'agregar-foto',
     loadChildren: () => import('./pages/PP/agregar-foto/agregar-foto.module').then( m => m.AgregarFotoPageModule)
+  },
+  {
+    path: 'error404',
+    loadChildren: () => import('./pages/error404/error404.module').then( m => m.Error404PageModule)
   },
 
   
