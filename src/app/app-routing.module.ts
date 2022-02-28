@@ -50,13 +50,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/PP/agregar-foto/agregar-foto.module').then( m => m.AgregarFotoPageModule)
   },
   {
-<<<<<<< HEAD
     path: 'new-pass',
     loadChildren: () => import('./pages/new-pass/new-pass.module').then( m => m.NewPassPageModule)
-=======
+  },
+  {
     path: 'error404',
     loadChildren: () => import('./pages/error404/error404.module').then( m => m.Error404PageModule)
->>>>>>> 3d60955750ac432f92df7fe3519e7d60bfdb95ef
   },
 
   

@@ -20,15 +20,11 @@ export class RegistroPage implements OnInit {
 
   users = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-<<<<<<< HEAD
+    last_name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     email: new FormControl('', [Validators.required, Validators.pattern('[A-Za-z0-9._%+-]{2,}@[a-zA-Z-_.]{2,}[.]{1}[a-zA-Z]{2,}')]),
     password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$')]),
     passconf: new FormControl('', Validators.required)
-=======
-    last_name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', Validators.required)
->>>>>>> 3d60955750ac432f92df7fe3519e7d60bfdb95ef
+    
   });
 
 
@@ -38,9 +34,6 @@ export class RegistroPage implements OnInit {
     this.router.navigate(['seleccionar-rol'])
   }
 
-<<<<<<< HEAD
   
-=======
->>>>>>> 3d60955750ac432f92df7fe3519e7d60bfdb95ef
 
 }
