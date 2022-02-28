@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <app-menu></app-menu>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid class="mt-5">
+
+    <ion-row>
+      <ion-col size="12">
+        <div id="nave">
+          <ion-img src="../../../assets/ovni.png" id="img-nave"></ion-img>
+        </div>
+        <div id="estela">
+          <ion-img src="../../../assets/estela.png" id="img-estela"></ion-img>
+          <div id="error">
+            <h1 class="text-white" id="error404">404</h1>
+          </div>
+        </div>
+
+      </ion-col>
+    </ion-row>
+
+
+
+    <ion-row class="text-white" id="cont-row2">
+      <ion-col size="12" class="position-relative">
+        <h2 class="texto"> ¿Te perdiste?</h2><br>
+        <h2 class="texto2">name</h2>
+        <br>
+        <ion-button routerLink ='/tabs/mapa' id="btn-volver" class="verde mt-3">
+          Volver
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>

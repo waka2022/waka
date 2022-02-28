@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, PatternValidator, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UsuarioService } from '../../services/usuario.service';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class RegistroPage implements OnInit {
 
-  constructor( private router:Router) { }
+  constructor( private router:Router, private usuarioService:UsuarioService) { }
 
   ngOnInit() {
   }
@@ -19,20 +20,27 @@ export class RegistroPage implements OnInit {
 
   users = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+<<<<<<< HEAD
     email: new FormControl('', [Validators.required, Validators.pattern('[A-Za-z0-9._%+-]{2,}@[a-zA-Z-_.]{2,}[.]{1}[a-zA-Z]{2,}')]),
     password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$')]),
     passconf: new FormControl('', Validators.required)
+=======
+    last_name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', Validators.required)
+>>>>>>> 3d60955750ac432f92df7fe3519e7d60bfdb95ef
   });
 
 
   saveData(): void{
     console.log(this.users.value);
-  }
-
-  Registrarse(){
+    this.usuarioService.crearUsuario(this.users.value).subscribe( res => {console.log(res)})
     this.router.navigate(['seleccionar-rol'])
   }
 
+<<<<<<< HEAD
   
+=======
+>>>>>>> 3d60955750ac432f92df7fe3519e7d60bfdb95ef
 
 }
