@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, PatternValidator, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UsuarioService } from '../../services/usuario.service';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class RegistroPage implements OnInit {
 
-  constructor( private router:Router) { }
+  constructor( private router:Router, private usuarioService:UsuarioService) { }
 
   ngOnInit() {
   }
@@ -27,6 +28,10 @@ export class RegistroPage implements OnInit {
 
   Registrarse(){
     this.router.navigate(['seleccionar-rol'])
+  }
+
+  crearUsuario(){
+    this.usuarioService.crearUsuario(this.users)
   }
 
 }

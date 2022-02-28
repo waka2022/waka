@@ -12,6 +12,16 @@
     width: 100%
 }
 
+#btn-volver{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-right: auto;
+    margin-left: auto;
+    width: 370px;
+    height: 47px;
+}
+
 #estela{
     position: relative;
     
@@ -44,6 +54,10 @@
 
 #error404{
     font-size: 2.6rem;
+}
+
+#cont-row2{
+    margin-bottom: 100px;
 }
 
 .texto{
