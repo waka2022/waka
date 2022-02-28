@@ -18,20 +18,16 @@ export class RegistroPage implements OnInit {
 
   users = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    last_name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required)
   });
 
   saveData(): void{
     console.log(this.users.value);
-  }
-
-  Registrarse(){
+    this.usuarioService.crearUsuario(this.users.value).subscribe( res => {console.log(res)})
     this.router.navigate(['seleccionar-rol'])
   }
 
-  crearUsuario(){
-    this.usuarioService.crearUsuario(this.users)
-  }
 
 }

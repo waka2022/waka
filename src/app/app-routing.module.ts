@@ -6,7 +6,7 @@ const routes: Routes = [
   
   {
     path: '',
-    redirectTo: 'error404',
+    redirectTo: 'inicio',
     pathMatch: 'full',
   },
   {

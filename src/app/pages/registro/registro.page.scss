@@ -1,18 +1,23 @@
-.tamaño-letra{
-    font-size: 1rem;
-}
+
   .card{
     background-color: #1e1e1e;
     border-radius: 10px;
     padding-left: 4%;
     padding-right: 4%;
     position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    width: 39%;
+    height: 600px;
     border: #ffffff67 solid 1px;
 }
 
+.btn-registro{
+  width: 100%;
+}
 .border-abajo{
     border-bottom: #ffffff81 solid 1px;
 }
@@ -25,10 +30,11 @@
      color: #2fdf75ab;
   }
 
-@media (max-width: 600px)
+@media (max-width: 1000px)
   {
     .card{
           width: 90%;
+          
       }
   }
   

@@ -14,7 +14,7 @@
     </div>
 
     <ion-card-content>
-      <form [formGroup]="users">
+      <form [formGroup]="users" mode="md">
         <ion-item class="border-abajo">
           <ion-label color="dark" position="floating">Email:</ion-label>
           <ion-input class="text-white" formControlName="email"></ion-input>
@@ -25,22 +25,26 @@
           <ion-input class="text-white" type="password" formControlName="password"></ion-input>
         </ion-item>
 
+        
+
         <ion-button class="mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast verde" size="large" type="submit" [disabled]="!users.valid">
-          <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Ingresar</p>
+          <p class="animate__animated animate__bounceIn animate__fast">Ingresar</p>
         </ion-button>
       </form>
 
       <ion-button class="mb-4 mt-1 d-flex justify-content-center animate__animated animate__pulse animate__fast"
-        color="light" size="large" (click)="Ingresar()">
-        <p id="text_icon" class="tamaño-letra m-0 animate__animated animate__bounceIn animate__fast text-dark"><i
+        color="light" size="large" (click)="Ingresar()" mode="md">
+        <p id="text_icon" class="animate__animated animate__bounceIn animate__fast text-dark"><i
             class="fab fa-google me-2"></i>Ingresar con Google</p>
       </ion-button>
 
       <a routerLink="/tabs2/mis-parqueaderos">Entrar como PP :V</a>
 
-      <h3 class="mb-4 text-white text-center tamaño-letra">
-        ¿ No tienes una cuenta ? crea <a id="aqui" href="#">aqui </a>
+      <h3 class="mb-4 text-white text-center">
+        ¿ No tienes una cuenta ? crea <a id="aqui" routerLink='/registro'>aqui </a>
       </h3>
+
+      
 
     </ion-card-content>
   </ion-card>

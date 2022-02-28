@@ -18,7 +18,7 @@
     right: 0;
     margin-right: auto;
     margin-left: auto;
-    width: 370px;
+    width: 40%;
     height: 47px;
 }
 
@@ -61,14 +61,14 @@
 }
 
 .texto{
-    font-size: 5rem;
+    font-size: 3.5rem;
     text-align: center;
     font-family: 'Press Start 2P', cursive;
     animation: opacidad404 2s;
 }
 
 .texto2{
-    font-size: 4rem;
+    font-size: 2.5rem;
     text-align: center;
     font-family: 'Press Start 2P', cursive;
     animation: opacidad404 2s;
@@ -122,19 +122,29 @@
 @media (max-width: 794px) {
 
     .texto{
-        font-size: 3.4rem;
+        font-size: 3.5rem;
     }
     .texto2{
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
 }
 
-@media (max-width: 393px) {
+@media (max-width: 511px) {
 
     .texto{
-        font-size: 1.4rem;
+        font-size: 2.5rem;
     }
     .texto2{
-        font-size: 2.3rem;
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 385px) {
+
+    .texto{
+        font-size: 1.5rem;
+    }
+    .texto2{
+        font-size: 1.1rem;
     }
 }

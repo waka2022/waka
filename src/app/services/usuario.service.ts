@@ -15,4 +15,5 @@ export class UsuarioService {
     return this.http.post(`${this.url}/users`, usuario)
 
   }
+
 }
