@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, PatternValidator, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, PatternValidator, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 
@@ -15,11 +15,15 @@ export class RegistroPage implements OnInit {
   ngOnInit() {
   }
 
+
+
   users = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', Validators.required)
+    email: new FormControl('', [Validators.required, Validators.pattern('[A-Za-z0-9._%+-]{2,}@[a-zA-Z-_.]{2,}[.]{1}[a-zA-Z]{2,}')]),
+    password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$')]),
+    passconf: new FormControl('', Validators.required)
   });
+
 
   saveData(): void{
     console.log(this.users.value);
@@ -28,5 +32,7 @@ export class RegistroPage implements OnInit {
   Registrarse(){
     this.router.navigate(['seleccionar-rol'])
   }
+
+  
 
 }

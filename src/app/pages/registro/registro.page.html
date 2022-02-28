@@ -21,21 +21,32 @@
           <ion-label color="dark" position="floating">Nombre:</ion-label>
           <ion-input class="text-white" formControlName="name"></ion-input>
         </ion-item>
+        <ion-label color="danger" *ngIf="users.controls.name.errors?.minlength && (users.touched || users.dirty)">* El nombre tiene que tener al menos 4 caracteres. </ion-label>
 
         <ion-item class="border-abajo">
           <ion-label color="dark" position="floating">Email:</ion-label>
           <ion-input class="text-white" formControlName="email"></ion-input>
         </ion-item>
+        <ion-label color="danger" *ngIf="users.controls.email.errors?.pattern && (users.touched || users.dirty)">* El email no es válido. </ion-label>
 
         <ion-item class="border-abajo">
           <ion-label color="dark" position="floating">Contraseña:</ion-label>
           <ion-input class="text-white" type="password" formControlName="password"></ion-input>
         </ion-item>
+        <ion-label color="danger" *ngIf="users.controls.password.errors?.pattern && (users.touched || users.dirty)">* La contraseña debe tener carácteres, mayusculas y números. </ion-label>
+
+        <ion-item class="border-abajo">
+          <ion-label color="dark" position="floating">Confirmación de contraseña:</ion-label>
+          <ion-input class="text-white" type="password" formControlName="passconf"></ion-input>
+        </ion-item>
+
+
 
         <ion-button class="mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast verde"
           size="large" type="submit" [disabled]="!users.valid">
           <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Registrarse</p>
         </ion-button>
+        
       </form>
 
       <ion-button class="mb-4 mt-1 d-flex justify-content-center animate__animated animate__pulse animate__fast"
@@ -44,6 +55,7 @@
           <i class="fab fa-google me-2"></i>Registrarse con Google
         </p>
       </ion-button>
+
 
       <h3 class="mb-4 text-white text-center tamaño-letra">
         ¿ Ya tienes cuenta ? inicia <a id="aqui" href="#">aqui </a>

@@ -48,6 +48,10 @@ const routes: Routes = [
     path: 'agregar-foto',
     loadChildren: () => import('./pages/PP/agregar-foto/agregar-foto.module').then( m => m.AgregarFotoPageModule)
   },
+  {
+    path: 'new-pass',
+    loadChildren: () => import('./pages/new-pass/new-pass.module').then( m => m.NewPassPageModule)
+  },
 
   
 
