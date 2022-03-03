@@ -24,6 +24,8 @@ export class UsuarioService {
     
     return this.http.delete(`${this.url}/users/disable-account`, { headers: {authorization_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMGVjNmI1ZWQ3YmNlMTIyZDIwMDNkZCIsImlhdCI6MTY0NTQ2ODA1MiwiZXhwIjoxNjQ1NDg2MDUyfQ.t6hpwpgfPhmnb3Cmb50lq-p4k94jmfNirEoAOEmZJVc"} })
 
+
+    
   }
   
 
