@@ -11,7 +11,7 @@
     bottom: 0;
     margin: auto;
     width: 39%;
-    height: 670px;
+    height: 700px;
     border: #ffffff67 solid 1px;
 }
 
@@ -29,6 +29,11 @@
  #aqui:hover{
      color: #2fdf75ab;
   }
+
+  ion-checkbox{
+    --border-color: rgb(255, 255, 255);
+  --border-color-checked :rgb(255, 255, 255);
+}
 
 @media (max-width: 1000px)
   {

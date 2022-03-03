@@ -45,6 +45,12 @@
           <ion-input class="text-white" type="password" ></ion-input>
         </ion-item>
 
+        <ion-item >
+          <ion-label class="text-white">Terminos y condiciones</ion-label>
+          <ion-checkbox  formControlName="tercond"  color="dark" slot="start" (click)="openTerms()"></ion-checkbox>
+        </ion-item>    
+
+
         <ion-button class="animate__animated animate__pulse animate__fast verde mt-5 btn-registro"
           size="large" type="submit" [disabled]="!users.valid">
           <p class="animate__animated animate__bounceIn animate__fast ">Registrarse</p>
@@ -53,7 +59,7 @@
 
       </form>
 
-      <ion-button class="animate__animated animate__pulse animate__fast mb-4 mt-1 btn-registro"
+      <ion-button class="animate__animated animate__pulse animate__fast mb-4 mt-2 btn-registro"
         color="light" size="large" (click)="Registrarse()">
         <p id="text_icon" class="animate__animated animate__bounceIn animate__fast text-dark">
           <i class="fab fa-google me-2"></i>Registrarse con Google
