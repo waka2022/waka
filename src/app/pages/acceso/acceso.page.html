@@ -25,7 +25,7 @@
           <ion-input class="text-white" type="password" formControlName="password"></ion-input>
         </ion-item>        
 
-        <ion-button class="mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast verde" size="large" type="submit" [disabled]="!users.valid">
+        <ion-button class="mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast verde" size="large" type="submit" [disabled]="!users.valid" (click)="Ingresar()">
           <p class="animate__animated animate__bounceIn animate__fast">Ingresar</p>
         </ion-button>
       </form>

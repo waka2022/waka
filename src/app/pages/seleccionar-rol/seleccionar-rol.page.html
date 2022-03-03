@@ -10,18 +10,28 @@
   <div id="contenedor">
     <div id="contenedorRol">
 
-      <ion-item color="primarioApp">
-        <ion-label>¿ Para que vas a usar waka ?</ion-label>
-        <ion-select class="option" interface="popover">
-          <ion-select-option class="option" value="B">Buscar parqueadero </ion-select-option>
-          <ion-select-option class="option" value="P">Publicar un parqueadero</ion-select-option>
-        </ion-select>
-      </ion-item>
-      <div class="linea"></div>
-      <ion-button class="mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast verde" (click)="siguiente()">
-        <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Siguiente</p>
-      </ion-button>
+      <form [formGroup]="userRol" mode="md">
+        <ion-item color="primarioApp">
+          <ion-label>¿ Para que vas a usar waka ?</ion-label>
+
+          <ion-select class="option" interface="popover" ngDefaultControl formControlName="rol">
+            <ion-select-option class="option" value="USER_BP" name="USER_BP">Buscar parqueadero
+            </ion-select-option>
+            <ion-select-option class="option" value="USER_PP" name="USER_PP">Publicar un parqueadero
+            </ion-select-option>
+
+          </ion-select>
+        </ion-item>
+
+        <div class="linea"></div>
+
+        <ion-button class="mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast verde"
+          (click)="siguiente()" type="submit" [disabled]="!userRol.valid">
+          <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Siguiente</p>
+        </ion-button>
+      </form>
+
     </div>
   </div>
-  
+
 </ion-content>

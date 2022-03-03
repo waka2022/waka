@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, PatternValidator, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,11 +11,30 @@ export class SeleccionarRolPage implements OnInit {
 
   constructor(private router:Router) { }
 
+  userRol: any = new FormGroup({
+    rol: new FormControl('', [Validators.required]),
+  });
+
   ngOnInit() {
   }
 
   siguiente(){
-    this.router.navigate(['formulario-bp'])
+
+    if (this.userRol.value.rol === "USER_BP") {
+
+      this.router.navigate(['formulario-bp'])
+      
+    } else if (this.userRol.value.rol === "USER_PP"){
+
+      this.router.navigate(['error404'])
+
+    } else {
+
+      this.router.navigate(['error404'])
+
+    }
+
   }
+
 
 }
