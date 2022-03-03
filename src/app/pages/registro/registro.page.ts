@@ -11,11 +11,13 @@ import { UsuarioService } from '../../services/usuario.service';
 })
 export class RegistroPage implements OnInit {
 
-  constructor( private router:Router, private usuarioService:UsuarioService) { }
+
+  constructor(private router: Router, private usuarioService: UsuarioService) { }
 
   ngOnInit() {
   }
 
+  usuario: any;
 
   users = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -26,10 +28,20 @@ export class RegistroPage implements OnInit {
   });
 
 
-  saveData(): void{
-    console.log(this.users.value);
-    this.usuarioService.crearUsuario(this.users.value).subscribe( res => {console.log(res)})
-    this.router.navigate(['seleccionar-rol'])
+
+  saveData(): void {
+
+    const user = {
+      name: this.users.value.name,
+      last_name: this.users.value.last_name,
+      email:this.users.value.email,
+      password: this.users.value.password
+    }
+
+    this.usuario = Object.assign(user);
+
+    this.usuarioService.crearUsuario(this.usuario).subscribe( res => {console.log(res)})
+    this.router.navigate(['acceso'])
   }
 
   openTerms(){
