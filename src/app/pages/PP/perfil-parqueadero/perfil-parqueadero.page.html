@@ -18,7 +18,7 @@
                 <p class="fs-4">Nombre</p>
                 <p class="fs-5 mb-4">Pepito Perez Orjuela</p>
 
-                <p class="fs-4">Documento</p>
+                <p class="fs-4">Horario</p>
                 <p class="fs-5 mb-4">10am - 4pm</p>
 
                 <p class="fs-4">Calificacion</p>
@@ -38,9 +38,17 @@
                     <ion-button color="segundarioApp">
                         <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
                     </ion-button>
-                </p>
+                </p>           
 
             </ion-col>
+
+            <ion-col size=12 size-sm="4" >
+
+            <ion-button class="btn_alert animate__animated animate__fadeInRight" (click)="presentAlertMultipleButtons()" color="danger" expand="block" fill="clear" shape="round">
+                Eliminar la cuenta
+            </ion-button>  
+            </ion-col>
+            
 
         </ion-row>
 
