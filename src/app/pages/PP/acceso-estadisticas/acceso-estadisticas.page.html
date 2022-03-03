@@ -17,6 +17,9 @@
           <ion-label color="light" class="text-dark" position="floating">Email:</ion-label>
           <ion-input  class="text-dark" formControlName="email"></ion-input>
         </ion-item>
+        <ion-label color="danger" *ngIf="user_due.controls.email.errors?.pattern && (user_due.touched || user_due.dirty)">* El email no es válido. </ion-label>
+
+
 
         <ion-item color="light" class="border-abajo">
           <ion-label class="text-dark" color="light" position="floating">Contraseña:</ion-label>

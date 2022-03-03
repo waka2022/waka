@@ -23,8 +23,7 @@ export class RegistroPage implements OnInit {
     last_name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     email: new FormControl('', [Validators.required, Validators.pattern('[A-Za-z0-9._%+-]{2,}@[a-zA-Z-_.]{2,}[.]{1}[a-zA-Z]{2,}')]),
     password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$')]),
-    passconf: new FormControl('', Validators.required)
-    
+    tercond: new FormControl('false',Validators.requiredTrue)
   });
 
 
@@ -32,6 +31,11 @@ export class RegistroPage implements OnInit {
     console.log(this.users.value);
     this.usuarioService.crearUsuario(this.users.value).subscribe( res => {console.log(res)})
     this.router.navigate(['seleccionar-rol'])
+  }
+
+  openTerms(){
+
+    console.log("loremmmmmmmmmmmmmmmmmmmmmmmmmm   info para terminos y condiciones")
   }
 
   

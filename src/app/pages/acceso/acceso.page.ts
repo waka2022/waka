@@ -15,7 +15,7 @@ export class AccesoPage implements OnInit {
   }
 
   users = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl('', [Validators.required, Validators.pattern('[A-Za-z0-9._%+-]{2,}@[a-zA-Z-_.]{2,}[.]{1}[a-zA-Z]{2,}')]),
     password: new FormControl('', Validators.required)
   });
 
