@@ -2,13 +2,13 @@
 
 <ion-content color="light">
     <ion-grid>
-        <ion-row >
-            <ion-col size="12" size-sm="6" size-md="6" class="animate__animated animate__zoomIn animate__faste mx-auto pb-1 pt-0"  *ngFor="let item of [1]">
+        <ion-row>
+            <ion-col size="12" size-sm="9" size-md="6" size-lg="5" class="animate__animated animate__zoomIn animate__faste mx-auto pb-1 pt-0" *ngFor="let item of [1]">
 
-                <ion-row class="p-2 border-radius contenedorAzulPrincipal referenciaPosicion">
+                <ion-row id="contenedor-card" class="p-2 border-radius contenedorAzulPrincipal referenciaPosicion">
 
                     <ion-col>
-                        <img src="../../../assets/parqueadero.jpg" class="border-radius-img" />
+                        <img src="../../../assets/parqueadero.jpg" class="border-radius-img" id="img-parqueadero" />
                     </ion-col>
 
                     <ion-col>
@@ -23,7 +23,7 @@
                         <ion-row class="posicionAbajo">
                             <ion-col>
                                 <ion-button routerLink="/novedades" expand="block" color="primary">
-                                    Ver novedades de mi vehicuo
+                                    Novedades
                                 </ion-button>
                                 <app-modal></app-modal>
                                 <app-modal-calificar></app-modal-calificar>

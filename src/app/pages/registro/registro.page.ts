@@ -17,7 +17,6 @@ export class RegistroPage implements OnInit {
   }
 
 
-
   users = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     last_name: new FormControl('', [Validators.required, Validators.minLength(4)]),
