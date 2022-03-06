@@ -8,7 +8,6 @@ import { UsuarioService } from '../../services/usuario.service';
 })
 export class Error404Page implements OnInit {
 
-
   infoUser = {}
 
   constructor(private usuarioService: UsuarioService) {
