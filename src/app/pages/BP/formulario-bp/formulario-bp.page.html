@@ -11,17 +11,17 @@
   <div id="contenedor">
     <div id="contenedorFormulario">
 
-      <form> 
+      <form [formGroup]="info" (ngSubmit)="addInfo()"> 
         <ion-item color="primarioApp" class="border-abajo">
           <ion-label color="dark" position="floating">Documento</ion-label>
-          <ion-input class="text-white"></ion-input>
+          <ion-input class="text-white" formControlName="document"></ion-input>
         </ion-item>
 
         <div class="linea"></div>
 
         <ion-item color="primarioApp" class="border-abajo">
           <ion-label color="dark" position="floating">Telefono</ion-label>
-          <ion-input class="text-white"></ion-input>
+          <ion-input class="text-white" formControlName="phone"></ion-input>
         </ion-item>
 
         <div class="linea"></div>
@@ -47,7 +47,7 @@
 
         <div class="linea"></div>
         
-        <ion-button class="mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast verde" (click)="registrar()">
+        <ion-button class="mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast verde" type="submit">
           <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Registrarse</p>
         </ion-button>
       </form>

@@ -24,11 +24,6 @@
         <ion-label color="danger" *ngIf="users.controls.name.errors?.minlength && (users.touched || users.dirty)">* El nombre tiene que tener al menos 4 caracteres. </ion-label>
 
         <ion-item class="border-abajo">
-          <ion-label color="dark" position="floating">Apellidos:</ion-label>
-          <ion-input class="text-white" formControlName="last_name"></ion-input>
-        </ion-item>
-
-        <ion-item class="border-abajo">
           <ion-label color="dark" position="floating">Email:</ion-label>
           <ion-input class="text-white" formControlName="email"></ion-input>
         </ion-item>

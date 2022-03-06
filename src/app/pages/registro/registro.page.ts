@@ -12,12 +12,11 @@ import { UsuarioService } from '../../services/usuario.service';
 export class RegistroPage implements OnInit {
 
 
-  constructor(private router: Router, private usuarioService: UsuarioService) { }
+  constructor(private router: Router, private usuarioService: UsuarioService ) { }
 
   ngOnInit() {
   }
 
-  usuario: any;
 
   users = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -38,9 +37,8 @@ export class RegistroPage implements OnInit {
       password: this.users.value.password
     }
 
-    this.usuario = Object.assign(user);
-
-    this.usuarioService.crearUsuario(this.usuario).subscribe( res => {console.log(res)})
+    this.usuarioService.crearUsuario(user).subscribe( res => {console.log(res)})
+    
     this.router.navigate(['acceso'])
   }
 

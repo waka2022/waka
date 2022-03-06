@@ -13,15 +13,17 @@ export class Error404Page implements OnInit {
 
   constructor(private usuarioService: UsuarioService) {
 
-    let token = localStorage.getItem("token")
-    this.getInfo(token)
+    this.getInfo()
 
   }
 
   ngOnInit() {
   }
 
-  getInfo(token){
+  getInfo(){
+
+    let token = localStorage.getItem("token")
+
     this.usuarioService.getInfo(token).subscribe(
       (res: any) => {
         this.infoUser = res.data
