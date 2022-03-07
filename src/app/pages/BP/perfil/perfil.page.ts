@@ -11,8 +11,9 @@ import { AlertController } from '@ionic/angular'
 export class PerfilPage implements OnInit {
 
   usuario = {}
+  mssg :string
 
-  constructor(private usuarioService:UsuarioService, private usuService : UsuarioService, public alertController: AlertController) { }
+  constructor(private usuService : UsuarioService, public alertController: AlertController) { }
 
   ngOnInit() {
 
@@ -52,6 +53,7 @@ export class PerfilPage implements OnInit {
             this.usuService.inhabilitarUsuario(token).subscribe(
               (res: any) => {
                 console.log(res)
+                this.mssg = res.msg
               })}
         }
       ]
