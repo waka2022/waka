@@ -41,6 +41,13 @@ export class UsuarioService {
     return this.http.put(`${this.url}/users/add-info`, infoAdd, { headers: { authorization_token : token}  })
 
   }
+
+  addVehicleUser(token, infoCar){
+    return this.http.post(`${this.url}/vehicle/add-vehicle-user`, infoCar, { headers: { authorization_token : token}  })
+  }
   
+  updateInfoUser(token, infoAct){
+    return this.http.put(`${this.url}/users/update-info-user`, infoAct, { headers: { authorization_token : token}  })
+  }
 
 }
