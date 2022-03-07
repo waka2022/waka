@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../../services/usuario.service';
 import { AlertController } from '@ionic/angular'
+import { EmmitersService } from '../../../services/emmiters.service';
 
 
 @Component({
@@ -12,12 +13,18 @@ export class PerfilPage implements OnInit {
 
   usuario = {}
 
-  constructor(private usuarioService:UsuarioService, private usuService : UsuarioService, public alertController: AlertController) { }
+  constructor(
+    private usuService : UsuarioService, 
+    public alertController: AlertController,
+    private emmiter: EmmitersService
+    ) { }
 
   ngOnInit() {
 
     this.traerInfoUsuario()
-
+    this.emmiter.$emmiterProfile.subscribe(
+      resp => this.traerInfoUsuario()
+    )
   }
 
   traerInfoUsuario(){

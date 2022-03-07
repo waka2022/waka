@@ -10,9 +10,26 @@ import { UsuarioService } from '../../services/usuario.service';
 })
 export class AccesoPage implements OnInit {
 
-  constructor(private router:Router, private usuarioService: UsuarioService) { }
+  constructor(private router: Router, private usuarioService: UsuarioService) { }
 
   ngOnInit() {
+
+  }
+
+  obteenerinfo() {
+    let token = localStorage.getItem("token")
+
+    this.usuarioService.getInfo(token).subscribe(
+      (res: any) => {
+
+        console.log(res.data.document)
+        if (res.data.document === undefined) {
+          this.router.navigate(['seleccionar-rol'])
+        }else{
+        
+          this.router.navigate(['tabs/mapa'])
+        }
+      })
   }
 
   users = new FormGroup({
@@ -20,15 +37,16 @@ export class AccesoPage implements OnInit {
     password: new FormControl('', Validators.required)
   });
 
-  Ingresar(){
+  Ingresar() {
 
-    this.usuarioService.signInNormal(this.users.value).subscribe( 
-      (res:any) => {
-      localStorage.setItem("token", res.data)
-      console.log(res.data)
-      this.router.navigate(['seleccionar-rol'])
+
+    this.usuarioService.signInNormal(this.users.value).subscribe(
+      (res: any) => {
+        localStorage.setItem("token", res.data)
+
+        this.obteenerinfo()
       
-    })
-  
+      })
+
   }
 }
