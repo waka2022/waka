@@ -57,10 +57,13 @@ const routes: Routes = [
     path: 'error404',
     loadChildren: () => import('./pages/error404/error404.module').then( m => m.Error404PageModule)
   },
+  {
+    path: 'actualizarperfil',
+    loadChildren: () => import('./pages/BP/actualizarperfil/actualizarperfil.module').then( m => m.ActualizarperfilPageModule)
+  },
 
-  
 
-  
+
 ];
 
 @NgModule({

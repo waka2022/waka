@@ -18,6 +18,7 @@ export class PerfilPage implements OnInit {
   ngOnInit() {
 
     this.traerInfoUsuario()
+
   }
 
   traerInfoUsuario(){
@@ -28,6 +29,7 @@ export class PerfilPage implements OnInit {
       this.usuario = res.data
     
     })
+
   }
 
   async presentAlertMultipleButtons() {

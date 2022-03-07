@@ -31,7 +31,6 @@ export class RegistroPage implements OnInit {
 
     const user = {
       name: this.users.value.name,
-      last_name: this.users.value.last_name,
       email:this.users.value.email,
       password: this.users.value.password
     }
