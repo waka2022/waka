@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsuarioService } from '../../../services/usuario.service';
 import { AlertController } from '@ionic/angular'
 
 @Component({
@@ -8,7 +9,10 @@ import { AlertController } from '@ionic/angular'
 })
 export class PerfilParqueaderoPage implements OnInit {
 
-  constructor(public alertController: AlertController) { }
+  usuario = {}
+  mssg :string
+
+  constructor(private usuService : UsuarioService, public alertController: AlertController) { }
 
   ngOnInit() {
   }
@@ -30,7 +34,14 @@ export class PerfilParqueaderoPage implements OnInit {
           text: 'Confirmar',
           cssClass: 'btn2',
           handler: () => {
-            console.log('Confirm');
+            console.log('Confirm');{
+            let token = localStorage.getItem("token");
+
+            this.usuService.inhabilitarUsuario(token).subscribe(
+              (res: any) => {
+                console.log(res)
+                this.mssg = res.msg
+              })}
           }
         }
       ]

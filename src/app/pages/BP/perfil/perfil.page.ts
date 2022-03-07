@@ -12,6 +12,7 @@ import { EmmitersService } from '../../../services/emmiters.service';
 export class PerfilPage implements OnInit {
 
   usuario = {}
+  mssg :string
 
   constructor(
     private usuService : UsuarioService, 
@@ -61,6 +62,7 @@ export class PerfilPage implements OnInit {
             this.usuService.inhabilitarUsuario(token).subscribe(
               (res: any) => {
                 console.log(res)
+                this.mssg = res.msg
               })}
         }
       ]

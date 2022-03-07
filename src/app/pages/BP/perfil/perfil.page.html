@@ -45,16 +45,21 @@
                 </p>
 
             </ion-col>
-
+        
             <ion-col size=12 size-sm="4" >
-
-                <ion-button class="btn_alert animate__animated animate__fadeInRight" (click)="presentAlertMultipleButtons()" color="danger" expand="block" fill="clear" shape="round">
+                <ion-text color="warning" class="text-start">
+                    <p>{{this.mssg}}</p>
+                  </ion-text>                
+                  <ion-button class="btn_alert animate__animated animate__fadeInRight" (click)="presentAlertMultipleButtons()" color="danger" expand="block" fill="clear" shape="round">
                     Eliminar la cuenta
-                </ion-button>  
-                </ion-col>
-
+                </ion-button> 
+            </ion-col> 
+                <!--{{this.mssg}}-->
+                
+               
         </ion-row>
 
     </ion-grid>
+    <p color="" class="text-start"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fugit eum veniam illo obcaecati, autem aliquam qui quia eligendi error, assumenda quibusdam totam magni, illum incidunt omnis amet ipsam. Cum.</p>
 
 </ion-content>
