@@ -284,8 +284,13 @@
   }
 
   .option{
-    --color: white;  
+    --color: rgba(255, 255, 255, 0.666) !important;
+    --color-focused:rgb(255, 255, 255) !important;
+    --background-focused:#209E3C !important;
+    --background-focused-opacity: 0.4 !important;
   }
+
+
   
   .rojo{
     --background: #9E2020 !important;

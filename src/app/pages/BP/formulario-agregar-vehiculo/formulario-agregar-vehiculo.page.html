@@ -2,25 +2,47 @@
 </ion-header>
 
 <ion-content color="segundarioApp">
-  <form id="formulario">
+
+  <h2><br><i id="cerrar" (click)="dismiss()" class="fa-solid fa-xmark"></i></h2>
+
+  <hr>
+
+  <form [formGroup]="car" (ngSubmit)="addCar()" id="formulario">
+
+    <ion-item color="segundarioApp" class="border-abajo">
+      <ion-label position="floating">Tipo</ion-label>
+      <ion-select interface="popover" formControlName="global">
+        <ion-select-option class="option" value="bicicleta">Bicicleta</ion-select-option>
+        <ion-select-option class="option" value="moto">Moto</ion-select-option>
+        <ion-select-option class="option" value="carro">Carro</ion-select-option>
+      </ion-select>
+    </ion-item>
+
     <ion-item class="border-abajo texto-formulario" color="segundarioApp">
-      <ion-label color="primarioApp" position="floating">Modelo de vehiculo</ion-label>
-      <ion-input></ion-input>
+      <ion-label color="primarioApp" position="floating">Marca</ion-label>
+      <ion-input formControlName="mark"></ion-input>
     </ion-item>
 
     <ion-item class="border-abajo" color="segundarioApp">
-      <ion-label color="primarioApp" position="floating">Color</ion-label>
-      <ion-input></ion-input>
+      <ion-label color="primarioApp" position="floating">Modelo</ion-label>
+      <ion-input formControlName="model"></ion-input>
     </ion-item>
 
     <ion-item class="border-abajo" color="segundarioApp">
       <ion-label color="primarioApp" position="floating">Placa</ion-label>
-      <ion-input ></ion-input>
+      <ion-input formControlName="placa"></ion-input>
     </ion-item>
 
-    <ion-button class="animate__animated animate__pulse animate__fast mt-5 d-flex justify-content-center verde" expand="block" size="large">
+    <ion-item class="border-abajo" color="segundarioApp">
+      <ion-label color="primarioApp" position="floating">Color</ion-label>
+      <ion-input formControlName="color"></ion-input>
+    </ion-item>
+
+    <ion-button class="animate__animated animate__pulse animate__fast mt-5 d-flex justify-content-center verde"
+      expand="block" size="large" type="submit">
       <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Registrar vehiculo</p>
     </ion-button>
-    
+
   </form>
+
 </ion-content>

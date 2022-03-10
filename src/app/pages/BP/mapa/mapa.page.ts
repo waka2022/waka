@@ -44,8 +44,8 @@ export class MapaPage implements OnInit {
 
     const modal = await this.modalController.create({
       component: InfoVehiculoPage,
-      initialBreakpoint: 0.8,
-      breakpoints: [0.0, 0.8, 1],
+      initialBreakpoint: 1,
+      breakpoints: [0.0, 0.5, 1],
       showBackdrop: true,
       mode: 'ios'
 

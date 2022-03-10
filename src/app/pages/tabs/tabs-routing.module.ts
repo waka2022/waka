@@ -28,6 +28,10 @@ const routes: Routes = [
         path: 'novedades',
         loadChildren: () => import('../BP/novedades/novedades.module').then( m => m.NovedadesPageModule)
       },
+      {
+        path: 'p',
+        loadChildren: () => import('../BP/formulario-agregar-vehiculo/formulario-agregar-vehiculo.module').then( m => m.FormularioAgregarVehiculoPageModule)
+      },
         
     ]
   }

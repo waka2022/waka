@@ -28,7 +28,7 @@ export class FormularioBPPage implements OnInit {
 
   addInfo() {
 
-    let token = localStorage.getItem("token")
+    let token = this.usuarioService.traerToken()
 
     let infoAdd = {
 

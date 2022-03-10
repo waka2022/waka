@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-
 import { FormularioAgregarVehiculoPageRoutingModule } from './formulario-agregar-vehiculo-routing.module';
-
 import { FormularioAgregarVehiculoPage } from './formulario-agregar-vehiculo.page';
 
 @NgModule({
@@ -13,7 +10,8 @@ import { FormularioAgregarVehiculoPage } from './formulario-agregar-vehiculo.pag
     CommonModule,
     FormsModule,
     IonicModule,
-    FormularioAgregarVehiculoPageRoutingModule
+    FormularioAgregarVehiculoPageRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [FormularioAgregarVehiculoPage]
 })

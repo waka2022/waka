@@ -21,7 +21,7 @@ export class Error404Page implements OnInit {
 
   getInfo(){
 
-    let token = localStorage.getItem("token")
+    let token = this.usuarioService.traerToken()
 
     this.usuarioService.getInfo(token).subscribe(
       (res: any) => {

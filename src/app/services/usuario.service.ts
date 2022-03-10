@@ -16,6 +16,10 @@ export class UsuarioService {
 
   }
 
+  traerToken(){
+    let token = localStorage.getItem("token")
+    return token
+  }
 
 
   crearUsuario( usuario:any ){
@@ -46,8 +50,16 @@ export class UsuarioService {
     return this.http.post(`${this.url}/vehicle/add-vehicle-user`, infoCar, { headers: { authorization_token : token}  })
   }
   
+
+
   updateInfoUser(token, infoAct){
     return this.http.put(`${this.url}/users/update-info-user`, infoAct, { headers: { authorization_token : token}  })
+  }
+
+  // trae los carros de un usuario
+
+  getCarrosUser(token){
+    return this.http.get(`${this.url}/vehicle/view-my-vehicles`, { headers: { authorization_token : token}  })
   }
 
 }

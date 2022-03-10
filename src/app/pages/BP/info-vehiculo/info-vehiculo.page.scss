@@ -34,3 +34,14 @@
     color: black;
     background-color: rgba(255, 255, 255, 0);
 }
+
+#cerrar{
+    right: 0;
+    top: 0;
+    margin-top: 10px;
+    margin-right: 25px;
+    position: absolute;
+    color: rgba(0, 0, 0, 0.583);
+    font-size: 1.07cm;
+    cursor: pointer;
+}

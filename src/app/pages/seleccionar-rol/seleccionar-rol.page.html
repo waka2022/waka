@@ -10,18 +10,20 @@
   <div id="contenedor">
     <div id="contenedorRol">
 
-      <form [formGroup]="userRol" mode="md">
-        <ion-item color="primarioApp">
-          <ion-label>¿ Para que vas a usar waka ?</ion-label>
+      <form [formGroup]="userRol" >
 
-          <ion-select class="option" interface="popover" ngDefaultControl formControlName="rol">
+        <ion-item color="primarioApp">
+          <ion-label position="floating">¿ Para que vas a usar waka ?</ion-label>
+
+          <ion-select  interface="popover" formControlName="rol">
             <ion-select-option class="option" value="USER_BP" name="USER_BP">Buscar parqueadero
             </ion-select-option>
             <ion-select-option class="option" value="USER_PP" name="USER_PP">Publicar un parqueadero
             </ion-select-option>
-
           </ion-select>
+
         </ion-item>
+
 
         <div class="linea"></div>
 
