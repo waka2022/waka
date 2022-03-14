@@ -290,8 +290,6 @@
     --background-focused-opacity: 0.4 !important;
   }
 
-
-  
   .rojo{
     --background: #9E2020 !important;
     --background-activated: rgba(255, 255, 255, 0.144) ;
@@ -303,5 +301,11 @@
     --background-activated: rgba(255, 255, 255, 0.144) ;
   }
 
+  .togleForm{
+    --background:#94909035;
+    --handle-background: #94909064;
+    --handle-background-checked: #ffffffd9;
+    --background-checked: #209E3C;
+  }
 }
 
