@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar color="primarioApp">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <ion-card class="card">
+    <div class="mt-5 bt-5 d-flex justify-content-center ">
+      <app-logo-waka></app-logo-waka>
+    </div>
+
+    <ion-card-content>
+      <form [formGroup]="users" (ngSubmit)="saveData()" mode="md">
+
+        <ion-item class="border-abajo">
+          <ion-label color="dark" position="floating">Nombres:</ion-label>
+          <ion-input class="text-white" formControlName="name"></ion-input>
+        </ion-item>
+        <ion-label color="danger" *ngIf="users.controls.name.errors?.minlength && (users.touched || users.dirty)">* El nombre tiene que tener al menos 4 caracteres. </ion-label>
+
+        <ion-item class="border-abajo">
+          <ion-label color="dark" position="floating">Email:</ion-label>
+          <ion-input class="text-white" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-label color="danger" *ngIf="users.controls.email.errors?.pattern && (users.touched || users.dirty)">* El email no es válido. </ion-label>
+
+        <ion-item class="border-abajo">
+          <ion-label color="dark" position="floating" >Contraseña:</ion-label>
+          <ion-input class="text-white" type="password" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-label color="danger" *ngIf="users.controls.password.errors?.pattern && (users.touched || users.dirty)">* La contraseña debe tener carácteres, mayusculas y números. </ion-label>
+
+        <ion-item class="border-abajo">
+          <ion-label color="dark" position="floating">Confirmación de contraseña:</ion-label>
+          <ion-input class="text-white" ></ion-input>
+        </ion-item>
+
+        <ion-item >
+          <ion-label class="text-white">Terminos y condiciones</ion-label>
+          <ion-checkbox  formControlName="tercond"  color="dark" slot="start" (click)="openTerms()"></ion-checkbox>
+        </ion-item>    
+
+
+        <ion-button class="animate__animated animate__pulse animate__fast verde mt-5 btn-registro"
+          size="large" type="submit" [disabled]="!users.valid">
+          <p class="animate__animated animate__bounceIn animate__fast ">Registrarse</p>
+        </ion-button>
+        
+
+      </form>
+
+      <ion-button class="animate__animated animate__pulse animate__fast mb-4 mt-2 btn-registro"
+        color="light" size="large" (click)="Registrarse()">
+        <p id="text_icon" class="animate__animated animate__bounceIn animate__fast text-dark">
+          <i class="fab fa-google me-2"></i>Registrarse con Google
+        </p>
+      </ion-button>
+
+
+
+      <h3 class="mb-4 text-white text-center">
+        ¿ Ya tienes cuenta ? inicia <a id="aqui" routerLink='/acceso'>aqui </a>
+      </h3>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>

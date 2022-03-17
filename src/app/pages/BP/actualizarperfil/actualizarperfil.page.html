@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <app-menu></app-menu>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="info" (ngSubmit)="actualizarInfoUser()">
+    <ion-row class="width100 centrarVertText">
+      <ion-col size=12 size-sm="4" class="p-2 animate__animated animate__fadeInRight ">
+        <p class="fs-4 dñ ">Dueño</p>
+        <input type="text" formControlName="names" class="form-control dueño" value="{{ this.usuario.names }}">
+
+      </ion-col>
+
+    </ion-row>
+
+    <ion-button class="animate__animated animate__pulse animate__fast mt-5 d-flex justify-content-center verde"
+      expand="block" size="large" type="submit">
+      <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Guardar</p>
+    </ion-button>
+  </form>
+</ion-content>

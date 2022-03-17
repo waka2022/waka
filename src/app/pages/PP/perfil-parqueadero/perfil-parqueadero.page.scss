@@ -1,0 +1,71 @@
+p {
+    margin-bottom: 1px;
+}
+
+.borederRadius4{
+    border-radius: 11px;
+}
+
+
+.referenciaPosicion{
+    position:relative;
+}
+.posicionAbajo{
+   position:absolute;
+   bottom:0px;
+   width: 100%;
+   
+}
+
+.posicionArriba{
+    position:absolute;
+    top:0px;
+    width: 100%;
+    
+}
+
+
+ .centrar-contenedores{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+ 
+ .objet-cover{
+     object-fit: cover;
+     
+}
+
+.btn-salir{
+    background-color: yellow;
+    color: yellowgreen;
+}
+ 
+
+.centrarVertText{
+    display: flex;
+    align-items: center;
+
+}
+
+.width100{
+width: 100%;
+}
+
+.imagenPerfil{
+    width: 100%;
+    border-radius: 400px;
+}
+
+.btn_alert{
+    background-color: rgba(255, 0, 0, 0.315);
+    color: white !important ;
+    border-radius: 25px;
+
+}
+
+@media (min-width: 576px) {
+    .heightConteiner {
+      height: 100%;
+    }
+}

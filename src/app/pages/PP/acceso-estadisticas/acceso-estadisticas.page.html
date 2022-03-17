@@ -1,0 +1,43 @@
+<ion-header>
+  
+</ion-header>
+<ion-content color="light">
+
+  <ion-card class="card">
+    <div class="mt-5 bt-5 d-flex justify-content-center ">
+
+      <app-logo-waka-dark></app-logo-waka-dark>
+      
+    </div>
+
+    <ion-card-content >
+      <form [formGroup]="user_due"  (ngSubmit)="xxxxx()">
+
+        <ion-item color="light" class="border-abajo">
+          <ion-label color="light" class="text-dark" position="floating">Email:</ion-label>
+          <ion-input  class="text-dark" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-label color="danger" *ngIf="user_due.controls.email.errors?.pattern && (user_due.touched || user_due.dirty)">* El email no es válido. </ion-label>
+
+
+
+        <ion-item color="light" class="border-abajo">
+          <ion-label class="text-dark" color="light" position="floating">Contraseña:</ion-label>
+          <ion-input class="text-dark"  type="password" formControlName="password"></ion-input>
+        </ion-item>
+
+        <ion-button class="mb-4 mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast"
+          color="success" size="large" (click)="addMyClass()" type="submit" [disabled]="!user_due.valid">
+          <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Registrarse</p>
+        </ion-button>
+
+      </form>
+
+      <h3 class="mb-4 text-dark text-center tamaño-letra">
+        Solo el dueño de el parqueadero puede ver las estadisticas
+      </h3>
+    
+    </ion-card-content>
+  </ion-card>
+  
+</ion-content>
