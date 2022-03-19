@@ -23,8 +23,8 @@ export class AccesoEstadisticasPage implements OnInit {
 
   //generando el formulario mediante formulario reactivo
   user_due = new FormGroup({
-    // campos que estamos pidiendo al usuario en el formulario (html)aca mediante required indicamos que los campos son obligatorios y validando el tipo de dato.  
-    email: new FormControl('', [Validators.required, Validators.email]),
+    
+    email: new FormControl('', [Validators.required, Validators.pattern('[A-Za-z0-9._%+-]{2,}@[a-zA-Z-_.]{2,}[.]{1}[a-zA-Z]{2,}')]),
     password: new FormControl('', Validators.required)
   
   });

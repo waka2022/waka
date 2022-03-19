@@ -201,7 +201,7 @@
     --ion-color-step-900: #e6e6e6;
     --ion-color-step-950: #f2f2f2;
 
-    --ion-item-background: #000000;
+    --ion-item-background: #1e1e1e;
 
     --ion-card-background: #1c1c1d;
   }
@@ -284,16 +284,28 @@
   }
 
   .option{
-    --color: white;  
+    --color: rgba(255, 255, 255, 0.666) !important;
+    --color-focused:rgb(255, 255, 255) !important;
+    --background-focused:#209E3C !important;
+    --background-focused-opacity: 0.4 !important;
   }
-  
+
   .rojo{
     --background: #9E2020 !important;
+    --background-activated: rgba(255, 255, 255, 0.144) ;
+    
   }
 
   .verde{
     --background: #209E3C;
+    --background-activated: rgba(255, 255, 255, 0.144) ;
   }
 
+  .togleForm{
+    --background:#94909035;
+    --handle-background: #94909064;
+    --handle-background-checked: #ffffffd9;
+    --background-checked: #209E3C;
+  }
 }
 

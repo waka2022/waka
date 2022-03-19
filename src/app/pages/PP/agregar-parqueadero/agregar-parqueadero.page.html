@@ -1,42 +1,104 @@
 <ion-header>
-  <ion-toolbar>
-    <app-menu></app-menu>
-  </ion-toolbar>
 </ion-header>
 
-<ion-content color="light">
+<ion-content color="segundarioApp">
+  
 
-  <ion-grid class="p-0">
-    <ion-row>
+  <h2 class="ms-4">Crear un nuevo parqueadero<i id="cerrar" (click)="dismiss()" class="fa-solid fa-xmark"></i></h2>
 
-      <ion-col size="12" size-md="6" class="p-1 animate__animated animate__zoomIn animate__faste"
-        *ngFor="let item of [1,1]">
-        <ion-row class="contenedor-parqueadero">
+  <hr>
+  
+  <div id="contenedor">
 
-          <ion-col size="6" class="p-3">
-            <img id="img-parqueadero" src="../../../assets/parqueadero.jpg" alt="">
-          </ion-col>
+    <form id="contenedorFormulario" [formGroup]="info" (ngSubmit)="addInfo()">
 
-          <ion-col size="6">
-            <h2>Crr 9 #9-23</h2> <br>
-            <div id="disponibilidad">
-              No disponible
-            </div>
-            <ion-button class="mt-3" color="celeste" expand="block">
-              Ver mas/editar
-            </ion-button>
-          </ion-col>
-          
-        </ion-row>
-      </ion-col>
+      <ion-item color="segundarioAppp" class="border-abajo">
+        <ion-label position="floating">Horario</ion-label>
+        <ion-input ></ion-input>
+      </ion-item>
 
-    </ion-row>
-  </ion-grid>
+      <div class="linea"></div>
 
+      <ion-item color="segundarioApp" class="border-abajo">
+        <ion-label  position="floating">Dirección</ion-label>
+        <ion-input formControlName="address"></ion-input>
+      </ion-item>
 
-  <ion-tab-button class="agregar-parqueadero btn-agregar animate__animated animate__bounce" (click)="presentModal()">
-    <i class="fas fa-plus fa-3x"></i>
-  </ion-tab-button>
+      <div class="linea"></div>
 
+    
+      <div class="mt-4 mb-4">
+      <h5 class="mb-1">Seguridad</h5>
+  
+      <ion-item color="segundarioApp">
+        <ion-label>Vigilante</ion-label>
+        <ion-toggle class="togleForm" formControlName="vigilant"></ion-toggle>
+      </ion-item>
 
+      <ion-item color="segundarioApp">
+        <ion-label>Camaras</ion-label>
+        <ion-toggle class="togleForm" formControlName="cams"></ion-toggle>
+      </ion-item>
+      </div>
+
+      <div class="linea"></div>
+
+      <div class="mt-4 mb-4">
+        <h5 class="mb-1">Tipo de parqueadero</h5>
+    
+        <ion-item color="segundarioApp">
+          <ion-label>Carros</ion-label>
+          <ion-toggle class="togleForm" formControlName="Carros"></ion-toggle>
+        </ion-item>
+  
+        <ion-item color="segundarioApp">
+          <ion-label>Motos</ion-label>
+          <ion-toggle class="togleForm" formControlName="Motos" ></ion-toggle>
+        </ion-item>
+
+        <ion-item color="segundarioApp">
+          <ion-label>Bicicletas</ion-label>
+          <ion-toggle class="togleForm" formControlName="Bicicletas"></ion-toggle>
+        </ion-item>
+
+        </div>
+
+      <div class="linea"></div>
+
+      <ion-item color="segundarioApp" class="border-abajo">
+        <ion-label position="floating">Espacio</ion-label>
+        <ion-input ></ion-input>
+      </ion-item>
+
+      <div class="linea"></div>
+
+      <ion-item color="segundarioApp" class="border-abajo">
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-input  formControlName="descript"></ion-input>
+      </ion-item>
+
+      <div class="linea"></div>
+
+      <ion-item color="segundarioApp" class="border-abajo">
+        <ion-label position="floating">Precio/hora</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+
+      <div class="linea"></div>
+
+      <ion-item color="segundarioApp" class="border-abajo">
+        <ion-label position="floating">Cupos</ion-label>
+        <ion-input ></ion-input>
+      </ion-item>
+
+      <div class="linea"></div>
+
+      <ion-button class="mt-5 mb-5 d-flex justify-content-center animate__animated animate__pulse animate__fast verde"
+        type="submit">
+        <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Continuar</p>
+      </ion-button>
+      <br>
+    </form>
+  </div>
+  
 </ion-content>

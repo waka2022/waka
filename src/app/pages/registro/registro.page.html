@@ -23,7 +23,7 @@
 
         <!--* campo para ingreso de nombre -->
         <ion-item class="border-abajo">
-          <ion-label color="dark" position="floating">Nombre:</ion-label>
+          <ion-label color="dark" position="floating">Nombres:</ion-label>
           <ion-input class="text-white" formControlName="name"></ion-input>
         </ion-item>
  
@@ -32,31 +32,47 @@
           <ion-label color="dark" position="floating">Email:</ion-label>
           <ion-input class="text-white" formControlName="email"></ion-input>
         </ion-item>
+        <ion-label color="danger" *ngIf="users.controls.email.errors?.pattern && (users.touched || users.dirty)">* El email no es válido. </ion-label>
 
         <!-- *campo para ingreso de contraseña -->
         <ion-item class="border-abajo">
-          <ion-label color="dark" position="floating">Contraseña:</ion-label>
+          <ion-label color="dark" position="floating" >Contraseña:</ion-label>
           <ion-input class="text-white" type="password" formControlName="password"></ion-input>
         </ion-item>
+        <ion-label color="danger" *ngIf="users.controls.password.errors?.pattern && (users.touched || users.dirty)">* La contraseña debe tener carácteres, mayusculas y números. </ion-label>
+
+        <!-- *campo para ingreso de confirmacion contraseña -->
+        <ion-item class="border-abajo">
+          <ion-label color="dark" position="floating">Confirmación de contraseña:</ion-label>
+          <ion-input class="text-white" ></ion-input>
+        </ion-item>
+
+        <!-- *campo checkbox para  confirmacion de terminos y condiciones -->
+        <ion-item >
+          <ion-label class="text-white">Terminos y condiciones</ion-label>
+          <ion-checkbox  formControlName="tercond"  color="dark" slot="start" (click)="openTerms()"></ion-checkbox>
+        </ion-item>    
 
         <!-- *el boton para hacer el envio del fomulario con los datos ingresados. -->
-        <ion-button class="mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast verde"
+        <ion-button class="animate__animated animate__pulse animate__fast verde mt-5 btn-registro"
           size="large" type="submit" [disabled]="!users.valid">
-          <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Registrarse</p>
+          <p class="animate__animated animate__bounceIn animate__fast ">Registrarse</p>
         </ion-button>
+        
+
       </form>
 
       <!--* el boton para realizar el ingreso mediante google cuenta gmail  -->
-      <ion-button class="mb-4 mt-1 d-flex justify-content-center animate__animated animate__pulse animate__fast"
+      <ion-button class="animate__animated animate__pulse animate__fast mb-4 mt-2 btn-registro"
         color="light" size="large" (click)="Registrarse()">
-        <p id="text_icon" class="tamaño-letra m-0 animate__animated animate__bounceIn animate__fast text-dark">
+        <p id="text_icon" class="animate__animated animate__bounceIn animate__fast text-dark">
           <i class="fab fa-google me-2"></i>Registrarse con Google
         </p>
       </ion-button>
 
       <!--* mensaje para redireccion al login cunado el usuario ya tiene una cuenta -->
-      <h3 class="mb-4 text-white text-center tamaño-letra">
-        ¿ Ya tienes cuenta ? inicia <a id="aqui" href="#">aqui </a>
+      <h3 class="mb-4 text-white text-center">
+        ¿ Ya tienes cuenta ? inicia <a id="aqui" routerLink='/acceso'>aqui </a>
       </h3>
 
     </ion-card-content>

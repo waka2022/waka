@@ -21,15 +21,16 @@ ion-card-content{
 // centralizando el card en la pantalla movil y desktop
   .card{
     margin-top: 300px;
+
     position:absolute;
-    background-color: #1e1e1e;
+    background-color: #050b18;
     border-radius: 10px;
     padding-left: 4%;
     padding-right: 4%;
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    border: #ffffff67 solid 1px;
+    padding-top: 30px;
 }
 
 // modificando altura de el campo donde se ingresa una descripcion

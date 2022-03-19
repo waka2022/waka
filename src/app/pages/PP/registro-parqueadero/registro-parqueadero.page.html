@@ -1,84 +1,115 @@
 <ion-header>
-  <ion-toolbar>
-    <app-menu></app-menu>
+  <ion-toolbar color="primarioApp">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div id="contenedor"> 
+  <div id="contenedor">
+
+    <form id="contenedorFormulario" [formGroup]="info" (ngSubmit)="addInfo()">
+
+      <ion-item color="primarioApp" class="border-abajo">
+        <ion-label color="dark" position="floating">Documento</ion-label>
+        <ion-input class="text-white" formControlName="document"></ion-input>
+      </ion-item>
+
+      <div class="linea"></div>
+
+      <ion-item color="primarioApp" class="border-abajo">
+        <ion-label color="dark" position="floating">Telefono</ion-label>
+        <ion-input class="text-white" formControlName="phone"></ion-input>
+      </ion-item>
+
+      <div class="linea"></div>
+
+      <ion-item color="primarioApp" class="border-abajo">
+        <ion-label color="dark" position="floating">Horario</ion-label>
+        <ion-input class="text-white"></ion-input>
+      </ion-item>
+
+      <div class="linea"></div>
+
+      <ion-item color="primarioApp" class="border-abajo">
+        <ion-label color="dark" position="floating">Dirección</ion-label>
+        <ion-input class="text-white" formControlName="address"></ion-input>
+      </ion-item>
+
+      <div class="linea"></div>
+
     
-    <div id="contenedorFormulario">
+      <div class="mt-4 mb-4">
+      <h5 class="text-white mb-1">Seguridad</h5>
+  
+      <ion-item color="primarioApp">
+        <ion-label>Vigilante</ion-label>
+        <ion-toggle class="togleForm" formControlName="vigilant"></ion-toggle>
+      </ion-item>
 
-      <form>
-        <ion-item color="primarioApp" class="border-abajo">
-          <ion-label color="dark" position="floating">Documento</ion-label>
-          <ion-input class="text-white"></ion-input>
+      <ion-item color="primarioApp">
+        <ion-label>Camaras</ion-label>
+        <ion-toggle class="togleForm" formControlName="cams"></ion-toggle>
+      </ion-item>
+      </div>
+
+      <div class="linea"></div>
+
+      <div class="mt-4 mb-4">
+        <h5 class="text-white mb-1">Tipo de parqueadero</h5>
+    
+        <ion-item color="primarioApp">
+          <ion-label>Carros</ion-label>
+          <ion-toggle class="togleForm" formControlName="Carros"></ion-toggle>
+        </ion-item>
+  
+        <ion-item color="primarioApp">
+          <ion-label>Motos</ion-label>
+          <ion-toggle class="togleForm" formControlName="Motos" ></ion-toggle>
         </ion-item>
 
-        <div class="linea"></div>
-
-        <ion-item color="primarioApp" class="border-abajo">
-          <ion-label color="dark" position="floating">Horario</ion-label>
-          <ion-input class="text-white"></ion-input>
+        <ion-item color="primarioApp">
+          <ion-label>Bicicletas</ion-label>
+          <ion-toggle class="togleForm" formControlName="Bicicletas"></ion-toggle>
         </ion-item>
 
-        <div class="linea"></div>
+        </div>
 
-        <ion-item color="primarioApp" class="border-abajo">
-          <ion-label color="dark" position="floating">Dirección</ion-label>
-          <ion-input class="text-white"></ion-input>
-        </ion-item>
+      <div class="linea"></div>
 
-        <div class="linea"></div>
+      <ion-item color="primarioApp" class="border-abajo">
+        <ion-label color="dark" position="floating">Espacio</ion-label>
+        <ion-input class="text-white"></ion-input>
+      </ion-item>
 
-        <ion-item color="primarioApp" class="border-abajo">
-          <ion-label color="dark" position="floating">Seguridad</ion-label>
-          <ion-input class="text-white"></ion-input>
-        </ion-item>
+      <div class="linea"></div>
 
-        <div class="linea"></div>
+      <ion-item color="primarioApp" class="border-abajo">
+        <ion-label color="dark" position="floating">Descripción</ion-label>
+        <ion-input class="text-white" formControlName="descript"></ion-input>
+      </ion-item>
 
-        <ion-item color="primarioApp" class="border-abajo">
-          <ion-label color="dark" position="floating">Tipo de vehiculos</ion-label>
-          <ion-input class="text-white"></ion-input>
-        </ion-item>
+      <div class="linea"></div>
 
-        <div class="linea"></div>
+      <ion-item color="primarioApp" class="border-abajo">
+        <ion-label color="dark" position="floating">Precio/hora</ion-label>
+        <ion-input class="text-white"></ion-input>
+      </ion-item>
 
-        <ion-item color="primarioApp" class="border-abajo">
-          <ion-label color="dark" position="floating">Espacio</ion-label>
-          <ion-input class="text-white"></ion-input>
-        </ion-item>
-        
-        <div class="linea"></div>
+      <div class="linea"></div>
 
-        <ion-item color="primarioApp" class="border-abajo">
-          <ion-label color="dark" position="floating">Descripción</ion-label>
-          <ion-input class="text-white"></ion-input>
-        </ion-item>
-        
-        <div class="linea"></div>
+      <ion-item color="primarioApp" class="border-abajo">
+        <ion-label color="dark" position="floating">Cupos</ion-label>
+        <ion-input class="text-white"></ion-input>
+      </ion-item>
 
-        <ion-item color="primarioApp" class="border-abajo">
-          <ion-label color="dark" position="floating">Precio/hora</ion-label>
-          <ion-input class="text-white"></ion-input>
-        </ion-item>
-        
-        <div class="linea"></div>
+      <div class="linea"></div>
 
-        <ion-item color="primarioApp" class="border-abajo">
-          <ion-label color="dark" position="floating">Cupos</ion-label>
-          <ion-input class="text-white"></ion-input>
-        </ion-item>
-        
-        <div class="linea"></div>
-
-        <ion-button class="mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast"
-          color="success" type="submit">
-          <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Continuar</p>
-        </ion-button>
-      </form>
-
-    </div>
+      <ion-button class="mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast verde"
+        type="submit">
+        <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Continuar</p>
+      </ion-button>
+    </form>
   </div>
 </ion-content>

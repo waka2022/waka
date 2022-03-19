@@ -1,9 +1,14 @@
 //?importanto los componenets de angular para su uso, alojado en angular/core
 import { Component, OnInit } from '@angular/core';
+
 //?importando componentes para implementar fomularios reactivos alojado en agular/forms
-import { FormControl, FormGroup, PatternValidator, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, PatternValidator, Validators } from '@angular/forms';
+
 //?importando rutas para su uso alojado en angular/route
 import { Router } from '@angular/router';
+
+//?importando la API o servicio usuario alojado en servise/usuario.service
+import { UsuarioService } from '../../services/usuario.service';
 
 //!componentes los cuales conectac y refieren a los distintos archivos de registro
 @Component({
@@ -16,28 +21,47 @@ import { Router } from '@angular/router';
 export class RegistroPage implements OnInit {
 
   //*constructor  Se encarga de asegurar la correcta inicialización de los campos, tanto de la clase como de sus subclases
-  //en este caso le estamos pasando como parametro la route anteriormente importada 
-  constructor( private router:Router) { }
+  //en este caso le estamos pasando como parametro la route anteriormente importada y el servicio
+  constructor(private router: Router, private usuarioService: UsuarioService ) { }
 
-      //ngOnInit pertenece al ciclo de vidad de angular y aqui se le esta indicando que el componenete ya esta listo para darle uso
+  //ngOnInit pertenece al ciclo de vidad de angular y aqui se le esta indicando que el componenete ya esta listo para darle uso
   ngOnInit() {
   }
 //generando el formulario mediante formulario reactivo
   users = new FormGroup({
     // campos que estamos pidiendo al usuario en el formulario (html)aca mediante required indicamos que los campos son obligatorios y validando el tipo de dato.
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', Validators.required)
+    email: new FormControl('', [Validators.required, Validators.pattern('[A-Za-z0-9._%+-]{2,}@[a-zA-Z-_.]{2,}[.]{1}[a-zA-Z]{2,}')]),
+    password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$')]),
+    tercond: new FormControl('false',Validators.requiredTrue)
   });
 
-  //la funcion para guardar los datos
-  saveData(): void{
-    console.log(this.users.value);
-  }
+
 
   //lo envia a la vista seleccionar el rol 
   Registrarse(){
     this.router.navigate(['seleccionar-rol'])
   }
+  
+  //la funcion para guardar los datos
+  saveData(): void {
+
+    const user = {
+      name: this.users.value.name,
+      email:this.users.value.email,
+      password: this.users.value.password
+    }
+
+    this.usuarioService.crearUsuario(user).subscribe( res => {console.log(res)})
+    
+    this.router.navigate(['acceso'])
+  }
+
+  openTerms(){
+
+    console.log("loremmmmmmmmmmmmmmmmmmmmmmmmmm   info para terminos y condiciones")
+  }
+
+  
 
 }

@@ -57,6 +57,13 @@ width: 100%;
     border-radius: 400px;
 }
 
+.btn_alert{
+    background-color: rgba(255, 0, 0, 0.315);
+    color: white !important ;
+    border-radius: 25px;
+
+}
+
 @media (min-width: 576px) {
     .heightConteiner {
       height: 100%;
