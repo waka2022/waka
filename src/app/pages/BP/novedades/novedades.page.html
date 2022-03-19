@@ -1,3 +1,12 @@
+<!--
+  Proyecto de formación SENA (WAKA)
+    Descripción: codigo HTML del Componente novedad = seleccionar archivo fotograficos (para saber el estado del auto antes y despues), esté se mostrara antes y despues de terminar la estadia en el parqueadero.
+    ?Autor:@SamuelCanoRomero
+    Fecha de creación:/02/2022
+    Ultima fecha de modificación:17/03/2022
+-->
+
+<!--* encabezado llamando al componente logo de waka -->
 <ion-header>
   <ion-toolbar>
     <app-menu></app-menu>
@@ -8,15 +17,21 @@
 <ion-content color="light">
 
   <div>
+    <!--* utilizando girllas de ionic -->
     <ion-grid class="p-0">
+      <!--* fila de ionic  -->
       <ion-row>
-
+      <!-- *columna de ionic -->
         <ion-col size="12" size-md="6" class="p-1" *ngFor="let item of [1,1]">
+          <!--* fila de ionic -->
           <ion-row class="contenedor-parqueadero">
+            <!--* columna de ionic -->
             <ion-col size="6" class="pe-3">
+              <!--* imagen referente al vehiculo ingresado-->
               <img id="img-parqueadero" src="../../../assets/parqueadero.jpg" alt="">
             </ion-col>
             <ion-col size="6">
+              <!--* descripcion referente al vehiculo ingresado-->
               <h2>El vehiculo llego con unos rayones en la parte trasera de la llanta izquierda.</h2> <br>
             </ion-col>
           </ion-row>

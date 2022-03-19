@@ -1,6 +1,8 @@
+//modificando el taño de la letra de la card
 .tamaño-letra{
     font-size: 1rem;
 }
+// dando tamaños a la card, para centrarla en la pantalla movil y desktop
   .card{
     background-color: #ffffff;
     border-radius: 10px;
@@ -13,12 +15,13 @@
     border: #ffffff67 solid 1px;
 }
 
+// linea abajo de cada campo de datos en el formulario
 .border-abajo{
     border-bottom: #00000081 solid 1px;
 }
 
 
-
+// responsive para ajustar tamallo de la card en pantalla de 600px
 @media (max-width: 600px)
   {
     .card{

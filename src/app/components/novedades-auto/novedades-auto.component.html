@@ -1,17 +1,31 @@
+<!--
+  Proyecto de formación SENA (WAKA)
+    Descripción: codigo HTML del Componente novedad = seleccionar archivo fotograficos (para saber el estado del auto antes y despues), esté se mostrara antes y despues de terminar la estadia en el parqueadero.
+    ?Autor:@SamuelCanoRomero
+    Fecha de creación:/02/2022
+    Ultima fecha de modificación:17/03/2022
+-->
+
+<!--* card el cual se puede reutilizar en caso de ser requerido,para subir y visualizar los archivos subidos (referentes al auto)-->
 <ion-card class="card">
   <ion-card-content >
+
+    <!--** generando el contenedor del formulario. -->
     <form [formGroup]="new_auto"  (ngSubmit)="xxxxx()">
 
+      <!--** el input donde agregara archivos de fotografias -->
       <ion-item color="dark" class=" mb-2 border-abajo">
         <ion-label color="light" class="text-dark" position="stacked">Agregar Fotos</ion-label>
         <ion-input class="ml-4" type="file"  class="text-dark" formControlName="img"></ion-input>
       </ion-item>
 
+      <!--** el input para ingresar texto y hacer una descripcion del auto  -->
       <ion-item color="dark" class="border-abajo">
       <ion-label color="light" class="text-dark"  position="stacked">Descripcion:</ion-label>
         <ion-textarea class="ml-4"   class="text-dark" formControlName="des"></ion-textarea>
       </ion-item>
 
+      <!--** el boton para realizar el envio del formulario con los datos anterior mente digitados -->
       <ion-button class="mb-4 mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast"
         color="success" size="large" (click)="addMyClass()" type="submit" [disabled]="!new_auto.valid">
         <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Agregar</p>

@@ -1,26 +1,32 @@
 <ion-header>
   
 </ion-header>
-<ion-content color="light">
 
+
+<ion-content color="light">
+<!--** card la cual contiene el formulario  -->
   <ion-card class="card">
+    <!--* implementando el componente logo para mostrarlo en el encabezado de  la card -->
     <div class="mt-5 bt-5 d-flex justify-content-center ">
       <app-logo-waka ></app-logo-waka>
     </div>
 
+    <!--* contenido de la card -->
     <ion-card-content >
+      <!--* inicializando el formulario -->
       <form [formGroup]="user_due"  (ngSubmit)="xxxxx()">
 
+        <!--* campo para ingreso de email -->
         <ion-item color="light" class="border-abajo">
           <ion-label color="light" class="text-dark" position="floating">Email:</ion-label>
           <ion-input  class="text-dark" formControlName="email"></ion-input>
         </ion-item>
-
+        <!--* campo para ingreso de contraseña -->
         <ion-item color="light" class="border-abajo">
           <ion-label class="text-dark" color="light" position="floating">Contraseña:</ion-label>
           <ion-input class="text-dark"  type="password" formControlName="password"></ion-input>
         </ion-item>
-
+        <!--* boton para realizar el envio del formulario con los datos ingresados -->
         <ion-button class="mb-4 mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast"
           color="success" size="large" (click)="addMyClass()" type="submit" [disabled]="!user_due.valid">
           <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Registrarse</p>
@@ -28,6 +34,7 @@
 
       </form>
 
+      <!--* mensaje para el usuario solo ingresos a dueño -->
       <h3 class="mb-4 text-dark text-center tamaño-letra">
         Solo el dueño de el parqueadero puede ver las estadisticas
       </h3>

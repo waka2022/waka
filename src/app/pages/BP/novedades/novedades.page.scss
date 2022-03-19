@@ -1,4 +1,12 @@
-.contenedor-parqueadero{
+
+  // Proyecto de formación SENA (WAKA)
+  //   Descripción: codigo SCSS del Componente calificar = seleccionar una calificación, esté se mostrara despues de terminar la estadia en el parqueadero (lo visualiza el rol BP).
+  //   ?Autor:@SamuelCanoRomero
+  //   Fecha de creación:/02/2022
+  //   Ultima fecha de modificación:17/03/2022
+
+  //modificando el tamaño y centrando en la pantalla el contenedor 
+  .contenedor-parqueadero{
     width: 99%;
     margin: 0%;
     background-color: #050b18;
@@ -6,6 +14,7 @@
     border-radius: 7px;
 }
 
+//modificando el tamaño del contenedor de la img
 #img-parqueadero{
     height: 200px;
     object-fit: contain;

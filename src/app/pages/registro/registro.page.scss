@@ -1,6 +1,8 @@
+//modificar tamaño de letra
 .tamaño-letra{
     font-size: 1rem;
 }
+//centrar la card en la pantalla celular y desktop, la cual contiene el formulario
   .card{
     background-color: #1e1e1e;
     border-radius: 10px;
@@ -12,19 +14,23 @@
     left: 50%;
     border: #ffffff67 solid 1px;
 }
-
+//linea abajo de cada campo o input
 .border-abajo{
     border-bottom: #ffffff81 solid 1px;
 }
   
+//texto aqui el cual resalta
 #aqui{
     color: #2fdf75;
  }
  
+ //efecto hover al texto aqui
  #aqui:hover{
      color: #2fdf75ab;
   }
 
+
+//responsive para cuando el ancho de la carda en pantalla de 600px
 @media (max-width: 600px)
   {
     .card{

@@ -1,15 +1,26 @@
+
+  // Proyecto de formación SENA (WAKA)
+  //   Descripción: codigo SCSS del Componente calificar = seleccionar una calificación, esté se mostrara despues de terminar la estadia en el parqueadero (lo visualiza el rol BP).
+  //   ?Autor:@SamuelCanoRomero
+  //   Fecha de creación:/02/2022
+  //   Ultima fecha de modificación:17/03/2022
+
+
+// modificando el tamaño de la letra del card
 .tamaño-letra{
     font-size: 1rem;
 }
 
+// centrando el CONTENIDO HIJO del card 
 ion-card-content{
   position: relative;
   justify-content: center;
   align-content: center;
 }
 
+// centralizando el card en la pantalla movil y desktop
   .card{
-margin-top: 300px;
+    margin-top: 300px;
     position:absolute;
     background-color: #1e1e1e;
     border-radius: 10px;
@@ -21,15 +32,17 @@ margin-top: 300px;
     border: #ffffff67 solid 1px;
 }
 
+// modificando altura de el campo donde se ingresa una descripcion
 ion-textarea{
  height: 400px; 
 }
 
+// integrando una linea que va debajo de cada input
 .border-abajo{
     border-bottom: #ffffff81 solid 1px;
 }
   
-
+// modificando el ancho de la card anteriro mente colocado, en una pantalla de 600px
 @media (max-width: 600px)
   {
     .card{

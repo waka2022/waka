@@ -1,3 +1,5 @@
+
+<!--**boton en encabezado para volver atras** -->
 <ion-header>
   <ion-toolbar color="primarioApp">
     <ion-buttons slot="start">
@@ -8,36 +10,43 @@
 
 
 <ion-content>
-
+<!--** card donde esta ubicado el formulario** -->
   <ion-card class="card">
+    <!--* logo de waka en el encabezado de esta card -->
     <div class="mt-5 bt-5 d-flex justify-content-center ">
       <app-logo-waka></app-logo-waka>
     </div>
-
+<!--* contenido de la card (fomulario) -->
     <ion-card-content>
+      <!-- *inicializando el formulario con funcion guardar datos(savedata()) -->
       <form [formGroup]="users" (ngSubmit)="saveData()">
 
+        <!--* campo para ingreso de nombre -->
         <ion-item class="border-abajo">
           <ion-label color="dark" position="floating">Nombre:</ion-label>
           <ion-input class="text-white" formControlName="name"></ion-input>
         </ion-item>
-
+ 
+        <!--* campo para ingreso de email -->
         <ion-item class="border-abajo">
           <ion-label color="dark" position="floating">Email:</ion-label>
           <ion-input class="text-white" formControlName="email"></ion-input>
         </ion-item>
 
+        <!-- *campo para ingreso de contraseña -->
         <ion-item class="border-abajo">
           <ion-label color="dark" position="floating">Contraseña:</ion-label>
           <ion-input class="text-white" type="password" formControlName="password"></ion-input>
         </ion-item>
 
+        <!-- *el boton para hacer el envio del fomulario con los datos ingresados. -->
         <ion-button class="mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast verde"
           size="large" type="submit" [disabled]="!users.valid">
           <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Registrarse</p>
         </ion-button>
       </form>
 
+      <!--* el boton para realizar el ingreso mediante google cuenta gmail  -->
       <ion-button class="mb-4 mt-1 d-flex justify-content-center animate__animated animate__pulse animate__fast"
         color="light" size="large" (click)="Registrarse()">
         <p id="text_icon" class="tamaño-letra m-0 animate__animated animate__bounceIn animate__fast text-dark">
@@ -45,6 +54,7 @@
         </p>
       </ion-button>
 
+      <!--* mensaje para redireccion al login cunado el usuario ya tiene una cuenta -->
       <h3 class="mb-4 text-white text-center tamaño-letra">
         ¿ Ya tienes cuenta ? inicia <a id="aqui" href="#">aqui </a>
       </h3>
