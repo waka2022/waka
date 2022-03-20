@@ -7,6 +7,9 @@ import { AbstractControl, FormControl, FormGroup, PatternValidator, Validators }
 //?importando rutas para su uso alojado en angular/route
 import { Router } from '@angular/router';
 
+//?importando la modalcontrolle de ionic alojado en ionic/angular
+import { ModalController } from '@ionic/angular';
+
 //?importando la API o servicio usuario alojado en servise/usuario.service
 import { UsuarioService } from '../../services/usuario.service';
 
@@ -32,7 +35,7 @@ export class RegistroPage implements OnInit {
     // campos que estamos pidiendo al usuario en el formulario (html)aca mediante required indicamos que los campos son obligatorios y validando el tipo de dato.
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     email: new FormControl('', [Validators.required, Validators.pattern('[A-Za-z0-9._%+-]{2,}@[a-zA-Z-_.]{2,}[.]{1}[a-zA-Z]{2,}')]),
-    password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$')]),
+    password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$'), Validators.minLength(4)]),
     tercond: new FormControl('false',Validators.requiredTrue)
   });
 
@@ -57,10 +60,8 @@ export class RegistroPage implements OnInit {
     this.router.navigate(['acceso'])
   }
 
-  openTerms(){
+  
 
-    console.log("loremmmmmmmmmmmmmmmmmmmmmmmmmm   info para terminos y condiciones")
-  }
 
   
 
