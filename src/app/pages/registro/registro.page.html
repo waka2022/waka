@@ -33,7 +33,8 @@
           <ion-label color="dark" position="floating" >Contraseña:</ion-label>
           <ion-input class="text-white" type="password" formControlName="password"></ion-input>
         </ion-item>
-        <ion-label color="danger" *ngIf="users.controls.password.errors?.pattern && (users.touched || users.dirty)">* La contraseña debe tener carácteres, mayusculas y números. </ion-label>
+        <ion-label color="danger" *ngIf="users.controls.password.errors?.minlength && (users.touched || users.dirty)">* La contraseña debe contar con más de 4 digitos. </ion-label><br>
+        <ion-label color="danger" *ngIf="users.controls.password.errors?.pattern && (users.touched || users.dirty)">* La contraseña debe contar con carácteres especiales, mayúsculas, minúsculas y números. </ion-label>
 
         <ion-item class="border-abajo">
           <ion-label color="dark" position="floating">Confirmación de contraseña:</ion-label>

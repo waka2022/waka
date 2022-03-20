@@ -10,61 +10,77 @@
 
   <div id="contenedor">
     <div id="contenedorFormulario">
-
+      <ion-card class="card">
+        <ion-card-content>
       <form [formGroup]="info" (ngSubmit)="addInfo()">
         <ion-item color="primarioApp" class="border-abajo">
           <ion-label color="dark" position="floating">Documento</ion-label>
-          <ion-input class="text-white" formControlName="document"></ion-input>
+          <ion-input  class="text-white" formControlName="document"></ion-input>
         </ion-item>
+        <ion-label color="danger" *ngIf="info.controls.document.errors?.minlength && (info.touched || info.dirty)">* El Documento debe contar con más de 8 digitos. </ion-label><br>
+        <ion-label color="danger" *ngIf="info.controls.document.errors?.maxlength && (info.touched || info.dirty)">* El Documento debe contar con menos de 10 digitos. </ion-label>
 
-        <div class="linea"></div>
+       
 
         <ion-item color="primarioApp" class="border-abajo">
           <ion-label color="dark" position="floating">Telefono</ion-label>
-          <ion-input class="text-white" formControlName="phone"></ion-input>
+          <ion-input  class="text-white" formControlName="phone"></ion-input>
         </ion-item>
+        <ion-label color="danger" *ngIf="info.controls.phone.errors?.minlength && (info.touched || info.dirty)">* El Telefono debe contar con más de 7 digitos. </ion-label><br>
+        <ion-label color="danger" *ngIf="info.controls.phone.errors?.maxlength && (info.touched || info.dirty)">* El Telefono debe contar con menos de 10 digitos. </ion-label>
 
-        <div class="linea"></div>
+
         <ion-item color="primarioApp" class="border-abajo">
-          <ion-label color="dark" position="floating">Tipo</ion-label>
-          <ion-input class="text-white" formControlName="global"></ion-input>
+          <ion-label position="floating">Tipo</ion-label>
+          <ion-select interface="popover" formControlName="global">
+            <ion-select-option class="option" value="bicicleta">Bicicleta</ion-select-option>
+            <ion-select-option class="option" value="moto">Moto</ion-select-option>
+            <ion-select-option class="option" value="carro">Carro</ion-select-option>
+          </ion-select>
         </ion-item>
+        <ion-label color="danger" *ngIf="info.controls.global.errors?.required && (info.touched || info.dirty)">* El  Tipo es obligatorio. </ion-label>
 
-        <div class="linea"></div>
+
         <ion-item color="primarioApp" class="border-abajo">
           <ion-label color="dark" position="floating">Marca</ion-label>
           <ion-input class="text-white" formControlName="mark"></ion-input>
         </ion-item>
+        <ion-label color="danger" *ngIf="info.controls.mark.errors?.minlength && (info.touched || info.dirty)">* La Marca debe contar con más de 4 digitos. </ion-label>
 
-        <div class="linea"></div>
+
+       
 
         <ion-item color="primarioApp" class="border-abajo">
           <ion-label color="dark" position="floating">Modelo</ion-label>
-          <ion-input class="text-white" formControlName="model"></ion-input>
+          <ion-input typo="number" class="text-white" formControlName="model"></ion-input>
         </ion-item>
+        <ion-label color="danger" *ngIf="info.controls.model.errors?.minlength && (info.touched || info.dirty)">* El Modelo debe contar con solo 4 digitos. </ion-label><br>
+        <ion-label color="danger" *ngIf="info.controls.model.errors?.pattern && (info.touched || info.dirty)">* El Modelo debe ser númerico. </ion-label>
 
-        <div class="linea"></div>
+        
 
         <ion-item color="primarioApp" class="border-abajo">
           <ion-label color="dark" position="floating">Placa</ion-label>
           <ion-input class="text-white" formControlName="placa"></ion-input>
         </ion-item>
+        <ion-label color="danger" *ngIf="info.controls.placa.errors?.pattern && (info.touched || info.dirty)">* El Modelo debe contar con 3 letras Mayúsculas, (-) y 3 Números. </ion-label>
 
-        <div class="linea"></div>
+       
 
         <ion-item color="primarioApp" class="border-abajo">
           <ion-label color="dark" position="floating">Color</ion-label>
-          <ion-input class="text-white" formControlName="color"></ion-input>
+          <ion-input  class="text-white" formControlName="color"></ion-input>
         </ion-item>
+        <ion-label color="danger" *ngIf="info.controls.color.errors?.required && (info.touched || info.dirty)">* El Color es obligatorio. </ion-label>
 
-        <div class="linea"></div>
-
-        <ion-button class="mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast verde"
-          type="submit">
+ 
+        <ion-button class="mt-5 mb-5 d-flex justify-content-center animate__animated animate__pulse animate__fast verde"
+          type="submit" [disabled]="!info.valid">
           <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Registrarse</p>
         </ion-button>
       </form>
-
+    </ion-card-content>
+    </ion-card>
     </div>
   </div>
 

@@ -17,29 +17,40 @@
         <ion-select-option class="option" value="carro">Carro</ion-select-option>
       </ion-select>
     </ion-item>
+    <ion-label color="danger" *ngIf="car.controls.global.errors?.required && (car.touched || car.dirty)">* El  Tipo es obligatorio. </ion-label>
+
 
     <ion-item class="border-abajo texto-formulario" color="segundarioApp">
       <ion-label color="primarioApp" position="floating">Marca</ion-label>
       <ion-input formControlName="mark"></ion-input>
     </ion-item>
+    <ion-label color="danger" *ngIf="car.controls.mark.errors?.minlength && (car.touched || car.dirty)">* La Marca debe contar con más de 4 digitos. </ion-label>
+
 
     <ion-item class="border-abajo" color="segundarioApp">
       <ion-label color="primarioApp" position="floating">Modelo</ion-label>
       <ion-input formControlName="model"></ion-input>
     </ion-item>
+    <ion-label color="danger" *ngIf="car.controls.model.errors?.minlength && (car.touched || car.dirty)">* El Modelo debe contar con solo 4 digitos. </ion-label><br>
+    <ion-label color="danger" *ngIf="car.controls.model.errors?.pattern && (car.touched || car.dirty)">* El Modelo debe ser númerico. </ion-label>
+
 
     <ion-item class="border-abajo" color="segundarioApp">
       <ion-label color="primarioApp" position="floating">Placa</ion-label>
       <ion-input formControlName="placa"></ion-input>
     </ion-item>
+    <ion-label color="danger" *ngIf="car.controls.placa.errors?.pattern && (car.touched || car.dirty)">* El Modelo debe contar con 3 letras Mayúsculas, (-) y 3 Números. </ion-label>
+
 
     <ion-item class="border-abajo" color="segundarioApp">
       <ion-label color="primarioApp" position="floating">Color</ion-label>
       <ion-input formControlName="color"></ion-input>
     </ion-item>
+    <ion-label color="danger" *ngIf="car.controls.color.errors?.required && (car.touched || car.dirty)">* El Color es obligatorio. </ion-label>
+
 
     <ion-button class="animate__animated animate__pulse animate__fast mt-5 d-flex justify-content-center verde"
-      expand="block" size="large" type="submit">
+      expand="block" size="large" type="submit"[disabled]="!car.valid">
       <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Registrar vehiculo</p>
     </ion-button>
 
