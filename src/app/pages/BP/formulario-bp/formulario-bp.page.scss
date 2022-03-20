@@ -1,7 +1,10 @@
+//dandole pisicion al contenedor padre y una alto
 #contenedor{
     position: relative;
     height: 100%;
 }
+
+//dandole un position al hijo y tamaños
 #contenedorFormulario{
     position: absolute;
     top: 0;
@@ -12,6 +15,7 @@
     width: 90%;
 }
 
+//dandole tamaño a la card junto con centrandolo
 .card{
     background-color: #050b19;
     border-radius: 10px;
@@ -28,6 +32,7 @@
 box-shadow: RGBA(5, 11, 25, 5);
 }
 
+//dandole un color a la linea que divide los campos
 .linea{
     background-color: rgba(255, 255, 255, 0.651);
     height: 1px;

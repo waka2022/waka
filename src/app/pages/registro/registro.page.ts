@@ -1,3 +1,9 @@
+/** Proyecto de formación SENA (WAKA)
+ Descripción: codigo SCSS de la pagina registro = formulario crear una nueva cuenta .
+ Autor:@SamuelCanoRomero
+ Fecha de creación:/02/2022
+ Ultima fecha de modificación:17/03/2022*/
+
 //?importanto los componenets de angular para su uso, alojado en angular/core
 import { Component, OnInit } from '@angular/core';
 
@@ -48,15 +54,15 @@ export class RegistroPage implements OnInit {
   
   //la funcion para guardar los datos
   saveData(): void {
-
+    //indicar el value con el ""campo"" en la coleccion
     const user = {
       name: this.users.value.name,
       email:this.users.value.email,
       password: this.users.value.password
     }
-
+  //servicio crear nuevo usuario
     this.usuarioService.crearUsuario(user).subscribe( res => {console.log(res)})
-    
+  //redireccionar a la vista acceso
     this.router.navigate(['acceso'])
   }
 

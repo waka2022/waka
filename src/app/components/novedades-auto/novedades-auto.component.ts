@@ -1,6 +1,6 @@
 /**
 Proyecto de formación SENA (WAKA)
-  Descripción: codigo TypeSript del Componente calificar = seleccionar una calificación, esté se mostrara despues de terminar la estadia en el parqueadero (lo visualiza el rol BP).
+  Descripción: codigo TypeSript del Componente novedades =  seleccionar archivo fotograficos (para saber el estado del auto antes y despues), esté se mostrara antes y despues de terminar la estadia en el parqueadero.
   Autor:@SamuelCanoRomero
   Fecha de creación:/02/2022
   Ultima fecha de modificación:17/03/2022

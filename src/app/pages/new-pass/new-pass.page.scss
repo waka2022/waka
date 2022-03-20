@@ -1,6 +1,16 @@
+// Proyecto de formación SENA (WAKA)
+// Descripción: codigo SCSS  de la pagina CAMBIAR Psw = formulario la clave de la cuenta .
+// ?Autor:SamuelCanoRomero
+// Fecha de creación:/02/2022
+// Ultima fecha de modificación:17/03/2022
+
+
+//modificando el tamño de la letra de la card
 .tamaño-letra{
     font-size: 1rem;
   }
+
+  //dando tamaño y centrando la card en la pantalla
   .card{
     background-color: #1e1e1e;
     border-radius: 10px;
@@ -13,18 +23,12 @@
     border: #ffffff67 solid 1px;
   }
   
+  //dando color a la linea debajo de cada campo
   .border-abajo{
     border-bottom: #ffffff81 solid 1px;
   }
   
-  #aqui{
-    color: #2fdf75;
-  }
-  
-  #aqui:hover{
-     color: #2fdf75ab;
-  }
-  
+ //responsive modificando el ancho de la card en pantalla de 600px 
   @media (max-width: 600px)
   {
     .card{

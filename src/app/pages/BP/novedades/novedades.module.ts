@@ -1,3 +1,10 @@
+
+  // Proyecto de formación SENA (WAKA)
+  //   Descripción: codigo TypeScript de la pagina novedad = seleccionar archivo fotograficos (para saber el estado del auto antes y despues), esté se mostrara antes y despues de terminar la estadia en el parqueadero.
+  //   ?Autor:@SamuelCanoRomero
+  //   Fecha de creación:/02/2022
+  //   Ultima fecha de modificación:17/03/2022
+
 //?importando los Ngmolue de angular alojado en angular/core
 import { NgModule } from '@angular/core';
 

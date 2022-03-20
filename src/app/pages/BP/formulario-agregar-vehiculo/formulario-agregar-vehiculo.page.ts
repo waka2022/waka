@@ -1,18 +1,34 @@
+//?importando componentes angular alojados en angular/core
 import { Component, OnInit } from '@angular/core';
+
+//?importando formularios reactvios de angular alojasdos en angular/core
 import { AbstractControl, FormControl, FormGroup, PatternValidator, Validators } from '@angular/forms';
+
+//?importando servicio de usuaurio para su uso alojado en ../../../services/usuario.service
 import { UsuarioService } from '../../../services/usuario.service';
+
+//?importando el servicio de emmiter para la apikey  alojado en ../../../services/emmiters.service
 import { EmmitersService } from '../../../services/emmiters.service';
+
+//?importando modal controller para controladores de ionic alojado en ionic/angular
 import { ModalController } from '@ionic/angular';
 
+
+//!componentes los cuales conectac y refieren a los distintos archivos de agregar-vehiculo
 @Component({
   selector: 'app-formulario-agregar-vehiculo',
   templateUrl: './formulario-agregar-vehiculo.page.html',
   styleUrls: ['./formulario-agregar-vehiculo.page.scss'],
 })
+
+//**exportando la clase Regsitro y implementando OnInit para el ciclo de vida del mismo */
 export class FormularioAgregarVehiculoPage implements OnInit {
 
+    //*constructor  Se encarga de asegurar la correcta inicialización de los campos, tanto de la clase como de sus subclases
+    //en este caso estamos mandando como parametro los servicios a implemetnar y controller
   constructor( private usuarioService:UsuarioService, private emmiter: EmmitersService, private modalController: ModalController) { }
 
+  //generando el formulario mediante formulario reactivo
   car = new FormGroup({
     global: new FormControl('', [Validators.required, Validators.minLength(4)]),
     mark: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -21,11 +37,14 @@ export class FormularioAgregarVehiculoPage implements OnInit {
     color: new FormControl('', [Validators.required]),
   });
 
+  //ngOnInit pertenece al ciclo de vidad de angular y aqui se le esta indicando que el componenete ya esta listo para darle uso
   ngOnInit() {
   }
-  
+
+  //*generando la funcion para crear el nuevo carro
   addCar(){
 
+    //inidicando los campo a ingresar 
     let infoCar = {
       type_vehi:{
         global: this.car.value.global,
@@ -35,7 +54,7 @@ export class FormularioAgregarVehiculoPage implements OnInit {
         color: this.car.value.color,
       }
     }
-
+  //validando el token y generando el suscribe
     let token = this.usuarioService.traerToken()
     this.usuarioService.addVehicleUser(token, infoCar).subscribe(res => {
       console.log(res)
@@ -45,7 +64,7 @@ export class FormularioAgregarVehiculoPage implements OnInit {
     this.dismiss()
     
   }
-
+//cerrando el modal
   dismiss() {
     this.modalController.dismiss({
       'dismissed': true

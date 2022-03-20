@@ -39,15 +39,17 @@
 
             </ion-col>
         
+            <!--* campo para deshabilitar cuenta -->
             <ion-col size=12 size-sm="4" >
+                <!--* mensaje de recordatorio para 16 días de plazo (aparece despues de deshabiliar la cuenta) -->
                 <ion-text color="warning" class="text-start">
                     <p>{{this.mssg}}</p>
-                  </ion-text>                
+                  </ion-text>         
+                  <!--* boton para cliquear y mostrar la alerta de confirmacion         -->
                   <ion-button class="btn_alert animate__animated animate__fadeInRight" (click)="presentAlertMultipleButtons()" color="danger" expand="block" fill="clear" shape="round">
                     Deshabilitar la cuenta
                 </ion-button> 
             </ion-col> 
-                <!--{{this.mssg}}-->
                 
         </ion-row>
 

@@ -1,3 +1,11 @@
+/**
+Proyecto de formación SENA (WAKA)
+  Descripción: codigo TypeSript de la pagina registro =  crear una nueva cuenta .
+  Autor:@SamuelCanoRomero
+  Fecha de creación:/02/2022
+  Ultima fecha de modificación:17/03/2022
+*/
+
 //?importando directiva Ngmodule de angular, alojada en angular/core
 import { NgModule } from '@angular/core';
 

@@ -1,3 +1,9 @@
+// Proyecto de formación SENA (WAKA)
+//    Descripción: codigo TypeScript de la pagina estadisticas = visulaizar estadisitcas de un parqueadero, solo rol (BP).
+//    ?Autor:@SamuelCanoRomero
+//    Fecha de creación:/02/2022
+//   Ultima fecha de modificación:17/03/2022
+
 //?importando los compoenenets de angular,alojado en angular /core
 import { Component, OnInit } from '@angular/core';
 
