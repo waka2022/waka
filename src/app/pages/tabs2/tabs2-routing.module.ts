@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { Tabs2Page } from './tabs2.page';
 import { AgregarParqueaderoPageModule } from '../PP/agregar-parqueadero/agregar-parqueadero.module';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -11,7 +12,7 @@ const routes: Routes = [
     children: [
       {
         path: 'mis-parqueaderos',
-        loadChildren: () => import('../PP/agregar-parqueadero/agregar-parqueadero.module').then(m => m.AgregarParqueaderoPageModule)
+        loadChildren: () => import('../PP/mis-parqueaderos/mis-parqueaderos.module').then(m => m.MisParqueaderosPageModule)
       },
       {
         path: 'recibo',
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path: 'acceso-estadisticas',
         loadChildren: () => import('../PP/acceso-estadisticas/acceso-estadisticas.module').then( m => m.AccesoEstadisticasPageModule)
+      },
+      {
+        path: 'agregar-parqueadero',
+        loadChildren: () => import('../PP/agregar-parqueadero/agregar-parqueadero.module').then( m => m.AgregarParqueaderoPageModule)
       },
         
     ]

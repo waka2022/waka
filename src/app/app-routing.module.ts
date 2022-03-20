@@ -63,8 +63,11 @@ const routes: Routes = [
     path: 'actualizarperfil',
     loadChildren: () => import('./pages/BP/actualizarperfil/actualizarperfil.module').then( m => m.ActualizarperfilPageModule)
   },
-
-
+  {
+    path: 'mis-parqueaderos',
+    loadChildren: () => import('./pages/PP/mis-parqueaderos/mis-parqueaderos.module').then( m => m.MisParqueaderosPageModule)
+  },
+ 
 
 ];
 

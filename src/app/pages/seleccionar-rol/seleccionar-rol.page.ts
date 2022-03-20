@@ -26,7 +26,7 @@ export class SeleccionarRolPage implements OnInit {
       
     } else if (this.userRol.value.rol === "USER_PP"){
 
-      this.router.navigate(['error404'])
+      this.router.navigate(['registro-parqueadero'])
 
     } else {
 

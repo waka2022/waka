@@ -11,7 +11,7 @@ import { ModalController } from '@ionic/angular';
 })
 export class FormularioAgregarVehiculoPage implements OnInit {
 
-  constructor( private usuarioService:UsuarioService, private emmiter: EmmitersService,private modalController: ModalController) { }
+  constructor( private usuarioService:UsuarioService, private emmiter: EmmitersService, private modalController: ModalController) { }
 
   car = new FormGroup({
     global: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -39,7 +39,7 @@ export class FormularioAgregarVehiculoPage implements OnInit {
     let token = this.usuarioService.traerToken()
     this.usuarioService.addVehicleUser(token, infoCar).subscribe(res => {
       console.log(res)
-      this.emmiter.$emmiterProfile.emit(true)
+      this.emmiter.$emmiterParqueaderos.emit(true)
     })
 
     this.dismiss()

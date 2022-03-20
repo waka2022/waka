@@ -49,7 +49,6 @@ export class MapaPage implements OnInit {
       showBackdrop: true,
       mode: 'ios'
 
-
     });
 
     await modal.present();

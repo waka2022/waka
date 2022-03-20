@@ -58,8 +58,4 @@ export class FormularioBPPage implements OnInit {
     this.router.navigate(['tabs/mapa'])
   }
 
-
-
-
-
 }
