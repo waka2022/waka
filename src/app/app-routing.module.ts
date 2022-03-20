@@ -66,7 +66,11 @@ const routes: Routes = [
   {
     path: 'mis-parqueaderos',
     loadChildren: () => import('./pages/PP/mis-parqueaderos/mis-parqueaderos.module').then( m => m.MisParqueaderosPageModule)
+  },  {
+    path: 'prueba',
+    loadChildren: () => import('./pages/prueba/prueba.module').then( m => m.PruebaPageModule)
   },
+
  
 
 ];
