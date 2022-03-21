@@ -60,13 +60,11 @@ A lo largo de este Documento se visualizaran mis actividades realizadas en el pr
     -eliminar vehiculo   
     -crear vehiculo
     -deshabilitar cuenta de un usuario        
-          
-  `inhabilitarUsuario(token) {
-
+~~~     
+  inhabilitarUsuario(token) {
     return this.http.delete(`${this.url}/users/disable-account`, { headers: { authorization_token: token } })
-
-  }`
-         
+  }
+~~~   
        
 
 
