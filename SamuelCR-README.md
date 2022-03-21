@@ -33,15 +33,15 @@ para crear un nuevo usuario en waka.
         ---formulario reactivo     
         ---estilos     
     --new-pass   
-cuando un usuario quiere cambiar la contraseña de su cuenta.    
+cuando un usuario quiere cambiar la contraseña de su cuenta.         
         ---formulario reactivo     
         ---estilos      
     --novedades 
-componente modal para ingresar informacion del auto que ingresó (foto y descripcion).
+componente modal para ingresar informacion del auto que ingresó (foto y descripcion).      
         ---formulario      
         ---estilos      
     --acceso-estadisticas   
-validar y dra ingreso para visualizar estadisticas 
+validar y dra ingreso para visualizar estadisticas       
         ---formulario     
         ---estilos       
     --term-condi     
@@ -55,7 +55,7 @@ visualizar informacion de mi cuenta rol BP y boton deshabilitar cuenta.
     --perfil PP    
 visualizar informacion de mi cuenta rol pp y boton deshabilitar cuenta.           
         ---incluir el boton deshabilitar la cuenta     
-        ---mostrar el mensaje cuando el usuario deshabilita su cuenta     
+        ---mostrar el mensaje cuando el usuario deshabilita su cuenta              
     --formulario-BP     
 crear un nuevo vehiculo en mi cuenta.         
         ---validar el tipado de los campos del formulario      
@@ -70,10 +70,10 @@ crear un nuevo  vehiculo en mi cuenta.
 -**servicios implementados por mi**
 servicios los cuales estan en listados y documentados en [postman][postman].    
     --cambiar la contraseña de una cuenta     
-    --eliminar vehiculo   
-    --crear vehiculo
-    --deshabilitar cuenta de un usuario  
-deshabilitar una cuenta ya creada.      
+    --eliminar vehiculo       
+    --crear vehiculo         
+    --deshabilitar cuenta de un usuario              
+deshabilitar una cuenta ya creada.            
 ~~~     
   inhabilitarUsuario(token) {
     return this.http.delete(`${this.url}/users/disable-account`, { headers: { authorization_token: token } })
