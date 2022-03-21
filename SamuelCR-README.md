@@ -7,61 +7,73 @@ A lo largo de este Documento se visualizaran mis actividades realizadas en el pr
 
 ### Referente al proyecto (WAKA)
 -**lenguajes:**    
-         -HTML    
-               -SCSS    
-    -TypeScript    
+    --HTML    
+    --SCSS    
+    --TypeScript    
 
 -**herramientas:**      
-    -Angular      
-    -Ionic      
-    -MongoDB      
-    -NodeJs y ExpressJs     
-    -MapBooks   
-    -Postman      
+    --Angular      
+    --Ionic      
+    --MongoDB      
+    --NodeJs y ExpressJs     
+    --MapBooks   
+    --Postman      
 
 -**componentes generados por mi** _(vistas)_      
-    -modal-calificar     
-    -modal     
-    -novedades-auto    
+    --modal-calificar     
+componenente modal para dar calificacion mediante 5 estrellas.          
+    --modal     
+componente modal para avisar y confirmar el metodo de pago (efectivo).      
+    --novedades-auto     
+componente modal para ingresar informacion del auto que ingresó (foto y descripcion).             
 
 -**paginas generadas por mi** _(vistas)_     
-    -registro      
-        -formulario reactivo     
-        -estilos     
-    -new-pass     
-        -formulario reactivo     
-        -estilos      
-    -novedades      
-        -formulario      
-        -estilos      
-    -acceso-estadisticas     
-        -formulario     
-        -estilos       
-    -term-condi     
-    -validar-user     
+    --registro
+para crear un nuevo usuario en waka.     
+        ---formulario reactivo     
+        ---estilos     
+    --new-pass   
+cuando un usuario quiere cambiar la contraseña de su cuenta.    
+        ---formulario reactivo     
+        ---estilos      
+    --novedades 
+componente modal para ingresar informacion del auto que ingresó (foto y descripcion).
+        ---formulario      
+        ---estilos      
+    --acceso-estadisticas   
+validar y dra ingreso para visualizar estadisticas 
+        ---formulario     
+        ---estilos       
+    --term-condi     
+    --validar-user     
 
 -**paginas modificadas por mi** _(modificadas)_    
-    -perfil BP    
-        -incluir el boton deshabilitar la cuenta     
-        -mostrar el mensaje cuando el usuario deshabilita su cuenta    
-    -perfil PP     
-        -incluir el boton deshabilitar la cuenta     
-        -mostrar el mensaje cuando el usuario deshabilita su cuenta     
-    -formulario-BP     
-        -validar el tipado de los campos del formulario      
-        -incluir campo de opcion del tipo      
-        -animacion boton      
-    -formulario-agregar-vehiculo      
-        -validar el tipado de los campos del formulario     
-        -incluir campo de opcion del tipo     
-        -animacion boton    
+    --perfil BP    
+visualizar informacion de mi cuenta rol BP y boton deshabilitar cuenta.         
+        ---incluir el boton deshabilitar la cuenta     
+        ---mostrar el mensaje cuando el usuario deshabilita su cuenta    
+    --perfil PP    
+visualizar informacion de mi cuenta rol pp y boton deshabilitar cuenta.           
+        ---incluir el boton deshabilitar la cuenta     
+        ---mostrar el mensaje cuando el usuario deshabilita su cuenta     
+    --formulario-BP     
+crear un nuevo vehiculo en mi cuenta.         
+        ---validar el tipado de los campos del formulario      
+        ---incluir campo de opcion del tipo      
+        ---animacion boton      
+    --formulario-agregar-vehiculo 
+crear un nuevo  vehiculo en mi cuenta.      
+        ---validar el tipado de los campos del formulario     
+        ---incluir campo de opcion del tipo     
+        ---animacion boton    
 
 -**servicios implementados por mi**
 servicios los cuales estan en listados y documentados en [postman][postman].    
-    -cambiar la contraseña de una cuenta     
-    -eliminar vehiculo   
-    -crear vehiculo
-    -deshabilitar cuenta de un usuario        
+    --cambiar la contraseña de una cuenta     
+    --eliminar vehiculo   
+    --crear vehiculo
+    --deshabilitar cuenta de un usuario  
+deshabilitar una cuenta ya creada.      
 ~~~     
   inhabilitarUsuario(token) {
     return this.http.delete(`${this.url}/users/disable-account`, { headers: { authorization_token: token } })
