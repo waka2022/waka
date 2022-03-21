@@ -16,7 +16,8 @@ A lo largo de este Documento se visualizaran mis actividades realizadas en el pr
     -Ionic      
     -MongoDB      
     -NodeJs y ExpressJs     
-    -MapBooks     
+    -MapBooks   
+    -Postman      
 
 -**componentes generados por mi** _(vistas)_      
     -modal-calificar     
@@ -55,7 +56,8 @@ A lo largo de este Documento se visualizaran mis actividades realizadas en el pr
         -incluir campo de opcion del tipo     
         -animacion boton    
 
--**servicios implementados por mi**   
+-**servicios implementados por mi**
+servicios los cuales estan en listados y documentados en [postman][postman].    
     -cambiar la contraseña de una cuenta     
     -eliminar vehiculo   
     -crear vehiculo
@@ -79,3 +81,4 @@ correo: Bscano67@misena.edu.co
 [link]: http://oferta.senasofiaplus.edu.co/sofia-oferta/inicio-sofia-plus.html
 [Ubi-sena]: https://www.google.com/maps/place/SENA+Mosquera+-+Centro+de+Biotecnolog%C3%ADa+Agropecuaria+(CBA)/@4.6957037,-74.2178147,17z/data=!3m1!4b1!4m5!3m4!1s0x8e3f9d58cf6e291b:0x8946ec678fcf04b4!8m2!3d4.6957037!4d-74.215626
 [pag-cole]: http://institutoparcelas.edu.co/
+[postman]: https://documenter.getpostman.com/view/19653538/UVkmQcek#4bd1d743-c961-4272-acd4-13fc1d7da94b
