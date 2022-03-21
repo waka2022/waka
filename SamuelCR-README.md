@@ -69,10 +69,13 @@ crear un nuevo  vehiculo en mi cuenta.
 
 -**servicios implementados por mi**
 servicios los cuales estan en listados y documentados en [postman][postman].    
-    --cambiar la contraseña de una cuenta     
-    --eliminar vehiculo       
-    --crear vehiculo         
-    --deshabilitar cuenta de un usuario              
+    --cambiar la contraseña de una cuenta    
+cambiar la contraseña de una cuenta ya existente.      
+    --eliminar vehiculo      
+eliminar un vehiculo ya existente.       
+    --crear vehiculo            
+crear o añadir un vehiculo de mi lista.     
+    --deshabilitar cuenta de un usuario                      
 deshabilitar una cuenta ya creada.            
 ~~~     
   inhabilitarUsuario(token) {
