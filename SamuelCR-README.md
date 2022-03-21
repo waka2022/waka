@@ -56,19 +56,18 @@ A lo largo de este Documento se visualizaran mis actividades realizadas en el pr
         -animacion boton    
 
 -**servicios implementados por mi**   
-
-
-    -deshabilitar la cuenta
-    
-  inhabilitarUsuario(token) {
+    -cambiar la contraseña de una cuenta     
+    -eliminar vehiculo   
+    -crear vehiculo
+    -deshabilitar cuenta de un usuario        
+          
+  `inhabilitarUsuario(token) {
 
     return this.http.delete(`${this.url}/users/disable-account`, { headers: { authorization_token: token } })
 
-  }
+  }`
          
-    -cambiar la contraseña de una cuenta     
-    -eliminar    
-    -crear vehiculo    
+       
 
 
 #### Sobre Mi
