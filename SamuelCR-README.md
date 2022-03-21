@@ -67,7 +67,7 @@ crear un nuevo  vehiculo en mi cuenta.
         ---incluir campo de opcion del tipo     
         ---animacion boton    
 
--**servicios implementados por mi**
+-**servicios implementados por mi**         
 servicios los cuales estan en listados y documentados en [postman][postman].    
     --cambiar la contraseña de una cuenta    
 cambiar la contraseña de una cuenta ya existente.      
