@@ -23,7 +23,7 @@ A lo largo de este Documento se visualizaran mis actividades realizadas en el pr
     -modal     
     -novedades-auto    
 
--**paginas generadas por mi** _(vistas)_
+-**paginas generadas por mi** _(vistas)_     
     -registro      
         -formulario reactivo     
         -estilos     
@@ -59,14 +59,14 @@ A lo largo de este Documento se visualizaran mis actividades realizadas en el pr
 
 
     -deshabilitar la cuenta
-    `
+    ~~~
     //deshabilitar una cuenta
   inhabilitarUsuario(token) {
 
     return this.http.delete(`${this.url}/users/disable-account`, { headers: { authorization_token: token } })
 
   }
-  `      
+    ~~~     
     -cambiar la contraseña de una cuenta     
     -eliminar    
     -crear vehiculo    
