@@ -6,16 +6,16 @@ A lo largo de este Documento se visualizaran mis actividades realizadas en el pr
 
 ### Referente al proyecto (WAKA)
 -**lenguajes:**
-    -HTML
-    -SCSS
-    -TypeScript
+        -HTML
+        -SCSS
+       -TypeScript
 
 -**herramientas:**
-    -Angular 
-    -Ionic
-    -MongoDB
-    -NodeJs y ExpressJs
-    -MapBooks
+        -Angular 
+       -Ionic
+       -MongoDB
+       -NodeJs y ExpressJs
+       -MapBooks
 
 -**componentes generados por mi** _(vistas)_
     -modal-calificar
