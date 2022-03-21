@@ -7,8 +7,8 @@ A lo largo de este Documento se visualizaran mis actividades realizadas en el pr
 
 ### Referente al proyecto (WAKA)
 -**lenguajes:**    
-    -HTML    
-    -SCSS    
+    --HTML    
+    ---SCSS    
     -TypeScript    
 
 -**herramientas:**      
