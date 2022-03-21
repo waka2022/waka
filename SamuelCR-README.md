@@ -5,56 +5,56 @@ A lo largo de este Documento se visualizaran mis actividades realizadas en el pr
 
 
 ### Referente al proyecto (WAKA)
--**lenguajes:**
-    -HTML
-    -SCSS
-    -TypeScript
+-**lenguajes:**    
+    -HTML    
+    -SCSS    
+    -TypeScript    
 
--**herramientas:**
-    -Angular 
-    -Ionic
-    -MongoDB
-    -NodeJs y ExpressJs
-    -MapBooks
+-**herramientas:**      
+    -Angular      
+    -Ionic      
+    -MongoDB      
+    -NodeJs y ExpressJs     
+    -MapBooks     
 
--**componentes generados por mi** _(vistas)_
-    -modal-calificar
-    -modal
-    -novedades-auto
+-**componentes generados por mi** _(vistas)_      
+    -modal-calificar     
+    -modal     
+    -novedades-auto    
 
 -**paginas generadas por mi** _(vistas)_
-    -registro
-        -formulario reactivo
-        -estilos
-    -new-pass
-        -formulario reactivo
-        -estilos
-    -novedades
-        -formulario 
-        -estilos
-    -acceso-estadisticas
-        -formulario
-        -estilos
-    -term-condi
-    -validar-user
+    -registro      
+        -formulario reactivo     
+        -estilos     
+    -new-pass     
+        -formulario reactivo     
+        -estilos      
+    -novedades      
+        -formulario      
+        -estilos      
+    -acceso-estadisticas     
+        -formulario     
+        -estilos       
+    -term-condi     
+    -validar-user     
 
--**paginas modificadas por mi** _(modificadas)_
-    -perfil BP
-        -incluir el boton deshabilitar la cuenta
-        -mostrar el mensaje cuando el usuario deshabilita su cuenta
-    -perfil PP
-        -incluir el boton deshabilitar la cuenta
-        -mostrar el mensaje cuando el usuario deshabilita su cuenta
-    -formulario-BP
-        -validar el tipado de los campos del formulario
-        -incluir campo de opcion del tipo
-        -animacion boton
-    -formulario-agregar-vehiculo
-        -validar el tipado de los campos del formulario
-        -incluir campo de opcion del tipo
-        -animacion boton
+-**paginas modificadas por mi** _(modificadas)_    
+    -perfil BP    
+        -incluir el boton deshabilitar la cuenta     
+        -mostrar el mensaje cuando el usuario deshabilita su cuenta    
+    -perfil PP     
+        -incluir el boton deshabilitar la cuenta     
+        -mostrar el mensaje cuando el usuario deshabilita su cuenta     
+    -formulario-BP     
+        -validar el tipado de los campos del formulario      
+        -incluir campo de opcion del tipo      
+        -animacion boton      
+    -formulario-agregar-vehiculo      
+        -validar el tipado de los campos del formulario     
+        -incluir campo de opcion del tipo     
+        -animacion boton    
 
--**servicios implementados por mi**
+-**servicios implementados por mi**      
     -deshabilitar la cuenta
     `
     //deshabilitar una cuenta
@@ -63,10 +63,10 @@ A lo largo de este Documento se visualizaran mis actividades realizadas en el pr
     return this.http.delete(`${this.url}/users/disable-account`, { headers: { authorization_token: token } })
 
   }
-  `
-    -cambiar la contraseña de una cuenta
-    -eliminar
-    -crear vehiculo
+  `      
+    -cambiar la contraseña de una cuenta     
+    -eliminar    
+    -crear vehiculo    
 
 
 #### Sobre Mi
