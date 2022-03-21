@@ -1,14 +1,15 @@
 # waka-SamuelCR
 ## Introducción
 A lo largo de este Documento se visualizaran mis actividades realizadas en el proyecto formativo WAKA. Este es referente a el trimestre en curso de [analisis y desarrollo de sistemas informacion (ADSI)][link] el cual estoy cursando en el [centro de biotecnologia agropecuarioa (CBA) de Mosquera][Ubi-sena].
+
 ![logo](https://lostramites.com.co/wp-content/uploads/logo-sena-fondo-naranja-300x300.jpg "Logo SENA")
 
 
 ### Referente al proyecto (WAKA)
 -**lenguajes:**
-        -HTML
-        -SCSS
-       -TypeScript
+        -HTML     
+        -SCSS     
+       -TypeScript    
 
 -**herramientas:**
         -Angular 
