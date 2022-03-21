@@ -33,7 +33,7 @@ export class UsuarioService {
   getInfo(token: any) {
     return this.http.get(`${this.url}/users/unique-user`, { headers: { authorization_token: token } })
   }
-
+  //deshabilitar una cuenta
   inhabilitarUsuario(token) {
 
     return this.http.delete(`${this.url}/users/disable-account`, { headers: { authorization_token: token } })

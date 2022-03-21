@@ -67,6 +67,14 @@ const routes: Routes = [
     path: 'mis-parqueaderos',
     loadChildren: () => import('./pages/PP/mis-parqueaderos/mis-parqueaderos.module').then( m => m.MisParqueaderosPageModule)
   },
+  {
+    path: 'term-condi',
+    loadChildren: () => import('./pages/term-condi/term-condi.module').then( m => m.TermCondiPageModule)
+  },
+  {
+    path: 'validar-user',
+    loadChildren: () => import('./pages/validar-user/validar-user.module').then( m => m.ValidarUserPageModule)
+  },
  
 
 ];
