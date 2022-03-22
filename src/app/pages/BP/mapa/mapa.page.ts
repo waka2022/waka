@@ -1,8 +1,9 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild, Renderer2 } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild, Renderer2, AfterViewInit, OnChanges, DoCheck } from '@angular/core';
 import { IonRouterOutlet, ModalController } from '@ionic/angular';
 import { InfoVehiculoPage } from '../info-vehiculo/info-vehiculo.page';
 import { MapboxService } from '../../../services/mapbox.service';
 import { AlertController } from '@ionic/angular';
+
 
 
 @Component({
@@ -19,12 +20,21 @@ export class MapaPage implements OnInit {
     public alertController: AlertController) {
   }
 
-
-  ngOnInit() {
-
-    this.cargarMapa()
+  ver() {
+    console.log("hola");
   }
 
+  ngOnInit() {
+    this.cargarMapa()
+
+    setTimeout(
+      () => {
+        let boton = document.querySelector("#verMas");
+        // Agregar listener
+        boton.addEventListener("click", this.ver);
+      }, 3000
+    );
+  }
 
   cambiarEstado() {
     this.estado = !this.estado;
@@ -40,6 +50,7 @@ export class MapaPage implements OnInit {
       .catch((data) => {
         console.log("F", data)
       })
+
   }
 
   doRefresh(event) {
@@ -69,6 +80,7 @@ export class MapaPage implements OnInit {
 
     await modal.present();
   }
+
 
 
 }

@@ -26,7 +26,7 @@ export class MapboxService {
 
 
   }
-
+  
   cargarMapa() {
 
     return new Promise((resolve, reject): any => {
@@ -38,7 +38,6 @@ export class MapboxService {
 
           // token proporcionado por mapbox
           Mapboxgl.accessToken = 'pk.eyJ1Ijoia2V2aW5mYyIsImEiOiJja3lxYWJ2cGowaHZ3MnVwaDlpd29kbWF4In0.q5c8f5xW-_vGaZFZ_RZsyQ';
-
           // creamos la constante del mapa
           const map = new Mapboxgl.Map({
             //con sus estilos
@@ -80,15 +79,15 @@ export class MapboxService {
           //recorremos lso marcadores
           for (const feature of geojson.features) {
             // creamos un HTML element para cada feactures
-            const el = document.createElement('div');
-            el.className = 'marker';
+            const marcador = document.createElement('div');
+            marcador.className = 'marker';
 
             // agregarmos el marcador al mapa
-            new Mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).addTo(map);
+            new Mapboxgl.Marker(marcador).setLngLat(feature.geometry.coordinates).addTo(map);
 
 
             // usamos la informacion al darle click al marcador para desplegarla en el mapa
-            new Mapboxgl.Marker(el)
+            new Mapboxgl.Marker(marcador)
               .setLngLat(feature.geometry.coordinates)
               .setPopup(
                 new Mapboxgl.Popup({ offset: 25 }) // add popups
@@ -136,25 +135,32 @@ export class MapboxService {
 
                     <ion-row>
                        <ion-col size="12">
-                          <ion-button color="celeste" expand="full" (click)="verMas()> 
+                          <ion-button color="celeste" expand="full" id="verMas"> 
                             <p class="animate__animated animate__bounceIn m-0 animate__fast">Ver mas</p> 
                           </ion-button>
                         </ion-col>
                     </ion-row>
                 
-                  </ion-grid>`
+                  </ion-grid>
+                  
+                  `
+
                   )
-              )
-              .addTo(map); // agregarmos al mapa
+                  
+              ).addTo(map); // agregarmos al mapa
+
+              
+
           }
 
           resolve({
             // resolvemos el mapa
             map
           })
-        }
-        , 1000);
 
+        }
+        , 1000
+      );
     })
   };
 }
