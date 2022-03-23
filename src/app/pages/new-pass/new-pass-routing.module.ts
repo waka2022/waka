@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // Proyecto de formación SENA (WAKA)
 // Descripción: codigo TypeSCRIPT ruta  de la pagina CAMBIAR Psw = formulario la clave de la cuenta .
 // ?Autor:SamuelCanoRomero
@@ -15,13 +14,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { NewPassPage } from './new-pass.page';
 
 //!Agregar navegación en la aplicación con enrutamiento
-=======
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-import { NewPassPage } from './new-pass.page';
-
->>>>>>> Waka-APK
 const routes: Routes = [
   {
     path: '',
@@ -29,10 +21,7 @@ const routes: Routes = [
   }
 ];
 
-<<<<<<< HEAD
 //*Módulos de funciones de carga diferida
-=======
->>>>>>> Waka-APK
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
