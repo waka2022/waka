@@ -33,7 +33,7 @@ export class FormularioBPPage implements OnInit {
   //*generando la funcion para crear el nuevo carro
   addInfo() {
 
-    guardando el token
+    //guardando el token
     let token = this.usuarioService.traerToken()
 
     //inidicando los campo a ingresar referentes al usuario
