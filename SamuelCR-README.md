@@ -74,8 +74,13 @@ cambiar la contraseña de una cuenta ya existente.
     --eliminar vehiculo      
 eliminar un vehiculo ya existente.       
     --crear vehiculo            
-crear o añadir un vehiculo de mi lista.     
-    --deshabilitar cuenta de un usuario                      
+crear o añadir un vehiculo de mi lista.  
+~~~
+addVehicleUser(token, infoCar) {
+    return this.http.post(`${this.url}/vehicle/add-vehicle-user`, infoCar, { headers: { authorization_token: token } })
+  }
+~~~
+  --deshabilitar cuenta de un usuario                      
 deshabilitar una cuenta ya creada.            
 ~~~     
   inhabilitarUsuario(token) {
