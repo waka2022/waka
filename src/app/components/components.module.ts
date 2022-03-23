@@ -8,8 +8,6 @@ import { ModalCalificarComponent } from './modal-calificar/modal-calificar.compo
 import { LogoWakaDarkComponent } from './logo-waka-dark/logo-waka-dark.component';
 
 
-
-
 @NgModule({
   declarations: [
     MenuComponent,

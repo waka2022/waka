@@ -76,7 +76,6 @@
   --ion-color-light-tint: #f5f6f9;
 }
 
-@media (prefers-color-scheme: dark) {
   /*
    * Dark Colors
    * -------------------------------------------
@@ -174,7 +173,7 @@
    * -------------------------------------------
    */
 
-  .ios body {
+  .ios body.dark {
     --ion-background-color: #050b18;
     --ion-background-color-rgb: 5,11,24;
 
@@ -218,7 +217,7 @@
    * -------------------------------------------
    */
 
-  .md body {
+  .md body.dark {
     --ion-background-color: #050b18;
     --ion-background-color-rgb: 5,11,24;
 
@@ -307,5 +306,4 @@
     --handle-background-checked: #ffffffd9;
     --background-checked: #209E3C;
   }
-}
 

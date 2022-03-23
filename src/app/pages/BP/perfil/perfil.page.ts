@@ -17,7 +17,6 @@ import { EmmitersService } from '../../../services/emmiters.service';
   templateUrl: './perfil.page.html',
   styleUrls: ['./perfil.page.scss'],
 })
-
 export class PerfilPage implements OnInit {
 
   usuario = {}

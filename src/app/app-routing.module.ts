@@ -7,7 +7,7 @@ const routes: Routes = [
   
   {
     path: '',
-    redirectTo: 'error404',
+    redirectTo: 'inicio',
     pathMatch: 'full',
   },
   {
@@ -68,13 +68,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/PP/mis-parqueaderos/mis-parqueaderos.module').then( m => m.MisParqueaderosPageModule)
   },
   {
-    path: 'term-condi',
-    loadChildren: () => import('./pages/term-condi/term-condi.module').then( m => m.TermCondiPageModule)
+    path: 'prueba',
+    loadChildren: () => import('./pages/prueba/prueba.module').then( m => m.PruebaPageModule)
   },
-  {
-    path: 'validar-user',
-    loadChildren: () => import('./pages/validar-user/validar-user.module').then( m => m.ValidarUserPageModule)
-  },
+
  
 
 ];

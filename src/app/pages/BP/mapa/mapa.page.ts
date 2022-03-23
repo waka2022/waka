@@ -1,9 +1,10 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild, Renderer2 } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild, Renderer2, AfterViewInit, OnChanges, DoCheck } from '@angular/core';
 import { IonRouterOutlet, ModalController } from '@ionic/angular';
 import { InfoVehiculoPage } from '../info-vehiculo/info-vehiculo.page';
 import { MapboxService } from '../../../services/mapbox.service';
 import { AlertController } from '@ionic/angular';
-import { FormularioAgregarVehiculoPage } from '../formulario-agregar-vehiculo/formulario-agregar-vehiculo.page';
+
+
 
 @Component({
   selector: 'app-mapa',
@@ -12,19 +13,30 @@ import { FormularioAgregarVehiculoPage } from '../formulario-agregar-vehiculo/fo
 })
 export class MapaPage implements OnInit {
 
-  estado:boolean = false
+  estado: boolean = false
 
   constructor(private routerOutlet: IonRouterOutlet, private modalController: ModalController,
     private servicioMapBox: MapboxService, private renderer: Renderer2,
     public alertController: AlertController) {
   }
 
+  ver() {
+    console.log("hola");
+  }
 
   ngOnInit() {
     this.cargarMapa()
+
+    setTimeout(
+      () => {
+        let boton = document.querySelector("#verMas");
+        // Agregar listener
+        boton.addEventListener("click", this.ver);
+      }, 3000
+    );
   }
 
-  cambiarEstado(){
+  cambiarEstado() {
     this.estado = !this.estado;
   }
 
@@ -39,6 +51,20 @@ export class MapaPage implements OnInit {
       })
 
   }
+
+  doRefresh(event) {
+    console.log('Begin async operation');
+
+
+    setTimeout(() => {
+
+
+      this.ngOnInit()
+
+      event.target.complete();
+    }, 2000);
+  }
+
 
   async presentModal() {
 

@@ -1,107 +1,166 @@
 import { Injectable } from '@angular/core';
 import * as Mapboxgl from 'mapbox-gl';
+import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MapboxService {
 
-  constructor() { }
+  latitud = 0
+  longitud = 0
 
+  constructor(private geolocation: Geolocation) { }
+
+  obtenerCordenadas() {
+
+    this.geolocation.getCurrentPosition().then((resp) => {
+
+      this.latitud = resp.coords.latitude
+      this.longitud = resp.coords.longitude
+
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
+
+
+
+  }
+  
   cargarMapa() {
 
     return new Promise((resolve, reject): any => {
 
+      this.obtenerCordenadas()
+
       setTimeout(
         () => {
+
+          // token proporcionado por mapbox
           Mapboxgl.accessToken = 'pk.eyJ1Ijoia2V2aW5mYyIsImEiOiJja3lxYWJ2cGowaHZ3MnVwaDlpd29kbWF4In0.q5c8f5xW-_vGaZFZ_RZsyQ';
-
+          // creamos la constante del mapa
           const map = new Mapboxgl.Map({
+            //con sus estilos
             style: 'mapbox://styles/kevinfc/ckyqjgmhc11yx15pin5y5qeip',
-            center: [-74.230928,4.7119632],
+            // la posición en la que se va centrar el mapa al abrirse en ese caso la posición de nuestro usuario
+            center: [this.longitud, this.latitud],
+            // el zoom predeterminado al abrirse el mapa
             zoom: 15.3,
-            pitch: 40,
-            bearing: -17.6,
+            // el div donde se va cargar el mapa
             container: 'map',
-            antialias: true
           });
 
-          map.on('load', () => {
-            // Insert the layer beneath any symbol layer.
-            const layers = map.getStyle().layers;
-            const labelLayerId = layers.find(
-              (layer) => layer.type === 'symbol' && layer.layout['text-field']
-            ).id;
 
-            // The 'building' layer in the Mapbox Streets
-            // vector tileset contains building height data
-            // from OpenStreetMap.
-            map.addLayer(
+
+          // marcadores
+          const geojson = {
+            // tipo
+            type: 'FeatureCollection',
+            // arreglo con los marcadores
+            features: [
               {
-                'id': 'add-3d-buildings',
-                'source': 'composite',
-                'source-layer': 'building',
-                'filter': ['==', 'extrude', 'true'],
-                'type': 'fill-extrusion',
-                'minzoom': 14,
-                'paint': {
-                  'fill-extrusion-color': '#aaa',
-
-                  // Use an 'interpolate' expression to
-                  // add a smooth transition effect to
-                  // the buildings as the user zooms in.
-                  'fill-extrusion-height': [
-                    'interpolate',
-                    ['linear'],
-                    ['zoom'],
-                    15,
-                    0,
-                    15.05,
-                    ['get', 'height']
-                  ],
-                  'fill-extrusion-base': [
-                    'interpolate',
-                    ['linear'],
-                    ['zoom'],
-                    15,
-                    0,
-                    15.05,
-                    ['get', 'min_height']
-                  ],
-                  'fill-extrusion-opacity': 0.3
+                //tipo
+                type: 'Feature',
+                geometry: {
+                  type: 'Point',
+                  //cordenadas
+                  coordinates: [this.longitud, this.latitud]
+                },
+                // informacion al darle click al marcador
+                properties: {
+                  title: 'Sena',
+                  description: 'Parqueadero SENA',
+                  imagen: "hola",
                 }
-              },
-              labelLayerId
-            );
-          });
+              }
+            ]
+          };
+
+          //recorremos lso marcadores
+          for (const feature of geojson.features) {
+            // creamos un HTML element para cada feactures
+            const marcador = document.createElement('div');
+            marcador.className = 'marker';
+
+            // agregarmos el marcador al mapa
+            new Mapboxgl.Marker(marcador).setLngLat(feature.geometry.coordinates).addTo(map);
 
 
-          map.addControl(new Mapboxgl.NavigationControl({
+            // usamos la informacion al darle click al marcador para desplegarla en el mapa
+            new Mapboxgl.Marker(marcador)
+              .setLngLat(feature.geometry.coordinates)
+              .setPopup(
+                new Mapboxgl.Popup({ offset: 25 }) // add popups
+                  .setHTML(
+                    `
+                    <ion-grid>
 
-            showZoom: false
+                    <ion-row>
+                      <ion-col size="12">
+                      <ion-img src="../../../assets/parqueadero.jpg" class="img-market" ></ion-img>
+                      </ion-col>
+                    </ion-row>
+                
+                
+                    <ion-row>
+                      <ion-col size="6">
+                        Horario <br>
+                        10am - 5pm
+                      </ion-col>
+                      <ion-col size="6">
+                        <i class="fa-solid fa-star-sharp"></i>
+                        <i class="fa-thin fa-star-sharp"></i>
+                        <i class="fa-light fa-star-sharp fa-2x"></i>
+                      </ion-col>
+                    </ion-row>
+                
+                    <ion-row>
+                      <ion-col size="6">
+                        Precio hora <br>
+                        $4.000
+                      </ion-col>
+                      <ion-col size="6">
+                        <i class="fas fa-car-side fa-1x "></i>
+                        <i class="fa-solid fa-bicycle fa-1x"></i>
+                      </ion-col>
+                    </ion-row>
+                
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-button class="verde" expand="full" > 
+                          Disponible
+                      </ion-button>
+                      </ion-col>
+                    </ion-row>
 
-          }));
-          map.addControl(new Mapboxgl.GeolocateControl({
+                    <ion-row>
+                       <ion-col size="12">
+                          <ion-button color="celeste" expand="full" id="verMas"> 
+                            <p class="animate__animated animate__bounceIn m-0 animate__fast">Ver mas</p> 
+                          </ion-button>
+                        </ion-col>
+                    </ion-row>
+                
+                  </ion-grid>
+                  
+                  `
 
-            positionOptions: {
-              enableHighAccuracy: true,
-              visualizePitch: true
-            },
-            fitBoundsOptions: {
-              maxZoom: 22,
-            },
-            trackUserLocation: true,
-            showUserHeading: true,
-            showAccuracyCircle: false
+                  )
+                  
+              ).addTo(map); // agregarmos al mapa
 
-          }));
+              
+
+          }
 
           resolve({
+            // resolvemos el mapa
             map
           })
-        }
-        , 1000);
 
+        }
+        , 1000
+      );
     })
   };
 }
