@@ -71,6 +71,10 @@ const routes: Routes = [
     path: 'prueba',
     loadChildren: () => import('./pages/prueba/prueba.module').then( m => m.PruebaPageModule)
   },
+  {
+    path: 'actualizarvehiculo',
+    loadChildren: () => import('./pages/BP/actualizarvehiculo/actualizarvehiculo.module').then( m => m.ActualizarvehiculoPageModule)
+  },
 
  
 

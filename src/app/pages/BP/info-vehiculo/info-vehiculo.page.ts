@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IonRouterOutlet, ModalController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { FormularioAgregarVehiculoPage } from '../formulario-agregar-vehiculo/formulario-agregar-vehiculo.page';
+import { ActualizarvehiculoPage } from '../actualizarvehiculo/actualizarvehiculo.page';
 import { UsuarioService } from '../../../services/usuario.service';
 import { EmmitersService } from '../../../services/emmiters.service';
 
@@ -12,16 +13,52 @@ import { EmmitersService } from '../../../services/emmiters.service';
 })
 export class InfoVehiculoPage implements OnInit {
 
-  carros = []
 
-  constructor(private modalController: ModalController, private usuarioService:UsuarioService,private emmiter: EmmitersService ) { }
+  carros = {}
+
+
+  constructor(private modalController: ModalController, 
+    private usuarioService:UsuarioService,
+    private alertController:AlertController,
+    private emmiter: EmmitersService ) { }
 
   ngOnInit() {
     this.getCarrosUser()
     this.emmiter.$emmiterProfile.subscribe(
       resp => this.getCarrosUser()
     )
+
+
   }
+
+  getCarrosUser(){
+
+     let token = this.usuarioService.traerToken()
+
+     this.usuarioService.getCarrosUser(token).subscribe( (res:any) =>{
+     this.carros = res.data
+
+       console.log(this.carros)
+     
+ })
+
+  }
+
+  async presentModa1(id) {
+
+    const modal = await this.modalController.create({
+      component: ActualizarvehiculoPage ,
+      initialBreakpoint: 1,
+      breakpoints: [0.0, 0.5, 1],
+      showBackdrop: true,
+      swipeToClose: true,
+      keyboardClose: true
+    
+    });
+
+    await modal.present();
+  }
+
 
   async presentModa2() {
 
@@ -38,22 +75,53 @@ export class InfoVehiculoPage implements OnInit {
     await modal.present();
   }
 
-  getCarrosUser(){
-
-    let token = this.usuarioService.traerToken()
-
-    this.usuarioService.getCarrosUser(token).subscribe( (res:any) =>{
-
-      this.carros = res.data
-      console.log(this.carros)
-     
-    })
-  }
-
+  
   dismiss() {
     this.modalController.dismiss({
       'dismissed': true
     });
+  }
+
+  //*generando la alerta para avisar al usuario de eliminar un vehiculo
+  async alertDeleteVehicle(id) {
+    const alert = await this.alertController.create({
+      //nombre para dar estilos a la misma
+      cssClass: 'my-custom-class',
+      //tiutlo de la alerta
+      header: 'Eliminar vehiculo',
+      //mensaje o centendio de la alerta
+      message: 'El vehiculo se eliminara definitivamente',
+      //tendra dos botones (cancelar y confirmar)
+      buttons: [
+        {
+          text: 'Cancelar',
+          cssClass: 'btn1',
+          handler: () => {
+            console.log('Cancel delete');
+          }
+        },
+        //!en el boton confirmar eliminara el vehiculo 
+        {
+          text: 'Confirmar',
+          cssClass: 'btn2',
+          handler: () => {
+            let token = localStorage.getItem("token");
+            this.usuarioService.eliminarVehiculo(token, id).subscribe(
+              (res: any) => {
+                
+                console.log(res)
+              })}
+             
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  //?funcion para modificar los datos de un vehiculo
+  modificarVehicle(){
+    console.log("modificar vehiculo")
   }
 
 }

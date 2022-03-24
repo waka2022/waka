@@ -39,7 +39,17 @@ export class UsuarioService {
     return this.http.delete(`${this.url}/users/disable-account`, { headers: { authorization_token: token } })
 
   }
+  //eliminar un vehiculo
+  eliminarVehiculo(token, id){
+  return this.http.delete(`${this.url}/vehicle/delete-vehicle-user/${id}`, { headers: { authorization_token: token } })
+  }
 
+  // Actualizar la informacion de un vehiculo-
+  updateInvehiculo(token, id) {
+    return this.http.put(`${this.url}/vehicle/update-vehicle-user/${id}`, { headers: { authorization_token: token } })
+  }
+
+  
   addInfoUser(token, infoAdd) {
 
     return this.http.put(`${this.url}/users/add-info`, infoAdd, { headers: { authorization_token: token } })

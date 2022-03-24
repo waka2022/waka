@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { InfoVehiculoPageRoutingModule } from './info-vehiculo-routing.module';
 
 import { InfoVehiculoPage } from './info-vehiculo.page';
+import { ComponentsModule } from '../../../components/components.module';
+
 
 @NgModule({
   imports: [
@@ -14,6 +16,7 @@ import { InfoVehiculoPage } from './info-vehiculo.page';
     FormsModule,
     IonicModule,
     InfoVehiculoPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [InfoVehiculoPage]
 })
