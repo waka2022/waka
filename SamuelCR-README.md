@@ -5,7 +5,7 @@ A lo largo de este Documento se visualizaran mis actividades realizadas en el pr
 ![logo](https://lostramites.com.co/wp-content/uploads/logo-sena-fondo-naranja-300x300.jpg "Logo SENA")
 
 
-### Referente al proyecto (WAKA)   
+## Referente al proyecto (WAKA)   
 **lenguajes:**    
 - HTML    
 - SCSS    
@@ -95,7 +95,7 @@ deshabilitar una cuenta ya creada.
        
 
 
-#### Sobre Mi
+## Sobre Mi
 Soy Samuel Cano Romero aprendiz SENA, programador junnior especializado en Front-end.
 
 He cursado un tecnico en programacion de software en decimo y once en el colegio [IED Instituto Parcelas][pag-cole] ubicado en Cota, actualmente estoy cursando un tecnologo en analisis y desarrollo de sistemas de informacion en el [centro de biotecnologia agropecuarioa (CBA) de Mosquera][Ubi-sena]
