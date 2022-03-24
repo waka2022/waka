@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-toolbar>
+        <app-menu></app-menu>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-grid class="contenedorAzulPrincipal heightConteiner centrar-contenedores p-0 m-0">
+
+        <ion-row class="width100 centrarVertText">
+
+            <ion-col size=12 size-sm="4" class="p-3 centrar-contenedores animate__animated animate__fadeInLeft">
+                <img src="https://storage.googleapis.com/media.clinicavisualyauditiva.com/images/2019/11/211fd983-default-user-image.png"
+                    class="imagenPerfil" />
+            </ion-col>
+
+            <ion-col size=12 size-sm="4" class="p-2 animate__animated animate__fadeInRight">
+
+                <p class="fs-4">Nombre</p>
+                <p class="fs-5 mb-4">Pepito Perez Orjuela</p>
+
+                <p class="fs-4">Horario</p>
+                <p class="fs-5 mb-4">10am - 4pm</p>
+
+                <p class="fs-4">Calificacion</p>
+                <p class="fs-5 mb-4">
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </p>
+
+            </ion-col>
+
+            <ion-col size=12 size-sm="4" class="p-2 animate__animated animate__fadeInRight">
+
+                <p class="fs-4">Salir</p>
+                <p class="fs-5 mb-4">
+                    <ion-button color="segundarioApp">
+                        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+                    </ion-button>
+                </p>           
+
+            </ion-col>
+
+            <ion-col size=12 size-sm="4" >
+                <p>{{this.mssg}}</p>
+            <ion-button class="btn_alert animate__animated animate__fadeInRight" (click)="presentAlertMultipleButtons()" color="danger" expand="block" fill="clear" shape="round">
+                Eliminar la cuenta
+            </ion-button>  
+            </ion-col>
+            
+
+        </ion-row>
+
+    </ion-grid>
+
+</ion-content>

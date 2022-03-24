@@ -1,0 +1,26 @@
+#contenedor{
+    position: relative;
+    height: 100%;
+}
+
+#contenedorLogoBtns{
+    position: absolute;
+    margin: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    height: 44%;
+    width: 30%;
+}
+
+.btn-tamaño{
+    height: 50px;
+}
+
+@media (max-width: 611px) {
+    #contenedorLogoBtns{
+        width: 70%;
+    }
+}

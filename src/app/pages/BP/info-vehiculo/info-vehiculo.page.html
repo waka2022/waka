@@ -1,0 +1,50 @@
+<ion-header>
+
+</ion-header>
+
+<ion-content color="segundarioApp">
+
+    <h2 class="ms-4">¿Que vehiculo vas a usar hoy? <i  id="cerrar" (click)="dismiss()" class="fa-solid fa-xmark"></i></h2> 
+    <hr>
+
+    <ion-grid>
+        <ion-row>
+
+            <ion-col size="6" *ngFor="let carro of this.carros">
+                <label class="checkeable">
+                    <input type="checkbox" name="cap1"/>
+
+                    <div *ngIf="carro.type_vehi.global === 'carro'" class="icon text-center p-3">
+                        <i class="fas fa-car-side fa-5x "></i>
+                        <br>
+                        {{carro.type_vehi.placa}}
+                    </div>
+
+                    <div *ngIf="carro.type_vehi.global === 'moto' " class="icon text-center p-3">
+                        <i class="fa-solid fa-motorcycle fa-5x"></i>
+                        <br>
+                        {{carro.type_vehi.placa}}
+                    </div>
+
+                    <div class="icon text-center p-3" *ngIf="carro.type_vehi.global === 'bicicleta'">
+                        <i class="fa-solid fa-bicycle fa-5x"></i>
+                        <br>
+                        {{carro.type_vehi.model}}
+                    </div>
+
+                </label>
+            </ion-col>
+
+
+            <ion-col size="6">
+                <div class="plus text-center p-3">
+                    <button class="btnMas" (click)="presentModa2()">
+                        <i class="fas fa-plus fa-5x"></i><br>
+                    </button>
+                </div>
+            </ion-col>
+
+        </ion-row>
+    </ion-grid>
+
+</ion-content>

@@ -1,0 +1,44 @@
+.contenedor-parqueadero{
+    width: 99%;
+    margin: auto;
+    background-color: #050b18;
+    overflow: hidden;
+    padding: 13px;
+    border-radius: 7px;
+}
+
+#img-parqueadero{
+    height: 200px;
+    object-fit: contain;
+    width: 100%;
+}
+
+#btn-borrar{
+
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#btn-ubicacion{
+
+    position: absolute;
+    bottom: 18px;
+    left: 0;
+}
+
+.btn-agregar{
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+    background-color: #050b18;
+    color: rgb(255, 255, 255);
+    margin-bottom: 9px;
+    margin-right: 10px;
+    border: #ffffffc7 solid 2px;
+
+    position:fixed;
+    bottom: 0;
+    right: 0;
+    background-color: #050b18;
+}

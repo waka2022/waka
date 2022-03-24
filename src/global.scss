@@ -1,0 +1,130 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+
+.contenedorAzulPrincipal{
+    background-color: #050b18;
+    color: white;
+}
+
+.btn-alert{
+    background-color: #209E3C !important;
+    color: white !important;
+}
+
+.alert-title{
+    color: white !important;
+}
+
+
+.btn-modal{
+   background-color: #209E3C!important;
+   color: white !important;
+   width: 247px !important;
+   text-align: center !important;
+
+}
+
+.custom-modal{
+    text-align: center !important;
+    font-size: 500px !important;
+}
+
+
+.alert-button-inner{
+    justify-content: center !important;
+    font-size:larger;
+}
+
+
+
+#rating {
+    text-align: center !important;
+    justify-content: center !important;
+    width: auto;
+    height: auto;
+ }
+
+ 
+ .rating__star {
+    cursor: pointer;
+    color: #dabd18b2;
+ }
+
+ .my-custom-class{
+    justify-content: center !important;
+    font-size:larger !important ;
+    padding: 10px !important;
+    color: white !important;
+ }
+
+.btn1{
+     background-color:rgba(255, 0, 0, 0.322) !important ;
+     color: white!important;
+ }
+
+
+ 
+ 
+ .btn2{
+    background-color: rgba(0, 0, 255, 0.274) !important;
+    color: white !important;
+}
+
+
+.marker {
+    background-size: cover;
+    width: 40px;
+    height: 63px;
+    background: url("assets/marcador.png");
+    cursor: pointer;
+  }
+
+  .mapboxgl-popup {
+    width: 800px;
+    height: 100px;
+  }
+
+  .img-market{
+      height: 100px;
+      border: 1px solid transparent;
+      border-radius: 1000px;
+      
+  }
+  
+  .mapboxgl-popup-content {
+    color: white;
+    background-color: #050b18;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .mapboxgl-popup-tip{
+    align-self: center;
+    border-bottom: none;
+    border-top-color: #050b18 !important;
+  }

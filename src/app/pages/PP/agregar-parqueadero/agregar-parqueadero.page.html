@@ -1,0 +1,100 @@
+<ion-header>
+</ion-header>
+
+<ion-content color="segundarioApp">
+
+
+  <h2 class="ms-4">Crear un nuevo parqueadero<i id="cerrar" (click)="dismiss()" class="fa-solid fa-xmark"></i></h2>
+  <hr>
+  <div id="contenedor">
+
+    <form id="contenedorFormulario" [formGroup]="info" (ngSubmit)="addInfo()">
+
+      <ion-item color="segundarioAppp" class="border-abajo">
+        <ion-label position="floating">Horario</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+   
+
+      <div class="linea"></div>
+
+      <ion-item color="segundarioApp" class="border-abajo">
+        <ion-label position="floating">Dirección</ion-label>
+        <ion-input formControlName="address"></ion-input>
+      </ion-item>
+
+      <div class="mt-4 mb-4">
+        <h5 class="mb-1">Seguridad</h5>
+
+        <ion-item color="segundarioApp">
+          <ion-label>Vigilante</ion-label>
+          <ion-toggle class="togleForm" formControlName="vigilant"></ion-toggle>
+        </ion-item>
+
+        <ion-item color="segundarioApp">
+          <ion-label>Camaras</ion-label>
+          <ion-toggle class="togleForm" formControlName="cams"></ion-toggle>
+        </ion-item>
+      </div>
+
+      <div class="linea"></div>
+
+      <div class="mt-4 mb-4">
+        <h5 class="mb-1">Tipo de parqueadero</h5>
+
+        <ion-item color="segundarioApp">
+          <ion-label>Carros</ion-label>
+          <ion-toggle class="togleForm" formControlName="Carros"></ion-toggle>
+        </ion-item>
+
+        <ion-item color="segundarioApp">
+          <ion-label>Motos</ion-label>
+          <ion-toggle class="togleForm" formControlName="Motos"></ion-toggle>
+        </ion-item>
+
+        <ion-item color="segundarioApp">
+          <ion-label>Bicicletas</ion-label>
+          <ion-toggle class="togleForm" formControlName="Bicicletas"></ion-toggle>
+        </ion-item>
+
+      </div>
+
+      <div class="linea"></div>
+
+      <ion-item color="segundarioApp" class="border-abajo">
+        <ion-label position="floating">Espacio</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+
+      <div class="linea"></div>
+
+      <ion-item color="segundarioApp" class="border-abajo">
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-input formControlName="descript"></ion-input>
+      </ion-item>
+
+      <div class="linea"></div>
+
+      <ion-item color="segundarioApp" class="border-abajo">
+        <ion-label position="floating">Precio/hora</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+
+      <div class="linea"></div>
+
+      <ion-item color="segundarioApp" class="border-abajo">
+        <ion-label position="floating">Cupos</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+
+      <div class="linea"></div>
+
+      <ion-button class="mt-5 mb-5 d-flex justify-content-center animate__animated animate__pulse animate__fast verde"
+        type="submit">
+        <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Continuar</p>
+      </ion-button>
+      <br>
+    </form>
+  </div>
+
+</ion-content>

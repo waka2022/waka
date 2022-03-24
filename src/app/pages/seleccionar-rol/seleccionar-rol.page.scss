@@ -1,0 +1,21 @@
+#contenedor{
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+#contenedorRol{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: 89%;
+    height: 46px;
+}
+
+.linea{
+    background-color:rgba(255, 255, 255, 0.678);
+    height: 3px;
+}

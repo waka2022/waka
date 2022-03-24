@@ -1,0 +1,35 @@
+.card{
+  background-color: #1e1e1e;
+    border-radius: 10px;
+    padding-left: 4%;
+    padding-right: 4%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    width: 39%;
+    height: 530px;
+    border: #ffffff67 solid 1px;
+}
+
+.border-abajo{
+  border-bottom: #ffffff81 solid 1px;
+}
+
+#aqui{
+  color: #2fdf75;
+}
+
+#aqui:hover{
+   color: #2fdf75ab;
+}
+
+@media (max-width: 1000px)
+  {
+    .card{
+          width: 90%;
+          
+      }
+  }

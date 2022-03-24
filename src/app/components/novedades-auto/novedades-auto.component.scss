@@ -1,0 +1,38 @@
+.tamaño-letra{
+    font-size: 1rem;
+}
+
+ion-card-content{
+  position: relative;
+  justify-content: center;
+  align-content: center;
+}
+
+  .card{
+
+    position:absolute;
+    background-color: #050b18;
+    border-radius: 10px;
+    padding-left: 4%;
+    padding-right: 4%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    padding-top: 30px;
+}
+
+ion-textarea{
+ height: 400px; 
+}
+
+.border-abajo{
+    border-bottom: #ffffff81 solid 1px;
+}
+  
+
+@media (max-width: 600px)
+  {
+    .card{
+          width: 90%;
+      }
+  }

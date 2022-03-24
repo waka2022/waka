@@ -1,0 +1,22 @@
+<app-menu></app-menu>
+
+
+
+<ion-content id="contenedor">
+
+    <ion-refresher mode="md" slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content  mode="md"></ion-refresher-content>
+      </ion-refresher>
+
+    <div id="map">
+    </div>
+
+    <ion-tab-button class="fixed-bottom btn-infoModal animate__animated animate__bounce bg-white" (click)="presentModal()">
+        <i class="fas fa-car fa-3x"></i>
+    </ion-tab-button>
+
+    <ion-button class="animate__animated animate__pulse animate__fast fixed-bottom m-0 p-0 btn-yaLlegue verde" expand="full" size="large" [ngClass]="{'rojo': estado}" (click)="cambiarEstado()"> 
+        <p id="TextYaLlegue" class="animate__animated animate__bounceIn animate__fast">{{ estado == false ? 'Ya llegue' : 'Ya me voy' }}</p> 
+    </ion-button>
+
+</ion-content> 
