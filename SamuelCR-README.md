@@ -24,7 +24,7 @@ A lo largo de este Documento se visualizaran mis actividades realizadas en el pr
 componenente modal para dar calificacion mediante 5 estrellas.          
 - modal     
 componente modal para avisar y confirmar el metodo de pago (efectivo).      
-- novedades-auto     
+- novedades-auto            
 componente modal para ingresar informacion del auto que ingresó (foto y descripcion).             
 
 **paginas generadas por mi** _(vistas)_     
@@ -36,7 +36,7 @@ estilos
 cuando un usuario quiere cambiar la contraseña de su cuenta.         
 formulario reactivo     
 estilos      
-- novedades 
+- novedades       
 componente modal para ingresar informacion del auto que ingresó (foto y descripcion).      
 formulario      
 estilos      
@@ -61,7 +61,7 @@ crear un nuevo vehiculo en mi cuenta.
 validar el tipado de los campos del formulario      
 incluir campo de opcion del tipo      
 animacion boton      
-- formulario-agregar-vehiculo 
+- formulario-agregar-vehiculo      
 crear un nuevo  vehiculo en mi cuenta.      
 validar el tipado de los campos del formulario     
 incluir campo de opcion del tipo     
