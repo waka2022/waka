@@ -44,8 +44,6 @@ _Agrega notas adicionales sobre como hacer deploy_
 
 ## Construido con 🛠️
 
-_Menciona las herramientas que utilizaste para crear tu proyecto_
-
 * [Angular](https://angular.io/)
 * [Ionic](https://ionicframework.com/)
 * [bootstrap](https://getbootstrap.com/)
