@@ -5,7 +5,7 @@ A lo largo de este Documento se visualizaran mis actividades realizadas en el pr
 ![logo](https://lostramites.com.co/wp-content/uploads/logo-sena-fondo-naranja-300x300.jpg "Logo SENA")
 
 
-### Referente al proyecto (WAKA)   
+## Referente al proyecto (WAKA)   
 **lenguajes:**    
 - HTML    
 - SCSS    
@@ -24,7 +24,7 @@ A lo largo de este Documento se visualizaran mis actividades realizadas en el pr
 componenente modal para dar calificacion mediante 5 estrellas.          
 - modal     
 componente modal para avisar y confirmar el metodo de pago (efectivo).      
-- novedades-auto     
+- novedades-auto            
 componente modal para ingresar informacion del auto que ingresó (foto y descripcion).             
 
 **paginas generadas por mi** _(vistas)_     
@@ -36,7 +36,7 @@ estilos
 cuando un usuario quiere cambiar la contraseña de su cuenta.         
 formulario reactivo     
 estilos      
-- novedades 
+- novedades       
 componente modal para ingresar informacion del auto que ingresó (foto y descripcion).      
 formulario      
 estilos      
@@ -61,7 +61,7 @@ crear un nuevo vehiculo en mi cuenta.
 validar el tipado de los campos del formulario      
 incluir campo de opcion del tipo      
 animacion boton      
-- formulario-agregar-vehiculo 
+- formulario-agregar-vehiculo      
 crear un nuevo  vehiculo en mi cuenta.      
 validar el tipado de los campos del formulario     
 incluir campo de opcion del tipo     
@@ -95,7 +95,7 @@ deshabilitar una cuenta ya creada.
        
 
 
-#### Sobre Mi
+## Sobre Mi
 Soy Samuel Cano Romero aprendiz SENA, programador junnior especializado en Front-end.
 
 He cursado un tecnico en programacion de software en decimo y once en el colegio [IED Instituto Parcelas][pag-cole] ubicado en Cota, actualmente estoy cursando un tecnologo en analisis y desarrollo de sistemas de informacion en el [centro de biotecnologia agropecuarioa (CBA) de Mosquera][Ubi-sena]
