@@ -16,7 +16,7 @@ A lo largo de este Documento se visualizaran mis actividades realizadas en el pr
 - Ionic      
 - MongoDB      
 - NodeJs y ExpressJs     
-- MapBooks   
+- MapBox       
 - Postman      
 
 **componentes generados por mi** _(vistas)_      
