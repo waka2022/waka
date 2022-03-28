@@ -73,6 +73,51 @@ export class MapboxService {
                   description: 'Parqueadero SENA',
                   imagen: "hola",
                 }
+              },
+              {
+                //tipo
+                type: 'Feature',
+                geometry: {
+                  type: 'Point',
+                  //cordenadas
+                  coordinates: [0, 0]
+                },
+                // informacion al darle click al marcador
+                properties: {
+                  title: 'Africa :v',
+                  description: 'Parqueadero SENA',
+                  imagen: "hola",
+                }
+              },
+              {
+                //tipo
+                type: 'Feature',
+                geometry: {
+                  type: 'Point',
+                  //cordenadas
+                  coordinates: [-75.498098,6.2965197]
+                },
+                // informacion al darle click al marcador
+                properties: {
+                  title: 'Africa',
+                  description: 'Parqueadeo SENA',
+                  imagen: "hola",
+                }
+              },
+              {
+                //tipo
+                type: 'Feature',
+                geometry: {
+                  type: 'Point',
+                  //cordenadas
+                  coordinates: [-66.3528622,7.4769809]
+                },
+                // informacion al darle click al marcador
+                properties: {
+                  title: 'Africa',
+                  description: 'Parqueadeo SENA',
+                  imagen: "hola",
+                }
               }
             ]
           };
