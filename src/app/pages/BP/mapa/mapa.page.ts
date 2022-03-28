@@ -3,37 +3,46 @@ import { IonRouterOutlet, ModalController } from '@ionic/angular';
 import { InfoVehiculoPage } from '../info-vehiculo/info-vehiculo.page';
 import { MapboxService } from '../../../services/mapbox.service';
 import { AlertController } from '@ionic/angular';
-
-
+import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 
 @Component({
   selector: 'app-mapa',
   templateUrl: './mapa.page.html',
   styleUrls: ['./mapa.page.scss'],
 })
+
 export class MapaPage implements OnInit {
 
   estado: boolean = false
+ 
+
 
   constructor(private routerOutlet: IonRouterOutlet, private modalController: ModalController,
     private servicioMapBox: MapboxService, private renderer: Renderer2,
-    public alertController: AlertController) {
+    public alertController: AlertController, private geolocation: Geolocation) {
   }
+
 
   ver() {
     console.log("hola");
   }
 
   ngOnInit() {
-    this.cargarMapa()
 
-    setTimeout(
+    /*setTimeout(
       () => {
         let boton = document.querySelector("#verMas");
         // Agregar listener
         boton.addEventListener("click", this.ver);
       }, 3000
-    );
+    );*/
+
+  }
+
+  
+
+  ionViewWillEnter(){
+    this.cargarMapa()
   }
 
   cambiarEstado() {
@@ -43,13 +52,6 @@ export class MapaPage implements OnInit {
   cargarMapa() {
 
     this.servicioMapBox.cargarMapa()
-      .then((data) => {
-        console.log("nice", data)
-
-      })
-      .catch((data) => {
-        console.log("F", data)
-      })
 
   }
 
@@ -63,7 +65,7 @@ export class MapaPage implements OnInit {
       this.ngOnInit()
 
       event.target.complete();
-    }, 2000);
+    }, 100);
   }
 
 

@@ -12,88 +12,140 @@ export class MapboxService {
 
   constructor(private geolocation: Geolocation) { }
 
-  obtenerCordenadas() {
 
-    this.geolocation.getCurrentPosition().then((resp) => {
-
-      this.latitud = resp.coords.latitude
-      this.longitud = resp.coords.longitude
-
-      console.log(resp);
-      
-
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
-
-  }
-  
   cargarMapa() {
 
-    return new Promise((resolve, reject): any => {
+    window.addEventListener('storage', (e) => {
+      console.log(e);
 
-      this.obtenerCordenadas()
+    });
 
-      setTimeout(
-        () => {
+    this.geolocation.watchPosition().subscribe((res: any) => {
 
-          // token proporcionado por mapbox
-          Mapboxgl.accessToken = 'pk.eyJ1Ijoia2V2aW5mYyIsImEiOiJja3lxYWJ2cGowaHZ3MnVwaDlpd29kbWF4In0.q5c8f5xW-_vGaZFZ_RZsyQ';
-          // creamos la constante del mapa
-          const map = new Mapboxgl.Map({
-            //con sus estilos
-            style: 'mapbox://styles/kevinfc/ckyqjgmhc11yx15pin5y5qeip',
-            // la posición en la que se va centrar el mapa al abrirse en ese caso la posición de nuestro usuario
-            center: [this.longitud, this.latitud],
-            // el zoom predeterminado al abrirse el mapa
-            zoom: 15.3,
-            // el div donde se va cargar el mapa
-            container: 'map',
-          });
+      this.latitud = res.coords.latitude
+      this.longitud = res.coords.longitude
 
+      console.log(this.latitud);
+      console.log(this.longitud);
 
+      localStorage.setItem("latitudCar", res.coords.latitude)
+      localStorage.setItem("longitudCar", res.coords.longitude)
 
-          // marcadores
-          const geojson = {
-            // tipo
-            type: 'FeatureCollection',
-            // arreglo con los marcadores
-            features: [
-              {
-                //tipo
-                type: 'Feature',
-                geometry: {
-                  type: 'Point',
-                  //cordenadas
-                  coordinates: [this.longitud, this.latitud]
-                },
-                // informacion al darle click al marcador
-                properties: {
-                  title: 'Sena',
-                  description: 'Parqueadero SENA',
-                  imagen: "hola",
-                }
-              }
-            ]
-          };
+    });
 
-          //recorremos lso marcadores
-          for (const feature of geojson.features) {
-            // creamos un HTML element para cada feactures
-            const marcador = document.createElement('div');
-            marcador.className = 'marker';
+    
+    setTimeout(() => {
+      // token proporcionado por mapbox
+      Mapboxgl.accessToken = 'pk.eyJ1Ijoia2V2aW5mYyIsImEiOiJja3lxYWJ2cGowaHZ3MnVwaDlpd29kbWF4In0.q5c8f5xW-_vGaZFZ_RZsyQ';
+      // creamos la constante del mapa
+      const map = new Mapboxgl.Map({
+        //con sus estilos
+        style: 'mapbox://styles/kevinfc/ckyqjgmhc11yx15pin5y5qeip',
+        // la posición en la que se va centrar el mapa al abrirse en ese caso la posición de nuestro usuario
+        center: [this.longitud, this.latitud],
+        // el zoom predeterminado al abrirse el mapa
+        zoom: 15.3,
+        // el div donde se va cargar el mapa
+        container: 'map',
+      });
 
-            // agregarmos el marcador al mapa
-            new Mapboxgl.Marker(marcador).setLngLat(feature.geometry.coordinates).addTo(map);
+      
+      function cargarUbicacion() {
+
+        const marker1 = new Mapboxgl.Marker()
+          .setLngLat([this.longitud, this.latitud])
+          .addTo(map);
+
+      }
 
 
-            // usamos la informacion al darle click al marcador para desplegarla en el mapa
-            new Mapboxgl.Marker(marcador)
-              .setLngLat(feature.geometry.coordinates)
-              .setPopup(
-                new Mapboxgl.Popup({ offset: 25 }) // add popups
-                  .setHTML(
-                    `
+      // marcadores
+      const geojson = {
+        // tipo
+        type: 'FeatureCollection',
+        // arreglo con los marcadores
+        features: [
+          {
+            //tipo
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              //cordenadas
+              coordinates: [this.longitud, this.latitud]
+            },
+            // informacion al darle click al marcador
+            properties: {
+              title: 'Sena',
+              description: 'Parqueadero SENA',
+              imagen: "hola",
+            }
+
+          },
+          {
+            //tipo
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              //cordenadas
+              coordinates: [0, 0]
+            },
+            // informacion al darle click al marcador
+            properties: {
+              title: 'Africa :v',
+              description: 'Parqueadero SENA',
+              imagen: "hola",
+            }
+          },
+          {
+            //tipo
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              //cordenadas
+              coordinates: [-75.498098, 6.2965197]
+            },
+            // informacion al darle click al marcador
+            properties: {
+              title: 'Africa',
+              description: 'Parqueadeo SENA',
+              imagen: "hola",
+            }
+          },
+          {
+            //tipo
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              //cordenadas
+              coordinates: [-66.3528622, 7.4769809]
+            },
+            // informacion al darle click al marcador
+            properties: {
+              title: 'Africa',
+              description: 'Parqueadeo SENA',
+              imagen: "hola",
+            }
+          }
+        ]
+      };
+
+      //recorremos lso marcadores
+      for (const feature of geojson.features) {
+        // creamos un HTML element para cada feactures
+        const marcador = document.createElement('div');
+        marcador.className = 'marker';
+
+        // agregarmos el marcador al mapa
+        new Mapboxgl.Marker(marcador).setLngLat(feature.geometry.coordinates).addTo(map);
+
+
+        // usamos la informacion al darle click al marcador para desplegarla en el mapa
+        new Mapboxgl.Marker(marcador)
+          .setLngLat(feature.geometry.coordinates)
+          .setPopup(
+            new Mapboxgl.Popup({ offset: 25 }) // add popups
+              .setHTML(
+                `
                     <ion-grid>
 
                     <ion-row>
@@ -146,24 +198,17 @@ export class MapboxService {
                   
                   `
 
-                  )
-                  
-              ).addTo(map); // agregarmos al mapa
+              )
 
-              
+          ).addTo(map); // agregarmos al mapa
 
-          }
+      }
 
-          resolve({
-            // resolvemos el mapa
-            map
-          })
+      return map
 
-        }
-        , 1000
-      );
-    })
-  };
+    }, 1000);
+
+  }
 }
 
 
