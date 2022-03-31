@@ -15,10 +15,9 @@ export class MapboxService {
 
   cargarMapa() {
 
-    window.addEventListener('storage', (e) => {
+    /*window.addEventListener('storage', (e) => {
       console.log(e);
-
-    });
+    });*/
 
     this.geolocation.watchPosition().subscribe((res: any) => {
 
@@ -30,11 +29,10 @@ export class MapboxService {
 
       localStorage.setItem("latitudCar", res.coords.latitude)
       localStorage.setItem("longitudCar", res.coords.longitude)
-
     });
 
-
     setTimeout(() => {
+
       // token proporcionado por mapbox
       Mapboxgl.accessToken = 'pk.eyJ1Ijoia2V2aW5mYyIsImEiOiJja3lxYWJ2cGowaHZ3MnVwaDlpd29kbWF4In0.q5c8f5xW-_vGaZFZ_RZsyQ';
       // creamos la constante del mapa
@@ -49,52 +47,27 @@ export class MapboxService {
         container: 'map',
       });
 
+  
 
-      function cargarUbicacion() {
+        ubi()
+        console.log("refrescando ubi");
+        
 
-        const marker1 = new Mapboxgl.Marker()
-          .setLngLat([this.longitud, this.latitud])
-          .addTo(map);
+ 
 
+      function ubi() {
+        const marcador2 = document.createElement('div');
+        marcador2.className = 'marker2';
+        // agregarmos el marcador al mapa
+        new Mapboxgl.Marker(marcador2).setLngLat([this.longitud, this.latitud]).addTo(map);
+        // marcadores
       }
 
-
-      // marcadores
       const geojson = {
         // tipo
         type: 'FeatureCollection',
         // arreglo con los marcadores
         features: [
-          {
-            //tipo
-            type: 'Feature',
-            geometry: {
-              type: 'Point',
-              //cordenadas
-              coordinates: [this.longitud, this.latitud]
-            },
-            // informacion al darle click al marcador
-            properties: {
-              title: 'Sena',
-              description: 'Parqueadero SENA',
-              imagen: "hola",
-            }
-          },
-          {
-            //tipo
-            type: 'Feature',
-            geometry: {
-              type: 'Point',
-              //cordenadas
-              coordinates: [0, 0]
-            },
-            // informacion al darle click al marcador
-            properties: {
-              title: 'Africa :v',
-              description: 'Parqueadero SENA',
-              imagen: "hola",
-            }
-          },
           {
             //tipo
             type: 'Feature',
@@ -201,9 +174,7 @@ export class MapboxService {
 
           ).addTo(map); // agregarmos al mapa
 
-      }
-
-      return map
+      } return map
 
     }, 1000);
 

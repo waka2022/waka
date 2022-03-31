@@ -14,8 +14,6 @@ import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 export class MapaPage implements OnInit {
 
   estado: boolean = false
- 
-
 
   constructor(private routerOutlet: IonRouterOutlet, private modalController: ModalController,
     private servicioMapBox: MapboxService, private renderer: Renderer2,
@@ -39,31 +37,24 @@ export class MapaPage implements OnInit {
 
   }
 
-  
-
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     this.cargarMapa()
   }
+  
 
   cambiarEstado() {
     this.estado = !this.estado;
   }
 
   cargarMapa() {
-
     this.servicioMapBox.cargarMapa()
-
   }
 
   doRefresh(event) {
     console.log('Begin async operation');
 
-
     setTimeout(() => {
-
-
       this.ngOnInit()
-
       event.target.complete();
     }, 100);
   }
