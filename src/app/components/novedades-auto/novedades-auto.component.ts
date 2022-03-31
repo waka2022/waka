@@ -14,8 +14,8 @@ export class NovedadesAutoComponent implements OnInit {
 
   new_auto = new FormGroup({
     
-    img: new FormControl('', ),
-    des: new FormControl('', )
+    photo: new FormControl('', ),
+    description: new FormControl('', )
   
   });
 
