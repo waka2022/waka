@@ -33,7 +33,7 @@ export class MapboxService {
 
     });
 
-    
+
     setTimeout(() => {
       // token proporcionado por mapbox
       Mapboxgl.accessToken = 'pk.eyJ1Ijoia2V2aW5mYyIsImEiOiJja3lxYWJ2cGowaHZ3MnVwaDlpd29kbWF4In0.q5c8f5xW-_vGaZFZ_RZsyQ';
@@ -49,7 +49,7 @@ export class MapboxService {
         container: 'map',
       });
 
-      
+
       function cargarUbicacion() {
 
         const marker1 = new Mapboxgl.Marker()
@@ -79,77 +79,6 @@ export class MapboxService {
               description: 'Parqueadero SENA',
               imagen: "hola",
             }
-
-<<<<<<< HEAD
-          // marcadores
-          const geojson = {
-            // tipo
-            type: 'FeatureCollection',
-            // arreglo con los marcadores
-            features: [
-              {
-                //tipo
-                type: 'Feature',
-                geometry: {
-                  type: 'Point',
-                  //cordenadas
-                  coordinates: [this.longitud, this.latitud]
-                },
-                // informacion al darle click al marcador
-                properties: {
-                  title: 'Sena',
-                  description: 'Parqueadero SENA',
-                  imagen: "hola",
-                }
-              },
-              {
-                //tipo
-                type: 'Feature',
-                geometry: {
-                  type: 'Point',
-                  //cordenadas
-                  coordinates: [0, 0]
-                },
-                // informacion al darle click al marcador
-                properties: {
-                  title: 'Africa :v',
-                  description: 'Parqueadero SENA',
-                  imagen: "hola",
-                }
-              },
-              {
-                //tipo
-                type: 'Feature',
-                geometry: {
-                  type: 'Point',
-                  //cordenadas
-                  coordinates: [-75.498098,6.2965197]
-                },
-                // informacion al darle click al marcador
-                properties: {
-                  title: 'Africa',
-                  description: 'Parqueadeo SENA',
-                  imagen: "hola",
-                }
-              },
-              {
-                //tipo
-                type: 'Feature',
-                geometry: {
-                  type: 'Point',
-                  //cordenadas
-                  coordinates: [-66.3528622,7.4769809]
-                },
-                // informacion al darle click al marcador
-                properties: {
-                  title: 'Africa',
-                  description: 'Parqueadeo SENA',
-                  imagen: "hola",
-                }
-              }
-            ]
-          };
-=======
           },
           {
             //tipo
@@ -198,7 +127,6 @@ export class MapboxService {
           }
         ]
       };
->>>>>>> ac153c955ed2b40e7fe6e3f8364555639242bbef
 
       //recorremos lso marcadores
       for (const feature of geojson.features) {
