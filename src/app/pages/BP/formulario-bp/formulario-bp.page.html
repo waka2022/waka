@@ -25,12 +25,19 @@
         </ion-item>
 
         <div class="linea"></div>
+
         <ion-item color="primarioApp" class="border-abajo">
-          <ion-label color="dark" position="floating">Tipo</ion-label>
-          <ion-input class="text-white" formControlName="global"></ion-input>
+          <ion-label position="floating">Tipo</ion-label>
+          <ion-select interface="popover" formControlName="global">
+            <ion-select-option class="option" value="bicicleta">Bicicleta</ion-select-option>
+            <ion-select-option class="option" value="moto">Moto</ion-select-option>
+            <ion-select-option class="option" value="carro">Carro</ion-select-option>
+          </ion-select>
         </ion-item>
 
         <div class="linea"></div>
+
+
         <ion-item color="primarioApp" class="border-abajo">
           <ion-label color="dark" position="floating">Marca</ion-label>
           <ion-input class="text-white" formControlName="mark"></ion-input>
@@ -52,17 +59,18 @@
 
         <div class="linea"></div>
 
-        <ion-item color="primarioApp" class="border-abajo">
-          <ion-label color="dark" position="floating">Color</ion-label>
-          <ion-input class="text-white" formControlName="color"></ion-input>
+        <ion-item color="primarioApp">
+          <ion-label position="floating">Color</ion-label><br>
+          <input type="color" id="inputColor" formControlName="color">
         </ion-item>
-
+       
         <div class="linea"></div>
 
         <ion-button class="mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast verde"
-          type="submit">
-          <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Registrarse</p>
+          type="submit" >
+          <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra" >Registrarse</p>
         </ion-button>
+
       </form>
 
     </div>

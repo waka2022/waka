@@ -28,13 +28,18 @@ export class FormularioBPPage implements OnInit {
 
   addInfo() {
 
-    let token = this.usuarioService.traerToken()
 
+    if (this.info.invalid){
+      return Object.values(this.info.controls).forEach(control=>{
+        control.markAsTouched();
+      })
+    }
+
+    let token = this.usuarioService.traerToken()
     let infoAdd = {
 
       document: this.info.value.document,
       phone: this.info.value.phone,
-      
     }
 
     let infoCar = {
@@ -46,8 +51,6 @@ export class FormularioBPPage implements OnInit {
         placa: this.info.value.placa,
         color: this.info.value.color,
       }
-      
-
     }
 
     this.usuarioService.addInfoUser(token, infoAdd).subscribe( res => {console.log(res)})

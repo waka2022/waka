@@ -47,21 +47,11 @@ export class MapboxService {
         container: 'map',
       });
 
-  
-
-        ubi()
-        console.log("refrescando ubi");
-        
-
- 
-
-      function ubi() {
-        const marcador2 = document.createElement('div');
-        marcador2.className = 'marker2';
-        // agregarmos el marcador al mapa
-        new Mapboxgl.Marker(marcador2).setLngLat([this.longitud, this.latitud]).addTo(map);
-        // marcadores
-      }
+      const marcador2 = document.createElement('div');
+      marcador2.className = 'marker2';
+      // agregarmos el marcador al mapa
+      new Mapboxgl.Marker(marcador2).setLngLat([this.longitud, this.latitud]).addTo(map);
+      // marcadores
 
       const geojson = {
         // tipo

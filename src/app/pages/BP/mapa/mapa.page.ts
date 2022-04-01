@@ -27,6 +27,8 @@ export class MapaPage implements OnInit {
 
   ngOnInit() {
 
+    this.cargarMapa()
+    
     /*setTimeout(
       () => {
         let boton = document.querySelector("#verMas");
@@ -38,7 +40,7 @@ export class MapaPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.cargarMapa()
+    
   }
   
 

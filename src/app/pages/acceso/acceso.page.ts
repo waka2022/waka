@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, PatternValidator, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-acceso',
@@ -10,10 +11,29 @@ import { UsuarioService } from '../../services/usuario.service';
 })
 export class AccesoPage implements OnInit {
 
-  constructor(private router: Router, private usuarioService: UsuarioService) { }
+  constructor(private router: Router, private usuarioService: UsuarioService, public toastController: ToastController) { }
 
   ngOnInit() {
+  }
 
+  async msgError(res: string) {
+    const toast = await this.toastController.create({
+      message: res,
+      duration: 3500,
+      cssClass: "rojo",
+      mode: "ios"
+    });
+    toast.present();
+  }
+
+  async msgBien(res: string) {
+    const toast = await this.toastController.create({
+      message: res,
+      duration: 3500,
+      mode: "ios",
+      color:"celeste"
+    });
+    toast.present();
   }
 
   obteenerinfo() {
@@ -26,12 +46,12 @@ export class AccesoPage implements OnInit {
         if (res.data.document === undefined) {
 
           this.router.navigate(['seleccionar-rol'])
-          
-        }else{
-        
+
+        } else {
+
           if (res.data.parking === true) {
             this.router.navigate(['tabs2/mis-parqueaderos'])
-          }else{
+          } else {
             this.router.navigate(['tabs/mapa'])
           }
         }
@@ -47,11 +67,15 @@ export class AccesoPage implements OnInit {
 
     this.usuarioService.signInNormal(this.users.value).subscribe(
       (res: any) => {
+
+        this.msgBien(res.msg)
+        
+
         localStorage.setItem("token", res.data)
-
         this.obteenerinfo()
-      
-      })
 
+      },error => {
+        this.msgError(error.error.msg)
+      })
   }
 }
