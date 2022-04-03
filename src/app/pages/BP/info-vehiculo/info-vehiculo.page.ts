@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IonRouterOutlet, ModalController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 import { FormularioAgregarVehiculoPage } from '../formulario-agregar-vehiculo/formulario-agregar-vehiculo.page';
 import { ActualizarvehiculoPage } from '../actualizarvehiculo/actualizarvehiculo.page';
 import { UsuarioService } from '../../../services/usuario.service';
@@ -18,6 +19,7 @@ export class InfoVehiculoPage implements OnInit {
 
 
   constructor(private modalController: ModalController, 
+    private router: Router,
     private usuarioService:UsuarioService,
     private alertController:AlertController,
     private emmiter: EmmitersService ) { }
@@ -108,7 +110,8 @@ export class InfoVehiculoPage implements OnInit {
             let token = localStorage.getItem("token");
             this.usuarioService.eliminarVehiculo(token, id).subscribe(
               (res: any) => {
-                
+                this.emmiter.$emmiterProfile.emit(true)
+                //this.router.navigate(['tabs'])   
                 console.log(res)
               })}
              
@@ -119,9 +122,5 @@ export class InfoVehiculoPage implements OnInit {
     await alert.present();
   }
 
-  //?funcion para modificar los datos de un vehiculo
-  modificarVehicle(){
-    console.log("modificar vehiculo")
-  }
 
 }

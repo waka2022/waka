@@ -58,7 +58,9 @@ export class FormularioAgregarVehiculoPage implements OnInit {
     let token = this.usuarioService.traerToken()
     this.usuarioService.addVehicleUser(token, infoCar).subscribe(res => {
       console.log(res)
-      this.emmiter.$emmiterParqueaderos.emit(true)
+      //this.emmiter.$emmiterParqueaderos.emit(true)
+      this.emmiter.$emmiterProfile.emit(true)
+
     })
 
     this.dismiss()
