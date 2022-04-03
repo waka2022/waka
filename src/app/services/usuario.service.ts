@@ -19,6 +19,7 @@ export class UsuarioService {
   traerToken() {
     let token = localStorage.getItem("token")
     return token
+
   }
 
 
@@ -33,23 +34,40 @@ export class UsuarioService {
   getInfo(token: any) {
     return this.http.get(`${this.url}/users/unique-user`, { headers: { authorization_token: token } })
   }
-  //deshabilitar una cuenta
+
+  //deshabilitar una cuenta @samuel.
   inhabilitarUsuario(token) {
 
     return this.http.delete(`${this.url}/users/disable-account`, { headers: { authorization_token: token } })
 
   }
-  //eliminar un vehiculo
+
+  //eliminar un vehiculo @samuel.
   eliminarVehiculo(token, id){
   return this.http.delete(`${this.url}/vehicle/delete-vehicle-user/${id}`, { headers: { authorization_token: token } })
   }
 
-  // Actualizar la informacion de un vehiculo-
+  //!estoy aca
+  // Actualizar la informacion de un vehiculo @samuel.
   updateInvehiculo(token, id) {
     return this.http.put(`${this.url}/vehicle/update-vehicle-user/${id}`, { headers: { authorization_token: token } })
   }
 
-  
+  //login con google @samuel.
+  signGoogle(signinGo:any){
+    return this.http.post(`${this.url}/auth/google`, signinGo)
+  }
+
+  //verificacion de cuenta @samuel.
+  verificarCuenta(){
+  //return this.http.put(`${this.url}/auth/verify-account/${token}`)
+  }
+
+  //cambiar la contraseña de una cuenta @samuel.
+  cambiarContraseña(newpass){
+    //return this.http.put(`${this.url}/auth/reset-password/${token}`, newpass)
+    }
+
   addInfoUser(token, infoAdd) {
 
     return this.http.put(`${this.url}/users/add-info`, infoAdd, { headers: { authorization_token: token } })

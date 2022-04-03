@@ -75,6 +75,8 @@ export class ActualizarvehiculoPage implements OnInit {
       console.log(res)
     }) 
   }
+
+
   //*generando la funcion para modificar un carro
   actualizarCar(id){
 
@@ -82,7 +84,6 @@ export class ActualizarvehiculoPage implements OnInit {
     this.usuarioService.updateInvehiculo(token, id).subscribe((res:any)=>{
       console.log(res)
       this.emmiter.$emmiterProfile.emit(true)
-      this.router.navigate(['tabs'])
     })
 
   this.dismiss()
