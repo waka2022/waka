@@ -15,13 +15,13 @@
 
     <ion-card-content>
       <form [formGroup]="users" mode="md">
+        
         <ion-item class="border-abajo">
           <ion-label color="dark" position="floating">Email:</ion-label>
           <ion-input class="text-white" formControlName="email"></ion-input>
         </ion-item>
         <ion-label color="danger" *ngIf="users.controls.email.errors?.pattern && (users.touched || users.dirty)">* El
           email no es válido. </ion-label>
-
 
 
         <ion-item class="border-abajo">
@@ -33,6 +33,7 @@
           size="large" type="submit" [disabled]="!users.valid" (click)="Ingresar()">
           <p class="animate__animated animate__bounceIn animate__fast">Ingresar</p>
         </ion-button>
+
       </form>
 
       <ion-button class="mb-4 mt-2 d-flex justify-content-center animate__animated animate__pulse animate__fast"

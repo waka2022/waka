@@ -5,23 +5,9 @@
 <ion-content id="contenedor">
 
 
-    <ion-button color="light" id="refresh" (click)="doRefresh($event)">
+    <ion-button color="light" id="refresh" disabled="true">
         <i class="fa-solid fa-retweet text-black fa-lg"></i>
-    </ion-button>
-
-    <div>
-        <ion-list>
-            <ion-item *ngFor="let log of logs">
-                {{log}}
-            </ion-item>
-        </ion-list>
-    
-    </div>
-
-    <div id="map">
-    </div>
-
-    
+    </ion-button>    
 
     <ion-tab-button class="fixed-bottom btn-infoModal animate__animated animate__bounce bg-white" (click)="presentModal()">
         <i class="fas fa-car fa-3x"></i>

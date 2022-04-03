@@ -7,32 +7,12 @@ import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 })
 export class MapboxService {
 
-  latitud = 0
-  longitud = 0
 
-  constructor(private geolocation: Geolocation) { }
+  constructor() { }
 
-
-  cargarMapa() {
-
-    /*window.addEventListener('storage', (e) => {
-      console.log(e);
-    });*/
-
-    this.geolocation.watchPosition().subscribe((res: any) => {
-
-      this.latitud = res.coords.latitude
-      this.longitud = res.coords.longitude
-
-      console.log(this.latitud);
-      console.log(this.longitud);
-
-      localStorage.setItem("latitudCar", res.coords.latitude)
-      localStorage.setItem("longitudCar", res.coords.longitude)
-    });
-
-    setTimeout(() => {
-
+  
+  cargarMapa(latitud:number, longitud:number) {
+ 
       // token proporcionado por mapbox
       Mapboxgl.accessToken = 'pk.eyJ1Ijoia2V2aW5mYyIsImEiOiJja3lxYWJ2cGowaHZ3MnVwaDlpd29kbWF4In0.q5c8f5xW-_vGaZFZ_RZsyQ';
       // creamos la constante del mapa
@@ -40,19 +20,17 @@ export class MapboxService {
         //con sus estilos
         style: 'mapbox://styles/kevinfc/ckyqjgmhc11yx15pin5y5qeip',
         // la posición en la que se va centrar el mapa al abrirse en ese caso la posición de nuestro usuario
-        center: [this.longitud, this.latitud],
+        center: [longitud, latitud],
         // el zoom predeterminado al abrirse el mapa
         zoom: 15.3,
         // el div donde se va cargar el mapa
         container: 'map',
       });
 
-      const marcador2 = document.createElement('div');
-      marcador2.className = 'marker2';
-      // agregarmos el marcador al mapa
-      new Mapboxgl.Marker(marcador2).setLngLat([this.longitud, this.latitud]).addTo(map);
-      // marcadores
+      map.addControl(new Mapboxgl.NavigationControl(),'top-left');
 
+      
+      // marcadores
       const geojson = {
         // tipo
         type: 'FeatureCollection',
@@ -166,7 +144,9 @@ export class MapboxService {
 
       } return map
 
-    }, 1000);
+      
+
+    
 
   }
 }

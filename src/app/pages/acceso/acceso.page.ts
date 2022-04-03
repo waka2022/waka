@@ -3,6 +3,7 @@ import { FormControl, FormGroup, PatternValidator, Validators } from '@angular/f
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
 import { ToastController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-acceso',
@@ -11,9 +12,18 @@ import { ToastController } from '@ionic/angular';
 })
 export class AccesoPage implements OnInit {
 
-  constructor(private router: Router, private usuarioService: UsuarioService, public toastController: ToastController) { }
+  constructor(private router: Router, private usuarioService: UsuarioService, public toastController: ToastController, public loadingController: LoadingController) { }
 
   ngOnInit() {
+  }
+
+  async Loading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Please wait...',
+      duration: 2000
+    });
+    await loading.present();
   }
 
   async msgError(res: string) {
@@ -21,7 +31,8 @@ export class AccesoPage implements OnInit {
       message: res,
       duration: 3500,
       cssClass: "rojo",
-      mode: "ios"
+      mode: "ios",
+      position: 'top'
     });
     toast.present();
   }
@@ -31,7 +42,8 @@ export class AccesoPage implements OnInit {
       message: res,
       duration: 3500,
       mode: "ios",
-      color:"celeste"
+      color:"celeste",
+      position: 'top'
     });
     toast.present();
   }
@@ -65,12 +77,14 @@ export class AccesoPage implements OnInit {
 
   Ingresar() {
 
+    this.Loading()
+
     this.usuarioService.signInNormal(this.users.value).subscribe(
+
       (res: any) => {
 
         this.msgBien(res.msg)
-        
-
+      
         localStorage.setItem("token", res.data)
         this.obteenerinfo()
 

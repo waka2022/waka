@@ -18,7 +18,7 @@ export class FormularioBPPage implements OnInit {
     global: new FormControl('', [Validators.required, Validators.minLength(4)]),
     mark: new FormControl('', [Validators.required, Validators.minLength(4)]),
     model: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    placa: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    placa: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]),
     color: new FormControl('', [Validators.required, Validators.minLength(4)]),
   });
 

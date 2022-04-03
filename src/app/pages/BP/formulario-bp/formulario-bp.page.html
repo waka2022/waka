@@ -47,7 +47,7 @@
 
         <ion-item color="primarioApp" class="border-abajo">
           <ion-label color="dark" position="floating">Modelo</ion-label>
-          <ion-input class="text-white" formControlName="model"></ion-input>
+          <ion-input class="text-white" type="number" formControlName="model"></ion-input>
         </ion-item>
 
         <div class="linea"></div>
@@ -60,14 +60,12 @@
         <div class="linea"></div>
 
         <ion-item color="primarioApp">
-          <ion-label position="floating">Color</ion-label><br>
+          <ion-label position="floating">Color del vehiculo</ion-label><br>
           <input type="color" id="inputColor" formControlName="color">
         </ion-item>
        
-        <div class="linea"></div>
-
         <ion-button class="mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast verde"
-          type="submit" >
+          type="submit" [disabled]="!info.valid" >
           <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra" >Registrarse</p>
         </ion-button>
 

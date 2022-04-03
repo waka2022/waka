@@ -23,7 +23,8 @@ export class RegistroPage implements OnInit {
       message: res,
       duration: 3500,
       cssClass: "rojo",
-      mode: "ios"
+      mode: "ios",
+      position: 'top'
     });
     toast.present();
   }
@@ -33,7 +34,8 @@ export class RegistroPage implements OnInit {
       message: res,
       duration: 5500,
       mode: "ios",
-      color:"celeste"
+      color:"celeste",
+      position: 'top'
     });
     toast.present();
   }
