@@ -30,6 +30,7 @@ export class UsuarioService {
     return this.http.post(`${this.url}/auth/normal`, signin)
   }
 
+  //trae la informacion de un usuario
   getInfo(token: any) {
     return this.http.get(`${this.url}/users/unique-user`, { headers: { authorization_token: token } })
   }
@@ -97,6 +98,12 @@ export class UsuarioService {
 
   getCarrosUser(token) {
     return this.http.get(`${this.url}/vehicle/view-my-vehicles`, { headers: { authorization_token: token } })
+  }
+
+  //obtener los parqueaderos para mostrar en el mapa
+
+  getparkingMap(token){
+    return this.http.get(`${this.url}/parking/view-all-parking-available`, { headers: { authorization_token: token } })
   }
 
 }

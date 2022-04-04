@@ -1,8 +1,7 @@
 <app-menu></app-menu>
 
 <ion-content>
-    <ion-grid id="grid-contenedor" class="heightConteiner centrar-contenedores referenciaPosicion"
-        *ngFor="let item of [1,1]">
+    <ion-grid id="grid-contenedor" class="heightConteiner centrar-contenedores referenciaPosicion" *ngIf="id_parqueadero === true">
 
         <ion-row class="width100 centrarVertText mb-5 text-white">
 
@@ -13,32 +12,39 @@
             <ion-col size=12 size-sm="4" class="p-2 animate__animated animate__fadeInRight">
 
                 <p class="fs-4">Dueño
-                <p class="fs-5 mb-4">Pepito Perez Orjuela</p>
+                <p class="fs-5 mb-4">{{this.duenopar}}</p>
 
                 <p class="fs-4">Horario</p>
-                <p class="fs-5 mb-4">10am - 4pm</p>
+                <p class="fs-5 mb-4"></p>
 
                 <p class="fs-4">Direccion</p>
-                <p class="fs-5 mb-4">Crr 9 #9-23</p>
+                <p class="fs-5 mb-4">{{this.infoparqueadero.address}}</p>
 
                 <p class="fs-4">Seguridad</p>
-                <p class="fs-5 mb-4">Carro y moto</p>
+                <div>
+                    <p class="fs-5 mb-4 d-inline" *ngIf="this.infoparqueadero.type_security.cams === true">Camaras </p>
+                    <p class="fs-5 mb-4 d-inline" *ngIf="this.infoparqueadero.type_security.vigilant === true">Vigilante</p>
+                </div>
+                <br>
 
             </ion-col>
 
             <ion-col size=12 size-sm="4" class="p-2 animate__animated animate__fadeInRight">
 
-                <p class="fs-4">Tipo De Vehiculo</p>
-                <p class="fs-5 mb-4">carros y motos</p>
+                <p class="fs-4">Parqueadero para</p>
+                <div>
+                    <p class="fs-5 mb-4 d-inline" *ngFor="let tipo of this.infoparqueadero.type_parks">{{tipo + " "}}</p>
+                </div>
+                <br>
 
                 <p class="fs-4">Espacio</p>
-                <p class="fs-5 mb-4">30m2</p>
+                <p class="fs-5 mb-4"></p>
 
                 <p class="fs-4">Descripcion</p>
-                <p class="fs-5 mb-4">Zona segura y amplia</p>
+                <p class="fs-5 mb-4">{{this.infoparqueadero.descript}}</p>
 
                 <p class="fs-4">Precio hora</p>
-                <p class="fs-5 mb-4">$4.000</p>
+                <p class="fs-5 mb-4">${{this.infoparqueadero.price}}</p>
 
                 <p class="fs-4"></p>
                 <p class="fs-5 mb-4"></p>
@@ -52,5 +58,7 @@
         </ion-button>
 
     </ion-grid>
+
+    <h1 *ngIf="id_parqueadero === false" class="text-white">dasdasd</h1>
 
 </ion-content>

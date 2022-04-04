@@ -1,91 +1,59 @@
 import { Injectable } from '@angular/core';
 import * as Mapboxgl from 'mapbox-gl';
-import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class MapboxService {
 
+  constructor(private http: HttpClient) { }
 
-  constructor() { }
+  cargarMapa(latitud: number, longitud: number, parqueaderos) {
 
-  
-  cargarMapa(latitud:number, longitud:number) {
- 
-      // token proporcionado por mapbox
-      Mapboxgl.accessToken = 'pk.eyJ1Ijoia2V2aW5mYyIsImEiOiJja3lxYWJ2cGowaHZ3MnVwaDlpd29kbWF4In0.q5c8f5xW-_vGaZFZ_RZsyQ';
-      // creamos la constante del mapa
-      const map = new Mapboxgl.Map({
-        //con sus estilos
-        style: 'mapbox://styles/kevinfc/ckyqjgmhc11yx15pin5y5qeip',
-        // la posición en la que se va centrar el mapa al abrirse en ese caso la posición de nuestro usuario
-        center: [longitud, latitud],
-        // el zoom predeterminado al abrirse el mapa
-        zoom: 15.3,
-        // el div donde se va cargar el mapa
-        container: 'map',
-      });
+    // token proporcionado por mapbox
+    Mapboxgl.accessToken = environment.tokenMapbox;
+    // creamos la constante del mapa
+    const map = new Mapboxgl.Map({
+      //con sus estilos
+      style: 'mapbox://styles/kevinfc/ckyqjgmhc11yx15pin5y5qeip',
+      // la posición en la que se va centrar el mapa al abrirse en ese caso la posición de nuestro usuario
+      center: [longitud, latitud],
+      // el zoom predeterminado al abrirse el mapa
+      zoom: 15.3,
+      // el div donde se va cargar el mapa
+      container: 'map',
+    });
 
-      map.addControl(new Mapboxgl.NavigationControl(),'top-left');
-
-      
-      // marcadores
-      const geojson = {
-        // tipo
-        type: 'FeatureCollection',
-        // arreglo con los marcadores
-        features: [
-          {
-            //tipo
-            type: 'Feature',
-            geometry: {
-              type: 'Point',
-              //cordenadas
-              coordinates: [-75.498098, 6.2965197]
-            },
-            // informacion al darle click al marcador
-            properties: {
-              title: 'Africa',
-              description: 'Parqueadeo SENA',
-              imagen: "hola",
-            }
-          },
-          {
-            //tipo
-            type: 'Feature',
-            geometry: {
-              type: 'Point',
-              //cordenadas
-              coordinates: [-66.3528622, 7.4769809]
-            },
-            // informacion al darle click al marcador
-            properties: {
-              title: 'Africa',
-              description: 'Parqueadeo SENA',
-              imagen: "hola",
-            }
-          }
-        ]
-      };
-
-      //recorremos lso marcadores
-      for (const feature of geojson.features) {
-        // creamos un HTML element para cada feactures
-        const marcador = document.createElement('div');
-        marcador.className = 'marker';
-
-        // agregarmos el marcador al mapa
-        new Mapboxgl.Marker(marcador).setLngLat(feature.geometry.coordinates).addTo(map);
+    map.addControl(new Mapboxgl.FullscreenControl(), 'top-left');
+    map.addControl(new Mapboxgl.NavigationControl(), 'top-left');
 
 
-        // usamos la informacion al darle click al marcador para desplegarla en el mapa
-        new Mapboxgl.Marker(marcador)
-          .setLngLat(feature.geometry.coordinates)
-          .setPopup(
-            new Mapboxgl.Popup({ offset: 25 }) // add popups
-              .setHTML(
-                `
+    /*let token = localStorage.getItem("token")
+    this.userServices.getParking(token).subscribe(res =>{
+      console.log(res);
+    })*/
+
+
+    //recorremos lso marcadores
+    for (const feature of parqueaderos.features) {
+      // creamos un HTML element para cada feactures
+      const marcador = document.createElement('div');
+      marcador.className = 'marker';
+
+      // agregarmos el marcador al mapa
+      new Mapboxgl.Marker(marcador).setLngLat(feature.geometry.coordinates).addTo(map);
+
+
+      // usamos la informacion al darle click al marcador para desplegarla en el mapa
+      new Mapboxgl.Marker(marcador)
+        .setLngLat(feature.geometry.coordinates)
+        .setPopup(
+          new Mapboxgl.Popup({ offset: 25 }) // add popups
+            .setHTML(
+              `
                     <ion-grid>
 
                     <ion-row>
@@ -110,7 +78,7 @@ export class MapboxService {
                     <ion-row>
                       <ion-col size="6">
                         Precio hora <br>
-                        $4.000
+                        ${feature.properties.precio}
                       </ion-col>
                       <ion-col size="6">
                         <i class="fas fa-car-side fa-1x "></i>
@@ -128,7 +96,7 @@ export class MapboxService {
 
                     <ion-row>
                        <ion-col size="12">
-                          <ion-button color="celeste" expand="full" id="verMas"> 
+                          <ion-button color="celeste" expand="full" id="verMas" href="/tabs/info-parqueadero/${feature.properties.id}">
                             <p class="animate__animated animate__bounceIn m-0 animate__fast">Ver mas</p> 
                           </ion-button>
                         </ion-col>
@@ -137,17 +105,24 @@ export class MapboxService {
                   </ion-grid>
                   
                   `
+            )
 
-              )
+        ).addTo(map); // agregarmos al mapa
 
-          ).addTo(map); // agregarmos al mapa
+    }
 
-      } return map
+    return map
 
-      
 
+  }
+
+  dibujarRuta(cordenadasCar, cordenadasPar){
+
+    //console.log(cordenadasPar);
     
-
+    return this.http.get(`https://api.mapbox.com/directions/v5/mapbox/driving/${cordenadasCar[0]},${cordenadasCar[1]};${cordenadasPar[0]},${cordenadasPar[1]}?steps=true&geometries=geojson&access_token=${environment.tokenMapbox}`)
+  
+    
   }
 }
 
