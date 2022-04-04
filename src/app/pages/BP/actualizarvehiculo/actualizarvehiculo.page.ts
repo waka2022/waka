@@ -13,7 +13,7 @@ import { AbstractControl, FormControl, FormGroup, PatternValidator, Validators }
 
 //?importando rutas para su uso alojado en angular/route
 
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 //?importando la API o servicio usuario alojado en servise/usuario.service
 
@@ -36,21 +36,26 @@ import { ModalController } from '@ionic/angular';
 export class ActualizarvehiculoPage implements OnInit {
 
   
-  carro = {}
+  vehiculo = {}
+
+  global
+
+
+  id
 
  //*constructor  Se encarga de asegurar la correcta inicialización de los campos, tanto de la clase como de sus subclases
   //en este caso le estamos pasando como parametro la route anteriormente importada y el servicio
  constructor( private router: Router, 
   private usuarioService : UsuarioService, 
   private emmiter: EmmitersService,
+  private activatedRoute:ActivatedRoute,
   private modalController: ModalController) {
-  //this.getCarrosUser()
+    this.getInfoVehId();
  }
 
   
 
-  
-
+ 
    //generando el formulario mediante formulario reactivo
    info = new FormGroup({
     global: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -61,21 +66,24 @@ export class ActualizarvehiculoPage implements OnInit {
   });
 
   ngOnInit() {
-    this.getCarrosUser()
-    this.emmiter.$emmiterProfile.subscribe(
-      resp => this.getCarrosUser()
-      )
   }
   
+  getInfoVehId(){
+    let token = this.usuarioService.traerToken()
 
-  getCarrosUser(){
-    let token = localStorage.getItem("token")
-    this.usuarioService.getCarrosUser( token ).subscribe((res:any) => {
-      this.carro = res.data
-      console.log(res)
-    }) 
+    // let id = this.activatedRoute.snapshot.paramMap.get('id')
+    // this.id = id
+
+    this.usuarioService.getVehicleId(token).subscribe((res:any) =>{
+    
+      this.vehiculo = res.data
+      //this.global = this.vehiculo.type_vehi.global
+
+      console.log(this.vehiculo);
+      
+    })
   }
-
+ 
 
   //*generando la funcion para modificar un carro
   actualizarCar(id){
@@ -89,12 +97,12 @@ export class ActualizarvehiculoPage implements OnInit {
   this.dismiss()
   
 }
-//cerrando el modal
-dismiss() {
-  this.modalController.dismiss({
-    'dismissed': true
-  });
-}
+  //cerrando el modal
+  dismiss() {
+    this.modalController.dismiss({
+      'dismissed': true
+    });
+  }
 
  
 }

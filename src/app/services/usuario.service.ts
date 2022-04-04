@@ -49,8 +49,8 @@ export class UsuarioService {
 
   //!estoy aca
   //traer info de un veiculo segun id. @Samuel
-  getVehicleId(token, id){
-    return this.http.get(`${this.url}/vehicle/view-unique-vehicle/${id}`,  { headers: { authorization_token: token } })
+  getVehicleId(token){
+    return this.http.get(`${this.url}/vehicle/view-unique-vehicle/624b71f528341f265e2f1626`,  { headers: { authorization_token: token } })
   }
 
   // Actualizar la informacion de un vehiculo @samuel.

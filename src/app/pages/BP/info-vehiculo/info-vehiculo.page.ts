@@ -22,7 +22,10 @@ export class InfoVehiculoPage implements OnInit {
     private router: Router,
     private usuarioService:UsuarioService,
     private alertController:AlertController,
-    private emmiter: EmmitersService ) { }
+    private emmiter: EmmitersService ) { 
+
+      
+    }
 
   ngOnInit() {
     this.getCarrosUser()
@@ -40,13 +43,11 @@ export class InfoVehiculoPage implements OnInit {
      this.usuarioService.getCarrosUser(token).subscribe( (res:any) =>{
      this.carros = res.data
 
-       console.log(this.carros)
-     
- })
-
+       console.log(this.carros)  
+    })
   }
 
-  async presentModa1(id) {
+  async presentModa1() {
 
     const modal = await this.modalController.create({
       component: ActualizarvehiculoPage ,
@@ -55,7 +56,6 @@ export class InfoVehiculoPage implements OnInit {
       showBackdrop: true,
       swipeToClose: true,
       keyboardClose: true
-    
     });
 
     await modal.present();
