@@ -36,12 +36,14 @@ import { ModalController } from '@ionic/angular';
 export class ActualizarvehiculoPage implements OnInit {
 
   
-  vehiculo = {}
+  vehiculo:any = {}
 
-  global
-
-
-  id
+  mark ={}
+  model={}
+  color={}
+  placa={}
+  global={}
+  //id
 
  //*constructor  Se encarga de asegurar la correcta inicialización de los campos, tanto de la clase como de sus subclases
   //en este caso le estamos pasando como parametro la route anteriormente importada y el servicio
@@ -77,7 +79,11 @@ export class ActualizarvehiculoPage implements OnInit {
     this.usuarioService.getVehicleId(token).subscribe((res:any) =>{
     
       this.vehiculo = res.data
-      //this.global = this.vehiculo.type_vehi.global
+      this.mark = this.vehiculo.type_vehi.mark
+      this.model = this.vehiculo.type_vehi.model
+      this.color = this.vehiculo.type_vehi.color
+      this.placa = this.vehiculo.type_vehi.placa
+      this.global = this.vehiculo.type_vehi.global
 
       console.log(this.vehiculo);
       

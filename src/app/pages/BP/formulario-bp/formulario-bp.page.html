@@ -33,9 +33,9 @@
         <ion-item color="primarioApp" class="border-abajo">
           <ion-label position="floating">Tipo</ion-label>
           <ion-select interface="popover" formControlName="global">
-            <ion-select-option class="option" value="bicicleta">Bicicleta</ion-select-option>
-            <ion-select-option class="option" value="moto">Moto</ion-select-option>
-            <ion-select-option class="option" value="carro">Carro</ion-select-option>
+            <ion-select-option class="option" value=2>Bicicleta</ion-select-option>
+            <ion-select-option class="option" value=0>Moto</ion-select-option>
+            <ion-select-option class="option" value=1>Carro</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-label color="danger" *ngIf="info.controls.global.errors?.required && (info.touched || info.dirty)">* El  Tipo es obligatorio. </ion-label>

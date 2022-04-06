@@ -20,10 +20,10 @@
 <!--* primer campo el tipo de automovil -->
     <ion-item color="segundarioApp" class="border-abajo">
       <ion-label position="floating">Tipo</ion-label>
-      <ion-select interface="popover" formControlName="global" value="{{ this.info.global }}">
-        <ion-select-option class="option" value="bicicleta">Bicicleta</ion-select-option>
-        <ion-select-option class="option" value="moto">Moto</ion-select-option>
-        <ion-select-option class="option" value="carro">Carro</ion-select-option>
+      <ion-select interface="popover" formControlName="global" value="">
+        <ion-select-option class="option" value="0">Bicicleta</ion-select-option>
+        <ion-select-option class="option" value="1">Moto</ion-select-option>
+        <ion-select-option class="option" value="2">Carro</ion-select-option>
       </ion-select>
     </ion-item>
     <!-- *mensaje de error el campo es obligatorio -->
@@ -32,14 +32,14 @@
 <!-- *campo para ingresar la marca  -->
     <ion-item class="border-abajo texto-formulario" color="segundarioApp">
       <ion-label color="primarioApp" position="floating">Marca</ion-label>
-      <ion-input formControlName="mark" value=""></ion-input>
+      <ion-input formControlName="mark" value="{{this.mark}}"></ion-input>
     </ion-item>
     <!-- *mensaje error campo mayor a 4 digitos -->
     <ion-label color="danger" *ngIf="info.controls.mark.errors?.minlength && (info.touched || info.dirty)">* La Marca debe contar con más de 4 digitos. </ion-label>
 <!-- *campo para ingresar el modelo (año) -->
     <ion-item class="border-abajo" color="segundarioApp">
       <ion-label color="primarioApp" position="floating">Modelo</ion-label>
-      <ion-input formControlName="model" value=""></ion-input>
+      <ion-input formControlName="model" value="{{this.model}}"></ion-input>
     </ion-item>
     <!-- *mensaje error solo 4 digitos -->
     <ion-label color="danger" *ngIf="info.controls.model.errors?.minlength && (info.touched || info.dirty)">* El Modelo debe contar con solo 4 digitos. </ion-label><br>
@@ -57,7 +57,7 @@
 <!-- *campo para ingresar el color del automovil -->
     <ion-item class="border-abajo" color="segundarioApp">
       <ion-label color="primarioApp" position="floating">Color</ion-label>
-      <ion-input formControlName="color" value=""></ion-input>
+      <ion-input formControlName="color" value="{{this.color}}"></ion-input>
     </ion-item>
     <!-- *mensaje error campo obligatorio -->
     <ion-label color="danger" *ngIf="info.controls.color.errors?.required && (info.touched || info.dirty)">* El Color es obligatorio. </ion-label>
