@@ -42,9 +42,8 @@ export class ActualizarvehiculoPage implements OnInit {
   model={}
   color={}
   placa={}
-  global={}
-  //id
-
+  global:number
+id
  //*constructor  Se encarga de asegurar la correcta inicialización de los campos, tanto de la clase como de sus subclases
   //en este caso le estamos pasando como parametro la route anteriormente importada y el servicio
  constructor( private router: Router, 
@@ -60,7 +59,7 @@ export class ActualizarvehiculoPage implements OnInit {
  
    //generando el formulario mediante formulario reactivo
    info = new FormGroup({
-    global: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    global: new FormControl('', Validators.required),
     mark: new FormControl('', [Validators.required, Validators.minLength(4)]),
     model: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(4),Validators.pattern('[0-9]{4}')]),
     placa: new FormControl('', [Validators.required,Validators.pattern('[A-Z]{3}[_%+-][0-9]{3}')]),
@@ -73,10 +72,10 @@ export class ActualizarvehiculoPage implements OnInit {
   getInfoVehId(){
     let token = this.usuarioService.traerToken()
 
-    // let id = this.activatedRoute.snapshot.paramMap.get('id')
-    // this.id = id
+    let id = this.activatedRoute.snapshot.paramMap.get('id')
+    this.id = id
 
-    this.usuarioService.getVehicleId(token).subscribe((res:any) =>{
+    this.usuarioService.getVehicleId(token,id).subscribe((res:any) =>{
     
       this.vehiculo = res.data
       this.mark = this.vehiculo.type_vehi.mark
@@ -92,23 +91,28 @@ export class ActualizarvehiculoPage implements OnInit {
  
 
   //*generando la funcion para modificar un carro
-  actualizarCar(id){
+  actualizarCar(){
 
   let token = localStorage.getItem("token")
-    this.usuarioService.updateInvehiculo(token, id).subscribe((res:any)=>{
-      console.log(res)
-      this.emmiter.$emmiterProfile.emit(true)
-    })
 
-  this.dismiss()
-  
-}
-  //cerrando el modal
-  dismiss() {
-    this.modalController.dismiss({
-      'dismissed': true
-    });
+  let infoCar = {
+
+    "type_vehi": {
+      "global": this.info.value.global,
+      "mark": this.info.value.mark,
+      "model": this.info.value.model,
+      "placa": this.info.value.placa,
+      "color": this.info.value.color
+    }
   }
 
+    this.usuarioService.updateInvehiculo(token, this.id, infoCar).subscribe((res:any)=>{
+      console.log(res)
+      console.log(infoCar)
+      this.emmiter.$emmiterProfile.emit(true)
+    })
+  
+}
+  
  
 }

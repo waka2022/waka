@@ -47,20 +47,7 @@ export class InfoVehiculoPage implements OnInit {
     })
   }
 
-  async presentModa1() {
-
-    const modal = await this.modalController.create({
-      component: ActualizarvehiculoPage ,
-      initialBreakpoint: 1,
-      breakpoints: [0.0, 0.5, 1],
-      showBackdrop: true,
-      swipeToClose: true,
-      keyboardClose: true
-    });
-
-    await modal.present();
-  }
-
+  
 
   async presentModa2() {
 

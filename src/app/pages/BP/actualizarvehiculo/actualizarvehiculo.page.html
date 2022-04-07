@@ -6,24 +6,29 @@
  -->
 
  <ion-header>
+  <ion-toolbar color="primarioApp">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/mapa"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 
 <ion-content color="segundarioApp">
 
   <!--* boto o icono de X para cerrar el modal  -->
-  <h2><br><i id="cerrar" (click)="dismiss()" class="fa-solid fa-xmark"></i></h2>
-
-  <hr>
+  <!-- <h2><br><i id="cerrar" (click)="dismiss()" class="fa-solid fa-xmark"></i></h2> <hr>-->
+  
+  
 <!-- *inicializar el formulario -->
   <form [formGroup]="info" (ngSubmit)="actualizarCar()" id="formulario">
 <!--* primer campo el tipo de automovil -->
     <ion-item color="segundarioApp" class="border-abajo">
       <ion-label position="floating">Tipo</ion-label>
-      <ion-select interface="popover" formControlName="global" value="">
-        <ion-select-option class="option" value="0">Bicicleta</ion-select-option>
-        <ion-select-option class="option" value="1">Moto</ion-select-option>
-        <ion-select-option class="option" value="2">Carro</ion-select-option>
+      <ion-select interface="popover" formControlName="global" value="{{this.global}}">
+        <ion-select-option class="option" value=2>Bicicleta</ion-select-option>
+        <ion-select-option class="option" value=0>Moto</ion-select-option>
+        <ion-select-option class="option" value=1>Carro</ion-select-option>
       </ion-select>
     </ion-item>
     <!-- *mensaje de error el campo es obligatorio -->
@@ -49,7 +54,7 @@
 <!-- *campo para ingresar la placa -->
     <ion-item class="border-abajo" color="segundarioApp">
       <ion-label color="primarioApp" position="floating">Placa</ion-label>
-      <ion-input formControlName="placa" value=""></ion-input>
+      <ion-input formControlName="placa" value="{{this.placa}}"></ion-input>
     </ion-item>
     <!-- *error mensaje tipado placa (ABC-123) -->
     <ion-label color="danger" *ngIf="info.controls.placa.errors?.pattern && (info.touched || info.dirty)">* El Modelo debe contar con 3 letras Mayúsculas, (-) y 3 Números. </ion-label>

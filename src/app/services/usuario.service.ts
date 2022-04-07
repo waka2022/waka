@@ -49,13 +49,13 @@ export class UsuarioService {
 
   //!estoy aca
   //traer info de un veiculo segun id. @Samuel
-  getVehicleId(token){
-    return this.http.get(`${this.url}/vehicle/view-unique-vehicle/624b71f528341f265e2f1626`,  { headers: { authorization_token: token } })
+  getVehicleId(token,id){
+    return this.http.get(`${this.url}/vehicle/view-unique-vehicle/${id}`,  { headers: { authorization_token: token } })
   }
 
   // Actualizar la informacion de un vehiculo @samuel.
-  updateInvehiculo(token, id) {
-    return this.http.put(`${this.url}/vehicle/update-vehicle-user/${id}`, { headers: { authorization_token: token } })
+  updateInvehiculo(token, id, infoCar) {
+    return this.http.put(`${this.url}/vehicle/update-vehicle-user/${id}`, infoCar, { headers: { authorization_token: token } })
   }
 
   //login con google @samuel.
@@ -64,14 +64,26 @@ export class UsuarioService {
   }
 
   //verificacion de cuenta @samuel.
-  verificarCuenta(){
-  //return this.http.put(`${this.url}/auth/verify-account/${token}`)
+  verificarCuenta(token){
+    //return this.http.put(`${this.url}/auth/verify-account/${token}`)
   }
 
   //cambiar la contraseña de una cuenta @samuel.
-  cambiarContraseña(newpass){
-    //return this.http.put(`${this.url}/auth/reset-password/${token}`, newpass)
+  cambiarContraseña(token, infopass){
+    return this.http.put(`${this.url}/auth/reset-password/${token}`, infopass)
     }
+
+  //mensaje por correo y cambiar contrasena
+  messCorreo(email){
+    return this.http.post(`${this.url}/auth/request-emails-account/2`, email)
+    
+  }
+
+  //mesaje por correo y validar el nuevo registro
+  messverificacion(email){
+    return this.http.post(`${this.url}/auth/request-emails-account/1`, email)
+  }
+
 
   addInfoUser(token, infoAdd) {
 

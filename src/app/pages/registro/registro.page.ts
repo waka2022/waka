@@ -29,6 +29,8 @@ import { UsuarioService } from '../../services/usuario.service';
 //**exportando la clase Regsitro y implementando OnInit para el ciclo de vida del mismo */
 export class RegistroPage implements OnInit {
 
+
+
   //*constructor  Se encarga de asegurar la correcta inicialización de los campos, tanto de la clase como de sus subclases
   //en este caso le estamos pasando como parametro la route anteriormente importada y el servicio
   constructor(private router: Router, private usuarioService: UsuarioService ) { }
@@ -62,6 +64,8 @@ export class RegistroPage implements OnInit {
     }
   //servicio crear nuevo usuario
     this.usuarioService.crearUsuario(user).subscribe( res => {console.log(res)})
+
+    //this.usuarioService.messverificacion(this.users.value.email).subscribe( res => {console.log(res)})
   //redireccionar a la vista acceso
     this.router.navigate(['acceso'])
   }

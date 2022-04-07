@@ -12,13 +12,16 @@
             <ion-col size=12 size-sm="4" class="p-2 animate__animated animate__fadeInRight">
 
                 <p class="fs-4">Dueño</p>
-                <p class="fs-5 mb-4">{{ this.usuario.names }}</p>
+                <p class="fs-5 mb-4" color="dark">{{ this.usuario.names }}</p>
 
                 <p class="fs-4">Horario</p>
                 <p class="fs-5 mb-4">10am - 4pm</p>
 
                 <p class="fs-4">Direccion</p>
                 <p class="fs-5 mb-4">Crr 9 #9-23</p>
+                <ion-button class="btn_alert animate__animated animate__fadeInRight" (click)="presentAlertCambiarPass()" color="success"  >
+                    Cambiar contraseña 
+                </ion-button> 
 
             </ion-col>
 

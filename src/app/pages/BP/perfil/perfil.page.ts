@@ -10,6 +10,9 @@ import { AlertController } from '@ionic/angular'
 //?importando el servicio de emmiter para el token alojado en  ../../../services/emmiters.service
 import { EmmitersService } from '../../../services/emmiters.service';
 
+import { Router } from '@angular/router';
+
+
 
 //!componentes los cuales conectac y refieren a los distintos archivos de registro
 @Component({
@@ -19,10 +22,12 @@ import { EmmitersService } from '../../../services/emmiters.service';
 })
 export class PerfilPage implements OnInit {
 
-  usuario = {}
+  usuario:any = {}
   mssg :string
+  email
 
   constructor(
+    private router: Router,
     private usuService : UsuarioService, 
     public alertController: AlertController,
     private emmiter: EmmitersService
@@ -42,10 +47,71 @@ export class PerfilPage implements OnInit {
 
     this.usuService.getInfo( token ).subscribe((res:any) => {
       this.usuario = res.data
-    
+
+      console.log(res)
+      this.email = this.usuario.email_t.email;
     })
 
   }
+
+
+//*generando la alerta para avisar al usuario de cambiar la contrsena
+async presentAlertCambiarPass(email2) {
+  const alert = await this.alertController.create({
+    //nombre para dar estilos a la misma
+    cssClass: 'my-custom-class',
+    id: 'text',
+    //tiutlo de la alerta
+    header: 'Cambiar Contraseña',
+    //subtitulo de la alerta
+    subHeader: '<ion-text color="danger">,<p>Se le enviara un correo a su siguiente correo:<p></ion-text>',
+    //mensaje o centendio de la alerta
+    message: this.email,
+    //tendra dos botones (cancelar y confirmar)
+    inputs:[{name: 'emailUser',
+    type: 'text',
+    id: 'emailalert',
+    value: this.email,
+    placeholder: 'Email'
+  }
+    ],
+    buttons: [
+      {
+        text: 'Cancelar',
+        cssClass: 'btn1',
+        handler: (emailalert) => {
+          console.log('Cancel');
+          console.log(emailalert);
+        }
+      },
+      //!en el boton confirmar enviarar el cambio de estado de la cuenta y mostrar el mensaje de elimincaion en 16 días
+      {
+        text: 'Confirmar',
+        cssClass: 'btn2',
+        handler: (email) => {
+          console.log('Confirm');
+
+          let email12 =  {
+            "email": this.email
+        }
+          
+
+          this.usuService.messCorreo(email12).subscribe(
+            (res: any) => {
+              console.log(res)
+              console.log(email)
+              this.mssg = res.msg
+            })
+          
+            this.router.navigate(['app-new-pass'])
+          }
+      }
+    ]
+  });
+
+  await alert.present();
+}
+
 
   //*generando la alerta para avisar al usuario de eliminar la cuenta
   async presentAlertMultipleButtons() {
@@ -57,7 +123,7 @@ export class PerfilPage implements OnInit {
       //subtitulo de la alerta
       subHeader: 'La eliminación de cuenta es definitiva Al eliminarla',
       //mensaje o centendio de la alerta
-      message: 'tu cuenta de WAKA y toda la información tambien se eliminará',
+      message: 'tu cuenta de WAKA y toda la información tambien se eliminará {{his.email}}' ,
       //tendra dos botones (cancelar y confirmar)
       buttons: [
         {

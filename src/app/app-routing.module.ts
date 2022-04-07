@@ -52,7 +52,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/PP/agregar-foto/agregar-foto.module').then( m => m.AgregarFotoPageModule)
   },
   {
-    path: 'new-pass',
+    path: 'app-new-pass',
     loadChildren: () => import('./pages/new-pass/new-pass.module').then( m => m.NewPassPageModule)
   },
   {
@@ -72,9 +72,13 @@ const routes: Routes = [
     loadChildren: () => import('./pages/prueba/prueba.module').then( m => m.PruebaPageModule)
   },
   {
-    path: 'actualizarvehiculo',
+    path: 'actualizarvehiculo/:id',
     loadChildren: () => import('./pages/BP/actualizarvehiculo/actualizarvehiculo.module').then( m => m.ActualizarvehiculoPageModule)
   },
+  {
+  path: 're-activation-account/:token',
+  loadChildren: () => import('./pages/acceso/acceso.module').then( m => m.AccesoPageModule)
+},
 
  
 

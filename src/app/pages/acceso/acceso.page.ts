@@ -10,10 +10,13 @@ import { UsuarioService } from '../../services/usuario.service';
 })
 export class AccesoPage implements OnInit {
 
+  mssg :string
+
+
   constructor(private router: Router, private usuarioService: UsuarioService) { }
 
   ngOnInit() {
-
+    this.obteenerinfo()
   }
 
   obteenerinfo() {
@@ -38,15 +41,21 @@ export class AccesoPage implements OnInit {
   });
 
   Ingresar() {
-
+    //this.usuarioService.messverificacion(this.users.value.email,).subscribe( res => {console.log(res)})
 
     this.usuarioService.signInNormal(this.users.value).subscribe(
       (res: any) => {
         localStorage.setItem("token", res.data)
 
         this.obteenerinfo()
+
+       this.mssg = res.msg
       
       })
+
+      let email = {"email": this.users.value.email }
+    
+      this.usuarioService.messverificacion(email).subscribe( res => {console.log(res)})
 
   }
 

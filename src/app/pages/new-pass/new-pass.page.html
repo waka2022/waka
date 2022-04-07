@@ -5,10 +5,9 @@ Descripción: codigo HTML de la pagina CAMBIAR Psw = formulario la clave de la c
 Ultima fecha de modificación:17/03/2022 -->
 
 <ion-header>
-  <!-- *colocando la X en el encabezado para volver atras -->
   <ion-toolbar color="primarioApp">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-back-button defaultHref="/tabs/perfil"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -23,7 +22,7 @@ Ultima fecha de modificación:17/03/2022 -->
 <!--* contenido de la card -->
     <ion-card-content>
       <!-- *inicilizando el formulario -->
-      <form [formGroup]="pass">
+      <form [formGroup]="pass" (ngSubmit)="CambiarPass()">
         
         <!-- *campo para ingrear la contraseña -->
         <ion-item class="border-abajo">
@@ -44,8 +43,9 @@ Ultima fecha de modificación:17/03/2022 -->
           <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Cambiar</p>
         </ion-button>
       </form>
-    
-
+      <ion-text color="warning" class="text-start">
+        <p>{{this.mssg}}</p>
+      </ion-text>  
     </ion-card-content>
   </ion-card>
 </ion-content>
