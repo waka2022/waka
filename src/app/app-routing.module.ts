@@ -44,7 +44,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/BP/novedades/novedades.module').then( m => m.NovedadesPageModule)
   },
   {
-    path: 'ver',
+    path: 'ver-mas/:id',
     loadChildren: () => import('./pages/PP/ver-mas/ver-mas.module').then( m => m.VerMasPageModule)
   },
   {

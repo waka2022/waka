@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import * as Mapboxgl from 'mapbox-gl';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -9,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MapboxService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   cargarMapa(latitud: number, longitud: number, parqueaderos) {
 
@@ -40,89 +41,89 @@ export class MapboxService {
     //recorremos lso marcadores
     for (const feature of parqueaderos.features) {
       // creamos un HTML element para cada feactures
+      const popupContent = document.createElement('div');
+
+      popupContent.innerHTML = `
+      <ion-grid>
+
+      <ion-row>
+            <ion-col size="12">
+                <h2>${feature.properties.direccion}</h2>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col size="12">
+                <i class="fa-solid fa-star-sharp"></i>
+                <i class="fa-thin fa-star-sharp"></i>
+                <i class="fa-light fa-star-sharp fa-2x"></i>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col size="6">
+            Precio/hora
+            <h5 class="mt-1">
+               $ ${feature.properties.precio}
+            </h5>
+            </ion-col>
+
+            <ion-col size="6">
+            <h5>
+            <i class="fas fa-car-side fa-1x "></i>
+                <i class="fa-solid fa-bicycle fa-1x"></i>
+            </h5>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col size="12">
+                <ion-button class="verde" expand="full">
+                    Disponible
+                </ion-button>
+            </ion-col>
+        </ion-row>
+
+      </ion-grid>`;
+
+      const atag = document.createElement('div');
+
+      atag.innerHTML = `
+      <ion-row>
+        <ion-col size="12">
+            <ion-button id="${feature.properties.id} color="celeste" expand="full" id="verMas">
+                <p class="animate__animated animate__bounceIn m-0 animate__fast">Ver mas</p>
+            </ion-button>
+        </ion-col>
+      </ion-row>`
+
+      popupContent.appendChild(atag);
+
+      atag.addEventListener('click', (e) => {
+        console.log('Button was clicked' + feature.properties.id);
+        this.router.navigateByUrl('/tabs/info-parqueadero/' + feature.properties.id)
+      })
+
+      let popup = new Mapboxgl.Popup({
+      }).setDOMContent(popupContent);
+
+     
       const marcador = document.createElement('div');
       marcador.className = 'marker';
-
       // agregarmos el marcador al mapa
-      new Mapboxgl.Marker(marcador).setLngLat(feature.geometry.coordinates).addTo(map);
-
-
-      // usamos la informacion al darle click al marcador para desplegarla en el mapa
-      new Mapboxgl.Marker(marcador)
-        .setLngLat(feature.geometry.coordinates)
-        .setPopup(
-          new Mapboxgl.Popup({ offset: 25 }) // add popups
-            .setHTML(
-              `
-                    <ion-grid>
-
-                    <ion-row>
-                      <ion-col size="12">
-                      <ion-img src="../../../assets/parqueadero.jpg" class="img-market" ></ion-img>
-                      </ion-col>
-                    </ion-row>
-                
-                
-                    <ion-row>
-                      <ion-col size="6">
-                        Horario <br>
-                        10am - 5pm
-                      </ion-col>
-                      <ion-col size="6">
-                        <i class="fa-solid fa-star-sharp"></i>
-                        <i class="fa-thin fa-star-sharp"></i>
-                        <i class="fa-light fa-star-sharp fa-2x"></i>
-                      </ion-col>
-                    </ion-row>
-                
-                    <ion-row>
-                      <ion-col size="6">
-                        Precio hora <br>
-                        ${feature.properties.precio}
-                      </ion-col>
-                      <ion-col size="6">
-                        <i class="fas fa-car-side fa-1x "></i>
-                        <i class="fa-solid fa-bicycle fa-1x"></i>
-                      </ion-col>
-                    </ion-row>
-                
-                    <ion-row>
-                      <ion-col size="12">
-                        <ion-button class="verde" expand="full" > 
-                          Disponible
-                      </ion-button>
-                      </ion-col>
-                    </ion-row>
-
-                    <ion-row>
-                       <ion-col size="12">
-                          <ion-button color="celeste" expand="full" id="verMas" href="/tabs/info-parqueadero/${feature.properties.id}">
-                            <p class="animate__animated animate__bounceIn m-0 animate__fast">Ver mas</p> 
-                          </ion-button>
-                        </ion-col>
-                    </ion-row>
-                
-                  </ion-grid>
-                  
-                  `
-            )
-
-        ).addTo(map); // agregarmos al mapa
-
+      new Mapboxgl.Marker(marcador).setLngLat(feature.geometry.coordinates).setPopup(popup).addTo(map);
     }
 
     return map
-
-
   }
 
-  dibujarRuta(cordenadasCar, cordenadasPar){
+  dibujarRuta(cordenadasCar, cordenadasPar) {
 
     //console.log(cordenadasPar);
-    
+
     return this.http.get(`https://api.mapbox.com/directions/v5/mapbox/driving/${cordenadasCar[0]},${cordenadasCar[1]};${cordenadasPar[0]},${cordenadasPar[1]}?steps=true&geometries=geojson&access_token=${environment.tokenMapbox}`)
-  
-    
+
+
   }
 }
 

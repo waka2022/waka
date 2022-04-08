@@ -9,12 +9,18 @@ import { AlertController } from '@ionic/angular'
 })
 export class PerfilParqueaderoPage implements OnInit {
 
-  usuario = {}
+  usuario:any = {
+    phone:"",
+    email_t:{
+      email:""
+    }
+  }
   mssg :string
 
   constructor(private usuService : UsuarioService, public alertController: AlertController) { }
 
   ngOnInit() {
+    this.traerInfoUsuario()
   }
 
   async presentAlertMultipleButtons() {
@@ -48,6 +54,19 @@ export class PerfilParqueaderoPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  traerInfoUsuario(){
+
+    let token = localStorage.getItem("token")
+
+    this.usuService.getInfo( token ).subscribe((res:any) => {
+      console.log(res);
+      
+      this.usuario = res.data
+    
+    })
+
   }
 
 }

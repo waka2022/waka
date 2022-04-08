@@ -12,42 +12,44 @@
             <ion-col size=12 size-sm="4" class="p-2 animate__animated animate__fadeInRight">
 
                 <p class="fs-4">Dueño
-                <p class="fs-5 mb-4">{{this.duenopar}}</p>
-
-                <p class="fs-4">Horario</p>
-                <p class="fs-5 mb-4"></p>
+                <p class="fs-5 mb-4">{{infoparqueadero.id_user.names}}</p>
 
                 <p class="fs-4">Direccion</p>
-                <p class="fs-5 mb-4">{{this.infoparqueadero.address}}</p>
+                <p class="fs-5 mb-4">{{infoparqueadero.address}}</p>
 
                 <p class="fs-4">Seguridad</p>
                 <div>
-                    <p class="fs-5 mb-4 d-inline" *ngIf="this.infoparqueadero.type_security.cams === true">Camaras </p>
-                    <p class="fs-5 mb-4 d-inline" *ngIf="this.infoparqueadero.type_security.vigilant === true">Vigilante</p>
+                    <p class="fs-5 mb-4 d-inline" *ngIf="infoparqueadero.type_security.cams === true" >Camaras </p>
+                    <p class="fs-5 mb-4 d-inline" *ngIf="infoparqueadero.type_security.vigilant === true">Vigilante </p>
                 </div>
                 <br>
+
+                <p class="fs-4">Parqueadero para</p>
+                <div>
+                    <p class="fs-5 mb-4 d-inline" *ngIf="infoparqueadero.type_parks._0">Motos </p>
+                    <p class="fs-5 mb-4 d-inline" *ngIf="infoparqueadero.type_parks._1">Carros </p>
+                    <p class="fs-5 mb-4 d-inline" *ngIf="infoparqueadero.type_parks._2">Bicicletas </p>
+                </div>
+
+                
 
             </ion-col>
 
             <ion-col size=12 size-sm="4" class="p-2 animate__animated animate__fadeInRight">
 
-                <p class="fs-4">Parqueadero para</p>
-                <div>
-                    <p class="fs-5 mb-4 d-inline" *ngFor="let tipo of this.infoparqueadero.type_parks">{{tipo + " "}}</p>
-                </div>
-                <br>
 
                 <p class="fs-4">Espacio</p>
-                <p class="fs-5 mb-4"></p>
+                <p class="fs-5 mb-4">{{infoparqueadero.space}}</p>
 
                 <p class="fs-4">Descripcion</p>
-                <p class="fs-5 mb-4">{{this.infoparqueadero.descript}}</p>
+                <p class="fs-5 mb-4">{{infoparqueadero.descript}}</p>
 
                 <p class="fs-4">Precio hora</p>
-                <p class="fs-5 mb-4">${{this.infoparqueadero.price}}</p>
+                <p class="fs-5 mb-4">{{infoparqueadero.price}}</p>
 
-                <p class="fs-4"></p>
+                <p class="fs-4"><br></p>
                 <p class="fs-5 mb-4"></p>
+                
 
             </ion-col>
 
@@ -59,6 +61,8 @@
 
     </ion-grid>
 
-    <h1 *ngIf="id_parqueadero === false" class="text-white">dasdasd</h1>
-
+    <div id="NoHayPar" *ngIf="id_parqueadero === false">
+        <h3 id="mensajeNoHayPar" class="text-white animate__animated animate__zoomIn animate__faste">Parece que no has reservado ningun parqueadero</h3>
+    </div>
+    
 </ion-content>

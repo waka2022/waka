@@ -23,6 +23,12 @@ export class InfoVehiculoPage implements OnInit {
     )
   }
 
+  miVehiculo(id_vehiculo){
+    console.log(id_vehiculo);
+
+    localStorage.setItem('id_vehiculo', id_vehiculo)
+  }
+
   async presentModa2() {
 
     const modal = await this.modalController.create({
@@ -55,5 +61,6 @@ export class InfoVehiculoPage implements OnInit {
       'dismissed': true
     });
   }
+
 
 }

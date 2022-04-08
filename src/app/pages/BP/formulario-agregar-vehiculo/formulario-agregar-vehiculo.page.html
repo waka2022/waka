@@ -7,14 +7,16 @@
 
   <hr>
 
+  <h2 class="text-center">Agregar vehiculo</h2>
+
   <form [formGroup]="car" (ngSubmit)="addCar()" id="formulario">
 
     <ion-item color="segundarioApp" class="border-abajo">
       <ion-label position="floating">Tipo</ion-label>
       <ion-select interface="popover" formControlName="global">
-        <ion-select-option class="option" value="bicicleta">Bicicleta</ion-select-option>
-        <ion-select-option class="option" value="moto">Moto</ion-select-option>
-        <ion-select-option class="option" value="carro">Carro</ion-select-option>
+        <ion-select-option class="option" value="2">Bicicleta</ion-select-option>
+        <ion-select-option class="option" value="0">Moto</ion-select-option>
+        <ion-select-option class="option" value="1">Carro</ion-select-option>
       </ion-select>
     </ion-item>
 
@@ -33,14 +35,14 @@
       <ion-input formControlName="placa"></ion-input>
     </ion-item>
 
-    <ion-item class="border-abajo" color="segundarioApp">
-      <ion-label color="primarioApp" position="floating">Color</ion-label>
-      <ion-input formControlName="color"></ion-input>
+    <ion-item color="segundarioApp">
+      <ion-label position="floating">Color del vehiculo</ion-label><br>
+      <input type="color" id="inputColor" formControlName="color">
     </ion-item>
 
-    <ion-button class="animate__animated animate__pulse animate__fast mt-5 d-flex justify-content-center verde"
-      expand="block" size="large" type="submit">
-      <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Registrar vehiculo</p>
+    <ion-button class="animate__animated animate__pulse animate__fast mt-5 d-flex justify-content-center verde btn-reg"
+      expand="block"  type="submit">
+      <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast">Registrar vehiculo</p>
     </ion-button>
 
   </form>

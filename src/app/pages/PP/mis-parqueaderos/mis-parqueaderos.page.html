@@ -6,11 +6,10 @@
 
 <ion-content color="light">
 
-  <div class="contenedor">
-
-    <ion-grid class="p-0">
-      <ion-row>
   
+
+    <ion-grid class="p-0" >
+      <ion-row>
         <ion-col size="12" size-md="6" class="p-1 animate__animated animate__zoomIn animate__faste" *ngFor="let parqueadero of this.parqueaderos">
           <ion-row class="contenedor-parqueadero p-relative">
   
@@ -20,11 +19,11 @@
   
             <ion-col size="6">
               <h2>{{parqueadero.address}}</h2> <br>
-              <ion-button *ngIf="parqueadero.availability === false" class="rojo" expand="block">
+              <ion-button *ngIf="parqueadero.availability === false" class="rojo" expand="block" (click)="cambiasEstado(parqueadero._id)">
                 No disponible
               </ion-button>
   
-              <ion-button *ngIf="parqueadero.availability === true" class="verde" expand="block">
+              <ion-button *ngIf="parqueadero.availability === true" class="verde" expand="block" (click)="cambiasEstado(parqueadero._id)">
                 Disponible
               </ion-button>
   
@@ -37,21 +36,28 @@
               <i class="fa-solid fa-trash"></i>
             </ion-button>
 
-            <ion-button id="btn-ubicacion" class="mt-3" color="celeste" expand="block" (click)="AlertConfirmUbicacion(parqueadero._id)">
+            <ion-button *ngIf="parqueadero.ubi === undefine" id="btn-ubicacion" class="mt-3 parpadeo" expand="block" (click)="AlertConfirmUbicacion(parqueadero._id)">
+              <i class="fa-solid fa-location-dot"></i>
+            </ion-button>
+
+            <ion-button  *ngIf="parqueadero.ubi" id="btn-ubicacion" class="mt-3" color="celeste2" expand="block" (click)="AlertConfirmUbicacion(parqueadero._id)">
               <i class="fa-solid fa-location-dot"></i>
             </ion-button>
 
           </ion-row>
         </ion-col>
-  
       </ion-row>
     </ion-grid>
+
+    <div id="msg" class="animate__animated animate__zoomIn animate__faste" *ngIf="this.error === true">
+      <h2>{{this.msg}}</h2>
+    </div>
   
   
     <ion-tab-button class="btn-agregar animate__animated animate__bounce" (click)="presentModal()">
       <i class="fas fa-plus fa-3x"></i>
     </ion-tab-button>
 
-  </div>
+ 
 
 </ion-content>

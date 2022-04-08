@@ -15,40 +15,43 @@
 
             <ion-col size=12 size-sm="4" class="p-2 animate__animated animate__fadeInRight">
 
-                <p class="fs-4">Nombre</p>
-                <p class="fs-5 mb-4">Pepito Perez Orjuela</p>
+                <p class="fs-4">Dueño</p>
+                <p class="fs-5 mb-4">{{ this.usuario.names }}</p>
 
-                <p class="fs-4">Horario</p>
-                <p class="fs-5 mb-4">10am - 4pm</p>
+                <p class="fs-4">Documento</p>
+                <p class="fs-5 mb-4">{{ this.usuario.document }}</p>
 
-                <p class="fs-4">Calificacion</p>
-                <p class="fs-5 mb-4">
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </p>
+                <p class="fs-4">Correo</p>
+                <p class="fs-5 mb-4">{{ this.usuario.email_t.email }}</p>
+
+                <p class="fs-4">Telefono</p>
+                <p class="fs-5 mb-4">{{ this.usuario.phone }}</p>
 
             </ion-col>
 
             <ion-col size=12 size-sm="4" class="p-2 animate__animated animate__fadeInRight">
+
+                <p class="fs-5 mb-4">
+                    <ion-button routerLink="/actualizarperfil"><p>Actualizar</p></ion-button>
+                </p>
 
                 <p class="fs-4">Salir</p>
                 <p class="fs-5 mb-4">
                     <ion-button color="segundarioApp">
                         <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
                     </ion-button>
-                </p>           
+                </p>
 
             </ion-col>
 
-            <ion-col size=12 size-sm="4" >
+            <ion-col size=12 size-sm="4">
                 <p>{{this.mssg}}</p>
-            <ion-button class="btn_alert animate__animated animate__fadeInRight" (click)="presentAlertMultipleButtons()" color="danger" expand="block" fill="clear" shape="round">
-                Eliminar la cuenta
-            </ion-button>  
+                <ion-button class="btn_alert animate__animated animate__fadeInRight"
+                    (click)="presentAlertMultipleButtons()" color="danger" expand="block" fill="clear" shape="round">
+                    Eliminar la cuenta
+                </ion-button>
             </ion-col>
-            
+
 
         </ion-row>
 

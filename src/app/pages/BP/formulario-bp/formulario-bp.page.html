@@ -29,9 +29,9 @@
         <ion-item color="primarioApp" class="border-abajo">
           <ion-label position="floating">Tipo</ion-label>
           <ion-select interface="popover" formControlName="global">
-            <ion-select-option class="option" value="bicicleta">Bicicleta</ion-select-option>
-            <ion-select-option class="option" value="moto">Moto</ion-select-option>
-            <ion-select-option class="option" value="carro">Carro</ion-select-option>
+            <ion-select-option class="option" value="2">Bicicleta</ion-select-option>
+            <ion-select-option class="option" value="0">Moto</ion-select-option>
+            <ion-select-option class="option" value="1">Carro</ion-select-option>
           </ion-select>
         </ion-item>
 
@@ -63,10 +63,10 @@
           <ion-label position="floating">Color del vehiculo</ion-label><br>
           <input type="color" id="inputColor" formControlName="color">
         </ion-item>
-       
+
         <ion-button class="mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast verde"
-          type="submit" [disabled]="!info.valid" >
-          <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra" >Registrarse</p>
+          type="submit" [disabled]="!info.valid">
+          <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Registrarse</p>
         </ion-button>
 
       </form>

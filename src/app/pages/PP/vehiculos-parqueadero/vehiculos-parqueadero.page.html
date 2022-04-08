@@ -5,12 +5,28 @@
 <ion-content color="segundarioApp">
 
   <ion-grid>
-    <ion-row class="p-1 text-white">
-      <ion-col size="12" size-md="5" class="mx-auto mb-5 animate__animated animate__zoomIn animate__faste" id="contenedor-card" *ngFor="let item of [1,1,1,1,1,1,1,1,1,1,1,1,1]">
+    <ion-row>
+      <ion-col size="12">
+        <form [formGroup]="parqueadero" id="formulario">
+          <ion-item color="segundarioApp" class="border-abajo px-5 mb-2">
+            <ion-label position="floating">parqueadero</ion-label>
+            <ion-select #p interface="popover" formControlName="id_parqueadero" (ionChange)="buscarReservas(p.value)">
+              <ion-select-option *ngFor="let parqueadero of this.parqueaderos" class="option"
+                value="{{parqueadero.id}}">{{parqueadero.direccion}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </form>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="p-1 text-white" *ngIf="ya">
+      <ion-col size="12" size-md="5" class="mx-auto mb-2 animate__animated animate__zoomIn animate__faste"
+        id="contenedor-card" *ngFor="let reserva of reservas; let i = index">
+
         <ion-row>
           <ion-col size="6">
             <i class="fas fa-car fa-3x "></i><br>
-            AFJ 173
+            {{reserva.id_vehicle.type_vehi.placa}}
           </ion-col>
           <ion-col size="6">
             Lleva 1h y 21min
@@ -19,33 +35,56 @@
           </ion-col>
         </ion-row>
 
-        <ion-row>
-          <ion-col size="12">
-            Este usuario eligio pagar en efectivo
+        <ion-row *ngIf="reserva.status.on_route" class="px-1 mt-2 mb-2">
+          <ion-col size="12" id="estado">
+            Viene en camino
           </ion-col>
         </ion-row>
+
+        <ion-row *ngIf="reserva.status.on_cancel" class="px-1 mt-2 mb-2">
+          <ion-col size="12" id="estado">
+            Cancelado
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="reserva.status.on_park.status" class="px-1 mt-2 mb-2">
+          <ion-col size="12" id="estado">
+            Estacionado
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="reserva.status.end_park.status" class="px-1 mt-2 mb-2">
+          <ion-col size="12" id="estado">
+            Ya se fue
+          </ion-col>
+        </ion-row>
+
 
         <ion-row>
           <ion-col size="6">
-            <ion-button class="verde" disabled expand="full">Ya Llego</ion-button>
+
+            <ion-button class="verde" expand="full" (click)="cambiarEstadoReserva(reserva._id, 1)" > Ya Llego
+            </ion-button>
+
           </ion-col>
 
           <ion-col size="6">
-            <ion-button class="rojo" expand="full">cobrar</ion-button>
+            <ion-button class="rojo" expand="full" (click)="cambiarEstadoReserva(reserva._id, 2)" >cobrar</ion-button>
           </ion-col>
         </ion-row>
 
         <ion-row>
           <ion-col size="12">
-            <ion-button color="secondary" routerLink="/agregar-foto" expand="full">Agregar fotos</ion-button>
+            <ion-button color="celeste2" routerLink="/agregar-foto" expand="full" disabled="reserva.status.on_route" >Agregar fotos</ion-button>
           </ion-col>
         </ion-row>
 
         <ion-row>
           <ion-col size="12">
-            <ion-button color="secondary" routerLink="/ver" expand="full">Ver mas</ion-button>
+            <ion-button color="celeste" [routerLink]="[ '/ver-mas', reserva._id ]" expand="full">Ver mas</ion-button>
           </ion-col>
         </ion-row>
+
       </ion-col>
     </ion-row>
   </ion-grid>

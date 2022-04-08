@@ -1,5 +1,24 @@
-.border-radius{
-    border-radius: 11px;
+.border-radius-top{
+    border-top-left-radius: 11px;
+    border-top-right-radius: 11px;
+}
+
+#NoHayPar{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+#mensajeNoHayPar{
+    text-align: center;
+    width: 100%;
+    color: black;
+}
+
+.border-radius-bottom{
+    border-bottom-left-radius: 11px;
+    border-bottom-right-radius: 11px;
 }
 
 .border-radius-img{
@@ -13,6 +32,8 @@
    position:absolute;
    bottom:0px;
    width: 100%;
+   padding-bottom: 15px;
+   padding-right: 15px;
    
 }
 
@@ -25,18 +46,31 @@
 }
 
 #contenedor-card{
-    height: 240px;
+    height: 290px;
     position: relative;
 }
 
 #img-parqueadero{
-    margin-top: auto;
-    margin-bottom: auto;
+    left: 0;
+    right: 0;
     top: 0;
     bottom: 0;
+    margin: auto;
     position: absolute;
+    padding: 10px;
 }
 
-
+#contenedor-img{
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.021);
+}
+#tiempo-btns{
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    position: absolute;
+}
 
 

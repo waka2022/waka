@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild, Renderer2, AfterViewInit, OnChanges, DoCheck } from '@angular/core';
-import { IonRouterOutlet, ModalController } from '@ionic/angular';
+import { IonRouterOutlet, ModalController, ToastController } from '@ionic/angular';
 import { InfoVehiculoPage } from '../info-vehiculo/info-vehiculo.page';
 import { MapboxService } from '../../../services/mapbox.service';
 import { AlertController } from '@ionic/angular';
@@ -28,7 +28,7 @@ export class MapaPage implements OnInit {
     private routerOutlet: IonRouterOutlet, private modalController: ModalController,
     private servicioMapBox: MapboxService, private renderer: Renderer2,
     public alertController: AlertController, private geolocation: Geolocation,
-    private userservice: UsuarioService) {
+    private userservice: UsuarioService, public toastController: ToastController) {
 
     this.obtenerCordenadas()
 
@@ -46,14 +46,19 @@ export class MapaPage implements OnInit {
 
   map: Mapboxgl
 
-  ngOnInit() {
+  ngOnInit(): void {
 
+  }
+
+  ionViewWillEnter() {
+
+    this.cambiarEstado()
+    this.crearDivMapa()
 
     let token = localStorage.getItem('token')
     this.userservice.getparkingMap(token).subscribe((res: any) => {
 
       for (let i = 0; i < res.data.length; i++) {
-      
 
         let datapar = {
           //tipo
@@ -66,8 +71,8 @@ export class MapaPage implements OnInit {
           // informacion al darle click al marcador
           properties: {
             id: res.data[i]._id,
-            imagen: "hola",
             precio: res.data[i].price,
+            direccion: res.data[i].address
 
           }
         }
@@ -81,7 +86,6 @@ export class MapaPage implements OnInit {
 
     })
 
-    this.crearDivMapa()
 
     setTimeout(() => {
       this.map = this.servicioMapBox.cargarMapa(this.latitud, this.longitud, this.parqueaderos)
@@ -104,6 +108,37 @@ export class MapaPage implements OnInit {
 
     }
 
+  }
+
+  ionViewDidLeave() {
+
+    let contenedorMapa = document.getElementById("contenedor");
+    let mapa: any = document.getElementById('map')
+    contenedorMapa.removeChild(mapa);
+
+    this.parqueaderos.features = []
+  }
+
+  async msgError(res: string) {
+    const toast = await this.toastController.create({
+      message: res,
+      duration: 3500,
+      cssClass: "rojo",
+      mode: "ios",
+      position: 'top'
+    });
+    toast.present();
+  }
+
+  async msgBien(res: string) {
+    const toast = await this.toastController.create({
+      message: res,
+      duration: 3500,
+      mode: "ios",
+      color: "celeste",
+      position: 'top'
+    });
+    toast.present();
   }
 
   obtenerCordenadas() {
@@ -159,6 +194,7 @@ export class MapaPage implements OnInit {
         if (market2.length <= 0) {
 
           //no existe
+
           const marcador2 = document.createElement('div');
           marcador2.className = 'marker2';
           // agregarmos el marcador al mapa
@@ -223,8 +259,8 @@ export class MapaPage implements OnInit {
           }
         })
 
-        this.map.fitBounds([route[0], route[route.length-1] ],{
-          padding:180
+        this.map.fitBounds([route[0], route[route.length - 1]], {
+          padding: 180
         })
 
       })
@@ -233,19 +269,20 @@ export class MapaPage implements OnInit {
   }
 
   cambiarEstado() {
-    this.estado = !this.estado;
+
+    let id_parq = localStorage.getItem('id-parq')
+
+    if (id_parq === null) {
+      this.estado = false
+    } else {
+      this.estado = true
+    }
   }
 
   doRefresh() {
 
-    let contenedorMapa = document.getElementById("contenedor");
-    let mapa: any = document.getElementById('map')
-    contenedorMapa.removeChild(mapa);
-
-    setTimeout(() => {
-      this.ngOnInit()
-    }, 1000);
-
+    this.ionViewDidLeave()
+    this.ionViewWillEnter()
 
   }
 
@@ -261,6 +298,31 @@ export class MapaPage implements OnInit {
     });
 
     await modal.present();
+  }
+
+  cancelarReserva() {
+
+    let token = localStorage.getItem('token')
+
+    this.userservice.getAllReservatiosUser(token, true).subscribe((res: any) => {
+      console.log(res);
+
+      let id_Reserv = res.data[res.data.length - 1]._id
+
+      this.userservice.updateStatusReservation(token, id_Reserv, 3).subscribe((res: any) => {
+        //console.log(res);
+        this.msgBien(res.msg)
+        localStorage.removeItem('lat-parq')
+        localStorage.removeItem('lon-parq')
+        localStorage.removeItem('id-parq')
+
+        this.doRefresh()
+
+      }, error => {
+        this.msgError(error.error.msg)
+      })
+
+    })
   }
 
 }

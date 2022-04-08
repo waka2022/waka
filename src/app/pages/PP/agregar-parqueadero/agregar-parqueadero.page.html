@@ -4,27 +4,27 @@
 <ion-content color="segundarioApp">
 
 
-  <h2 class="ms-4">Crear un nuevo parqueadero<i id="cerrar" (click)="dismiss()" class="fa-solid fa-xmark"></i></h2>
+  <i id="cerrar" (click)="dismiss()" class="fa-solid fa-xmark"></i>
+  <br><br>
   <hr>
+
+  <h2 class="text-center">Crear un nuevo parqueadero</h2>
+
   <div id="contenedor">
 
     <form id="contenedorFormulario" [formGroup]="info" (ngSubmit)="addInfo()">
 
-      <ion-item color="segundarioAppp" class="border-abajo">
-        <ion-label position="floating">Horario</ion-label>
-        <ion-input></ion-input>
-      </ion-item>
-   
-
-      <div class="linea"></div>
 
       <ion-item color="segundarioApp" class="border-abajo">
         <ion-label position="floating">Dirección</ion-label>
         <ion-input formControlName="address"></ion-input>
       </ion-item>
 
+      <div class="linea"></div>
+
+
       <div class="mt-4 mb-4">
-        <h5 class="mb-1">Seguridad</h5>
+        <h5 class=" mb-1">Seguridad</h5>
 
         <ion-item color="segundarioApp">
           <ion-label>Vigilante</ion-label>
@@ -40,7 +40,7 @@
       <div class="linea"></div>
 
       <div class="mt-4 mb-4">
-        <h5 class="mb-1">Tipo de parqueadero</h5>
+        <h5 class=" mb-1">Tipo de parqueadero</h5>
 
         <ion-item color="segundarioApp">
           <ion-label>Carros</ion-label>
@@ -62,8 +62,8 @@
       <div class="linea"></div>
 
       <ion-item color="segundarioApp" class="border-abajo">
-        <ion-label position="floating">Espacio</ion-label>
-        <ion-input></ion-input>
+        <ion-label position="floating">Espacio en m²</ion-label>
+        <ion-input formControlName="espacio" type="number"></ion-input>
       </ion-item>
 
       <div class="linea"></div>
@@ -77,20 +77,20 @@
 
       <ion-item color="segundarioApp" class="border-abajo">
         <ion-label position="floating">Precio/hora</ion-label>
-        <ion-input></ion-input>
+        <ion-input formControlName="precio" type="number"></ion-input>
       </ion-item>
 
       <div class="linea"></div>
 
       <ion-item color="segundarioApp" class="border-abajo">
-        <ion-label position="floating">Cupos</ion-label>
-        <ion-input></ion-input>
+        <ion-label position="floating">Cupos Totales</ion-label>
+        <ion-input formControlName="cupos" type="number"></ion-input>
       </ion-item>
 
       <div class="linea"></div>
 
       <ion-button class="mt-5 mb-5 d-flex justify-content-center animate__animated animate__pulse animate__fast verde"
-        type="submit">
+        type="submit" [disabled]="!info.valid">
         <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Continuar</p>
       </ion-button>
       <br>

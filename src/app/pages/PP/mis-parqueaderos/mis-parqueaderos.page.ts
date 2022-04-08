@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../../services/usuario.service';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { AgregarParqueaderoPage } from '../agregar-parqueadero/agregar-parqueadero.page';
 import { EmmitersService } from '../../../services/emmiters.service';
 import { AlertController } from '@ionic/angular';
@@ -14,13 +14,14 @@ import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 export class MisParqueaderosPage implements OnInit {
 
   constructor(private userServices: UsuarioService, private modalController: ModalController, private emmiter: EmmitersService,
-    public alertController: AlertController, private geolocation: Geolocation) { }
+    public alertController: AlertController, private geolocation: Geolocation, public toastController: ToastController) { }
 
-  parqueaderos = []
+  parqueaderos:any = []
+
+  msg: string
+  error: boolean = false
 
   ngOnInit() {
-
-    this.getParqueadero()
 
     this.emmiter.$emmiterProfile.subscribe(
       resp => {
@@ -30,6 +31,41 @@ export class MisParqueaderosPage implements OnInit {
     )
   }
 
+  ionViewWillEnter() {
+
+    setTimeout(() => {
+      this.getParqueadero()
+    }, 200);
+
+  }
+
+  ionViewDidLeave() {
+    this.parqueaderos = []
+
+  }
+
+  async msgError(res: string) {
+    const toast = await this.toastController.create({
+      message: res,
+      duration: 3500,
+      cssClass: "rojo",
+      mode: "ios",
+      position: 'top'
+    });
+    toast.present();
+  }
+
+  async msgBien(res: string) {
+    const toast = await this.toastController.create({
+      message: res,
+      duration: 3500,
+      mode: "ios",
+      color: "celeste",
+      position: 'top'
+    });
+    toast.present();
+  }
+
   getParqueadero() {
 
     let token = this.userServices.traerToken()
@@ -37,7 +73,16 @@ export class MisParqueaderosPage implements OnInit {
     this.userServices.getParking(token).subscribe((res: any) => {
 
       this.parqueaderos = res.data
-      console.log(this.parqueaderos)
+      console.log(this.parqueaderos.ubi);
+      
+      this.error = false
+
+    }, error => {
+
+      console.log(error.ok);
+
+      this.error = !error.ok
+      this.msg = error.error.msg
 
     })
   }
@@ -48,16 +93,15 @@ export class MisParqueaderosPage implements OnInit {
 
     this.userServices.borrarParking(token, id).subscribe((res: any) => {
 
-      console.log(res);
+      this.msgBien(res.msg)
+      this.ionViewDidLeave()
+      this.ionViewWillEnter()
+
+    }, error => {
+
+      this.msgError(error.msg)
 
     })
-
-    setTimeout(() => {
-
-      this.ngOnInit()
-
-    }, 2000);
-
   }
 
   async presentModal() {
@@ -88,40 +132,36 @@ export class MisParqueaderosPage implements OnInit {
             console.log('Confirm Cancel: blah');
           }
         }, {
-          text: 'Okay',
+          text: 'Ok',
           id: 'confirm-button',
           handler: () => {
 
             this.geolocation.getCurrentPosition().then((resp) => {
 
-
               let token = this.userServices.traerToken()
 
               let ubi = {
                 ubi: {
-                  
+
                   "lon": resp.coords.latitude,
                   "lat": resp.coords.longitude
 
                 }
 
               }
+            
+              this.userServices.updateParkingUbicacion(token, parqueadero_id, ubi).subscribe((res: any) => {
 
-              console.log(ubi);
+                this.msgBien(res.msg)
+                this.ionViewWillEnter()
 
-              this.userServices.updateParkingUbicacion(token, parqueadero_id, ubi).subscribe(res => {
-                console.log(res);
               })
 
 
-
-
             }).catch((error) => {
-              console.log('Error getting location', error);
+
+              this.msgError('Erro: Asegurece de tener la ubicacion activa' + error)
             });
-
-
-
 
           }
         }
@@ -129,6 +169,52 @@ export class MisParqueaderosPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  cambiasEstado(parqueadero_id) {
+
+    let token = localStorage.getItem('token')
+
+    this.userServices.getParkingForId(token, parqueadero_id).subscribe((res: any) => {
+
+      let parqueadero = {
+
+        address: '',
+        type_parks: {
+          _0: false,
+          _1: false,
+          _2: false
+        },
+        type_security: {
+          cams: false,
+          vigilant: false
+        },
+        descript: '',
+        availability: false,
+        quotas: {
+          totals: 0
+        },
+        space: '',
+        price: 0
+      }
+
+      parqueadero = res.data
+
+      parqueadero.availability = !parqueadero.availability
+
+      this.userServices.updateParking(token, parqueadero_id, parqueadero).subscribe(res => {
+
+        this.ionViewDidLeave()
+        this.ionViewWillEnter()
+
+      })
+    })
+
+
+
+
+    console.log(parqueadero_id);
+
   }
 
 }

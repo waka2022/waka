@@ -6,7 +6,7 @@
     
     <div id="map" class="map"></div>
 
-    <ion-button color="light" id="refresh" disabled="true">
+    <ion-button color="light" id="refresh" (click)="doRefresh()">
         <i class="fa-solid fa-retweet text-black fa-lg"></i>
     </ion-button>    
 
@@ -14,8 +14,12 @@
         <i class="fas fa-car fa-3x"></i>
     </ion-tab-button>
 
-    <ion-button class="animate__animated animate__pulse animate__fast fixed-bottom m-0 p-0 btn-yaLlegue verde" expand="full" size="large" [ngClass]="{'rojo': estado}" (click)="cambiarEstado()"> 
-        <p id="TextYaLlegue" class="animate__animated animate__bounceIn animate__fast">{{ estado == false ? 'Ya llegue' : 'Ya me voy' }}</p> 
+    <ion-button *ngIf="this.estado === true" class="animate__animated animate__pulse animate__fast fixed-bottom m-0 p-0 rojo" expand="full" size="large" (click)="cancelarReserva()"> 
+        <p id="TextYaLlegue" class="animate__animated animate__bounceIn animate__fast">Cancelar</p> 
+    </ion-button>
+
+    <ion-button *ngIf="this.estado === false" class="fixed-bottom m-0 p-0 " expand="full" size="large"> 
+        <p id="TextYaLlegue" >Busca un parqueadero</p> 
     </ion-button>
 
 </ion-content> 

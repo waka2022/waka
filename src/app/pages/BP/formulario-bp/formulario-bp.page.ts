@@ -15,7 +15,7 @@ export class FormularioBPPage implements OnInit {
   info = new FormGroup({
     document: new FormControl('', [Validators.required, Validators.minLength(8)]),
     phone: new FormControl('', [Validators.required, Validators.minLength(10)]),
-    global: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    global: new FormControl('', [Validators.required]),
     mark: new FormControl('', [Validators.required, Validators.minLength(4)]),
     model: new FormControl('', [Validators.required, Validators.minLength(4)]),
     placa: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]),
@@ -40,6 +40,7 @@ export class FormularioBPPage implements OnInit {
 
       document: this.info.value.document,
       phone: this.info.value.phone,
+      parking: false
     }
 
     let infoCar = {
@@ -47,15 +48,22 @@ export class FormularioBPPage implements OnInit {
       type_vehi:{
         global: this.info.value.global,
         mark: this.info.value.mark,
-        model: this.info.value.model,
+        model: `${this.info.value.model}`,
         placa: this.info.value.placa,
         color: this.info.value.color,
       }
     }
 
-    this.usuarioService.addInfoUser(token, infoAdd).subscribe( res => {console.log(res)})
+    this.usuarioService.addInfoUser(token, infoAdd).subscribe( res => {
+      console.log(res)
+      console.log(infoAdd);
+      
+    })
 
-    this.usuarioService.addVehicleUser(token,infoCar).subscribe(res => {console.log(res)})
+    this.usuarioService.addVehicleUser(token,infoCar).subscribe(res => {
+      console.log(res)
+      console.log(infoCar);
+    })
 
     console.log(infoCar.type_vehi)
     this.router.navigate(['tabs/mapa'])

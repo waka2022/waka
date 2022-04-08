@@ -7,6 +7,41 @@
     border-radius: 7px;
 }
 
+.parpadeo{
+    animation: parpadeo 3s infinite;
+    animation-timing-function: ease-in-out;
+    --background: rgb(133, 131, 131) !important;
+}
+
+@keyframes parpadeo {
+    
+    0%{
+        opacity: 1;
+    }
+    50%{
+        opacity: 0.4;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+#msg{
+    color: black;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    
+}
+
+#msg h2{
+    font-size: 1.1rem;
+    text-align: center;
+    width: 100%;
+    margin: 0%;   
+    padding: 10px;
+}
+
 #img-parqueadero{
     height: 200px;
     object-fit: contain;

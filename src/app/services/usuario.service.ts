@@ -73,20 +73,20 @@ export class UsuarioService {
 
   //borrar parqueadero
 
-  borrarParking(token , id) {
+  borrarParking(token, id) {
     return this.http.delete(`${this.url}/parking/delete-parking-user/${id}`, { headers: { authorization_token: token } })
   }
 
   //actualizar parqueadero
 
-  updateParking(token , id , parq) {
-    return this.http.put(`${this.url}/parking/update-parking-user/${id}`, parq , { headers: { authorization_token: token } })
+  updateParking(token, id, parq) {
+    return this.http.put(`${this.url}/parking/update-parking-user/${id}`, parq, { headers: { authorization_token: token } })
   }
 
   //Actualizar la ubicacion un parqueadero segun su id
 
-  updateParkingUbicacion(token, id , ubi) {
-    return this.http.put(`${this.url}/parking/add-ubi-parking/${id}`, ubi , { headers: { authorization_token: token } })
+  updateParkingUbicacion(token, id, ubi) {
+    return this.http.put(`${this.url}/parking/add-ubi-parking/${id}`, ubi, { headers: { authorization_token: token } })
   }
 
   // Actualizar la informacion de un usuario-
@@ -102,8 +102,42 @@ export class UsuarioService {
 
   //obtener los parqueaderos para mostrar en el mapa
 
-  getparkingMap(token){
+  getparkingMap(token) {
     return this.http.get(`${this.url}/parking/view-all-parking-available`, { headers: { authorization_token: token } })
+  }
+
+  //hacer una reserva
+
+  requestReservation(token, reservacion) {
+    return this.http.post(`${this.url}/booking/request-reservation`, reservacion, { headers: { authorization_token: token } })
+  }
+
+  //ver todas las reservas de un parqueadero
+  getAllReservatios(token, id_parq) {
+    return this.http.get(`${this.url}/booking/view-reservatios-all/${id_parq}`, { headers: { authorization_token: token } })
+  }
+
+  //ver todas las reservas de un usuario
+  // estado = true Trae todas las reservas que estan en curso
+  // false = trae todas las reservas asi esten canceladas o terminadas
+  getAllReservatiosUser(token,estado) {
+    return this.http.get(`${this.url}/booking/view-reservations-all-user/${estado}`, { headers: { authorization_token: token } })
+  }
+
+  //actualizar estado de una reserva 
+  // 0 = en sitio
+  // 1 = Estacionado
+  // 2 = Final del parqueo
+  // 3 = Cancelado
+
+  updateStatusReservation(token, id_reserv, estado) {
+    return this.http.patch(`${this.url}/booking/change-status-reservation/${id_reserv}/${estado}`, {} , { headers: { authorization_token: token }} )
+  }
+
+
+  //ver reserva segun su id
+  getReservationForId(token, id_reserv) {
+    return this.http.get(`${this.url}/booking/view-reservation-unique/${id_reserv}`, { headers: { authorization_token: token }} )
   }
 
 }

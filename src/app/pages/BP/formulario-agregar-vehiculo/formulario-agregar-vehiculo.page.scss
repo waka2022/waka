@@ -1,8 +1,14 @@
 #formulario{
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     width: 70%;
-    margin-top: 5%;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
+
+    height: 400px;
 }
 
 #cerrar{
@@ -14,4 +20,15 @@
     color: rgba(0, 0, 0, 0.583);
     font-size: 1.07cm;
     cursor: pointer;
+}
+
+#inputColor{
+    border: none;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.btn-reg{
+    height: 50px;
 }
