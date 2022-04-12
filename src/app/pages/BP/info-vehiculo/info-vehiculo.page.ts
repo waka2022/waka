@@ -15,6 +15,7 @@ import { EmmitersService } from '../../../services/emmiters.service';
 export class InfoVehiculoPage implements OnInit {
 
 
+  //array para traer todos los carros de un usario
   carros = {}
 
 
@@ -27,7 +28,9 @@ export class InfoVehiculoPage implements OnInit {
       
     }
 
+  //ngOnInit pertenece al ciclo de vidad de angular y aqui se le esta indicando que el componenete ya esta listo para darle uso
   ngOnInit() {
+    //iniciar la funcion get carro user para mostrar todos los carros de mi cuenta
     this.getCarrosUser()
     this.emmiter.$emmiterProfile.subscribe(
       resp => this.getCarrosUser()
@@ -36,11 +39,13 @@ export class InfoVehiculoPage implements OnInit {
 
   }
 
+  //* funcion para implementar el servicio carros de un usuario
   getCarrosUser(){
-
+  //token para enviar al servicio
      let token = this.usuarioService.traerToken()
-
+  // se llama el sevicio  donde se debe enviar el token
      this.usuarioService.getCarrosUser(token).subscribe( (res:any) =>{
+       //guradando los distintio carros en el array carros para mostrarlos 
      this.carros = res.data
 
        console.log(this.carros)  
@@ -48,7 +53,7 @@ export class InfoVehiculoPage implements OnInit {
   }
 
   
-
+//* modal para abrir crear un nuevo vehiculo
   async presentModa2() {
 
     const modal = await this.modalController.create({
@@ -71,7 +76,7 @@ export class InfoVehiculoPage implements OnInit {
     });
   }
 
-  //*generando la alerta para avisar al usuario de eliminar un vehiculo
+  //*generando la alerta para avisar al usuario de eliminar un vehiculo  enviando el id del carro
   async alertDeleteVehicle(id) {
     const alert = await this.alertController.create({
       //nombre para dar estilos a la misma
@@ -94,11 +99,13 @@ export class InfoVehiculoPage implements OnInit {
           text: 'Confirmar',
           cssClass: 'btn2',
           handler: () => {
+            //se traer el token 
             let token = localStorage.getItem("token");
+            //servicio eliminar vehiculo donde se debe enviar el token y id
             this.usuarioService.eliminarVehiculo(token, id).subscribe(
               (res: any) => {
+                //cuando hay un cambio se actualiza la vista
                 this.emmiter.$emmiterProfile.emit(true)
-                //this.router.navigate(['tabs'])   
                 console.log(res)
               })}
              

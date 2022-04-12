@@ -2,10 +2,11 @@
   Descripción: codigo HTML de la pagina actualisarvehiculo = formulario crear una nueva cuenta .
   ?Autor:SamuelCanoRomero
   Fecha de creación:23/03/2022
-  Ultima fecha de modificación:23/03/2022
+  Ultima fecha de modificación:09/04/2022
  -->
 
- <ion-header>
+   <!-- *boton en el header para volver al mapa, pagina inicial -->
+<ion-header>
   <ion-toolbar color="primarioApp">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/mapa"></ion-back-button>
@@ -16,13 +17,10 @@
 
 <ion-content color="segundarioApp">
 
-  <!--* boto o icono de X para cerrar el modal  -->
-  <!-- <h2><br><i id="cerrar" (click)="dismiss()" class="fa-solid fa-xmark"></i></h2> <hr>-->
-  
-  
-<!-- *inicializar el formulario -->
+
+  <!-- *inicializar el formulario -->
   <form [formGroup]="info" (ngSubmit)="actualizarCar()" id="formulario">
-<!--* primer campo el tipo de automovil -->
+    <!--* primer campo el tipo de automovil -->
     <ion-item color="segundarioApp" class="border-abajo">
       <ion-label position="floating">Tipo</ion-label>
       <ion-select interface="popover" formControlName="global" value="{{this.global}}">
@@ -32,46 +30,57 @@
       </ion-select>
     </ion-item>
     <!-- *mensaje de error el campo es obligatorio -->
-    <ion-label color="danger" *ngIf="info.controls.global.errors?.required && (info.touched || info.dirty)">* El  Tipo es obligatorio. </ion-label>
+    <ion-label color="danger" *ngIf="info.controls.global.errors?.required && (info.touched || info.dirty)">* El Tipo es
+      obligatorio. </ion-label>
 
-<!-- *campo para ingresar la marca  -->
+    <!-- *campo para ingresar la marca  -->
     <ion-item class="border-abajo texto-formulario" color="segundarioApp">
       <ion-label color="primarioApp" position="floating">Marca</ion-label>
       <ion-input formControlName="mark" value="{{this.mark}}"></ion-input>
     </ion-item>
     <!-- *mensaje error campo mayor a 4 digitos -->
-    <ion-label color="danger" *ngIf="info.controls.mark.errors?.minlength && (info.touched || info.dirty)">* La Marca debe contar con más de 4 digitos. </ion-label>
-<!-- *campo para ingresar el modelo (año) -->
+    <ion-label color="danger" *ngIf="info.controls.mark.errors?.minlength && (info.touched || info.dirty)">* La Marca
+      debe contar con más de 4 digitos. </ion-label>
+    <!-- *campo para ingresar el modelo (año) -->
     <ion-item class="border-abajo" color="segundarioApp">
       <ion-label color="primarioApp" position="floating">Modelo</ion-label>
       <ion-input formControlName="model" value="{{this.model}}"></ion-input>
     </ion-item>
     <!-- *mensaje error solo 4 digitos -->
-    <ion-label color="danger" *ngIf="info.controls.model.errors?.minlength && (info.touched || info.dirty)">* El Modelo debe contar con solo 4 digitos. </ion-label><br>
+    <ion-label color="danger" *ngIf="info.controls.model.errors?.minlength && (info.touched || info.dirty)">* El Modelo
+      debe contar con solo 4 digitos. </ion-label><br>
     <!-- *meensaje error debe ser de tipo númerico -->
-    <ion-label color="danger" *ngIf="info.controls.model.errors?.pattern && (info.touched || info.dirty)">* El Modelo debe ser númerico. </ion-label>
+    <ion-label color="danger" *ngIf="info.controls.model.errors?.pattern && (info.touched || info.dirty)">* El Modelo
+      debe ser númerico. </ion-label>
 
-<!-- *campo para ingresar la placa -->
+    <!-- *campo para ingresar la placa -->
     <ion-item class="border-abajo" color="segundarioApp">
       <ion-label color="primarioApp" position="floating">Placa</ion-label>
       <ion-input formControlName="placa" value="{{this.placa}}"></ion-input>
     </ion-item>
     <!-- *error mensaje tipado placa (ABC-123) -->
-    <ion-label color="danger" *ngIf="info.controls.placa.errors?.pattern && (info.touched || info.dirty)">* El Modelo debe contar con 3 letras Mayúsculas, (-) y 3 Números. </ion-label>
+    <ion-label color="danger" *ngIf="info.controls.placa.errors?.pattern && (info.touched || info.dirty)">* El Modelo
+      debe contar con 3 letras Mayúsculas, (-) y 3 Números. </ion-label>
 
-<!-- *campo para ingresar el color del automovil -->
+    <!-- *campo para ingresar el color del automovil -->
     <ion-item class="border-abajo" color="segundarioApp">
       <ion-label color="primarioApp" position="floating">Color</ion-label>
       <ion-input formControlName="color" value="{{this.color}}"></ion-input>
     </ion-item>
     <!-- *mensaje error campo obligatorio -->
-    <ion-label color="danger" *ngIf="info.controls.color.errors?.required && (info.touched || info.dirty)">* El Color es obligatorio. </ion-label>
-<!-- *boton para hacer el envio del fomulario con los datos ingresados -->
+    <ion-label color="danger" *ngIf="info.controls.color.errors?.required && (info.touched || info.dirty)">* El Color es
+      obligatorio. </ion-label>
+    <!-- *boton para hacer el envio del fomulario con los datos ingresados -->
     <ion-button class="animate__animated animate__pulse animate__fast mt-5 d-flex justify-content-center verde"
-      expand="block" size="large" type="submit"[disabled]="!info.valid">
+      expand="block" size="large" type="submit" [disabled]="!info.valid">
       <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Actualizar</p>
     </ion-button>
 
   </form>
-
+  <div class="ion-justify-content-center">
+    <!--* mensaje (se actualizo el vehiculo ) -->
+    <ion-text class="ion-text-center" color="warning" class="text-start">
+      <p class="ion-text-center mt-5">{{this.mssg}}</p>
+    </ion-text>
+  </div>
 </ion-content>

@@ -55,7 +55,7 @@ export class PerfilPage implements OnInit {
   }
 
 
-//*generando la alerta para avisar al usuario de cambiar la contrsena
+//*generando la alerta para avisar al usuario de cambiar la contrseña
 async presentAlertCambiarPass(email2) {
   const alert = await this.alertController.create({
     //nombre para dar estilos a la misma
@@ -65,16 +65,17 @@ async presentAlertCambiarPass(email2) {
     header: 'Cambiar Contraseña',
     //subtitulo de la alerta
     subHeader: '<ion-text color="danger">,<p>Se le enviara un correo a su siguiente correo:<p></ion-text>',
-    //mensaje o centendio de la alerta
+    //mensaje o centendio de la alerta donde le envio el correo al cual se enviara el mensaje
     message: this.email,
-    //tendra dos botones (cancelar y confirmar)
-    inputs:[{name: 'emailUser',
-    type: 'text',
-    id: 'emailalert',
-    value: this.email,
-    placeholder: 'Email'
-  }
-    ],
+    
+  //   inputs:[{name: 'emailUser',
+  //   type: 'text',
+  //   id: 'emailalert',
+  //   value: this.email,
+  //   placeholder: 'Email'
+  // }
+  //   ],
+  //tendra dos botones (cancelar y confirmar)
     buttons: [
       {
         text: 'Cancelar',
@@ -91,19 +92,24 @@ async presentAlertCambiarPass(email2) {
         handler: (email) => {
           console.log('Confirm');
 
+          //guardando el email del usuario para enviar la petcion al correo
           let email12 =  {
             "email": this.email
         }
           
-
+//servico para enviar el mensaje de cambio de contraseña
           this.usuService.messCorreo(email12).subscribe(
             (res: any) => {
               console.log(res)
               console.log(email)
+              //guardando el mensaje para mostrarlo en la vista
               this.mssg = res.msg
             })
-          
-            this.router.navigate(['app-new-pass'])
+          //dandolo un timepo para que redirecciona al cambio de contraseña
+      setTimeout(() => {
+        this.router.navigate(['app-new-pass'])
+      }, 2000);
+            
           }
       }
     ]
@@ -123,7 +129,7 @@ async presentAlertCambiarPass(email2) {
       //subtitulo de la alerta
       subHeader: 'La eliminación de cuenta es definitiva Al eliminarla',
       //mensaje o centendio de la alerta
-      message: 'tu cuenta de WAKA y toda la información tambien se eliminará {{his.email}}' ,
+      message: 'tu cuenta de WAKA y toda la información tambien se eliminará' ,
       //tendra dos botones (cancelar y confirmar)
       buttons: [
         {
@@ -139,11 +145,15 @@ async presentAlertCambiarPass(email2) {
           cssClass: 'btn2',
           handler: () => {
             console.log('Confirm');
+
+            //trer el token  y guardarlo en una variable
             let token = localStorage.getItem("token");
 
+            //servicio para inHabilitar una cuenta enviando token
             this.usuService.inhabilitarUsuario(token).subscribe(
               (res: any) => {
                 console.log(res)
+                //mensaje para mostrarlo en la vista
                 this.mssg = res.msg
               })}
         }

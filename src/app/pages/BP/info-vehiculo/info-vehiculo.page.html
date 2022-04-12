@@ -4,7 +4,8 @@
 
 <ion-content color="segundarioApp">
 
-    <h2 class="ms-4">¿Que vehiculo vas a usar hoy? <i  id="cerrar" (click)="dismiss()" class="fa-solid fa-xmark"></i></h2> 
+    <h2 class="ms-4">¿Que vehiculo vas a usar hoy? <i id="cerrar" (click)="dismiss()" class="fa-solid fa-xmark"></i>
+    </h2>
     <hr>
 
     <ion-grid>
@@ -12,38 +13,62 @@
 
             <ion-col size="6" *ngFor="let carro of this.carros">
                 <label class="checkeable">
-                    <input type="checkbox" name="cap1"/>
+                    <input type="checkbox" name="cap1" />
 
                     <div *ngIf="carro.type_vehi.global === 1" class="icon text-center p-3">
                         <i class="fas fa-car-side fa-5x "></i>
                         <br>
                         {{carro.type_vehi.placa}}
-                        <!--*boton para eliminar un vehiculo de mi lista llamando la funcion elimiar en typescript -->
-                        <div (click)="alertDeleteVehicle(carro._id)"><i class="fa-solid fa-trash-can"></i></div>
-                         <!--*boton para modificar info de un vehiculo de mi lista llamando la funcion actualizar en typescript -->
-                        <div [routerLink]="[ '/actualizarvehiculo', carro._id]"><i class="fa-solid fa-pen"></i></div>
+
+                        <ion-row>
+                            <ion-col>
+                                <!--*boton para eliminar un vehiculo de mi lista llamando la funcion elimiar en typescript -->
+                                <div (click)="alertDeleteVehicle(carro._id)"><i class="fa-solid fa-trash-can"></i></div>
+
+                            </ion-col>
+                            <ion-col>
+                                <!--*boton para modificar info de un vehiculo de mi lista llamando la funcion actualizar en typescript -->
+                                <div (click)="dismiss()" [routerLink]="[ '/actualizarvehiculo', carro._id]"><i
+                                        class="fa-solid fa-pen"></i></div>
+                            </ion-col>
+                        </ion-row>
                     </div>
 
                     <div *ngIf="carro.type_vehi.global === 0 " class="icon text-center p-3">
                         <i class="fa-solid fa-motorcycle fa-5x"></i>
                         <br>
                         {{carro.type_vehi.placa}}
-                        <!--*boton para eliminar un vehiculo de mi lista llamando la funcion elimiar en typescript -->
-                        <div (click)="alertDeleteVehicle(carro._id)"><i class="fa-solid fa-trash-can"></i></div>
-                         <!--*boton para modificar info de un vehiculo de mi lista llamando la funcion actualizar en typescript -->
-                         <div [routerLink]="[ '/actualizarvehiculo', carro._id]"><i class="fa-solid fa-pen"></i></div>
+                        <ion-row>
+                            <ion-col>
+                                <!--*boton para eliminar un vehiculo de mi lista llamando la funcion elimiar en typescript -->
+                                <div (click)="alertDeleteVehicle(carro._id)"><i class="fa-solid fa-trash-can"></i></div>
+
+                            </ion-col>
+                            <ion-col>
+                                <!--*boton para modificar info de un vehiculo de mi lista llamando la funcion actualizar en typescript -->
+                                <div (click)="dismiss()" [routerLink]="[ '/actualizarvehiculo', carro._id]"><i
+                                        class="fa-solid fa-pen"></i></div>
+                            </ion-col>
+                        </ion-row>
                     </div>
 
                     <div class="icon text-center p-3" *ngIf="carro.type_vehi.global === 2">
                         <i class="fa-solid fa-bicycle fa-5x"></i>
                         <br>
                         {{carro.type_vehi.model}}
-                        <!--*boton para eliminar un vehiculo de mi lista llamando la funcion elimiar en typescript -->
-                        <div (click)="alertDeleteVehicle(carro._id)"><i class="fa-solid fa-trash-can"></i></div>
-                         <!--*boton para modificar info de un vehiculo de mi lista llamando la funcion actualizar en typescript -->
-                         <div [routerLink]="[ '/actualizarvehiculo', carro._id]"><i class="fa-solid fa-pen"></i></div>
-                    </div>
+                        <ion-row>
+                            <ion-col>
+                                <!--*boton para eliminar un vehiculo de mi lista llamando la funcion elimiar en typescript -->
+                                <div (click)="alertDeleteVehicle(carro._id)"><i class="fa-solid fa-trash-can"></i></div>
 
+                            </ion-col>
+                            <ion-col>
+                                <!--*boton para modificar info de un vehiculo de mi lista llamando la funcion actualizar en typescript -->
+                                <div (click)="dismiss()" [routerLink]="[ '/actualizarvehiculo', carro._id]"><i
+                                        class="fa-solid fa-pen"></i></div>
+                            </ion-col>
+                        </ion-row>
+                    </div>
                 </label>
             </ion-col>
 

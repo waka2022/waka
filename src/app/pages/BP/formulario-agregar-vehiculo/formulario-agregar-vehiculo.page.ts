@@ -32,7 +32,9 @@ export class FormularioAgregarVehiculoPage implements OnInit {
   car = new FormGroup({
     global: new FormControl('',Validators.required ),
     mark: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    //pattern para validar que el dato sea  4 números
     model: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(4),Validators.pattern('[0-9]{4}')]),
+    //pattern para validar que el dato sea 3 Mayusculas separadas por una - y 3 números
     placa: new FormControl('', [Validators.required,Validators.pattern('[A-Z]{3}[_%+-][0-9]{3}')]),
     color: new FormControl('', [Validators.required]),
   });
@@ -44,7 +46,7 @@ export class FormularioAgregarVehiculoPage implements OnInit {
   //*generando la funcion para crear el nuevo carro
   addCar(){
 
-    //inidicando los campo a ingresar 
+    //inidicando los campo a ingresar para enviarlos al servicio
     let infoCar = {
       type_vehi:{
         global: this.car.value.global,
@@ -54,15 +56,16 @@ export class FormularioAgregarVehiculoPage implements OnInit {
         color: this.car.value.color,
       }
     }
-  //validando el token y generando el suscribe
+  //traer  token para enviarlo al servicio
     let token = this.usuarioService.traerToken()
     this.usuarioService.addVehicleUser(token, infoCar).subscribe(res => {
       console.log(res)
-      //this.emmiter.$emmiterParqueaderos.emit(true)
+      //actualizando la informacion del nuevo carro en la vista de mis carros.
       this.emmiter.$emmiterProfile.emit(true)
 
     })
 
+    //llamar la funcion para cerrar el  modal
     this.dismiss()
     
   }

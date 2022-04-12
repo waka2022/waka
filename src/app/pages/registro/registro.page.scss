@@ -25,7 +25,7 @@
     bottom: 0;
     margin: auto;
     width: 39%;
-    height: 700px;
+     height: 700px;
     border: #ffffff67 solid 1px;
 }
 
@@ -64,3 +64,13 @@
       }
   }
   
+//estylos del boton de google
+//tamaño de letra, color blanco y linea negra, y redondeo de las esquinas
+.login-Btn{
+    font-size: 35px;
+    font-weight: bold;
+    background-color: aliceblue;
+    border: 2px solid black;
+    height: 60px;
+    border-radius: 5px;
+}

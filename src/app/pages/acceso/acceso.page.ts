@@ -26,7 +26,7 @@ export class AccesoPage implements OnInit {
       (res: any) => {
 
         console.log(res.data.document)
-        if (res.data.document === undefined) {
+        if (res.data.document === undefined || null) {
           this.router.navigate(['seleccionar-rol'])
         }else{
         
@@ -41,7 +41,6 @@ export class AccesoPage implements OnInit {
   });
 
   Ingresar() {
-    //this.usuarioService.messverificacion(this.users.value.email,).subscribe( res => {console.log(res)})
 
     this.usuarioService.signInNormal(this.users.value).subscribe(
       (res: any) => {
@@ -53,24 +52,6 @@ export class AccesoPage implements OnInit {
       
       })
 
-      let email = {"email": this.users.value.email }
-    
-      this.usuarioService.messverificacion(email).subscribe( res => {console.log(res)})
-
   }
 
-  onSignIn(googleUser) {
-    // Useful data for your client-side scripts:
-    var profile = googleUser.getBasicProfile();
-    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-    console.log('Full Name: ' + profile.getName());
-    console.log('Given Name: ' + profile.getGivenName());
-    console.log('Family Name: ' + profile.getFamilyName());
-    console.log("Image URL: " + profile.getImageUrl());
-    console.log("Email: " + profile.getEmail());
-
-    // The ID token you need to pass to your backend:
-    // var id_token = googleUser.getAuthResponse().id_token;
-    // console.log("ID Token: " + id_token);
-  }
 }

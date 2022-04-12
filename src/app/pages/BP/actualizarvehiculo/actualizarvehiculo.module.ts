@@ -1,3 +1,9 @@
+  // Proyecto de formación SENA (WAKA)
+  //   Descripción: codigo TypeScript de la pagina actualizar vehiculo = actualizar vehiculo de mis lista.
+  //   ?Autor:@SamuelCanoRomero
+  //   Fecha de creación:/02/2022
+  //   Ultima fecha de modificación:09/04/2022
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';

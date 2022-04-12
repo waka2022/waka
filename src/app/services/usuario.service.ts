@@ -35,57 +35,56 @@ export class UsuarioService {
     return this.http.get(`${this.url}/users/unique-user`, { headers: { authorization_token: token } })
   }
 
-  //deshabilitar una cuenta @samuel.
+  //deshabilitar una cuenta @samuel. (token)
   inhabilitarUsuario(token) {
 
     return this.http.delete(`${this.url}/users/disable-account`, { headers: { authorization_token: token } })
 
   }
 
-  //eliminar un vehiculo @samuel.
-  eliminarVehiculo(token, id){
-  return this.http.delete(`${this.url}/vehicle/delete-vehicle-user/${id}`, { headers: { authorization_token: token } })
+  //eliminar un vehiculo @samuel.(token y id del vehiculo)
+  eliminarVehiculo(token, id) {
+    return this.http.delete(`${this.url}/vehicle/delete-vehicle-user/${id}`, { headers: { authorization_token: token } })
   }
 
-  //!estoy aca
-  //traer info de un veiculo segun id. @Samuel
-  getVehicleId(token,id){
-    return this.http.get(`${this.url}/vehicle/view-unique-vehicle/${id}`,  { headers: { authorization_token: token } })
+  //traer info de un veiculo segun id. @Samuel (token id del vehiculo)
+  getVehicleId(token, id) {
+    return this.http.get(`${this.url}/vehicle/view-unique-vehicle/${id}`, { headers: { authorization_token: token } })
   }
 
-  // Actualizar la informacion de un vehiculo @samuel.
+  // Actualizar la informacion de un vehiculo @samuel. (token, id vehiculo y info del fomr)
   updateInvehiculo(token, id, infoCar) {
     return this.http.put(`${this.url}/vehicle/update-vehicle-user/${id}`, infoCar, { headers: { authorization_token: token } })
   }
 
-  //login con google @samuel.
-  signGoogle(signinGo:any){
-    return this.http.post(`${this.url}/auth/google`, signinGo)
+  //login con google @samuel. (token de google)
+  signGoogle(tokenGoogle) {
+    return this.http.post(`${this.url}/auth/google`, tokenGoogle)
   }
 
-  //verificacion de cuenta @samuel.
-  verificarCuenta(token){
-    //return this.http.put(`${this.url}/auth/verify-account/${token}`)
+  //verificacion de cuenta @samuel. (token)
+  verificarCuenta(token) {
+    //return this.http.put(`${this.url}/auth/verify-account/${token2}`)
   }
 
-  //cambiar la contraseña de una cuenta @samuel.
-  cambiarContraseña(token, infopass){
+  //cambiar la contraseña de una cuenta @samuel.( token y info form)
+  cambiarContraseña(token, infopass) {
     return this.http.put(`${this.url}/auth/reset-password/${token}`, infopass)
-    }
-
-  //mensaje por correo y cambiar contrasena
-  messCorreo(email){
-    return this.http.post(`${this.url}/auth/request-emails-account/2`, email)
-    
   }
 
-  //mesaje por correo y validar el nuevo registro
-  messverificacion(email){
+  //mensaje por correo y cambiar contrasena (email)
+  messCorreo(email) {
+    return this.http.post(`${this.url}/auth/request-emails-account/2`, email)
+
+  }
+
+  //mesaje por correo y validar el nuevo registro (email)
+  messverificacion(email) {
     return this.http.post(`${this.url}/auth/request-emails-account/1`, email)
   }
 
 
-  addInfoUser(token, infoAdd) {
+  addInfoUser(token, infoAdd) { 
 
     return this.http.put(`${this.url}/users/add-info`, infoAdd, { headers: { authorization_token: token } })
 

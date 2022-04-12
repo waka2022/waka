@@ -1,4 +1,3 @@
-
 <!-- Proyecto de formación SENA (WAKA)
   Descripción: codigo HTML de la pagina registro = formulario crear una nueva cuenta .
   ?Autor:SamuelCanoRomero
@@ -17,13 +16,13 @@
 
 
 <ion-content>
-<!--** card donde esta ubicado el formulario** -->
+  <!--** card donde esta ubicado el formulario** -->
   <ion-card class="card">
     <!--* logo de waka en el encabezado de esta card -->
     <div class="mt-5 bt-5 d-flex justify-content-center ">
       <app-logo-waka></app-logo-waka>
     </div>
-<!--* contenido de la card (fomulario) -->
+    <!--* contenido de la card (fomulario) -->
     <ion-card-content>
       <!-- *inicializando el formulario con funcion guardar datos(savedata()) -->
       <form [formGroup]="users" (ngSubmit)="saveData()">
@@ -33,50 +32,55 @@
           <ion-label color="dark" position="floating">Nombres:</ion-label>
           <ion-input class="text-white" formControlName="name"></ion-input>
         </ion-item>
- 
+
         <!--* campo para ingreso de email -->
         <ion-item class="border-abajo">
           <ion-label color="dark" position="floating">Email:</ion-label>
           <ion-input class="text-white" formControlName="email"></ion-input>
         </ion-item>
-        <ion-label color="danger" *ngIf="users.controls.email.errors?.pattern && (users.touched || users.dirty)">* El email no es válido. </ion-label>
+        <ion-label color="danger" *ngIf="users.controls.email.errors?.pattern && (users.touched || users.dirty)">* El
+          email no es válido. </ion-label>
 
         <!-- *campo para ingreso de contraseña -->
         <ion-item class="border-abajo">
-          <ion-label color="dark" position="floating" >Contraseña:</ion-label>
+          <ion-label color="dark" position="floating">Contraseña:</ion-label>
           <ion-input class="text-white" type="password" formControlName="password"></ion-input>
         </ion-item>
-        <ion-label color="danger" *ngIf="users.controls.password.errors?.minlength && (users.touched || users.dirty)">* La contraseña debe contar con más de 4 digitos. </ion-label><br>
-        <ion-label color="danger" *ngIf="users.controls.password.errors?.pattern && (users.touched || users.dirty)">* La contraseña debe contar con carácteres especiales, mayúsculas, minúsculas y números. </ion-label>
+        <ion-label color="danger" *ngIf="users.controls.password.errors?.minlength && (users.touched || users.dirty)">*
+          La contraseña debe contar con más de 4 digitos. </ion-label><br>
+        <ion-label color="danger" *ngIf="users.controls.password.errors?.pattern && (users.touched || users.dirty)">* La
+          contraseña debe contar con carácteres especiales, mayúsculas, minúsculas y números. </ion-label>
 
         <!-- *campo para ingreso de confirmacion contraseña -->
         <ion-item class="border-abajo">
           <ion-label color="dark" position="floating">Confirmación de contraseña:</ion-label>
-          <ion-input class="text-white" ></ion-input>
+          <ion-input class="text-white"></ion-input>
         </ion-item>
 
         <!-- *campo checkbox para  confirmacion de terminos y condiciones -->
-        <ion-item >
+        <ion-item>
           <ion-label class="text-white">Terminos y condiciones</ion-label>
-          <ion-checkbox  formControlName="tercond"  color="dark" slot="start" (click)="openTerms()"></ion-checkbox>
-        </ion-item>    
+          <ion-checkbox formControlName="tercond" color="dark" slot="start" (click)="openTerms()"></ion-checkbox>
+        </ion-item>
+
+        <p>{{this.mssg}}</p>
 
         <!-- *el boton para hacer el envio del fomulario con los datos ingresados. -->
-        <ion-button class="animate__animated animate__pulse animate__fast verde mt-5 btn-registro"
-          size="large" type="submit" [disabled]="!users.valid">
+        <ion-button class="animate__animated animate__pulse animate__fast verde mt-5 btn-registro" size="large"
+          type="submit" [disabled]="!users.valid">
           <p class="animate__animated animate__bounceIn animate__fast ">Registrarse</p>
         </ion-button>
-        
+
 
       </form>
 
-      <!--* el boton para realizar el ingreso mediante google cuenta gmail  -->
-      <ion-button class="animate__animated animate__pulse animate__fast mb-4 mt-2 btn-registro"
-        color="light" size="large" (click)="Registrarse()">
-        <p id="text_icon" class="animate__animated animate__bounceIn animate__fast text-dark">
-          <i class="fab fa-google me-2"></i>Registrarse con Google
+ <!--* el boton para hacer el registro con cueenta google. conla funcion loginRef-->
+      <button class="  login-Btn animate__animated animate__pulse animate__fast mb-4 mt-2 btn-registro" color="light"
+        size="large" #loginRef>
+        <p class="animate__animated animate__bounceIn animate__fast text-dark">
+          <i  class="fab fa-google me-2">Registrarse con Google</i>
         </p>
-      </ion-button>
+      </button>
 
       <!--* mensaje para redireccion al login cunado el usuario ya tiene una cuenta -->
       <h3 class="mb-4 text-white text-center">
