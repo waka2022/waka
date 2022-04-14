@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../../services/usuario.service';
 import { AbstractControl, FormControl, FormGroup, PatternValidator, Validators } from '@angular/forms';
-import { ToastController } from '@ionic/angular';
+import { ToastController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-vehiculos-parqueadero',
@@ -10,15 +10,14 @@ import { ToastController } from '@ionic/angular';
 })
 export class VehiculosParqueaderoPage implements OnInit {
 
-  constructor(private userServices: UsuarioService, public toastController: ToastController) { }
+  constructor(private userServices: UsuarioService, public toastController: ToastController,
+    public alertController: AlertController) { }
 
   parqueaderos: any = []
-
   enCamino: boolean = true
-
   reservas: any = []
-
   ya: boolean = false
+  tiempoReserva:number
 
   parqueadero = new FormGroup({
     id_parqueadero: new FormControl('', [Validators.required]),
@@ -29,7 +28,7 @@ export class VehiculosParqueaderoPage implements OnInit {
   }
 
   ionViewWillEnter() {
-
+    
 
     let token = localStorage.getItem('token')
 
@@ -41,6 +40,7 @@ export class VehiculosParqueaderoPage implements OnInit {
           id: res.data[i]._id,
           direccion: res.data[i].address
         }
+
         this.parqueaderos.push(parqueadero)
       }
 
@@ -49,23 +49,22 @@ export class VehiculosParqueaderoPage implements OnInit {
   }
 
   ionViewDidLeave() {
-
     this.parqueaderos = []
   }
 
   buscarReservas(id) {
 
     let token = localStorage.getItem('token')
-    this.userServices.getAllReservatios(token, id).subscribe((res: any) => {
+    this.userServices.getAllReservatios(token, id, true).subscribe((res: any) => {
 
       this.reservas = res.data
+
       //console.log(this.reservas);
       console.log(this.reservas);
 
-      this.ya = true
-
-
     })
+
+    this.ya = true
 
   }
 
@@ -92,23 +91,78 @@ export class VehiculosParqueaderoPage implements OnInit {
     toast.present();
   }
 
-  cambiarEstadoReserva(id_reser: string, estado: number) {
+  async cobrarAlert(tiempo, id_reser, estado){
 
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Factura de la reserva',
+      message: `<h5 class="d-inline"> Este usuario lleva <h4 class="text-white d-inline ">${tiempo} Hora</h4> 
+                El monto a pagar es <h4 class="text-white d-inline ">______</h4> </h5>`,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          id: 'cancel-button',
+          handler: () => {
+            
+          }
+        }, {
+          text: 'Cobrar',
+          id: 'confirm-button',
+          handler: () => {
+            this.cambiarEstadoReserva(id_reser, estado)
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+
+  }
+
+  cobrar(id_reser:string, estado:number) {
 
     let token = localStorage.getItem('token')
 
-    console.log(id_reser);
+    this.userServices.getTimeReservation(token,id_reser).subscribe((res:any)=>{
+
+      let tiempo = res.data
+      this.cobrarAlert(tiempo,id_reser,estado)
+      
+    })
+  }
+
+
+  cambiarEstadoReserva(id_reser: string, estado: number) {
+
+    let token = localStorage.getItem('token')
 
     this.userServices.updateStatusReservation(token, id_reser, estado).subscribe((res: any) => {
 
-
       this.msgBien(res.msg)
-      this.ionViewDidLeave()
-      this.ionViewWillEnter()
+
+
+      //console.log(id_reser);
+
+      this.userServices.getReservationForId(token, id_reser).subscribe((res: any) => {
+        //console.log(res.data.id_park);
+        let id_park = res.data.id_park
+
+        this.userServices.getAllReservatios(token, id_park, true).subscribe((res: any) => {
+
+          this.reservas = res.data
+          //console.log(this.reservas);
+
+        })
+
+      })
 
 
     }, error => {
+
       this.msgError(error.error.msg)
+
     })
 
   }

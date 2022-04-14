@@ -53,14 +53,6 @@ export class MapboxService {
         </ion-row>
 
         <ion-row>
-            <ion-col size="12">
-                <i class="fa-solid fa-star-sharp"></i>
-                <i class="fa-thin fa-star-sharp"></i>
-                <i class="fa-light fa-star-sharp fa-2x"></i>
-            </ion-col>
-        </ion-row>
-
-        <ion-row>
             <ion-col size="6">
             Precio/hora
             <h5 class="mt-1">
@@ -70,8 +62,11 @@ export class MapboxService {
 
             <ion-col size="6">
             <h5>
-            <i class="fas fa-car-side fa-1x "></i>
-                <i class="fa-solid fa-bicycle fa-1x"></i>
+
+            ${feature.properties.carro}
+            ${feature.properties.bicicleta}
+            ${feature.properties.moto}
+              
             </h5>
             </ion-col>
         </ion-row>
@@ -107,7 +102,7 @@ export class MapboxService {
       let popup = new Mapboxgl.Popup({
       }).setDOMContent(popupContent);
 
-     
+
       const marcador = document.createElement('div');
       marcador.className = 'marker';
       // agregarmos el marcador al mapa

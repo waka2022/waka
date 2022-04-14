@@ -23,6 +23,10 @@ export class MapaPage implements OnInit {
   latitud = 7.0620153
   longitud = -75.0933164
 
+  time_reserva: number
+
+  onRoute: boolean = false
+
 
   constructor(
     private routerOutlet: IonRouterOutlet, private modalController: ModalController,
@@ -52,6 +56,47 @@ export class MapaPage implements OnInit {
 
   ionViewWillEnter() {
 
+    let id_parqueadero = localStorage.getItem('id-parq')
+
+    if (!!id_parqueadero === true) {
+
+      let token = localStorage.getItem('token')
+
+      this.userservice.getAllReservatiosUser(token, true).subscribe((res: any) => {
+
+        let reservas: any = res.data
+
+        if (reservas.length === 0) {
+
+          this.estado = false
+          console.log("no hay reservas");
+          localStorage.removeItem('lat-parq')
+          localStorage.removeItem('lon-parq')
+          localStorage.removeItem('id-parq')
+          localStorage.removeItem('calificacion')
+
+
+        } else {
+
+          this.onRoute = res.data[0].status.on_route
+          console.log(this.onRoute);
+
+          let id_reserv = reservas[0]._id
+
+          if (this.estado === true && this.onRoute === false) {
+
+            this.userservice.getTimeReservation(token, id_reserv).subscribe((res: any) => {
+              //console.log(res.data);
+              this.time_reserva = res.data
+            })
+          }
+
+        }
+
+      })
+
+    }
+
     this.cambiarEstado()
     this.crearDivMapa()
 
@@ -72,13 +117,13 @@ export class MapaPage implements OnInit {
           properties: {
             id: res.data[i]._id,
             precio: res.data[i].price,
-            direccion: res.data[i].address
+            direccion: res.data[i].address,
+            moto: `<i class='fa-solid fa-motorcycle ${res.data[i].type_parks._0}'></i>`,
+            carro: `<i class='fas fa-car-side ${res.data[i].type_parks._1}'></i>`,
+            bicicleta: `<i class='fa-solid fa-bicycle ${res.data[i].type_parks._2}'></i>`,
 
           }
         }
-
-        //console.log(res.data[i].price);
-
 
         this.parqueaderos.features.push(datapar)
 
@@ -312,9 +357,11 @@ export class MapaPage implements OnInit {
       this.userservice.updateStatusReservation(token, id_Reserv, 3).subscribe((res: any) => {
         //console.log(res);
         this.msgBien(res.msg)
+
         localStorage.removeItem('lat-parq')
         localStorage.removeItem('lon-parq')
         localStorage.removeItem('id-parq')
+        localStorage.removeItem('calificacion')
 
         this.doRefresh()
 

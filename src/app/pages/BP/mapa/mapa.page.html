@@ -14,8 +14,12 @@
         <i class="fas fa-car fa-3x"></i>
     </ion-tab-button>
 
-    <ion-button *ngIf="this.estado === true" class="animate__animated animate__pulse animate__fast fixed-bottom m-0 p-0 rojo" expand="full" size="large" (click)="cancelarReserva()"> 
+    <ion-button *ngIf="this.estado === true && this.onRoute === true" class="animate__animated animate__pulse animate__fast fixed-bottom m-0 p-0 rojo" expand="full" size="large" (click)="cancelarReserva()"> 
         <p id="TextYaLlegue" class="animate__animated animate__bounceIn animate__fast">Cancelar</p> 
+    </ion-button>
+
+    <ion-button *ngIf="this.estado === true && this.onRoute === false" class="fixed-bottom m-0 p-0 verde" expand="full" size="large" routerLink="/tabs/recibo" > 
+        <p id="TextYaLlegue" >Lleva {{this.time_reserva}} Hora</p> 
     </ion-button>
 
     <ion-button *ngIf="this.estado === false" class="fixed-bottom m-0 p-0 " expand="full" size="large"> 

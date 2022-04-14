@@ -113,14 +113,18 @@ export class UsuarioService {
   }
 
   //ver todas las reservas de un parqueadero
-  getAllReservatios(token, id_parq) {
-    return this.http.get(`${this.url}/booking/view-reservatios-all/${id_parq}`, { headers: { authorization_token: token } })
+  // estado = true Trae todas las reservas que estan en curso
+  // false = trae todas las reservas asi esten canceladas o terminadas
+
+  getAllReservatios(token, id_parq, estado) {
+    return this.http.get(`${this.url}/booking/view-reservatios-all/${id_parq}/${estado}`, { headers: { authorization_token: token } })
   }
 
   //ver todas las reservas de un usuario
   // estado = true Trae todas las reservas que estan en curso
   // false = trae todas las reservas asi esten canceladas o terminadas
-  getAllReservatiosUser(token,estado) {
+
+  getAllReservatiosUser(token, estado) {
     return this.http.get(`${this.url}/booking/view-reservations-all-user/${estado}`, { headers: { authorization_token: token } })
   }
 
@@ -131,13 +135,29 @@ export class UsuarioService {
   // 3 = Cancelado
 
   updateStatusReservation(token, id_reserv, estado) {
-    return this.http.patch(`${this.url}/booking/change-status-reservation/${id_reserv}/${estado}`, {} , { headers: { authorization_token: token }} )
+    return this.http.patch(`${this.url}/booking/change-status-reservation/${id_reserv}/${estado}`, {}, { headers: { authorization_token: token } })
   }
 
 
   //ver reserva segun su id
   getReservationForId(token, id_reserv) {
-    return this.http.get(`${this.url}/booking/view-reservation-unique/${id_reserv}`, { headers: { authorization_token: token }} )
+    return this.http.get(`${this.url}/booking/view-reservation-unique/${id_reserv}`, { headers: { authorization_token: token } })
+  }
+
+
+  // ver el tiempo que lleva un vehiculo
+  getTimeReservation(token, id_reserv) {
+    return this.http.get(`${this.url}/booking/view-time-parking-vehicle/${id_reserv}`, { headers: { authorization_token: token } })
+  }
+
+  //califica un parqueadero
+  calificarParqueadero(token, calificacion){
+    return this.http.post(`${this.url}/ranking/register-ranking`, calificacion, { headers: { authorization_token: token } })
+  }
+
+  //ver la calificacion de un parqueadero
+  vercalificarParqueadero(token, id_parq){
+    return this.http.get(`${this.url}/ranking/average-ranking-parking/${id_parq}`, { headers: { authorization_token: token } })
   }
 
 }

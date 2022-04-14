@@ -24,9 +24,7 @@
                         <div id="contenedor-tiempo">
                             <ion-row>
                                 <ion-col>
-                                    1h y 21min
-                                    <br>
-                                    $5.400
+                                    Lleva {{this.time_reserva}} Hora
                                 </ion-col>
                             </ion-row>
     
@@ -35,8 +33,11 @@
                                     <ion-button routerLink="/novedades" expand="block" color="primary">
                                         Novedades
                                     </ion-button>
-                                    <app-modal></app-modal>
-                                    <app-modal-calificar></app-modal-calificar>
+
+                                    <ion-button *ngIf="reserva.status.on_route === false && reserva.status.global_status === true" color="celeste2" expand="block"  (click)="verPago(reserva._id)" >Monto a pagar</ion-button>
+                                    <ion-button *ngIf="reserva.status.on_route === true && reserva.status.global_status === true" disabled="true" expand="block"  >Monto a pagar</ion-button>
+
+                                    <app-modal-calificar [id_parq]="reserva.id_park._id" ></app-modal-calificar>
                                 </ion-col>
                             </ion-row>
                         </div>

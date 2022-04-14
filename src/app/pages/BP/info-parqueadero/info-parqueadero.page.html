@@ -3,7 +3,9 @@
 <ion-content>
     <ion-grid id="grid-contenedor" class="heightConteiner centrar-contenedores referenciaPosicion" *ngIf="id_parqueadero === true">
 
-        <ion-row class="width100 centrarVertText mb-5 text-white">
+
+        <ion-row class="centrarVertText text-white">
+
 
             <ion-col size=12 size-sm="4" class="p-3 centrar-contenedores animate__animated animate__fadeInLeft">
                 <img src="../../../assets/parqueadero.jpg" width="100%" />
@@ -11,7 +13,7 @@
 
             <ion-col size=12 size-sm="4" class="p-2 animate__animated animate__fadeInRight">
 
-                <p class="fs-4">Dueño
+                <p class="fs-4">Dueño</p>
                 <p class="fs-5 mb-4">{{infoparqueadero.id_user.names}}</p>
 
                 <p class="fs-4">Direccion</p>
@@ -30,6 +32,40 @@
                     <p class="fs-5 mb-4 d-inline" *ngIf="infoparqueadero.type_parks._1">Carros </p>
                     <p class="fs-5 mb-4 d-inline" *ngIf="infoparqueadero.type_parks._2">Bicicletas </p>
                 </div>
+                <br>
+
+                <p class="fs-4">Calificacion </p>
+                
+                <p *ngIf="calificacion === 1">
+                    <i class="fa-solid fa-star"></i>
+                </p>
+
+                <p *ngIf="calificacion === 2">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </p>
+
+                <p *ngIf="calificacion === 3">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </p>
+
+                <p *ngIf="calificacion === 4">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </p>
+
+                <p *ngIf="calificacion === 5">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </p>
+                
 
                 
 
@@ -47,16 +83,12 @@
                 <p class="fs-4">Precio hora</p>
                 <p class="fs-5 mb-4">{{infoparqueadero.price}}</p>
 
-                <p class="fs-4"><br></p>
-                <p class="fs-5 mb-4"></p>
-                
-
             </ion-col>
 
         </ion-row>
 
-        <ion-button expand="full" size="large" class="animate__animated animate__pulse animate__fast btnReservar verde" (click)="cambiarEstado()" [ngClass]="{'rojo': estado}">
-            <p class="animate__animated animate__bounceIn animate__fas">{{estado == false ? 'Reservar' : 'Cancelar' }}</p>
+        <ion-button *ngIf="estado === false" expand="full" size="large" class="animate__animated animate__pulse animate__fast btnReservar verde" (click)="cambiarEstado()">
+            <p class="animate__animated animate__bounceIn animate__fas">Reservar</p>
         </ion-button>
 
     </ion-grid>
