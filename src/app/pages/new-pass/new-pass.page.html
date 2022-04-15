@@ -1,39 +1,51 @@
+<!-- Proyecto de formación SENA (WAKA)
+Descripción: codigo HTML de la pagina CAMBIAR Psw = formulario la clave de la cuenta .
+?Autor:SamuelCanoRomero
+ Fecha de creación:/02/2022
+Ultima fecha de modificación:17/03/2022 -->
+
 <ion-header>
   <ion-toolbar color="primarioApp">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-back-button defaultHref="/tabs/perfil"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  
+  <!-- *inicilizando la card que contiene el formulario -->
   <ion-card class="card">
+<!-- *llamando el compoenente logo de waka para mostrarlo en el encabezado -->
     <div class="mt-5 bt-5 d-flex justify-content-center ">
       <app-logo-waka></app-logo-waka>
     </div>
-
+<!--* contenido de la card -->
     <ion-card-content>
-      <form [formGroup]="pass">
+      <!-- *inicilizando el formulario -->
+      <form [formGroup]="pass" (ngSubmit)="CambiarPass()">
         
+        <!-- *campo para ingrear la contraseña -->
         <ion-item class="border-abajo">
           <ion-label color="dark" position="floating">Contraseña:</ion-label>
           <ion-input class="text-white" type="password" formControlName="password"></ion-input>
         </ion-item>
+        <!-- *mensaje error contraseña con pattern -->
         <ion-label color="danger" *ngIf="pass.controls.password.errors?.pattern && (pass.touched || pass.dirty)">* La contraseña debe tener carácteres, mayusculas y números. </ion-label>
 
-
+        <!--* campo para ingresar confirmarcion dela contraseña -->
         <ion-item class="border-abajo">
           <ion-label color="dark" position="floating">Confirmación de contraseña:</ion-label>
           <ion-input class="text-white" type="password" formControlName="confirm_password"></ion-input>
         </ion-item>
 
+        <!-- *boton para enviar el formulario con los campos ingresados -->
         <ion-button class="mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast verde" size="large" type="submit" [disabled]="!pass.valid">
           <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Cambiar</p>
         </ion-button>
       </form>
-    
-
+      <ion-text color="warning" class="text-start">
+        <p>{{this.mssg}}</p>
+      </ion-text>  
     </ion-card-content>
   </ion-card>
 </ion-content>

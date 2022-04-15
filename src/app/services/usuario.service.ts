@@ -47,6 +47,11 @@ export class UsuarioService {
 
   }
 
+  //cambiar la contraseña de una cuenta @samuel.( token y info form)
+  cambiarContraseña(token, infopass) {
+    return this.http.put(`${this.url}/auth/reset-password/${token}`, infopass)
+  }
+
   //Agregar un vehiculo
 
   addVehicleUser(token, infoCar) {
@@ -100,8 +105,27 @@ export class UsuarioService {
     return this.http.get(`${this.url}/vehicle/view-my-vehicles`, { headers: { authorization_token: token } })
   }
 
-  //obtener los parqueaderos para mostrar en el mapa
+  //eliminar un vehiculo @samuel.(token y id del vehiculo)
+  eliminarVehiculo(token, id) {
+    return this.http.delete(`${this.url}/vehicle/delete-vehicle-user/${id}`, { headers: { authorization_token: token } })
+  }
 
+  // Actualizar la informacion de un vehiculo @samuel. (token, id vehiculo y info del fomr)
+  updateInvehiculo(token, id, infoCar) {
+    return this.http.put(`${this.url}/vehicle/update-vehicle-user/${id}`, infoCar, { headers: { authorization_token: token } })
+  }
+
+  //traer info de un veiculo segun id. @Samuel (token id del vehiculo)
+  getVehicleId(token, id) {
+    return this.http.get(`${this.url}/vehicle/view-unique-vehicle/${id}`, { headers: { authorization_token: token } })
+  }
+
+   //mensaje por correo y cambiar contrasena (email)
+   messCorreo(email) {
+    return this.http.post(`${this.url}/auth/request-emails-account/2`, email)
+  }
+
+  //obtener los parqueaderos para mostrar en el mapa
   getparkingMap(token) {
     return this.http.get(`${this.url}/parking/view-all-parking-available`, { headers: { authorization_token: token } })
   }
@@ -151,12 +175,12 @@ export class UsuarioService {
   }
 
   //califica un parqueadero
-  calificarParqueadero(token, calificacion){
+  calificarParqueadero(token, calificacion) {
     return this.http.post(`${this.url}/ranking/register-ranking`, calificacion, { headers: { authorization_token: token } })
   }
 
   //ver la calificacion de un parqueadero
-  vercalificarParqueadero(token, id_parq){
+  vercalificarParqueadero(token, id_parq) {
     return this.http.get(`${this.url}/ranking/average-ranking-parking/${id_parq}`, { headers: { authorization_token: token } })
   }
 

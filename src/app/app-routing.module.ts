@@ -79,6 +79,14 @@ const routes: Routes = [
     path: 'editar-parqueadero/:id',
     loadChildren: () => import('./pages/PP/editar-parqueadero/editar-parqueadero.module').then( m => m.EditarParqueaderoPageModule)
   },
+  {
+    path: 'actualizarvehiculo/:id',
+    loadChildren: () => import('./pages/BP/actualizarvehiculo/actualizarvehiculo.module').then( m => m.ActualizarvehiculoPageModule)
+  },
+  {
+    path: 'app-new-pass',
+    loadChildren: () => import('./pages/new-pass/new-pass.module').then( m => m.NewPassPageModule)
+  },
  
 
 ];
