@@ -159,9 +159,16 @@ export class MapaPage implements OnInit {
 
     let contenedorMapa = document.getElementById("contenedor");
     let mapa: any = document.getElementById('map')
-    contenedorMapa.removeChild(mapa);
 
-    this.parqueaderos.features = []
+    if (mapa === null) {
+
+    } else {
+
+      contenedorMapa.removeChild(mapa);
+      this.parqueaderos.features = []
+    }
+
+
   }
 
   async msgError(res: string) {

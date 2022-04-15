@@ -80,7 +80,8 @@ export class InfoParqueaderoPage implements OnInit {
           this.lonparq = res.data.ubi.lon
 
           this.usuarioService.vercalificarParqueadero(token,id).subscribe((res:any)=>{
-            console.log(res.data);
+            let calificacion = Math.round(res.data);
+            this.calificacion = calificacion
           })
 
         })
