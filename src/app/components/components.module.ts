@@ -6,6 +6,7 @@ import { ModalComponent } from './modal/modal.component';
 import { NovedadesAutoComponent } from './novedades-auto/novedades-auto.component';
 import { ModalCalificarComponent } from './modal-calificar/modal-calificar.component';
 import { LogoWakaDarkComponent } from './logo-waka-dark/logo-waka-dark.component';
+import { MenupruebaComponent } from './menuprueba/menuprueba.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { LogoWakaDarkComponent } from './logo-waka-dark/logo-waka-dark.component
     ModalComponent,
     NovedadesAutoComponent,
     ModalCalificarComponent,
-    LogoWakaDarkComponent
+    LogoWakaDarkComponent,
+    MenupruebaComponent
   ],
   imports: [
     CommonModule
@@ -26,7 +28,8 @@ import { LogoWakaDarkComponent } from './logo-waka-dark/logo-waka-dark.component
    ModalComponent,
    NovedadesAutoComponent,
    ModalCalificarComponent,
-   LogoWakaDarkComponent
+   LogoWakaDarkComponent,
+   MenupruebaComponent
 
   ]
 })

@@ -30,26 +30,26 @@ export class ReciboPage implements OnInit {
     } else {
 
       this.id_parqueadero = true
-    }
 
-    let token = localStorage.getItem('token')
+      let token = localStorage.getItem('token')
 
-    this.usuarioService.getAllReservatiosUser(token, true).subscribe((res: any) => {
+      this.usuarioService.getAllReservatiosUser(token, true).subscribe((res: any) => {
 
-      this.reservas = res.data
-      let id_reserv = res.data[0]._id
+        this.reservas = res.data
+        let id_reserv = res.data[0]._id
 
-      console.log(res);
+        console.log(res);
 
-      this.usuarioService.getTimeReservation(token, id_reserv).subscribe((res: any) => {
+        this.usuarioService.getTimeReservation(token, id_reserv).subscribe((res: any) => {
 
-        this.time_reserva = res.data
+          this.time_reserva = res.data
+
+
+        })
 
 
       })
-
-
-    })
+    }
 
   }
 
@@ -57,31 +57,48 @@ export class ReciboPage implements OnInit {
     this.reservas = []
   }
 
-  async pagoAlert(tiempo) {
+  async pagoAlert(tiempo , price) {
 
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Factura de la reserva',
-      message: `<h5 class="d-inline"> lleva <h4 class="text-white d-inline ">${tiempo} Hora</h4> 
-                El monto a pagar es <h4 class="text-white d-inline ">______</h4> </h5>`,
-      buttons: ['OK']
-    });
+    if (tiempo === 0) {
+      
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: 'Factura de la reserva',
+        message: `<h5 class="d-inline"> lleva <h4 class="text-white d-inline ">${tiempo} Hora</h4> 
+                  El monto a pagar es <h4 class="text-white d-inline ">${price}</h4> </h5>`,
+        buttons: ['OK']
+      });
+  
+      await alert.present();
 
-    await alert.present();
+    }else{
+
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: 'Factura de la reserva',
+        message: `<h5 class="d-inline"> lleva <h4 class="text-white d-inline ">${tiempo} Hora</h4> 
+                  El monto a pagar es <h4 class="text-white d-inline ">${price * tiempo}</h4> </h5>`,
+        buttons: ['OK']
+      });
+  
+      await alert.present();
+
+    }
 
   }
 
-  verPago(id_reser: string) {
+  verPago(id_reser: string, price) {
 
     let token = localStorage.getItem('token')
-
+    
     this.usuarioService.getTimeReservation(token, id_reser).subscribe((res: any) => {
 
       let tiempo = res.data
 
-      this.pagoAlert(tiempo)
+      this.pagoAlert(tiempo, price)
 
     })
+    
   }
 
 

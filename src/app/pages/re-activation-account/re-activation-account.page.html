@@ -1,0 +1,40 @@
+<app-menu></app-menu>
+
+<ion-content>
+
+  <div id="contenedor">
+
+    <div id="select">
+      <ion-item color="primarioApp" class="border-abajo mb-2">
+        <ion-label position="floating">¿Que vas hacer?</ion-label>
+        <ion-select #p interface="popover" (ionChange)="cambios(p.value)">
+          <ion-select-option class="option" value="1">
+            verificacion de cuenta
+          </ion-select-option>
+          <ion-select-option class="option" value="0">
+            reactivacion de cuenta
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item color="primarioApp" class="border-abajo mb-5">
+        <ion-label position="floating">Correo</ion-label>
+        <ion-input #c (ionChange)="inputCorreo(c.value, p.value)"></ion-input>
+      </ion-item>
+
+
+      <ion-button (click)="correo(p.value, c.value)" color="celeste" [disabled]="inputCorreodesabilitado" expand="block">
+        Enviar correo <i class="ms-2 fa-solid fa-envelope"></i>
+      </ion-button>
+
+      <ion-button (click)="solicitud(p.value)" class="verde" [disabled]="desabilitado" expand="block">
+        Ok
+      </ion-button>
+
+      
+    </div>
+
+  </div>
+  
+
+</ion-content>

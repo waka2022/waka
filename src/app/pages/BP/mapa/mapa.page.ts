@@ -16,8 +16,7 @@ import { UsuarioService } from '../../../services/usuario.service';
 export class MapaPage implements OnInit {
 
   estado: boolean = false
-
-
+  btnRefresh: boolean = false
   cordenadas = []
 
   latitud = 7.0620153
@@ -52,9 +51,28 @@ export class MapaPage implements OnInit {
 
   ngOnInit(): void {
 
+    this.cargarTodo()
+
   }
 
   ionViewWillEnter() {
+
+    let id_parq = !!localStorage.getItem('id-parq')
+
+    this.crearDivMapa()
+    if (id_parq === true) {
+
+      this.doRefresh()
+
+    } else {
+
+    }
+
+  }
+
+  cargarTodo() {
+
+    this.btnRefresh = true
 
     let id_parqueadero = localStorage.getItem('id-parq')
 
@@ -62,45 +80,48 @@ export class MapaPage implements OnInit {
 
       let token = localStorage.getItem('token')
 
-      this.userservice.getAllReservatiosUser(token, true).subscribe((res: any) => {
 
-        let reservas: any = res.data
+      setTimeout(() => {
 
-        if (reservas.length === 0) {
+        this.userservice.getAllReservatiosUser(token, true).subscribe((res: any) => {
 
-          this.estado = false
-          console.log("no hay reservas");
-          localStorage.removeItem('lat-parq')
-          localStorage.removeItem('lon-parq')
-          localStorage.removeItem('id-parq')
-          localStorage.removeItem('calificacion')
+          let reservas: any = res.data
 
+          if (reservas.length === 0) {
 
-        } else {
+            this.estado = false
 
-          this.onRoute = res.data[0].status.on_route
-          console.log(this.onRoute);
+            console.log("no hay reservas");
+            localStorage.removeItem('lat-parq')
+            localStorage.removeItem('lon-parq')
+            localStorage.removeItem('id-parq')
+            localStorage.removeItem('calificacion')
 
-          let id_reserv = reservas[0]._id
+          } else {
 
-          if (this.estado === true && this.onRoute === false) {
+            this.onRoute = res.data[0].status.on_route
+            //console.log(this.onRoute);
 
-            this.userservice.getTimeReservation(token, id_reserv).subscribe((res: any) => {
-              //console.log(res.data);
-              this.time_reserva = res.data
-            })
+            let id_reserv = reservas[0]._id
+
+            if (this.estado === true && this.onRoute === false) {
+
+              this.userservice.getTimeReservation(token, id_reserv).subscribe((res: any) => {
+                //console.log(res.data);
+                this.time_reserva = res.data
+              })
+            }
+
           }
 
-        }
-
-      })
-
+        })
+      }, 1000);
     }
 
     this.cambiarEstado()
-    this.crearDivMapa()
 
     let token = localStorage.getItem('token')
+
     this.userservice.getparkingMap(token).subscribe((res: any) => {
 
       for (let i = 0; i < res.data.length; i++) {
@@ -153,9 +174,14 @@ export class MapaPage implements OnInit {
 
     }
 
+    setTimeout(() => {
+      this.btnRefresh = false
+    }, 1000);
+
+
   }
 
-  ionViewDidLeave() {
+  eliminarMapa() {
 
     let contenedorMapa = document.getElementById("contenedor");
     let mapa: any = document.getElementById('map')
@@ -170,6 +196,7 @@ export class MapaPage implements OnInit {
 
 
   }
+
 
   async msgError(res: string) {
     const toast = await this.toastController.create({
@@ -202,25 +229,21 @@ export class MapaPage implements OnInit {
 
       this.cordenadas.push([res.coords.longitude, res.coords.latitude])
 
-      // console.log(this.cordenadas);
-
-      //localStorage.setItem("latitudCar", res.coords.latitude)
-      //localStorage.setItem("longitudCar", res.coords.longitude)
-
     });
 
   }
 
   crearDivMapa() {
 
-    let mapaexiste = document.getElementById("map")
-    if (mapaexiste != null) {
+    let mapaexiste = !!document.getElementById("map")
+
+    if (mapaexiste === true) {
+
       //console.log("mapa existe");
 
     } else {
 
       //console.log("mapa no existe");
-
 
       let contenedor2 = document.getElementById("contenedor")
       let mapa2 = document.createElement("div");
@@ -333,8 +356,9 @@ export class MapaPage implements OnInit {
 
   doRefresh() {
 
-    this.ionViewDidLeave()
-    this.ionViewWillEnter()
+    this.eliminarMapa()
+    this.crearDivMapa()
+    this.cargarTodo()
 
   }
 

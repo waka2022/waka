@@ -23,7 +23,13 @@ import { Router } from '@angular/router';
 })
 export class PerfilPage implements OnInit {
 
-  usuario: any = {}
+  usuario: any = {
+    names:"",
+    document:"",
+    email_t:{
+      email:""
+    }
+  }
   mssg: string
   email
 
@@ -53,7 +59,6 @@ export class PerfilPage implements OnInit {
     })
 
   }
-
 
   //*generando la alerta para avisar al usuario de cambiar la contrseña
   async presentAlertCambiarPass(email2) {
@@ -118,7 +123,6 @@ export class PerfilPage implements OnInit {
     await alert.present();
   }
 
-
   //*generando la alerta para avisar al usuario de eliminar la cuenta
   async presentAlertMultipleButtons() {
     const alert = await this.alertController.create({
@@ -162,6 +166,11 @@ export class PerfilPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  cerrarSesion(){
+    localStorage.removeItem('token')
+    this.router.navigate(['inicio'])
   }
 
 }

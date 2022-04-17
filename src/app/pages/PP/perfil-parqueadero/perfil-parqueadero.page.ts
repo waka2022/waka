@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../../services/usuario.service';
 import { AlertController } from '@ionic/angular'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil-parqueadero',
@@ -17,7 +18,9 @@ export class PerfilParqueaderoPage implements OnInit {
   }
   mssg :string
 
-  constructor(private usuService : UsuarioService, public alertController: AlertController) { }
+  constructor(private usuService : UsuarioService, 
+              public alertController: AlertController,
+              private router: Router) { }
 
   ngOnInit() {
     this.traerInfoUsuario()
@@ -67,6 +70,11 @@ export class PerfilParqueaderoPage implements OnInit {
     
     })
 
+  }
+
+  cerrarSesion(){
+    localStorage.removeItem('token')
+    this.router.navigate(['inicio'])
   }
 
 }

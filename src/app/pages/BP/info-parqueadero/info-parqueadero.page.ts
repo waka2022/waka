@@ -30,7 +30,7 @@ export class InfoParqueaderoPage implements OnInit {
   id_parqueadero: boolean
   latparq: string
   lonparq: string
-  calificacion:number
+  calificacion: number
 
   constructor(private activatedRoute: ActivatedRoute, private usuarioService: UsuarioService,
     private route: Router, public toastController: ToastController) {
@@ -42,9 +42,7 @@ export class InfoParqueaderoPage implements OnInit {
 
   ionViewWillEnter() {
 
-    setTimeout(() => {
-      this.traerInformacionParque()
-    }, 500);
+    this.traerInformacionParque()
 
   }
 
@@ -66,8 +64,6 @@ export class InfoParqueaderoPage implements OnInit {
 
       if (par_id === null) {
 
-        this.id_parqueadero = true
-
         this.estado = false;
 
         this.usuarioService.getParkingForId(token, id).subscribe((res: any) => {
@@ -79,9 +75,11 @@ export class InfoParqueaderoPage implements OnInit {
           this.latparq = res.data.ubi.lat
           this.lonparq = res.data.ubi.lon
 
-          this.usuarioService.vercalificarParqueadero(token,id).subscribe((res:any)=>{
+          this.usuarioService.vercalificarParqueadero(token, id).subscribe((res: any) => {
             let calificacion = Math.round(res.data);
             this.calificacion = calificacion
+
+            this.id_parqueadero = true
           })
 
         })
@@ -89,8 +87,7 @@ export class InfoParqueaderoPage implements OnInit {
       } else {
 
         this.estado = true;
-        this.id_parqueadero = true
-
+    
         this.usuarioService.getParkingForId(token, par_id).subscribe((res: any) => {
 
           console.log(res.data);
@@ -100,10 +97,12 @@ export class InfoParqueaderoPage implements OnInit {
           this.latparq = res.data.ubi.lat
           this.lonparq = res.data.ubi.lon
 
-          this.usuarioService.vercalificarParqueadero(token,par_id).subscribe((res:any)=>{
+          this.usuarioService.vercalificarParqueadero(token, par_id).subscribe((res: any) => {
 
             let calificacion = Math.round(res.data);
             this.calificacion = calificacion
+
+            this.id_parqueadero = true
 
           })
 

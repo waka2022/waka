@@ -1,10 +1,11 @@
 <app-menu></app-menu>
 
 <ion-content id="contenedor">
-    
+
+
     <div id="map" class="map"></div>
 
-    <ion-button color="light" id="refresh" (click)="doRefresh()">
+    <ion-button color="light" [disabled]="btnRefresh" id="refresh" (click)="doRefresh()">
         <i class="fa-solid fa-retweet text-black fa-lg"></i>
     </ion-button>    
 

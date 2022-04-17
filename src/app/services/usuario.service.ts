@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
 import { User } from '../model/user.model';
 
 @Injectable({
@@ -115,13 +114,18 @@ export class UsuarioService {
     return this.http.put(`${this.url}/vehicle/update-vehicle-user/${id}`, infoCar, { headers: { authorization_token: token } })
   }
 
+  // Actualizar el estado de un vehiculo (el que esta activo)
+  updateStatusVehiculo(token, id_vehic) {
+    return this.http.patch(`${this.url}/vehicle/status-change-vehicle/${id_vehic}`, {}, { headers: { authorization_token: token } })
+  }
+
   //traer info de un veiculo segun id. @Samuel (token id del vehiculo)
   getVehicleId(token, id) {
     return this.http.get(`${this.url}/vehicle/view-unique-vehicle/${id}`, { headers: { authorization_token: token } })
   }
 
-   //mensaje por correo y cambiar contrasena (email)
-   messCorreo(email) {
+  //mensaje por correo y cambiar contrasena (email)
+  messCorreo(email) {
     return this.http.post(`${this.url}/auth/request-emails-account/2`, email)
   }
 
@@ -162,6 +166,11 @@ export class UsuarioService {
     return this.http.patch(`${this.url}/booking/change-status-reservation/${id_reserv}/${estado}`, {}, { headers: { authorization_token: token } })
   }
 
+  // crear factura
+  crearFactura(token, id_reserv) {
+    return this.http.post(`${this.url}/invoiced/register/${id_reserv}`, {}, { headers: { authorization_token: token } })
+  }
+
 
   //ver reserva segun su id
   getReservationForId(token, id_reserv) {
@@ -182,6 +191,23 @@ export class UsuarioService {
   //ver la calificacion de un parqueadero
   vercalificarParqueadero(token, id_parq) {
     return this.http.get(`${this.url}/ranking/average-ranking-parking/${id_parq}`, { headers: { authorization_token: token } })
+  }
+
+
+  //verificacion de cuenta
+
+  verificacionCuenta(id) {
+
+    return this.http.put(`${this.url}/auth/verify-account/${id}`, {})
+
+  }
+
+  // solicitud por email
+  // Solicitud para la re-activacion de cuenta {{ 0 }}.
+  // Solicitud para la verificacion del email {{ 1 }}
+
+  solicitudEmail(email, tipo) {
+    return this.http.post(`${this.url}/auth/request-emails-account/${tipo}`, {'email':email})
   }
 
 }

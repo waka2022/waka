@@ -22,9 +22,20 @@ export class InfoVehiculoPage implements OnInit {
   }
 
   miVehiculo(id_vehiculo) {
-    console.log(id_vehiculo);
 
-    localStorage.setItem('id_vehiculo', id_vehiculo)
+    //console.log(id_vehiculo);
+
+    let token = localStorage.getItem('token')
+
+    this.usuarioService.updateStatusVehiculo(token, id_vehiculo).subscribe((res:any)=>{
+
+      localStorage.setItem('id_vehiculo', id_vehiculo)
+      
+      //console.log(res);    
+    })
+
+    this.dismiss()
+
   }
 
   //ngOnInit pertenece al ciclo de vidad de angular y aqui se le esta indicando que el componenete ya esta listo para darle uso

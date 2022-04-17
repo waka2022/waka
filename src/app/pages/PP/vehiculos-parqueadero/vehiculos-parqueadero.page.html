@@ -76,7 +76,7 @@
             <ion-button *ngIf="reserva.status.on_route === false && reserva.status.global_status === false"
               disabled="true" class="rojo" expand="full">cobrar</ion-button>
             <ion-button *ngIf="reserva.status.on_route === false && reserva.status.global_status === true" class="rojo"
-              expand="full" (click)="cobrar(reserva._id, 2)">cobrar</ion-button>
+              expand="full" (click)="cobrar(reserva._id, reserva.id_park, 2)">cobrar</ion-button>
 
           </ion-col>
         </ion-row>

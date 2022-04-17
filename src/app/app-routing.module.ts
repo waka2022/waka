@@ -87,6 +87,11 @@ const routes: Routes = [
     path: 'app-new-pass',
     loadChildren: () => import('./pages/new-pass/new-pass.module').then( m => m.NewPassPageModule)
   },
+  {
+    path: 're-activation-account/:id',
+    loadChildren: () => import('./pages/re-activation-account/re-activation-account.module').then( m => m.ReActivationAccountPageModule)
+  },
+
  
 
 ];

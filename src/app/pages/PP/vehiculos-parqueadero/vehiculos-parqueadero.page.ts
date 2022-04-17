@@ -17,7 +17,7 @@ export class VehiculosParqueaderoPage implements OnInit {
   enCamino: boolean = true
   reservas: any = []
   ya: boolean = false
-  tiempoReserva:number
+  tiempoReserva: number
 
   parqueadero = new FormGroup({
     id_parqueadero: new FormControl('', [Validators.required]),
@@ -28,7 +28,7 @@ export class VehiculosParqueaderoPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    
+
 
     let token = localStorage.getItem('token')
 
@@ -91,45 +91,84 @@ export class VehiculosParqueaderoPage implements OnInit {
     toast.present();
   }
 
-  async cobrarAlert(tiempo, id_reser, estado){
+  async cobrarAlert(tiempo, id_reser, estado, ph) {
 
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Factura de la reserva',
-      message: `<h5 class="d-inline"> Este usuario lleva <h4 class="text-white d-inline ">${tiempo} Hora</h4> 
-                El monto a pagar es <h4 class="text-white d-inline ">______</h4> </h5>`,
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          cssClass: 'secondary',
-          id: 'cancel-button',
-          handler: () => {
-            
-          }
-        }, {
-          text: 'Cobrar',
-          id: 'confirm-button',
-          handler: () => {
-            this.cambiarEstadoReserva(id_reser, estado)
-          }
-        }
-      ]
-    });
+    if (tiempo === 0) {
 
-    await alert.present();
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: 'Factura de la reserva',
+        message: `<h5 class="d-inline"> Este usuario lleva <h4 class="text-white d-inline ">${tiempo} Hora</h4> 
+                  El monto a pagar es <h4 class="text-white d-inline ">$ ${ph}</h4> </h5>`,
+        buttons: [
+          {
+            text: 'Cancelar',
+            role: 'cancel',
+            cssClass: 'secondary',
+            id: 'cancel-button',
+            handler: () => {
+
+            }
+          }, {
+            text: 'Cobrar',
+            id: 'confirm-button',
+            handler: () => {
+              this.cambiarEstadoReserva(id_reser, estado)
+            }
+          }
+        ]
+      });
+
+      await alert.present();
+
+    } else {
+
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: 'Factura de la reserva',
+        message: `<h5 class="d-inline"> Este usuario lleva <h4 class="text-white d-inline ">${tiempo} Hora</h4> 
+                  El monto a pagar es <h4 class="text-white d-inline">$ ${ph * tiempo}</h4> </h5>`,
+        buttons: [
+          {
+            text: 'Cancelar',
+            role: 'cancel',
+            cssClass: 'secondary',
+            id: 'cancel-button',
+            handler: () => {
+
+            }
+          }, {
+            text: 'Cobrar',
+            id: 'confirm-button',
+            handler: () => {
+              this.cambiarEstadoReserva(id_reser, estado)
+            }
+          }
+        ]
+      });
+
+      await alert.present();
+    }
+
+
 
   }
 
-  cobrar(id_reser:string, estado:number) {
+  cobrar(id_reser: string, id_park: string, estado: number) {
 
     let token = localStorage.getItem('token')
 
-    this.userServices.getTimeReservation(token,id_reser).subscribe((res:any)=>{
+    this.userServices.getTimeReservation(token, id_reser).subscribe((res: any) => {
 
       let tiempo = res.data
-      this.cobrarAlert(tiempo,id_reser,estado)
-      
+
+      this.userServices.getParkingForId(token, id_park).subscribe((res: any) => {
+
+        let ph = res.data.price
+
+        this.cobrarAlert(tiempo, id_reser, estado, ph)
+      })
+
     })
   }
 
@@ -141,16 +180,19 @@ export class VehiculosParqueaderoPage implements OnInit {
     this.userServices.updateStatusReservation(token, id_reser, estado).subscribe((res: any) => {
 
       this.msgBien(res.msg)
-
-
       //console.log(id_reser);
+
+      if (estado === 2) {
+
+        this.userServices.crearFactura(token, id_reser).subscribe(res=>{
+          //console.log(res);
+        })
+      }
 
       this.userServices.getReservationForId(token, id_reser).subscribe((res: any) => {
         //console.log(res.data.id_park);
         let id_park = res.data.id_park
-
         this.userServices.getAllReservatios(token, id_park, true).subscribe((res: any) => {
-
           this.reservas = res.data
           //console.log(this.reservas);
 
