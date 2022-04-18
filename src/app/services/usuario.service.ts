@@ -10,6 +10,8 @@ export class UsuarioService {
 
   private url = "https://wakabackend.herokuapp.com/v1/producction"
 
+  private urlFile = "https://wakafiles.azurewebsites.net/waka-files/v1/producction"
+
   public user_data: User
 
   constructor(private http: HttpClient) {
@@ -64,7 +66,7 @@ export class UsuarioService {
 
   //verificacion de cuenta @samuel. (token)
   verificarCuenta(token) {
-    //return this.http.put(`${this.url}/auth/verify-account/${token2}`)
+    //return this.http.put(`${this.url}/auth/verify-account/${token}`)
   }
 
   //cambiar la contraseña de una cuenta @samuel.( token y info form)
@@ -118,5 +120,31 @@ export class UsuarioService {
   getCarrosUser(token) {
     return this.http.get(`${this.url}/vehicle/view-my-vehicles`, { headers: { authorization_token: token } })
   }
+
+  //! Servicios para Waka_FIle
+  // num_action: Es un numero de 0 a 2:
+
+  // 0 = Foto de perfil de usuario
+  // 1 = Registro fotografico de novedades
+  // 2 = Fotos de un parqueadero registrado
+
+  //?Subir fotos y trasnpaso a waka
+  postFile(num_action, id_action, photos, tokenfile) {
+       return this.http.post(`${this.urlFile}/photos/upload-photo/${num_action}/${id_action}`, { body: photos } , { headers: { authorization_token: tokenfile } })
+    } //?ver fotos segun tipo
+  getPhotosFile(num_action, id_action, tokenfile) {
+    return this.http.get(`${this.urlFile}/view-photos/${num_action}/${id_action}`, { headers: { authorization_token: tokenfile } })
+  }
+
+  //?ver foto de perfil unicas
+  getphotosUniqueFile(tokenfile, path) {
+    return this.http.get(`${this.urlFile}/view-photos-unique`, { headers: { authorization_token: tokenfile, path_: path} })
+  }
+
+  //?eliminar alguna foto
+  delFile(id_action, tokenfile) {
+    return this.http.delete(`${this.urlFile}/delete-photo/${id_action}`, { headers: { authorization_token: tokenfile } })
+  }
+
 
 }

@@ -6,7 +6,10 @@
         <ion-row class="width100 centrarVertText">
 
             <ion-col size=12 size-sm="4" class="p-3 centrar-contenedores animate__animated animate__fadeInLeft">
-                <img src="https://storage.googleapis.com/media.clinicavisualyauditiva.com/images/2019/11/211fd983-default-user-image.png" class="imagenPerfil" />
+                <ion-input type="file" (change)="fileimg($event)">
+                    
+                    </ion-input>
+                    <img  [src]="urlImg" alt="">
             </ion-col>
 
             <ion-col size=12 size-sm="4" class="p-2 animate__animated animate__fadeInRight">
@@ -19,9 +22,10 @@
 
                 <p class="fs-4">Direccion</p>
                 <p class="fs-5 mb-4">Crr 9 #9-23</p>
-                <ion-button class="btn_alert animate__animated animate__fadeInRight" (click)="presentAlertCambiarPass()" color="success"  >
-                    Cambiar contraseña 
-                </ion-button> 
+                <ion-button class="btn_alert animate__animated animate__fadeInRight" (click)="presentAlertCambiarPass()"
+                    color="success">
+                    Cambiar contraseña
+                </ion-button>
 
             </ion-col>
 
@@ -41,19 +45,20 @@
                 </p>
 
             </ion-col>
-        
+
             <!--* campo para deshabilitar cuenta -->
-            <ion-col size=12 size-sm="4" >
+            <ion-col size=12 size-sm="4">
                 <!--* mensaje de recordatorio para 16 días de plazo (aparece despues de deshabiliar la cuenta) -->
                 <ion-text color="warning" class="text-start">
                     <p>{{this.mssg}}</p>
-                  </ion-text>         
-                  <!--* boton para cliquear y mostrar la alerta de confirmacion-->
-                  <ion-button class="btn_alert animate__animated animate__fadeInRight" (click)="presentAlertMultipleButtons()" color="danger" expand="block" >
+                </ion-text>
+                <!--* boton para cliquear y mostrar la alerta de confirmacion-->
+                <ion-button class="btn_alert animate__animated animate__fadeInRight"
+                    (click)="presentAlertMultipleButtons()" color="danger" expand="block">
                     Deshabilitar la cuenta
-                </ion-button> 
-            </ion-col> 
-                
+                </ion-button>
+            </ion-col>
+
         </ion-row>
 
     </ion-grid>

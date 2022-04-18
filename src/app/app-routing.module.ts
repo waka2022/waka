@@ -79,6 +79,10 @@ const routes: Routes = [
   path: 're-activation-account/:token',
   loadChildren: () => import('./pages/acceso/acceso.module').then( m => m.AccesoPageModule)
 },
+  {
+    path: 'files',
+    loadChildren: () => import('./pages/files/files.module').then( m => m.FilesPageModule)
+  },
 
  
 

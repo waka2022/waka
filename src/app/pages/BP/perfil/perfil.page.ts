@@ -5,12 +5,16 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../../services/usuario.service';
 
 //?importando controller de alert de ionic alojado en ionic/angular 
-import { AlertController } from '@ionic/angular'
+import { AlertController, ModalController  } from '@ionic/angular'
 
 //?importando el servicio de emmiter para el token alojado en  ../../../services/emmiters.service
 import { EmmitersService } from '../../../services/emmiters.service';
 
 import { Router } from '@angular/router';
+
+import { FilesPage } from '../../files/files.page';
+
+
 
 
 
@@ -25,8 +29,12 @@ export class PerfilPage implements OnInit {
   usuario:any = {}
   mssg :string
   email
+  id
+
+  urlImg
 
   constructor(
+    private modalController: ModalController,
     private router: Router,
     private usuService : UsuarioService, 
     public alertController: AlertController,
@@ -50,6 +58,7 @@ export class PerfilPage implements OnInit {
 
       console.log(res)
       this.email = this.usuario.email_t.email;
+      this.id = this.usuario._id;
     })
 
   }
@@ -161,6 +170,48 @@ async presentAlertCambiarPass(email2) {
     });
 
     await alert.present();
+  }
+
+
+  //* modal para abrir y enviar img
+  async presentModa2() {
+
+    const modal = await this.modalController.create({
+      component: FilesPage,
+      initialBreakpoint: 1,
+      breakpoints: [0.0, 0.5, 1],
+      showBackdrop: true,
+      swipeToClose: true,
+      keyboardClose: true
+    
+    });
+
+    await modal.present();
+  }
+
+
+  fileimg(e: Event | any){
+    console.log(e)
+    const file = e.target.files[0]
+
+    const reader = new FileReader()
+     reader.readAsDataURL(file)
+     reader.onloadend = () => ( 
+       this.urlImg = reader.result,
+       console.log(this.urlImg) 
+    ) 
+    
+    const formData = new FormData ()
+    formData.append("path_", file)
+
+    let tokenfile = localStorage.getItem("token")
+
+    this.usuService.postFile(0, this.id, formData, tokenfile).subscribe(res => {
+      console.log(this.id)
+      console.log(res)
+       //actualizando la informacion del nuevo carro en la vista de mis carros.    
+      this.emmiter.$emmiterProfile.emit(true)
+   })
   }
 
 }

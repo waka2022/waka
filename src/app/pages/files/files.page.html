@@ -1,0 +1,29 @@
+<ion-header>
+</ion-header>
+
+
+<ion-content color="segundarioApp">
+
+  <!--* boto o icono de X para cerrar el modal  -->
+  <i id="cerrar" (click)="dismiss()" class="fa-solid fa-xmark"></i>
+<!-- *linea divisora -->
+  <hr>
+<!-- *inicializar el formulario -->
+  <form  [formGroup]="imgFile" (ngSubmit)="addimg()" id="formulario">
+<!--* primer campo el tipo de automovil -->
+    <ion-item class="border-abajo" color="segundarioApp">
+      <ion-label color="primarioApp" position="stacked">Subir la imagen</ion-label>
+      <ion-input (change)="fileimg($event)" accept="image/*" type="file" formControlName="img"></ion-input>
+    </ion-item>
+    <!-- *mensaje error campo obligatorio -->
+    <ion-label color="danger" *ngIf="imgFile.controls.img.errors?.required && (imgFile.touched || imgFile.dirty)">* Es obligatorio. </ion-label>
+
+<!-- *boton para hacer el envio del fomulario con los datos ingresados -->
+    <ion-button class="animate__animated animate__pulse animate__fast mt-5 d-flex justify-content-center verde"
+      expand="block" size="large" type="submit"[disabled]="!imgFile.valid">
+      <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Enviar</p>
+    </ion-button>
+
+  </form>
+
+</ion-content>
