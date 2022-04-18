@@ -14,10 +14,10 @@ export class FormularioAgregarVehiculoPage implements OnInit {
   constructor( private usuarioService:UsuarioService, private emmiter: EmmitersService, private modalController: ModalController) { }
 
   car = new FormGroup({
-    global: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    mark: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    model: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    placa: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    global: new FormControl('', Validators.required),
+    mark: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    model: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(4),Validators.pattern('[0-9]{4}')]),
+    placa: new FormControl('', [Validators.required, Validators.minLength(6),Validators.pattern('[A-Z]{3}[0-9]{3}')]),
     color: new FormControl('', [Validators.required, Validators.minLength(4)]),
   });
 
@@ -39,7 +39,8 @@ export class FormularioAgregarVehiculoPage implements OnInit {
     let token = this.usuarioService.traerToken()
     this.usuarioService.addVehicleUser(token, infoCar).subscribe(res => {
       console.log(res)
-      this.emmiter.$emmiterParqueaderos.emit(true)
+      //cuando se genera un nuevo carro se actualiza la vista de carro
+      this.emmiter.$emmiterProfile.emit(true)
     })
 
     this.dismiss()

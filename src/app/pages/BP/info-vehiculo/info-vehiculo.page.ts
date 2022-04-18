@@ -34,7 +34,7 @@ export class InfoVehiculoPage implements OnInit {
       //console.log(res);    
     })
 
-    this.dismiss()
+    // this.dismiss()
 
   }
 
@@ -116,7 +116,6 @@ export class InfoVehiculoPage implements OnInit {
                 //cuando hay un cambio se actualiza la vista
                 this.emmiter.$emmiterProfile.emit(true)
                 console.log(res)
-                this.dismiss()
               })
           }
 

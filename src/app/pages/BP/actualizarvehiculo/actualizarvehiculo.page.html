@@ -40,7 +40,7 @@
     </ion-item>
     <!-- *mensaje error campo mayor a 4 digitos -->
     <ion-label color="danger" *ngIf="info.controls.mark.errors?.minlength && (info.touched || info.dirty)">* La Marca
-      debe contar con más de 4 digitos. </ion-label>
+      debe contar con más de 2 digitos. </ion-label>
     <!-- *campo para ingresar el modelo (año) -->
     <ion-item class="border-abajo" color="segundarioApp">
       <ion-label color="primarioApp" position="floating">Modelo</ion-label>
@@ -60,12 +60,12 @@
     </ion-item>
     <!-- *error mensaje tipado placa (ABC-123) -->
     <ion-label color="danger" *ngIf="info.controls.placa.errors?.pattern && (info.touched || info.dirty)">* El Modelo
-      debe contar con 3 letras Mayúsculas, (-) y 3 Números. </ion-label>
+      debe contar con 3 letras Mayúsculas y 3 Números. </ion-label>
 
     <!-- *campo para ingresar el color del automovil -->
     <ion-item class="border-abajo" color="segundarioApp">
-      <ion-label color="primarioApp" position="floating">Color</ion-label>
-      <ion-input formControlName="color" value="{{this.color}}"></ion-input>
+      <ion-label color="primarioApp" position="floating">Color del vehiculo</ion-label><br>
+      <input type="color" id="inputColor" value="{{this.color}}" formControlName="color">
     </ion-item>
     <!-- *mensaje error campo obligatorio -->
     <ion-label color="danger" *ngIf="info.controls.color.errors?.required && (info.touched || info.dirty)">* El Color es
@@ -79,7 +79,7 @@
   </form>
   <div class="ion-justify-content-center">
     <!--* mensaje (se actualizo el vehiculo ) -->
-    <ion-text class="ion-text-center" color="warning" class="text-start">
+    <ion-text class="ion-text-center" color="success" class="text-start">
       <p class="ion-text-center mt-5">{{this.mssg}}</p>
     </ion-text>
   </div>

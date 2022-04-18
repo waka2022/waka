@@ -5,6 +5,10 @@ import { UsuarioService } from '../../services/usuario.service';
 import { ToastController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
 
+
+//?google sign in
+import { ViewChild, ElementRef } from '@angular/core'
+
 @Component({
   selector: 'app-acceso',
   templateUrl: './acceso.page.html',
@@ -12,9 +16,21 @@ import { LoadingController } from '@ionic/angular';
 })
 export class AccesoPage implements OnInit {
 
+
+  //variable para implementar en el setrvico de google
+  auth2: any;
+  show
+  Name
+
+
+ //! la funcion para generar el login con google
+ @ViewChild('loginRef', { static: true }) loginElement: ElementRef;
+
   constructor(private router: Router, private usuarioService: UsuarioService, public toastController: ToastController, public loadingController: LoadingController) { }
 
   ngOnInit() {
+    //llamndo la funcion para la key de google 
+    this.googleInitialize();
   }
 
   async Loading() {
@@ -92,4 +108,73 @@ export class AccesoPage implements OnInit {
         this.msgError(error.error.msg)
       })
   }
+
+
+  
+
+//!google sing in
+
+  //*funcionamiento para implmenetar google
+  googleInitialize() {
+    window['googleSDKLoaded'] = () => {
+      window['gapi'].load('auth2', () => {
+        this.auth2 = window['gapi'].auth2.init({
+          //id cliente de la api de google para implementar el google sign in
+          client_id: '42745535661-9g4aek25maoj5dta1dtfl4tt3ap91ttu.apps.googleusercontent.com',
+          cookie_policy: 'single_host_origin',
+          scope: 'profile email'
+        });
+
+        //llamando la funcion login para inciar el logoe de gooel de un nuevo usuario
+        this.prepareLogin();
+      });
+    }
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = "https://apis.google.com/js/platform.js?onload=googleSDKLoaded";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'google-jssdk'));
+  }
+
+  //*funcionamiento para ingresar con google un nuevo usuario
+  prepareLogin() {
+    this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
+      (googleUser) => {
+        //informacion del usuario registrado
+        let profile = googleUser.getBasicProfile();
+        //token de google del nuevo usuario el cualse debe enviar en el setrvicio
+        var token = googleUser.getAuthResponse().id_token;
+        //indicandpo algunas variavles para mostrarlar por consoloa
+        console.log("ID Token: " + token);
+        this.show = true;
+        this.Name = profile.getName();
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail());
+        this.IngresarGoogle(token)
+      }, (error) => {
+        alert(JSON.stringify(error, undefined, 2));
+      });
+  }
+
+
+  IngresarGoogle(token) {
+
+    this.Loading()
+
+    this.usuarioService.signGoogle(token).subscribe(
+
+      (res: any) => {
+
+        this.msgBien(res.msg)
+      
+        localStorage.setItem("token", res.data)
+        this.obteenerinfo()
+
+      },error => {
+        this.msgError(error.error.msg)
+      })
+  }
+
 }

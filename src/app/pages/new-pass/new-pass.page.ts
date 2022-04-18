@@ -91,7 +91,10 @@ export class NewPassPage implements OnInit {
         console.log(infopass)
         this.mssg = res.msg
 
-        //this.router.navigate(['/acceso', this.activatedRoute]);
+        //dandolo un timepo para que redirecciona al cambio de contraseña
+        setTimeout(() => {
+          this.router.navigate(['/tabs/perfil'])
+        }, 2000);
       }
 
     )

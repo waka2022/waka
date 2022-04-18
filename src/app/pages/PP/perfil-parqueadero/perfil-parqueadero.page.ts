@@ -17,6 +17,7 @@ export class PerfilParqueaderoPage implements OnInit {
     }
   }
   mssg :string
+  email
 
   constructor(private usuService : UsuarioService, 
               public alertController: AlertController,
@@ -26,12 +27,11 @@ export class PerfilParqueaderoPage implements OnInit {
     this.traerInfoUsuario()
   }
 
-  async presentAlertMultipleButtons() {
+  async presentAlertDesHabilitar() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Eliminar la cuenta',
-      subHeader: 'La eliminación de cuenta es definitiva Al eliminarla',
-      message: 'tu cuenta de WAKA y toda la información tambien se eliminará',
+      message: 'La eliminación de cuenta sera definitiva',
       buttons: [
         {
           text: 'Cancelar',
@@ -67,10 +67,73 @@ export class PerfilParqueaderoPage implements OnInit {
       console.log(res);
       
       this.usuario = res.data
+      this.email = this.usuario.email_t.email;
     
     })
 
   }
+
+//*generando la alerta para avisar al usuario de cambiar la contrseña
+async presentAlertCambiarPass(email2) {
+  const alert = await this.alertController.create({
+    //nombre para dar estilos a la misma
+    cssClass: 'my-custom-class',
+    id: 'text',
+    //tiutlo de la alerta
+    header: 'Cambiar Contraseña',
+    //mensaje o centendio de la alerta donde le envio el correo al cual se enviara el mensaje
+    message: this.email,
+
+    //   inputs:[{name: 'emailUser',
+    //   type: 'text',
+    //   id: 'emailalert',
+    //   value: this.email,
+    //   placeholder: 'Email'
+    // }
+    //   ],
+    //tendra dos botones (cancelar y confirmar)
+    buttons: [
+      {
+        text: 'Cancelar',
+        cssClass: 'btn1',
+        handler: (emailalert) => {
+          console.log('Cancel');
+          console.log(emailalert);
+        }
+      },
+      //!en el boton confirmar enviarar el cambio de estado de la cuenta y mostrar el mensaje de elimincaion en 16 días
+      {
+        text: 'Confirmar',
+        cssClass: 'btn2',
+        handler: (email) => {
+          console.log('Confirm');
+
+          //guardando el email del usuario para enviar la petcion al correo
+          let email12 = {
+            "email": this.email
+          }
+
+          //servico para enviar el mensaje de cambio de contraseña
+          this.usuService.messCorreo(email12).subscribe(
+            (res: any) => {
+              console.log(res)
+              console.log(email)
+              //guardando el mensaje para mostrarlo en la vista
+              this.mssg = res.msg
+            })
+          //dandolo un timepo para que redirecciona al cambio de contraseña
+          setTimeout(() => {
+            this.router.navigate(['app-new-pass'])
+          }, 5000);
+
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+}
+
 
   cerrarSesion(){
     localStorage.removeItem('token')

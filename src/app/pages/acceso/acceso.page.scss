@@ -33,3 +33,15 @@
           
       }
   }
+
+  //estylos del boton de google
+//tamaño de letra, color blanco y linea negra, y redondeo de las esquinas
+.login-Btn{
+  width: 100%;
+  font-size: 35px;
+  font-weight: bold;
+  background-color: aliceblue;
+  border: 2px solid black;
+  height: 60px;
+  border-radius: 5px;
+}

@@ -25,6 +25,11 @@ export class UsuarioService {
     return this.http.post(`${this.url}/users`, usuario)
   }
 
+   //login con google @samuel. (token de google)
+   signGoogle(token) {
+    return this.http.post(`${this.url}/auth/google`, token)
+  }
+
   signInNormal(signin: any) {
     return this.http.post(`${this.url}/auth/normal`, signin)
   }
@@ -192,6 +197,7 @@ export class UsuarioService {
   vercalificarParqueadero(token, id_parq) {
     return this.http.get(`${this.url}/ranking/average-ranking-parking/${id_parq}`, { headers: { authorization_token: token } })
   }
+
 
 
   //verificacion de cuenta

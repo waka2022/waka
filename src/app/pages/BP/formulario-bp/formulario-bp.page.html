@@ -14,14 +14,15 @@
       <form [formGroup]="info" (ngSubmit)="addInfo()">
         <ion-item color="primarioApp" class="border-abajo">
           <ion-label color="dark" position="floating">Documento</ion-label>
-          <ion-input class="text-white" formControlName="document"></ion-input>
+          <ion-input type="number" class="text-white" formControlName="document"></ion-input>
         </ion-item>
 
         <div class="linea"></div>
 
+
         <ion-item color="primarioApp" class="border-abajo">
           <ion-label color="dark" position="floating">Telefono</ion-label>
-          <ion-input class="text-white" formControlName="phone"></ion-input>
+          <ion-input type="number" class="text-white" formControlName="phone"></ion-input>
         </ion-item>
 
         <div class="linea"></div>
@@ -36,7 +37,10 @@
         </ion-item>
 
         <div class="linea"></div>
-
+        <!-- *mensaje de error el campo es obligatorio -->
+        <ion-label color="danger" *ngIf="info.controls.global.errors?.required && (info.touched || info.dirty)">* El
+          Tipo es
+          obligatorio. </ion-label>
 
         <ion-item color="primarioApp" class="border-abajo">
           <ion-label color="dark" position="floating">Marca</ion-label>
@@ -44,13 +48,21 @@
         </ion-item>
 
         <div class="linea"></div>
-
+        <!-- *mensaje error campo mayor a 4 digitos -->
+        <ion-label color="danger" *ngIf="info.controls.mark.errors?.minlength && (info.touched || info.dirty)">* La
+          Marca
+          debe contar con más de 2 digitos. </ion-label>
         <ion-item color="primarioApp" class="border-abajo">
           <ion-label color="dark" position="floating">Modelo</ion-label>
           <ion-input class="text-white" type="number" formControlName="model"></ion-input>
         </ion-item>
 
         <div class="linea"></div>
+        <!-- *meensaje error debe ser de tipo númerico -->
+        <ion-label color="danger" *ngIf="info.controls.model.errors?.pattern && (info.touched || info.dirty)">* El
+          Modelo
+          debe contar con solo 4 digitos y
+          debe ser númerico. </ion-label>
 
         <ion-item color="primarioApp" class="border-abajo">
           <ion-label color="dark" position="floating">Placa</ion-label>
@@ -58,11 +70,20 @@
         </ion-item>
 
         <div class="linea"></div>
+        <!-- *error mensaje tipado placa (ABC-123) -->
+        <ion-label color="danger" *ngIf="info.controls.placa.errors?.pattern && (info.touched || info.dirty)">* El
+          Modelo
+          debe contar con 3 letras Mayúsculas y 3 Números. </ion-label>
 
         <ion-item color="primarioApp">
           <ion-label position="floating">Color del vehiculo</ion-label><br>
           <input type="color" id="inputColor" formControlName="color">
         </ion-item>
+
+        <!-- *mensaje error campo obligatorio -->
+        <ion-label color="danger" *ngIf="info.controls.color.errors?.required && (info.touched || info.dirty)">* El
+          Color es
+          obligatorio. </ion-label>
 
         <ion-button class="mt-5 d-flex justify-content-center animate__animated animate__pulse animate__fast verde"
           type="submit" [disabled]="!info.valid">

@@ -13,12 +13,12 @@ export class FormularioBPPage implements OnInit {
   constructor(private router: Router, private usuarioService: UsuarioService) { }
 
   info = new FormGroup({
-    document: new FormControl('', [Validators.required, Validators.minLength(8)]),
-    phone: new FormControl('', [Validators.required, Validators.minLength(10)]),
+    document: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(10)]),
+    phone: new FormControl('', [Validators.required, Validators.minLength(7), Validators.maxLength(10)]),
     global: new FormControl('', [Validators.required]),
-    mark: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    model: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    placa: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]),
+    mark: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    model: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(4),Validators.pattern('[0-9]{4}')]),
+    placa: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(6),Validators.pattern('[A-Z]{3}[0-9]{3}')]),
     color: new FormControl('', [Validators.required, Validators.minLength(4)]),
   });
 

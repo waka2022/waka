@@ -68,8 +68,6 @@ export class PerfilPage implements OnInit {
       id: 'text',
       //tiutlo de la alerta
       header: 'Cambiar Contraseña',
-      //subtitulo de la alerta
-      subHeader: '<ion-text color="danger">,<p>Se le enviara un correo a su siguiente correo:<p></ion-text>',
       //mensaje o centendio de la alerta donde le envio el correo al cual se enviara el mensaje
       message: this.email,
 
@@ -113,7 +111,7 @@ export class PerfilPage implements OnInit {
             //dandolo un timepo para que redirecciona al cambio de contraseña
             setTimeout(() => {
               this.router.navigate(['app-new-pass'])
-            }, 2000);
+            }, 5000);
 
           }
         }
@@ -124,7 +122,7 @@ export class PerfilPage implements OnInit {
   }
 
   //*generando la alerta para avisar al usuario de eliminar la cuenta
-  async presentAlertMultipleButtons() {
+  async presentAlertDesHabilitar() {
     const alert = await this.alertController.create({
       //nombre para dar estilos a la misma
       cssClass: 'my-custom-class',
