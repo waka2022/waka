@@ -207,7 +207,7 @@ export class UsuarioService {
   // solicitud por email
   // Solicitud para la re-activacion de cuenta {{ 0 }}.
   // Solicitud para la verificacion del email {{ 1 }}.
-   // Solicitud para cambiar pass de la cuenta {{ 2 }}
+   // Solicitud para cambiar pass de la cuenta {{ 2 }} @samuel
 
   solicitudEmail(email, tipo) {
     return this.http.post(`${this.url}/auth/request-emails-account/${tipo}`, {'email':email})
