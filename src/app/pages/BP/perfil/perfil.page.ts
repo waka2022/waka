@@ -32,6 +32,7 @@ export class PerfilPage implements OnInit {
   }
   mssg: string
   email
+  img
 
   constructor(
     private router: Router,
@@ -55,7 +56,8 @@ export class PerfilPage implements OnInit {
     this.usuService.getInfo(token).subscribe((res: any) => {
       this.usuario = res.data
       this.email = this.usuario.email_t.email;
-
+      this.img = this.usuario.img
+console.log(res)
     })
 
   }

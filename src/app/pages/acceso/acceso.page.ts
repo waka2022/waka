@@ -115,7 +115,7 @@ export class AccesoPage implements OnInit {
 //!google sing in
 
   //*funcionamiento para implmenetar google
-  googleInitialize() {
+   googleInitialize() {
     window['googleSDKLoaded'] = () => {
       window['gapi'].load('auth2', () => {
         this.auth2 = window['gapi'].auth2.init({
@@ -152,29 +152,30 @@ export class AccesoPage implements OnInit {
         this.Name = profile.getName();
         console.log('Image URL: ' + profile.getImageUrl());
         console.log('Email: ' + profile.getEmail());
-        this.IngresarGoogle(token)
+
+        this.Loading()
+
+        let tokenGoogle = {
+          
+            "token_google": token
+        } 
+
+        this.usuarioService.signGoogle(tokenGoogle).subscribe(
+    
+          (res: any) => {
+    
+            this.msgBien(res.msg)
+          
+            localStorage.setItem("token", res.data)
+            this.obteenerinfo()
+    
+          },error => {
+            this.msgError(error.error.msg)
+          })
       }, (error) => {
-        alert(JSON.stringify(error, undefined, 2));
+        console.log(JSON.stringify(error, undefined, 2));
       });
   }
 
-
-  IngresarGoogle(token) {
-
-    this.Loading()
-
-    this.usuarioService.signGoogle(token).subscribe(
-
-      (res: any) => {
-
-        this.msgBien(res.msg)
-      
-        localStorage.setItem("token", res.data)
-        this.obteenerinfo()
-
-      },error => {
-        this.msgError(error.error.msg)
-      })
-  }
 
 }
