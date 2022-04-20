@@ -97,13 +97,9 @@ console.log(res)
           handler: (email) => {
             console.log('Confirm');
 
-            //guardando el email del usuario para enviar la petcion al correo
-            let email12 = {
-              "email": this.email
-            }
-
+            
             //servico para enviar el mensaje de cambio de contraseña
-            this.usuService.messCorreo(email12).subscribe(
+            this.usuService.solicitudEmail(this.email,2).subscribe(
               (res: any) => {
                 console.log(res)
                 console.log(email)

@@ -83,14 +83,6 @@ async presentAlertCambiarPass(email2) {
     header: 'Cambiar Contraseña',
     //mensaje o centendio de la alerta donde le envio el correo al cual se enviara el mensaje
     message: this.email,
-
-    //   inputs:[{name: 'emailUser',
-    //   type: 'text',
-    //   id: 'emailalert',
-    //   value: this.email,
-    //   placeholder: 'Email'
-    // }
-    //   ],
     //tendra dos botones (cancelar y confirmar)
     buttons: [
       {
@@ -108,13 +100,8 @@ async presentAlertCambiarPass(email2) {
         handler: (email) => {
           console.log('Confirm');
 
-          //guardando el email del usuario para enviar la petcion al correo
-          let email12 = {
-            "email": this.email
-          }
-
           //servico para enviar el mensaje de cambio de contraseña
-          this.usuService.messCorreo(email12).subscribe(
+          this.usuService.solicitudEmail(this.email,2).subscribe(
             (res: any) => {
               console.log(res)
               console.log(email)

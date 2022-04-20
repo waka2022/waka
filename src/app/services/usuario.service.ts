@@ -129,10 +129,6 @@ export class UsuarioService {
     return this.http.get(`${this.url}/vehicle/view-unique-vehicle/${id}`, { headers: { authorization_token: token } })
   }
 
-  //mensaje por correo y cambiar contrasena (email)
-  messCorreo(email) {
-    return this.http.post(`${this.url}/auth/request-emails-account/2`, email)
-  }
 
   //obtener los parqueaderos para mostrar en el mapa
   getparkingMap(token) {
@@ -210,7 +206,8 @@ export class UsuarioService {
 
   // solicitud por email
   // Solicitud para la re-activacion de cuenta {{ 0 }}.
-  // Solicitud para la verificacion del email {{ 1 }}
+  // Solicitud para la verificacion del email {{ 1 }}.
+   // Solicitud para cambiar pass de la cuenta {{ 2 }}
 
   solicitudEmail(email, tipo) {
     return this.http.post(`${this.url}/auth/request-emails-account/${tipo}`, {'email':email})
