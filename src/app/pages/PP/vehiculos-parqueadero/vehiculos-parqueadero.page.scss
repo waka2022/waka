@@ -1,21 +1,45 @@
+#contenedor-card {
 
-#contenedor-card{
-    
     background-color: #050b18;
     border-radius: 13px;
     padding: 30px;
 }
 
-#estado{
+#estado {
     border: 2px solid white;
     color: #ffffff;
     text-align: center;
     border-radius: 4px;
 }
 
-#contenedor-btn-buscar{
+#contenedor-btn-buscar {
 
     display: flex;
     align-items: center;
     align-content: center;
+}
+
+#ningun-vehiculo {
+    color: #050b18;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    height: 10px;
+}
+
+.siz-tex-1 {
+    font-size: 10px;
+}
+
+.centrar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: auto;
 }

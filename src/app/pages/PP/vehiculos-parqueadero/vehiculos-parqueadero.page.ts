@@ -18,6 +18,7 @@ export class VehiculosParqueaderoPage implements OnInit {
   reservas: any = []
   ya: boolean = false
   tiempoReserva: number
+  estado:boolean = false
 
   parqueadero = new FormGroup({
     id_parqueadero: new FormControl('', [Validators.required]),
@@ -26,9 +27,24 @@ export class VehiculosParqueaderoPage implements OnInit {
   ngOnInit() {
 
   }
+  
+  obtenerEstado(value,id){
+
+    this.estado = value
+    this.buscarReservas(id)
+    
+  }
+
+  recargar(id){
+    this.buscarReservas(id)   
+  }
 
   ionViewWillEnter() {
 
+    this.traerParqueaderos()
+  }
+  
+  traerParqueaderos(){  
 
     let token = localStorage.getItem('token')
 
@@ -45,7 +61,6 @@ export class VehiculosParqueaderoPage implements OnInit {
       }
 
     })
-
   }
 
   ionViewDidLeave() {
@@ -55,12 +70,12 @@ export class VehiculosParqueaderoPage implements OnInit {
   buscarReservas(id) {
 
     let token = localStorage.getItem('token')
-    this.userServices.getAllReservatios(token, id, true).subscribe((res: any) => {
+    this.userServices.getAllReservatios(token, id, !this.estado).subscribe((res: any) => {
 
       this.reservas = res.data
 
       //console.log(this.reservas);
-      console.log(this.reservas);
+      //console.log(this.reservas);
 
     })
 

@@ -26,7 +26,11 @@ export class AccesoPage implements OnInit {
  //! la funcion para generar el login con google
  @ViewChild('loginRef', { static: true }) loginElement: ElementRef;
 
-  constructor(private router: Router, private usuarioService: UsuarioService, public toastController: ToastController, public loadingController: LoadingController) { }
+  constructor(
+    private router: Router, 
+    private usuarioService: UsuarioService, 
+    public toastController: ToastController, 
+    public loadingController: LoadingController) { }
 
   ngOnInit() {
     //llamndo la funcion para la key de google 

@@ -33,7 +33,15 @@
                 </div>
                 <br>
 
+            </ion-col>
+
+            <ion-col size=12 size-sm="4" class="p-2 animate__animated animate__fadeInRight">
+
                 <p class="fs-4">Calificacion </p>
+
+                <p *ngIf="calificacion === 0">
+                    este parqueadero aun no tiene calificacion
+                </p>
                 
                 <p *ngIf="calificacion === 1">
                     <i class="fa-solid fa-star"></i>
@@ -64,14 +72,8 @@
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
                 </p>
-                
 
-                
-
-            </ion-col>
-
-            <ion-col size=12 size-sm="4" class="p-2 animate__animated animate__fadeInRight">
-
+                <br>
 
                 <p class="fs-4">Espacio</p>
                 <p class="fs-5 mb-4">{{infoparqueadero.space}}</p>

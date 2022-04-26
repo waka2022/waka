@@ -35,7 +35,7 @@ export class MisParqueaderosPage implements OnInit {
 
     setTimeout(() => {
       this.getParqueadero()
-    }, 200);
+    }, 1000);
 
   }
 

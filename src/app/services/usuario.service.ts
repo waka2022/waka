@@ -120,6 +120,7 @@ export class UsuarioService {
   }
 
   // Actualizar el estado de un vehiculo (el que esta activo)
+  
   updateStatusVehiculo(token, id_vehic) {
     return this.http.patch(`${this.url}/vehicle/status-change-vehicle/${id_vehic}`, {}, { headers: { authorization_token: token } })
   }

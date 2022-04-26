@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { FormularioAgregarVehiculoPage } from '../formulario-agregar-vehiculo/formulario-agregar-vehiculo.page';
 import { UsuarioService } from '../../../services/usuario.service';
@@ -17,8 +17,31 @@ export class InfoVehiculoPage implements OnInit {
   constructor(private modalController: ModalController,
     private usuarioService: UsuarioService,
     private alertController: AlertController,
-    private emmiter: EmmitersService) {
+    private emmiter: EmmitersService,
+    public toastController: ToastController,) {
 
+  }
+
+  async msgError(res: string) {
+    const toast = await this.toastController.create({
+      message: res,
+      duration: 3500,
+      cssClass: "rojo",
+      mode: "ios",
+      position: 'top'
+    });
+    toast.present();
+  }
+
+  async msgBien(res: string) {
+    const toast = await this.toastController.create({
+      message: res,
+      duration: 3500,
+      mode: "ios",
+      color: "celeste",
+      position: 'top'
+    });
+    toast.present();
   }
 
   miVehiculo(id_vehiculo) {
@@ -27,14 +50,17 @@ export class InfoVehiculoPage implements OnInit {
 
     let token = localStorage.getItem('token')
 
-    this.usuarioService.updateStatusVehiculo(token, id_vehiculo).subscribe((res:any)=>{
+    this.usuarioService.updateStatusVehiculo(token, id_vehiculo).subscribe((res: any) => {
 
       localStorage.setItem('id_vehiculo', id_vehiculo)
-      
-      //console.log(res);    
+
+      this.msgBien(res.msg)
+
+    }, error => {
+      this.msgError(error.error.msg)
     })
 
-    // this.dismiss()
+    this.dismiss()
 
   }
 

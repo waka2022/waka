@@ -30,7 +30,7 @@ export class InfoParqueaderoPage implements OnInit {
   id_parqueadero: boolean
   latparq: string
   lonparq: string
-  calificacion: number
+  calificacion: number = 0
 
   constructor(private activatedRoute: ActivatedRoute, private usuarioService: UsuarioService,
     private route: Router, public toastController: ToastController) {
@@ -80,6 +80,13 @@ export class InfoParqueaderoPage implements OnInit {
             this.calificacion = calificacion
 
             this.id_parqueadero = true
+          },error=>{
+
+            //console.log(error);
+            
+            this.calificacion = 0
+            this.id_parqueadero = true
+
           })
 
         })
@@ -90,7 +97,7 @@ export class InfoParqueaderoPage implements OnInit {
     
         this.usuarioService.getParkingForId(token, par_id).subscribe((res: any) => {
 
-          console.log(res.data);
+           //console.log(res.data);
 
           this.infoparqueadero = res.data
 
@@ -102,6 +109,13 @@ export class InfoParqueaderoPage implements OnInit {
             let calificacion = Math.round(res.data);
             this.calificacion = calificacion
 
+            this.id_parqueadero = true
+
+          },error=>{
+
+            //console.log(error);
+            
+            this.calificacion = 0
             this.id_parqueadero = true
 
           })
@@ -168,7 +182,8 @@ export class InfoParqueaderoPage implements OnInit {
           this.msgBien(res.msg)
 
         }, error => {
-          this.msgError(error.msg)
+
+          this.msgError(error.error.msg)
 
           localStorage.removeItem('lat-parq')
           localStorage.removeItem('lon-parq')

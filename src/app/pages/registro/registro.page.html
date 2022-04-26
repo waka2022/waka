@@ -36,11 +36,6 @@
         </ion-item>
         <ion-label color="danger" *ngIf="users.controls.password.errors?.pattern && (users.touched || users.dirty)">* La contraseña debe tener carácteres, mayusculas y números. </ion-label>
 
-        <ion-item class="border-abajo">
-          <ion-label color="dark" position="floating">Confirmación de contraseña:</ion-label>
-          <ion-input class="text-white" ></ion-input>
-        </ion-item>
-
         <ion-item >
           <ion-label class="text-white">Terminos y condiciones</ion-label>
           <ion-checkbox  formControlName="tercond"  color="dark" slot="start" (click)="openTerms()"></ion-checkbox>

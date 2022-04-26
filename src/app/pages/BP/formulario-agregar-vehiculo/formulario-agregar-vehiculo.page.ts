@@ -22,6 +22,7 @@ export class FormularioAgregarVehiculoPage implements OnInit {
   });
 
   ngOnInit() {
+    
   }
   
   addCar(){
@@ -37,6 +38,7 @@ export class FormularioAgregarVehiculoPage implements OnInit {
     }
 
     let token = this.usuarioService.traerToken()
+
     this.usuarioService.addVehicleUser(token, infoCar).subscribe(res => {
       console.log(res)
       //cuando se genera un nuevo carro se actualiza la vista de carro

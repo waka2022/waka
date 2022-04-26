@@ -5,10 +5,10 @@
 <ion-content color="segundarioApp">
 
   <ion-grid>
-    <ion-row>
-      <ion-col size="12">
+    <ion-row class="px-4">
+      <ion-col size="9" sizeMd="11">
         <form [formGroup]="parqueadero" id="formulario">
-          <ion-item color="segundarioApp" class="border-abajo px-5 mb-2">
+          <ion-item color="segundarioApp" class="border-abajo mb-2">
             <ion-label position="floating">Seleccione un parqueadero...</ion-label>
             <ion-select #p interface="popover" formControlName="id_parqueadero" (ionChange)="buscarReservas(p.value)">
               <ion-select-option *ngFor="let parqueadero of this.parqueaderos" class="option"
@@ -18,12 +18,29 @@
           </ion-item>
         </form>
       </ion-col>
+
+      <ion-col size="3" sizeMd="1" class="siz-tex-1 mt-3 text-center position-relative">
+
+          historial
+          <ion-toggle class="togleForm centrar" #h (ionChange)="obtenerEstado(h.checked,p.value)"></ion-toggle>        
+
+      </ion-col>
+
     </ion-row>
 
+    <h2 *ngIf="ya === true && reservas.length == 0" id="ningun-vehiculo"
+      class="animate__animated animate__zoomIn animate__faste">
+      Parece que no hay ningun vehiculo en tu parqueadero
+      <br>
+      <ion-button color="light" class="mt-4" (click)="recargar(p.value)">
+        <i class="fa-solid fa-retweet text-black fa-lg"></i>
+      </ion-button>
+    </h2>
+
     <ion-row class="p-1 text-white" *ngIf="ya">
+
       <ion-col size="12" size-md="5" class="mx-auto mb-2 animate__animated animate__zoomIn animate__faste"
         id="contenedor-card" *ngFor="let reserva of reservas; let i = index">
-
         <ion-row>
           <ion-col size="12" class="text-center">
             <i class="fas fa-car fa-3x "></i><br>
@@ -43,19 +60,12 @@
           </ion-col>
         </ion-row>
 
-        <!-- <ion-row *ngIf="reserva.status.on_park.status" class="px-1 mt-2 mb-2">
-          <ion-col size="12" id="estado">
-            Estacionado
-          </ion-col>
-        </ion-row> -->
-
         <ion-row *ngIf="reserva.status.global_status === false && reserva.status.on_cancel === false "
           class="px-1 mt-2 mb-2">
           <ion-col size="12" id="estado">
             Ya se fue
           </ion-col>
         </ion-row>
-
 
         <ion-row>
           <ion-col size="6">
