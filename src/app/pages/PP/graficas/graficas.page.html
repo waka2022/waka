@@ -1,0 +1,35 @@
+<app-menu></app-menu>
+
+<ion-content color="segundarioApp">
+
+  <ion-item color="segundarioApp" class="border-abajo mb-2">
+    <ion-label position="floating">Seleccione un parqueadero...</ion-label>
+    <ion-select interface="popover">
+      <ion-select-option class="option" value="">enero</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <div class="contenedor-grafica">
+    <canvas id="chart-line"></canvas>
+  </div>
+
+  <hr>
+
+  <div class="contenedor-grafica">
+    <canvas id="chart-doughnut"></canvas>
+  </div>
+
+  <hr>
+
+  <div class="contenedor-grafica margin-bott">
+    <canvas id="chart-circle"></canvas>
+  </div>
+
+
+
+  <ion-button id="contenedor-ingresos" expand="full" size="large" class="fixed-bottom m-0 p-0 verde">
+    <h4 class="d-inline izquierda-text">INGRESO</h4>
+    <h4 class="d-inline derecha-text">800.000</h4>
+  </ion-button>
+
+</ion-content>

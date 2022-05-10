@@ -1,0 +1,33 @@
+.contenedor-grafica {
+    position: relative;
+    width: 100vw;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-top: 5%;
+}
+
+@media (min-width: 900px) {
+
+    .contenedor-grafica {
+        width: 60vw;
+        display: flex;
+        margin: auto;
+        padding-top: 2%;
+        padding-bottom: 2%;
+     
+    }
+}
+
+.margin-bott{
+    margin-bottom: 100px;
+}
+
+.izquierda-text{
+    position: absolute;
+    left: 0;
+}
+
+.derecha-text{
+    position: absolute;
+    right: 0;
+}

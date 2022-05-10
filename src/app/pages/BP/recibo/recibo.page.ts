@@ -10,9 +10,9 @@ import { AlertController } from '@ionic/angular';
 export class ReciboPage implements OnInit {
 
 
-  reservas: any = []
+  reservas:any = [] 
   id_parqueadero: boolean
-  time_reserva: number
+  time_reserva: number = 0
 
   constructor(private usuarioService: UsuarioService, public alertController: AlertController) { }
 
@@ -51,16 +51,17 @@ export class ReciboPage implements OnInit {
       })
     }
 
+
   }
 
   ionViewDidLeave() {
     this.reservas = []
   }
 
-  async pagoAlert(tiempo , price) {
+  async pagoAlert(tiempo, price) {
 
     if (tiempo === 0) {
-      
+
       const alert = await this.alertController.create({
         cssClass: 'my-custom-class',
         header: 'Factura de la reserva',
@@ -68,10 +69,10 @@ export class ReciboPage implements OnInit {
                   El monto a pagar es <h4 class="text-white d-inline ">${price}</h4> </h5>`,
         buttons: ['OK']
       });
-  
+
       await alert.present();
 
-    }else{
+    } else {
 
       const alert = await this.alertController.create({
         cssClass: 'my-custom-class',
@@ -80,7 +81,7 @@ export class ReciboPage implements OnInit {
                   El monto a pagar es <h4 class="text-white d-inline ">${price * tiempo}</h4> </h5>`,
         buttons: ['OK']
       });
-  
+
       await alert.present();
 
     }
@@ -90,7 +91,7 @@ export class ReciboPage implements OnInit {
   verPago(id_reser: string, price) {
 
     let token = localStorage.getItem('token')
-    
+
     this.usuarioService.getTimeReservation(token, id_reser).subscribe((res: any) => {
 
       let tiempo = res.data
@@ -98,7 +99,7 @@ export class ReciboPage implements OnInit {
       this.pagoAlert(tiempo, price)
 
     })
-    
+
   }
 
 

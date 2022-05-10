@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { InfoVehiculoPageModule } from './pages/BP/info-vehiculo/info-vehiculo.module';
-import { FormularioAgregarVehiculoPageModule } from './pages/BP/formulario-agregar-vehiculo/formulario-agregar-vehiculo.module';
 
 const routes: Routes = [
   
@@ -91,6 +89,11 @@ const routes: Routes = [
     path: 're-activation-account/:id',
     loadChildren: () => import('./pages/re-activation-account/re-activation-account.module').then( m => m.ReActivationAccountPageModule)
   },
+  {
+    path: 'graficas',
+    loadChildren: () => import('./pages/PP/graficas/graficas.module').then( m => m.GraficasPageModule)
+  },
+
 
  
 

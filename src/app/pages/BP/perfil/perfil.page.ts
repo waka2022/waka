@@ -24,10 +24,10 @@ import { Router } from '@angular/router';
 export class PerfilPage implements OnInit {
 
   usuario: any = {
-    names:"",
-    document:"",
-    email_t:{
-      email:""
+    names: "",
+    document: "",
+    email_t: {
+      email: ""
     }
   }
   mssg: string
@@ -57,7 +57,7 @@ export class PerfilPage implements OnInit {
       this.usuario = res.data
       this.email = this.usuario.email_t.email;
       this.img = this.usuario.img
-console.log(res)
+      console.log(res)
     })
 
   }
@@ -97,9 +97,9 @@ console.log(res)
           handler: (email) => {
             console.log('Confirm');
 
-            
+
             //servico para enviar el mensaje de cambio de contraseña
-            this.usuService.solicitudEmail(this.email,2).subscribe(
+            this.usuService.solicitudEmail(this.email, 2).subscribe(
               (res: any) => {
                 console.log(res)
                 console.log(email)
@@ -164,7 +164,7 @@ console.log(res)
     await alert.present();
   }
 
-  cerrarSesion(){
+  cerrarSesion() {
     localStorage.removeItem('token')
     this.router.navigate(['inicio'])
   }

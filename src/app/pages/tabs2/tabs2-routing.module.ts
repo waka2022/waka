@@ -35,6 +35,10 @@ const routes: Routes = [
         loadChildren: () => import('../PP/acceso-estadisticas/acceso-estadisticas.module').then( m => m.AccesoEstadisticasPageModule)
       },
       {
+        path: 'graficas',
+        loadChildren: () => import('../PP/graficas/graficas.module').then( m => m.GraficasPageModule)
+      },
+      {
         path: 'agregar-parqueadero',
         loadChildren: () => import('../PP/agregar-parqueadero/agregar-parqueadero.module').then( m => m.AgregarParqueaderoPageModule)
       },
