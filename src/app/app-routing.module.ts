@@ -92,7 +92,11 @@ const routes: Routes = [
   {
     path: 'graficas',
     loadChildren: () => import('./pages/PP/graficas/graficas.module').then( m => m.GraficasPageModule)
+  },  {
+    path: 'term-condi',
+    loadChildren: () => import('./pages/term-condi/term-condi.module').then( m => m.TermCondiPageModule)
   },
+
 
 
  
