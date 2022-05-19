@@ -2,10 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, PatternValidator, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
 //?google sign in
 import { ViewChild, ElementRef } from '@angular/core'
+import { TermCondiPage } from '../term-condi/term-condi.page';
+
+
+
 
 
 @Component({
@@ -25,7 +29,7 @@ export class RegistroPage implements OnInit {
  //! la funcion para generar el login con google
  @ViewChild('loginRef', { static: true }) loginElement: ElementRef;
 
-  constructor(public loadingController: LoadingController,private router: Router, private usuarioService: UsuarioService, public toastController: ToastController ) { }
+  constructor(public loadingController: LoadingController,private router: Router, private usuarioService: UsuarioService, public toastController: ToastController, private modalController: ModalController, ) { }
 
   ngOnInit() {
     //llamndo la funcion para la key de google 
@@ -113,9 +117,26 @@ export class RegistroPage implements OnInit {
     
   }
 
-  openTerms(){
-    console.log("info para terminos y condiciones")
-  }
+
+  
+
+    async openTerms() {
+ //* modal para abrir crear un nuevo vehiculo
+
+  const modal = await this.modalController.create({
+    component: TermCondiPage,
+    initialBreakpoint: 1,
+    breakpoints: [0.0, 0.5, 1],
+    showBackdrop: true,
+    swipeToClose: true,
+    keyboardClose: true
+
+  });
+
+  await modal.present();
+}
+
+
 
 
  //!google sing in

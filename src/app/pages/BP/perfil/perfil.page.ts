@@ -56,7 +56,15 @@ export class PerfilPage implements OnInit {
     this.usuService.getInfo(token).subscribe((res: any) => {
       this.usuario = res.data
       this.email = this.usuario.email_t.email;
-      this.img = this.usuario.img
+     
+      // dandole valor a la variable global img 
+      if (this.usuario.img== null) {
+        // si no tiene una imagen el usuario registrado muestre una por defecto
+        this.img = "https://storage.googleapis.com/media.clinicavisualyauditiva.com/images/2019/11/211fd983-default-user-image.png"
+      } else {
+        // muestre la img que tiene el usuario guardada
+        this.img =  this.usuario.img
+      }
       console.log(res)
     })
 
