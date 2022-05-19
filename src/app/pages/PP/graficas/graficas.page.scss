@@ -1,3 +1,42 @@
+
+#cont-date{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    border-radius: 4px;
+    margin-right: 2px;
+    opacity: 0.6;
+    filter: invert(0.8);
+  }
+  
+  input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1
+  }
+
+#start, #end{
+
+    outline: none;
+    width: 40vw;
+    background: none;
+    padding: 10px;
+    transition: all 0.6s;
+    border: solid 2px rgba(97, 97, 97, 0.705);
+    color: rgba(97, 97, 97, 0.705);
+    margin: 9px;
+
+}
+
+#start:focus, #end:focus{
+    
+}
+
 .contenedor-grafica {
     position: relative;
     width: 100vw;
@@ -15,6 +54,10 @@
         padding-top: 2%;
         padding-bottom: 2%;
      
+    }
+
+    #start, #end{
+        width: 20vw;
     }
 }
 

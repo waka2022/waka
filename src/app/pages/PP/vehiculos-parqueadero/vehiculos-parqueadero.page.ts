@@ -200,7 +200,7 @@ export class VehiculosParqueaderoPage implements OnInit {
       if (estado === 2) {
 
         this.userServices.crearFactura(token, id_reser).subscribe(res=>{
-          //console.log(res);
+          console.log(res);
         })
       }
 
