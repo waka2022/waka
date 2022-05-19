@@ -6,9 +6,27 @@
         <ion-row class="width100 centrarVertText">
 
             <ion-col size=12 size-sm="4" class="p-3 centrar-contenedores animate__animated animate__fadeInLeft">
-                <img src="{{ this.img }}" class="imagenPerfil" />
+                <ion-row>
+                    <ion-col size=12 size-sm="12"
+                        class="p-3 centrar-contenedores animate__animated animate__fadeInLeft">
+                        <img src="{{ this.img }}" class="imagenPerfil" />
+                    </ion-col>
+                    <ion-col size=12 size-sm="12"
+                        class="p-3 centrar-contenedores animate__animated animate__fadeInLeft">
+                        <div id="btn-eliminar" (click)="alertDeleteimg()">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </div>
+                        <div   class="custom-file-upload">
+                           <label id="btn-cambiarimg">
+                            <input type="file"/>
+                        
+                            <i class="fa-solid fa-pen"></i>
+                        </label>
+                        </div>
+                    </ion-col>
+                </ion-row>
             </ion-col>
-         
+
             <ion-col size=12 size-sm="4" class="p-2 animate__animated animate__fadeInRight">
 
                 <p class="fs-4">Dueño</p>
@@ -18,7 +36,7 @@
                 <p class="fs-5 mb-4">{{ this.usuario.document }}</p>
 
                 <p class="fs-4">Correo</p>
-                <p class="fs-5 mb-4">{{ this.usuario.email_t.email  }}</p>
+                <p class="fs-5 mb-4">{{ this.usuario.email_t.email }}</p>
 
 
             </ion-col>
@@ -26,12 +44,14 @@
             <ion-col size=12 size-sm="4" class="p-2 animate__animated animate__fadeInRight">
 
                 <p class="fs-5 mb-3">
-                    <ion-button routerLink="/actualizarperfil"><p>Actualizar</p></ion-button>
+                    <ion-button routerLink="/actualizarperfil">
+                        <p>Actualizar</p>
+                    </ion-button>
                 </p>
 
-                <ion-button class="btn_alert mb-3" (click)="presentAlertCambiarPass()" color="success"  >
-                    Cambiar contraseña 
-                </ion-button> 
+                <ion-button id="btn-cambiar" class="btn_alert mb-3" (click)="presentAlertCambiarPass()" color="success">
+                    Cambiar contraseña
+                </ion-button>
 
                 <p class="fs-5 mb-3">
                     <ion-button color="segundarioApp" (click)="cerrarSesion()">
@@ -41,19 +61,20 @@
                 </p>
 
             </ion-col>
-        
+
             <!--* campo para deshabilitar cuenta -->
             <ion-col size=12 size-sm="4" class="animate__animated animate__fadeInLeft">
                 <!--* mensaje de recordatorio para 16 días de plazo (aparece despues de deshabiliar la cuenta) -->
                 <ion-text color="warning" class="text-start">
                     <p>{{this.mssg}}</p>
-                  </ion-text>         
-                  <!--* boton para cliquear y mostrar la alerta de confirmacion-->
-                  <ion-button class="btn_alert " (click)="presentAlertDesHabilitar()" color="success" expand="block" >
+                </ion-text>
+                <!--* boton para cliquear y mostrar la alerta de confirmacion-->
+                <ion-button class="btn_alert " (click)="presentAlertDesHabilitar()" color="success" expand="block">
                     Deshabilitar la cuenta
-                </ion-button> 
-            </ion-col> 
+                </ion-button>
                 
+            </ion-col>
+
         </ion-row>
 
     </ion-grid>

@@ -14,7 +14,33 @@
           <ion-row class="contenedor-parqueadero p-relative">
   
             <ion-col size="6" class="p-3">
-              <img id="img-parqueadero" src="../../../assets/parqueadero.jpg" alt="">
+              <ion-row>
+                <ion-col *ngIf="previsualizacion" size=12 size-sm="12"
+                    class="p-3 centrar-contenedores animate__animated animate__fadeInLeft">
+                    <!-- previsualizacion de la img por la cual quiere cambiar -->
+                    <img class="img-parqueadero" [src]="previsualizacion" alt="">
+                </ion-col>
+                <ion-col *ngIf="previsualizacion == null" size=12 size-sm="12"
+                    class="p-3 centrar-contenedores animate__animated animate__fadeInLeft">
+                    <!-- aca tiene que ir a imagen del backe o la de por defecto si no tiene -->
+                    <img class="img-parqueadero" src="https://thumbs.dreamstime.com/z/logotipo-de-la-fotograf%C3%ADa-de-la-c%C3%A1mara-de-digitaces-38850028.jpg" alt="">
+                </ion-col>
+                <ion-col size=6 size-sm="6" class="p-3 centrar-contenedores animate__animated animate__fadeInLeft">
+                    <div id="btn-eliminar" (click)="alertDeleteimg()">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </div>
+                  </ion-col>
+                    <ion-col size=6 size-sm="6" class="p-3 centrar-contenedores animate__animated animate__fadeInLeft">
+                    <div   class="custom-file-upload">
+                       <label id="btn-cambiarimg">
+                        <input accept="image/png, .jpeg, .jpg, image/gif" (change)="capturaFile($event)" type="file"/>
+                    
+                        <i class="fa-solid fa-pen"></i>
+                    </label>
+                    </div>
+                </ion-col>
+            </ion-row>
+              
             </ion-col>
   
             <ion-col size="6">

@@ -56,6 +56,16 @@ export class PerfilPage implements OnInit {
     this.usuService.getInfo(token).subscribe((res: any) => {
       this.usuario = res.data
       this.email = this.usuario.email_t.email;
+
+      if (this.usuario.google == false) {
+        document.getElementById("btn-cambiar").style.visibility  = "hidden";
+        document.getElementById("btn-eliminar").style.visibility  = "hidden";
+        document.getElementById("btn-cambiarimg").style.visibility  = "hidden";
+      } else {
+        document.getElementById("btn-cambiar").style.visibility  = "visible";
+        document.getElementById("btn-eliminar").style.visibility  = "visible";
+        document.getElementById("btn-cambiarimg").style.visibility  = "visible";
+      }
      
       // dandole valor a la variable global img 
       if (this.usuario.img== null) {

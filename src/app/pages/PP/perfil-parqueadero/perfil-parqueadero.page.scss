@@ -17,6 +17,28 @@ p {
    
 }
 
+#btn-eliminar{
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    margin-right: 12px;
+}
+#btn-cambiarimg{
+    border: 1px solid #ccc;
+    height: 38px;
+    display: inline-block;
+    padding: 7px 13px;
+    cursor: pointer;
+    margin-left: 12px;
+}
+
+
+input[type="file"] {
+    display: none;
+}
+
+
 .posicionArriba{
     position:absolute;
     top:0px;
@@ -54,7 +76,7 @@ width: 100%;
 
 .imagenPerfil{
     width: 100%;
-    border-radius: 400px;
+   border-radius: 400px;
 }
 
 .btn_alert{

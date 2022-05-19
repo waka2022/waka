@@ -5,6 +5,7 @@ import { AgregarParqueaderoPage } from '../agregar-parqueadero/agregar-parqueade
 import { EmmitersService } from '../../../services/emmiters.service';
 import { AlertController } from '@ionic/angular';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-mis-parqueaderos',
@@ -13,13 +14,19 @@ import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 })
 export class MisParqueaderosPage implements OnInit {
 
-  constructor(private userServices: UsuarioService, private modalController: ModalController, private emmiter: EmmitersService,
+  constructor(private sanitizer: DomSanitizer, private userServices: UsuarioService, private modalController: ModalController, private emmiter: EmmitersService,
     public alertController: AlertController, private geolocation: Geolocation, public toastController: ToastController) { }
 
   parqueaderos:any = []
 
   msg: string
   error: boolean = false
+
+  //contiene la previsualizacion base64
+  public previsualizacion: string;
+
+  //contiene la imagene el valor es asigando  (input)
+  public archivos:any=[]
 
   ngOnInit() {
 
@@ -217,4 +224,45 @@ export class MisParqueaderosPage implements OnInit {
 
   }
 
+  //*subir archivo
+  capturaFile(event):any{
+
+    //constante que contiene la ruta donde esta la informacion del archivo
+    const archivoCapturado = event.target.files[0]
+    this.extraerBase64(archivoCapturado).then((imagen:any )=> {
+      console.log(imagen);
+      this.previsualizacion = imagen.base;
+    })
+    this.archivos.push(archivoCapturado);
+
+    // console.log(archivoCapturado);
+  }
+
+
+  //*previsualizacion de la img (base64)
+  extraerBase64 = async ($event:any) => new Promise((resolve, reject) =>{
+    try{
+      const unsafeImg = window.URL.createObjectURL($event);
+      const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
+      const reader = new FileReader();
+      reader.readAsDataURL($event);
+      reader.onload = () => {
+        resolve({
+          // Blob:$event,
+          // image,
+          base: reader.result
+        });
+      };
+      reader.onerror = error => {
+        resolve({
+          // Blob: $event,
+          // image,
+          base: null
+        });
+      };
+    }catch (e){
+      return null;
+    }
+    
+  })
 }

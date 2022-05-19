@@ -9,6 +9,9 @@ export class UsuarioService {
 
   private url = "https://wakabackend.herokuapp.com/v1/producction"
 
+  //url para wakafile
+  private urlFile ="https://wakafiles.azurewebsites.net/waka-files/v1/producction/photos"
+
   public user_data: User
 
   constructor(private http: HttpClient) {
@@ -195,6 +198,48 @@ export class UsuarioService {
     return this.http.get(`${this.url}/ranking/average-ranking-parking/${id_parq}`, { headers: { authorization_token: token } })
   }
 
+  //! servicios para archivos
+
+//?Donde:
+//* - type_action: Es un numero de 0 a 2:
+
+// 0 = Foto de perfil de usuario
+// 1 = Registro fotografico de novedades
+// 2 = Fotos de un parqueadero registrado
+
+//* - id_action:
+
+// Sera el id unico del registro del tipo al que apuntara, es decir. 
+// Si se apunta a 0 debe ir el id del usuario al que se le actualizara la foto, 
+// si se apunta a 1 sera el id de la reserva a la cual se le agregara la novedad, 
+// si se apunta a 2 debe ir el id del parqueadero al que se le agregaran las fotos
+
+
+
+  //subir y enviar archivos a waka @samuel
+  //*token en header
+  //*info from data (key:photos) en body
+  postWakaFile(type_action, id_action, token, info){
+    return this.http.post(`${this.urlFile}/upload-photo/0/624f6a2a2aaf4ec9e7882bf9`,{ headers: { authorization_token: token } })
+  }
+
+
+  //ver fotos unicas segun ruta @samuel
+  //*token en header
+  //*path esca del documento guardado en la coleccion  en header servicio de get parqueadero o get vehiculo columba(photos).
+  getWakaFile(token, path){
+    return this.http.get(`${this.urlFile}/view-photos-unique`)
+  }
+
+  //eliminar un foto @samuel
+  //*token en header
+  daleteWakaFile(token, id_photo){
+    return this.http.delete(`${this.urlFile}/delete-photo/6237b4b071c0cbcf0a5f979c`)
+  }
+
+  //ver foto segun el tipo waka  (era un servicio de prueba)
+
+  
 
 
   //verificacion de cuenta

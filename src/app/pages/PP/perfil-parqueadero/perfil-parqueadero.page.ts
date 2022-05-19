@@ -18,6 +18,7 @@ export class PerfilParqueaderoPage implements OnInit {
   }
   mssg :string
   email
+  img
 
   constructor(private usuService : UsuarioService, 
               public alertController: AlertController,
@@ -58,20 +59,37 @@ export class PerfilParqueaderoPage implements OnInit {
 
     await alert.present();
   }
-
-  traerInfoUsuario(){
+  traerInfoUsuario() {
 
     let token = localStorage.getItem("token")
 
-    this.usuService.getInfo( token ).subscribe((res:any) => {
-      console.log(res);
-      
+    this.usuService.getInfo(token).subscribe((res: any) => {
       this.usuario = res.data
       this.email = this.usuario.email_t.email;
-    
+      console.log(res)
+      if (this.usuario.google == false) {
+        document.getElementById("btn-cambiar").style.visibility  = "hidden";
+        document.getElementById("btn-eliminar").style.visibility  = "hidden";
+        document.getElementById("btn-cambiarimg").style.visibility  = "hidden";
+      } else {
+        document.getElementById("btn-cambiar").style.visibility  = "visible";
+        document.getElementById("btn-eliminar").style.visibility  = "visible";
+        document.getElementById("btn-cambiarimg").style.visibility  = "visible";
+      }
+     
+      // dandole valor a la variable global img 
+      if (this.usuario.img== null) {
+        // si no tiene una imagen el usuario registrado muestre una por defecto
+        this.img = "https://storage.googleapis.com/media.clinicavisualyauditiva.com/images/2019/11/211fd983-default-user-image.png"
+      } else {
+        // muestre la img que tiene el usuario guardada
+        this.img =  this.usuario.img
+      }
+      
     })
 
   }
+
 
 //*generando la alerta para avisar al usuario de cambiar la contrseña
 async presentAlertCambiarPass(email2) {
