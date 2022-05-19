@@ -2,12 +2,10 @@
 
 <ion-content color="segundarioApp">
 
-  <ion-item color="segundarioApp" class="border-abajo mb-2">
-    <ion-label position="floating">Seleccione un parqueadero...</ion-label>
-    <ion-select interface="popover">
-      <ion-select-option class="option" value="">enero</ion-select-option>
-    </ion-select>
-  </ion-item>
+  <div id="cont-date">
+    <input type="date" id="start" name="trip-start" [value]="this.fecha">
+    <input type="date" id="end" name="trip-start" [value]="this.fecha">
+  </div>
 
   <div class="contenedor-grafica">
     <canvas id="chart-line"></canvas>

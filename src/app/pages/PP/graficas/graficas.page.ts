@@ -3,7 +3,6 @@ import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
 
-
 @Component({
   selector: 'app-graficas',
   templateUrl: './graficas.page.html',
@@ -11,11 +10,36 @@ Chart.register(...registerables);
 })
 export class GraficasPage implements OnInit {
 
+  fecha
+
   constructor() {
 
   }
 
   ngOnInit() {
+
+    let mes = new Date().getMonth()
+    let dia = new Date().getDate()
+    let año = new Date().getFullYear()
+
+
+    if (mes <= 9) {
+
+      let fecha = `${año}-0${mes}-${dia}`
+      this.fecha = fecha
+
+    }
+
+    if (dia <= 9) {
+
+      let fecha = `${año}-${mes}-0${dia}`
+      this.fecha = fecha
+
+    }
+
+
+    console.log(this.fecha);
+
 
     setTimeout(() => {
       this.generarGrafica();
