@@ -13,21 +13,23 @@ export class RegistroParqueaderoPage implements OnInit {
   constructor(private router: Router, private usuarioService: UsuarioService) { }
 
   info = new FormGroup({
-    document: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    document: new FormControl('', [Validators.required, Validators.minLength(10)]),
     phone: new FormControl('', [Validators.required, Validators.minLength(10)]),
     address: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    type_parks: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    cams: new FormControl('false',Validators.required),
-    vigilant: new FormControl('false',Validators.required),
-    Carros: new FormControl('false',Validators.required),
-    Motos: new FormControl('false',Validators.required),
-    Bicicletas: new FormControl('false',Validators.required),
+    cams: new FormControl('false', Validators.required),
+    vigilant: new FormControl('false', Validators.required),
+    Carros: new FormControl('false', Validators.required),
+    Motos: new FormControl('false', Validators.required),
+    Bicicletas: new FormControl('false', Validators.required),
     descript: new FormControl('', [Validators.required, Validators.minLength(4)]),
-
+    cupos: new FormControl('', [Validators.required]),
+    precio: new FormControl('', [Validators.required]),
+    espacio: new FormControl('', [Validators.required]),
 
   });
 
   ngOnInit() {
+
   }
 
 
@@ -43,37 +45,39 @@ export class RegistroParqueaderoPage implements OnInit {
 
     }
 
-    let tipoParq = [];
 
-    if (this.info.value.Carros === true) {
-
-      tipoParq.push('carros');
-
-    } if (this.info.value.Motos === true) {
-
-      tipoParq.push('motos');
-      
-    } if (this.info.value.Bicicletas === true) {
-      
-      tipoParq.push('bicicletas');
-
-    }
-
-  
     let infoPar = {
 
-        address: this.info.value.address,
-        type_parks: tipoParq,
-        type_security:{
-          cams: this.info.value.cams,
-          vigilant: this.info.value.vigilant
-        },
-        descript: this.info.value.descript
+      address: this.info.value.address,
+      type_parks: {
+        _0: this.info.value.Motos,
+        _1: this.info.value.Carros,
+        _2: this.info.value.Bicicletas
+      },
+      type_security: {
+        cams: this.info.value.cams,
+        vigilant: this.info.value.vigilant
+      },
+      descript: this.info.value.descript,
+      availability: false,
+      quotas: {
+        totals: this.info.value.cupos
+      },
+      space: this.info.value.espacio,
+      price: this.info.value.precio
 
     }
 
-    this.usuarioService.addInfoUser(token, infoAdd).subscribe(res => { console.log(res) })
-    this.usuarioService.addParking(token, infoPar).subscribe(res => { console.log(res) })
+    this.usuarioService.addInfoUser
+      (token, infoAdd).subscribe(res => {
+
+        console.log(res)
+        this.usuarioService.addParking(token, infoPar).subscribe(res => {
+          console.log(res)
+        })
+
+      })
+
 
     console.log(infoPar)
     this.router.navigate(['tabs2/mis-parqueaderos'])

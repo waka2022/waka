@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, PatternValidator, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
+import { ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -12,9 +13,31 @@ import { UsuarioService } from '../../services/usuario.service';
 export class RegistroPage implements OnInit {
 
 
-  constructor(private router: Router, private usuarioService: UsuarioService ) { }
+  constructor(private router: Router, private usuarioService: UsuarioService, public toastController: ToastController ) { }
 
   ngOnInit() {
+  }
+
+  async msgError(res: string) {
+    const toast = await this.toastController.create({
+      message: res,
+      duration: 3500,
+      cssClass: "rojo",
+      mode: "ios",
+      position: 'top'
+    });
+    toast.present();
+  }
+
+  async msgBien(res: string) {
+    const toast = await this.toastController.create({
+      message: res,
+      duration: 5500,
+      mode: "ios",
+      color:"celeste",
+      position: 'top'
+    });
+    toast.present();
   }
 
 
@@ -35,14 +58,18 @@ export class RegistroPage implements OnInit {
       password: this.users.value.password
     }
 
-    this.usuarioService.crearUsuario(user).subscribe( res => {console.log(res)})
+    this.usuarioService.crearUsuario(user).subscribe( (res:any) => {
+      this.msgBien(res.msg)
+      this.router.navigate(['acceso'])
+    },error =>{
+      this.msgError(error.error.msg)
+    })
     
-    this.router.navigate(['acceso'])
+    
   }
 
   openTerms(){
-
-    console.log("loremmmmmmmmmmmmmmmmmmmmmmmmmm   info para terminos y condiciones")
+    console.log("info para terminos y condiciones")
   }
 
   

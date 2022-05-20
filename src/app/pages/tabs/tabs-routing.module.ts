@@ -13,7 +13,7 @@ const routes: Routes = [
         loadChildren: () => import('../BP/mapa/mapa.module').then(m => m.MapaPageModule)
       },
       {
-        path: 'info-parqueadero',
+        path: 'info-parqueadero/:id',
         loadChildren: () => import('../BP/info-parqueadero/info-parqueadero.module').then(m => m.InfoParqueaderoPageModule),
       },
       {

@@ -1,169 +1,125 @@
 import { Injectable } from '@angular/core';
 import * as Mapboxgl from 'mapbox-gl';
-import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class MapboxService {
 
-  latitud = 0
-  longitud = 0
+  constructor(private http: HttpClient, private router: Router) { }
 
-  constructor(private geolocation: Geolocation) { }
+  cargarMapa(latitud: number, longitud: number, parqueaderos) {
 
-  obtenerCordenadas() {
-
-    this.geolocation.getCurrentPosition().then((resp) => {
-
-      this.latitud = resp.coords.latitude
-      this.longitud = resp.coords.longitude
-
-      console.log(resp);
-      
-
-    }).catch((error) => {
-      console.log('Error getting location', error);
+    // token proporcionado por mapbox
+    Mapboxgl.accessToken = environment.tokenMapbox;
+    // creamos la constante del mapa
+    const map = new Mapboxgl.Map({
+      //con sus estilos
+      style: 'mapbox://styles/kevinfc/ckyqjgmhc11yx15pin5y5qeip',
+      // la posición en la que se va centrar el mapa al abrirse en ese caso la posición de nuestro usuario
+      center: [longitud, latitud],
+      // el zoom predeterminado al abrirse el mapa
+      zoom: 15.3,
+      // el div donde se va cargar el mapa
+      container: 'map',
     });
 
-  }
-  
-  cargarMapa() {
-
-    return new Promise((resolve, reject): any => {
-
-      this.obtenerCordenadas()
-
-      setTimeout(
-        () => {
-
-          // token proporcionado por mapbox
-          Mapboxgl.accessToken = 'pk.eyJ1Ijoia2V2aW5mYyIsImEiOiJja3lxYWJ2cGowaHZ3MnVwaDlpd29kbWF4In0.q5c8f5xW-_vGaZFZ_RZsyQ';
-          // creamos la constante del mapa
-          const map = new Mapboxgl.Map({
-            //con sus estilos
-            style: 'mapbox://styles/kevinfc/ckyqjgmhc11yx15pin5y5qeip',
-            // la posición en la que se va centrar el mapa al abrirse en ese caso la posición de nuestro usuario
-            center: [this.longitud, this.latitud],
-            // el zoom predeterminado al abrirse el mapa
-            zoom: 15.3,
-            // el div donde se va cargar el mapa
-            container: 'map',
-          });
+    map.addControl(new Mapboxgl.FullscreenControl(), 'top-left');
+    map.addControl(new Mapboxgl.NavigationControl(), 'top-left');
 
 
-
-          // marcadores
-          const geojson = {
-            // tipo
-            type: 'FeatureCollection',
-            // arreglo con los marcadores
-            features: [
-              {
-                //tipo
-                type: 'Feature',
-                geometry: {
-                  type: 'Point',
-                  //cordenadas
-                  coordinates: [this.longitud, this.latitud]
-                },
-                // informacion al darle click al marcador
-                properties: {
-                  title: 'Sena',
-                  description: 'Parqueadero SENA',
-                  imagen: "hola",
-                }
-              }
-            ]
-          };
-
-          //recorremos lso marcadores
-          for (const feature of geojson.features) {
-            // creamos un HTML element para cada feactures
-            const marcador = document.createElement('div');
-            marcador.className = 'marker';
-
-            // agregarmos el marcador al mapa
-            new Mapboxgl.Marker(marcador).setLngLat(feature.geometry.coordinates).addTo(map);
+    /*let token = localStorage.getItem("token")
+    this.userServices.getParking(token).subscribe(res =>{
+      console.log(res);
+    })*/
 
 
-            // usamos la informacion al darle click al marcador para desplegarla en el mapa
-            new Mapboxgl.Marker(marcador)
-              .setLngLat(feature.geometry.coordinates)
-              .setPopup(
-                new Mapboxgl.Popup({ offset: 25 }) // add popups
-                  .setHTML(
-                    `
-                    <ion-grid>
+    //recorremos lso marcadores
+    for (const feature of parqueaderos.features) {
+      // creamos un HTML element para cada feactures
+      const popupContent = document.createElement('div');
 
-                    <ion-row>
-                      <ion-col size="12">
-                      <ion-img src="../../../assets/parqueadero.jpg" class="img-market" ></ion-img>
-                      </ion-col>
-                    </ion-row>
-                
-                
-                    <ion-row>
-                      <ion-col size="6">
-                        Horario <br>
-                        10am - 5pm
-                      </ion-col>
-                      <ion-col size="6">
-                        <i class="fa-solid fa-star-sharp"></i>
-                        <i class="fa-thin fa-star-sharp"></i>
-                        <i class="fa-light fa-star-sharp fa-2x"></i>
-                      </ion-col>
-                    </ion-row>
-                
-                    <ion-row>
-                      <ion-col size="6">
-                        Precio hora <br>
-                        $4.000
-                      </ion-col>
-                      <ion-col size="6">
-                        <i class="fas fa-car-side fa-1x "></i>
-                        <i class="fa-solid fa-bicycle fa-1x"></i>
-                      </ion-col>
-                    </ion-row>
-                
-                    <ion-row>
-                      <ion-col size="12">
-                        <ion-button class="verde" expand="full" > 
-                          Disponible
-                      </ion-button>
-                      </ion-col>
-                    </ion-row>
+      popupContent.innerHTML = `
+      <ion-grid>
 
-                    <ion-row>
-                       <ion-col size="12">
-                          <ion-button color="celeste" expand="full" id="verMas"> 
-                            <p class="animate__animated animate__bounceIn m-0 animate__fast">Ver mas</p> 
-                          </ion-button>
-                        </ion-col>
-                    </ion-row>
-                
-                  </ion-grid>
-                  
-                  `
+      <ion-row>
+            <ion-col size="12">
+                <h2>${feature.properties.direccion}</h2>
+            </ion-col>
+        </ion-row>
 
-                  )
-                  
-              ).addTo(map); // agregarmos al mapa
+        <ion-row>
+            <ion-col size="6">
+            Precio/hora
+            <h5 class="mt-1">
+               $ ${feature.properties.precio}
+            </h5>
+            </ion-col>
 
+            <ion-col size="6">
+            <h5>
+
+            ${feature.properties.carro}
+            ${feature.properties.bicicleta}
+            ${feature.properties.moto}
               
+            </h5>
+            </ion-col>
+        </ion-row>
 
-          }
+        <ion-row>
+            <ion-col size="12">
+                <ion-button class="verde" expand="full">
+                    Disponible
+                </ion-button>
+            </ion-col>
+        </ion-row>
 
-          resolve({
-            // resolvemos el mapa
-            map
-          })
+      </ion-grid>`;
 
-        }
-        , 1000
-      );
-    })
-  };
+      const atag = document.createElement('div');
+
+      atag.innerHTML = `
+      <ion-row>
+        <ion-col size="12">
+            <ion-button id="${feature.properties.id} color="celeste" expand="full" id="verMas">
+                <p class="animate__animated animate__bounceIn m-0 animate__fast">Ver mas</p>
+            </ion-button>
+        </ion-col>
+      </ion-row>`
+
+      popupContent.appendChild(atag);
+
+      atag.addEventListener('click', (e) => {
+        console.log('Button was clicked' + feature.properties.id);
+        this.router.navigateByUrl('/tabs/info-parqueadero/' + feature.properties.id)
+      })
+
+      let popup = new Mapboxgl.Popup({
+      }).setDOMContent(popupContent);
+
+
+      const marcador = document.createElement('div');
+      marcador.className = 'marker';
+      // agregarmos el marcador al mapa
+      new Mapboxgl.Marker(marcador).setLngLat(feature.geometry.coordinates).setPopup(popup).addTo(map);
+    }
+
+    return map
+  }
+
+  dibujarRuta(cordenadasCar, cordenadasPar) {
+
+    //console.log(cordenadasPar);
+
+    return this.http.get(`https://api.mapbox.com/directions/v5/mapbox/driving/${cordenadasCar[0]},${cordenadasCar[1]};${cordenadasPar[0]},${cordenadasPar[1]}?steps=true&geometries=geojson&access_token=${environment.tokenMapbox}`)
+
+
+  }
 }
 
 

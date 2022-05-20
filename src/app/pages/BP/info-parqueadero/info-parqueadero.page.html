@@ -1,10 +1,11 @@
 <app-menu></app-menu>
 
 <ion-content>
-    <ion-grid id="grid-contenedor" class="heightConteiner centrar-contenedores referenciaPosicion"
-        *ngFor="let item of [1,1]">
+    <ion-grid id="grid-contenedor" class="heightConteiner centrar-contenedores referenciaPosicion" *ngIf="id_parqueadero === true">
 
-        <ion-row class="width100 centrarVertText mb-5 text-white">
+
+        <ion-row class="centrarVertText text-white">
+
 
             <ion-col size=12 size-sm="4" class="p-3 centrar-contenedores animate__animated animate__fadeInLeft">
                 <img src="../../../assets/parqueadero.jpg" width="100%" />
@@ -12,45 +13,88 @@
 
             <ion-col size=12 size-sm="4" class="p-2 animate__animated animate__fadeInRight">
 
-                <p class="fs-4">Dueño
-                <p class="fs-5 mb-4">Pepito Perez Orjuela</p>
-
-                <p class="fs-4">Horario</p>
-                <p class="fs-5 mb-4">10am - 4pm</p>
+                <p class="fs-4">Dueño</p>
+                <p class="fs-5 mb-4">{{infoparqueadero.id_user.names}}</p>
 
                 <p class="fs-4">Direccion</p>
-                <p class="fs-5 mb-4">Crr 9 #9-23</p>
+                <p class="fs-5 mb-4">{{infoparqueadero.address}}</p>
 
                 <p class="fs-4">Seguridad</p>
-                <p class="fs-5 mb-4">Carro y moto</p>
+                <div>
+                    <p class="fs-5 mb-4 d-inline" *ngIf="infoparqueadero.type_security.cams === true" >Camaras </p>
+                    <p class="fs-5 mb-4 d-inline" *ngIf="infoparqueadero.type_security.vigilant === true">Vigilante </p>
+                </div>
+                <br>
+
+                <p class="fs-4">Parqueadero para</p>
+                <div>
+                    <p class="fs-5 mb-4 d-inline" *ngIf="infoparqueadero.type_parks._0">Motos </p>
+                    <p class="fs-5 mb-4 d-inline" *ngIf="infoparqueadero.type_parks._1">Carros </p>
+                    <p class="fs-5 mb-4 d-inline" *ngIf="infoparqueadero.type_parks._2">Bicicletas </p>
+                </div>
+                <br>
+
+                <p class="fs-4">Calificacion </p>
+                
+                <p *ngIf="calificacion === 1">
+                    <i class="fa-solid fa-star"></i>
+                </p>
+
+                <p *ngIf="calificacion === 2">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </p>
+
+                <p *ngIf="calificacion === 3">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </p>
+
+                <p *ngIf="calificacion === 4">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </p>
+
+                <p *ngIf="calificacion === 5">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </p>
+                
+
+                
 
             </ion-col>
 
             <ion-col size=12 size-sm="4" class="p-2 animate__animated animate__fadeInRight">
 
-                <p class="fs-4">Tipo De Vehiculo</p>
-                <p class="fs-5 mb-4">carros y motos</p>
 
                 <p class="fs-4">Espacio</p>
-                <p class="fs-5 mb-4">30m2</p>
+                <p class="fs-5 mb-4">{{infoparqueadero.space}}</p>
 
                 <p class="fs-4">Descripcion</p>
-                <p class="fs-5 mb-4">Zona segura y amplia</p>
+                <p class="fs-5 mb-4">{{infoparqueadero.descript}}</p>
 
                 <p class="fs-4">Precio hora</p>
-                <p class="fs-5 mb-4">$4.000</p>
-
-                <p class="fs-4"></p>
-                <p class="fs-5 mb-4"></p>
+                <p class="fs-5 mb-4">{{infoparqueadero.price}}</p>
 
             </ion-col>
 
         </ion-row>
 
-        <ion-button expand="full" size="large" class="animate__animated animate__pulse animate__fast btnReservar verde" (click)="cambiarEstado()" [ngClass]="{'rojo': estado}">
-            <p class="animate__animated animate__bounceIn animate__fas">{{estado == false ? 'Reservar' : 'Cancelar' }}</p>
+        <ion-button *ngIf="estado === false" expand="full" size="large" class="animate__animated animate__pulse animate__fast btnReservar verde" (click)="cambiarEstado()">
+            <p class="animate__animated animate__bounceIn animate__fas">Reservar</p>
         </ion-button>
 
     </ion-grid>
 
+    <div id="NoHayPar" *ngIf="id_parqueadero === false">
+        <h3 id="mensajeNoHayPar" class="text-white animate__animated animate__zoomIn animate__faste">Parece que no has reservado ningun parqueadero</h3>
+    </div>
+    
 </ion-content>

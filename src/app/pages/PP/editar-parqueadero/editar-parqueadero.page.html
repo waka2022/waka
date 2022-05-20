@@ -12,61 +12,54 @@
     <form id="contenedorFormulario" [formGroup]="info" (ngSubmit)="addInfo()">
 
       <ion-item color="primarioApp" class="border-abajo">
-        <ion-label color="dark" position="floating">Horario</ion-label>
-        <ion-input class="text-white"></ion-input>
-      </ion-item>
-
-      <div class="linea"></div>
-
-      <ion-item color="primarioApp" class="border-abajo">
         <ion-label color="dark" position="floating">Dirección</ion-label>
         <ion-input class="text-white" formControlName="address" value="{{this.parqueadero.address}}"></ion-input>
       </ion-item>
 
       <div class="linea"></div>
 
-
+    
       <div class="mt-4 mb-4">
-        <h5 class="text-white mb-1">Seguridad</h5>
+      <h5 class="text-white mb-1">Seguridad</h5>
+  
+      <ion-item color="primarioApp">
+        <ion-label>Vigilante</ion-label>
+        <ion-toggle class="togleForm" formControlName="vigilant" checked="{{this.parqueadero.type_security.vigilant}}" ></ion-toggle>
+      </ion-item>
 
-        <ion-item color="primarioApp">
-          <ion-label>Vigilante</ion-label>
-          <ion-toggle class="togleForm" formControlName="vigilant" checked="{{this.vigilante}}"></ion-toggle>
-        </ion-item>
-
-        <ion-item color="primarioApp">
-          <ion-label>Camaras</ion-label>
-          <ion-toggle class="togleForm" formControlName="cams" checked="{{this.camaras}}"></ion-toggle>
-        </ion-item>
+      <ion-item color="primarioApp">
+        <ion-label>Camaras</ion-label>
+        <ion-toggle class="togleForm" formControlName="cams" checked="{{this.parqueadero.type_security.cams}}" ></ion-toggle>
+      </ion-item>
       </div>
 
       <div class="linea"></div>
 
       <div class="mt-4 mb-4">
         <h5 class="text-white mb-1">Tipo de parqueadero</h5>
-
+    
         <ion-item color="primarioApp">
           <ion-label>Carros</ion-label>
-          <ion-toggle class="togleForm" formControlName="Carros"></ion-toggle>
+          <ion-toggle class="togleForm" formControlName="Carros" checked="{{this.parqueadero.type_parks._1}}"></ion-toggle>
         </ion-item>
-
+  
         <ion-item color="primarioApp">
           <ion-label>Motos</ion-label>
-          <ion-toggle class="togleForm" formControlName="Motos"></ion-toggle>
+          <ion-toggle class="togleForm" formControlName="Motos" checked="{{this.parqueadero.type_parks._0}}"></ion-toggle>
         </ion-item>
 
         <ion-item color="primarioApp">
           <ion-label>Bicicletas</ion-label>
-          <ion-toggle class="togleForm" formControlName="Bicicletas"></ion-toggle>
+          <ion-toggle class="togleForm" formControlName="Bicicletas" checked="{{this.parqueadero.type_parks._2}}" ></ion-toggle>
         </ion-item>
 
-      </div>
+        </div>
 
       <div class="linea"></div>
 
       <ion-item color="primarioApp" class="border-abajo">
-        <ion-label color="dark" position="floating">Espacio</ion-label>
-        <ion-input class="text-white"></ion-input>
+        <ion-label color="dark" position="floating">Espacio en m²</ion-label>
+        <ion-input class="text-white" formControlName="espacio" type="number" value="{{this.espacio}}"></ion-input>
       </ion-item>
 
       <div class="linea"></div>
@@ -80,14 +73,14 @@
 
       <ion-item color="primarioApp" class="border-abajo">
         <ion-label color="dark" position="floating">Precio/hora</ion-label>
-        <ion-input class="text-white"></ion-input>
+        <ion-input class="text-white" formControlName="precio" type="number" value="{{this.parqueadero.price}}"></ion-input>
       </ion-item>
 
       <div class="linea"></div>
 
       <ion-item color="primarioApp" class="border-abajo">
-        <ion-label color="dark" position="floating">Cupos</ion-label>
-        <ion-input class="text-white"></ion-input>
+        <ion-label color="dark" position="floating">Cupos Totales</ion-label>
+        <ion-input class="text-white" formControlName="cupos" type="number" value="{{this.parqueadero.quotas.totals}}"></ion-input>
       </ion-item>
 
       <div class="linea"></div>

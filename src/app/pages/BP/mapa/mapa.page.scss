@@ -1,17 +1,17 @@
-#map{
-    height: 100%;
-    width: 100%;
+#refresh{
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    right: 0;
+    top: 0;
+    margin: 15px;
+    z-index: 2;
 }
 
 #TextYaLlegue{
     padding: 0%;
     margin: 0%;
-}
-
-.map{
-    width: 100%;
-    height: 100%;
-    margin: 0px;
 }
 
 .abajo{

@@ -5,18 +5,31 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="info" (ngSubmit)="actualizarInfoUser()">
-    <ion-row class="width100 centrarVertText">
-      <ion-col size=12 size-sm="4" class="p-2 animate__animated animate__fadeInRight ">
-        <p class="fs-4 dñ ">Dueño</p>
-        <input type="text" formControlName="names" class="form-control dueño" value="{{ this.usuario.names }}">
-      </ion-col>
 
-    </ion-row>
+  <div id="contenedorFormulario">
 
-    <ion-button class="animate__animated animate__pulse animate__fast mt-5 d-flex justify-content-center verde"
-      expand="block" size="large" type="submit">
-      <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Guardar</p>
-    </ion-button>
-  </form>
+    <form [formGroup]="info" (ngSubmit)="actualizarInfoUser()">
+
+
+      <ion-item color="primarioApp" class="border-abajo">
+        <ion-label color="dark" position="floating">nombres</ion-label>
+        <ion-input class="text-white" formControlName="names" value="{{ this.usuario.names }}"></ion-input>
+      </ion-item>
+
+      <ion-item color="primarioApp" class="border-abajo">
+        <ion-label color="dark" position="floating">Email</ion-label>
+        <ion-input class="text-white" formControlName="email" value="{{ this.usuario.email_t.email }}"></ion-input>
+      </ion-item>
+
+    
+  
+      <ion-button class="animate__animated animate__pulse animate__fast mt-5 d-flex justify-content-center verde"
+        expand="block" size="large" type="submit">
+        <p class="p-0 m-0 animate__animated animate__bounceIn animate__fast tamaño-letra">Guardar</p>
+      </ion-button>
+  
+    </form>
+  
+  </div>
+  
 </ion-content>

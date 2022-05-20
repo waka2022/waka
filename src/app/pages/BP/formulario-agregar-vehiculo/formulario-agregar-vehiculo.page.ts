@@ -30,7 +30,7 @@ export class FormularioAgregarVehiculoPage implements OnInit {
       type_vehi:{
         global: this.car.value.global,
         mark: this.car.value.mark,
-        model: this.car.value.model,
+        model: `${this.car.value.model}`,
         placa: this.car.value.placa,
         color: this.car.value.color,
       }

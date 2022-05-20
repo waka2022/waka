@@ -9,57 +9,53 @@
                 <img src="https://storage.googleapis.com/media.clinicavisualyauditiva.com/images/2019/11/211fd983-default-user-image.png" class="imagenPerfil" />
             </ion-col>
 
-            
-
             <ion-col size=12 size-sm="4" class="p-2 animate__animated animate__fadeInRight">
- 
+
                 <p class="fs-4">Dueño</p>
                 <p class="fs-5 mb-4">{{ this.usuario.names }}</p>
 
-                <p class="fs-4">Horario</p>
-                <p class="fs-5 mb-4">10am - 4pm</p>
+                <p class="fs-4">Documento</p>
+                <p class="fs-5 mb-4">{{ this.usuario.document }}</p>
 
-                <p class="fs-4">Direccion</p>
-                <p class="fs-5 mb-4">Crr 9 #9-23</p>
+                <p class="fs-4">Correo</p>
+                <p class="fs-5 mb-4">{{ this.usuario.email_t.email  }}</p>
+
 
             </ion-col>
 
             <ion-col size=12 size-sm="4" class="p-2 animate__animated animate__fadeInRight">
 
-                <p class="fs-4">Tipo De Vehiculo</p>
-                <p class="fs-5 mb-4">djksdajsdks</p>
-
-                <p class="fs-4">Espacio</p>
-                <p class="fs-5 mb-4">30m2</p>
-
-
-                <p class="fs-5 mb-4">
+                <p class="fs-5 mb-3">
                     <ion-button routerLink="/actualizarperfil"><p>Actualizar</p></ion-button>
                 </p>
 
-                <p class="fs-4">Salir</p>
-                <p class="fs-5 mb-4">
+                <ion-button class="btn_alert mb-3" (click)="presentAlertCambiarPass()" color="success"  >
+                    Cambiar contraseña 
+                </ion-button> 
+
+                <p class="fs-5 mb-3">
                     <ion-button color="segundarioApp">
+                        Salir
                         <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
                     </ion-button>
                 </p>
 
             </ion-col>
         
-            <ion-col size=12 size-sm="4" >
+            <!--* campo para deshabilitar cuenta -->
+            <ion-col size=12 size-sm="4" class="animate__animated animate__fadeInLeft">
+                <!--* mensaje de recordatorio para 16 días de plazo (aparece despues de deshabiliar la cuenta) -->
                 <ion-text color="warning" class="text-start">
                     <p>{{this.mssg}}</p>
-                  </ion-text>                
-                  <ion-button class="btn_alert animate__animated animate__fadeInRight" (click)="presentAlertMultipleButtons()" color="danger" expand="block" fill="clear" shape="round">
-                    Eliminar la cuenta
+                  </ion-text>         
+                  <!--* boton para cliquear y mostrar la alerta de confirmacion-->
+                  <ion-button class="btn_alert " (click)="presentAlertMultipleButtons()" color="danger" expand="block" >
+                    Deshabilitar la cuenta
                 </ion-button> 
             </ion-col> 
-                <!--{{this.mssg}}-->
                 
-               
         </ion-row>
 
     </ion-grid>
-    <p color="" class="text-start"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fugit eum veniam illo obcaecati, autem aliquam qui quia eligendi error, assumenda quibusdam totam magni, illum incidunt omnis amet ipsam. Cum.</p>
 
 </ion-content>

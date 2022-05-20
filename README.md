@@ -67,3 +67,7 @@ Este proyecto está bajo la Licencia (@copyright waka)
 
 
 ---
+<<<<<<< HEAD
+=======
+⌨️ con ❤️ por [waka](https://github.com/waka2022) 😊
+>>>>>>> 714032efcdacd12e5e444a00a0045b19a8d6acf8

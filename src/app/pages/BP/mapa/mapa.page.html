@@ -1,22 +1,27 @@
 <app-menu></app-menu>
 
-
-
 <ion-content id="contenedor">
+    
+    <div id="map" class="map"></div>
 
-    <ion-refresher mode="md" slot="fixed" (ionRefresh)="doRefresh($event)">
-        <ion-refresher-content  mode="md"></ion-refresher-content>
-      </ion-refresher>
-
-    <div id="map">
-    </div>
+    <ion-button color="light" id="refresh" (click)="doRefresh()">
+        <i class="fa-solid fa-retweet text-black fa-lg"></i>
+    </ion-button>    
 
     <ion-tab-button class="fixed-bottom btn-infoModal animate__animated animate__bounce bg-white" (click)="presentModal()">
         <i class="fas fa-car fa-3x"></i>
     </ion-tab-button>
 
-    <ion-button class="animate__animated animate__pulse animate__fast fixed-bottom m-0 p-0 btn-yaLlegue verde" expand="full" size="large" [ngClass]="{'rojo': estado}" (click)="cambiarEstado()"> 
-        <p id="TextYaLlegue" class="animate__animated animate__bounceIn animate__fast">{{ estado == false ? 'Ya llegue' : 'Ya me voy' }}</p> 
+    <ion-button *ngIf="this.estado === true && this.onRoute === true" class="animate__animated animate__pulse animate__fast fixed-bottom m-0 p-0 rojo" expand="full" size="large" (click)="cancelarReserva()"> 
+        <p id="TextYaLlegue" class="animate__animated animate__bounceIn animate__fast">Cancelar</p> 
+    </ion-button>
+
+    <ion-button *ngIf="this.estado === true && this.onRoute === false" class="fixed-bottom m-0 p-0 verde" expand="full" size="large" routerLink="/tabs/recibo" > 
+        <p id="TextYaLlegue" >Lleva {{this.time_reserva}} Hora</p> 
+    </ion-button>
+
+    <ion-button *ngIf="this.estado === false" class="fixed-bottom m-0 p-0 " expand="full" size="large"> 
+        <p id="TextYaLlegue" >Busca un parqueadero</p> 
     </ion-button>
 
 </ion-content> 
