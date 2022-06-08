@@ -2,6 +2,23 @@
 
 <ion-content color="segundarioApp">
 
+    <ion-row class="px-4">
+      <ion-col size="12" sizeMd="11">
+        <form id="formulario">
+          <ion-item color="segundarioApp" class="border-abajo mb-2">
+            <ion-label position="floating"></ion-label>
+            <ion-select #p interface="popover" [value]="this.parqueaderos[0].id" >
+
+              <ion-select-option *ngFor="let parqueadero of this.parqueaderos" class="option"
+                value="{{parqueadero.id}}">{{parqueadero.direccion}}
+              </ion-select-option>
+
+            </ion-select>
+          </ion-item>
+        </form>
+      </ion-col>
+    </ion-row>
+
   <div id="cont-date">
     <input type="date" id="start" name="trip-start" [value]="this.fecha">
     <input type="date" id="end" name="trip-start" [value]="this.fecha">

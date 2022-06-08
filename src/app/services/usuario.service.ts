@@ -177,6 +177,12 @@ export class UsuarioService {
   }
 
 
+  // actualizara y destacara si el pago fue ejecutado segun el id de la reserva
+  finalizarPago(token, id_reserv) {
+    return this.http.patch(`${this.url}/invoiced/parnet-invoiced/${id_reserv}`,{}, { headers: { authorization_token: token } })
+  }
+
+
   //ver reserva segun su id
   getReservationForId(token, id_reserv) {
     return this.http.get(`${this.url}/booking/view-reservation-unique/${id_reserv}`, { headers: { authorization_token: token } })
@@ -258,5 +264,12 @@ export class UsuarioService {
   solicitudEmail(email, tipo) {
     return this.http.post(`${this.url}/auth/request-emails-account/${tipo}`, {'email':email})
   }
+
+  //estadisticas - mostrara el total de los vehiculos parqueados por un rango de fecha y el id del parqueadero
+  estTotalVehiculos(token, inicio, fin,id_parq) {
+    return this.http.get(`${this.url}/statistics/${inicio}T05:00:00.000Z/${fin}T05:00:00.000/${id_parq}`, { headers: { authorization_token: token } })
+  }
+
+
 
 }

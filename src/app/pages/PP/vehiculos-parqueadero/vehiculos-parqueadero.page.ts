@@ -194,13 +194,18 @@ export class VehiculosParqueaderoPage implements OnInit {
 
     this.userServices.updateStatusReservation(token, id_reser, estado).subscribe((res: any) => {
 
-      this.msgBien(res.msg)
-      //console.log(id_reser);
 
       if (estado === 2) {
 
         this.userServices.crearFactura(token, id_reser).subscribe(res=>{
           console.log(res);
+          this.userServices.finalizarPago(token,id_reser).subscribe((res:any)=>{
+
+            this.msgBien(res.msg)
+
+          }, error =>{
+            this.msgError(error.error.msg)
+          })
         })
       }
 
@@ -216,12 +221,7 @@ export class VehiculosParqueaderoPage implements OnInit {
       })
 
 
-    }, error => {
-
-      this.msgError(error.error.msg)
-
     })
-
   }
 
 }

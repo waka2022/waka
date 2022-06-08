@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
+import { UsuarioService } from '../../../services/usuario.service';
 Chart.register(...registerables);
 
 
@@ -10,42 +11,85 @@ Chart.register(...registerables);
 })
 export class GraficasPage implements OnInit {
 
+  mes
+  dia
+  año
   fecha
+  parqueaderos: any = []
 
-  constructor() {
+  constructor(private userServices: UsuarioService) {
 
   }
 
   ngOnInit() {
 
-    let mes = new Date().getMonth()
-    let dia = new Date().getDate()
-    let año = new Date().getFullYear()
+
+    let token = localStorage.getItem('token')
+    this.traerParqueaderos(token)
+
+    this.mes = new Date().getMonth()
+    this.dia = new Date().getDate()
+    this.año = new Date().getFullYear()
 
 
-    if (mes <= 9) {
+    if (this.mes < 10) {
 
-      let fecha = `${año}-0${mes}-${dia}`
-      this.fecha = fecha
-
-    }
-
-    if (dia <= 9) {
-
-      let fecha = `${año}-${mes}-0${dia}`
-      this.fecha = fecha
+      this.mes = '0' + this.mes
 
     }
 
+    if (this.dia < 10) {
 
-    console.log(this.fecha);
 
+      this.dia = '0' + this.dia
+
+    }
+
+    this.fecha = `${this.año}-${this.mes}-${this.dia}`
+
+    setTimeout(() => {
+
+      let id_parq = this.parqueaderos[0].id      
+      this.traerDatosGraficas(id_parq)
+
+    }, 500);
 
     setTimeout(() => {
       this.generarGrafica();
     }, 1000);
 
 
+  }
+
+  traerDatosGraficas(id_parq){
+
+    let token = localStorage.getItem('token')
+
+    this.userServices.estTotalVehiculos(token, this.fecha,this.fecha,id_parq).subscribe(res =>{
+      console.log(res);
+    })
+  }
+
+  traerParqueaderos(token) {
+
+    this.userServices.getParking(token).subscribe((res: any) => {
+
+      for (let i = 0; i < res.data.length; i++) {
+
+        let parqueadero = {
+          id: res.data[i]._id,
+          direccion: res.data[i].address
+        }
+
+        this.parqueaderos.push(parqueadero)
+      }
+
+    })
+
+  }
+
+  ionViewDidLeave() {
+    this.parqueaderos = []
   }
 
   generarGrafica() {
