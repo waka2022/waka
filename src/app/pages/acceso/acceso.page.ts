@@ -43,15 +43,19 @@ export class AccesoPage implements OnInit {
       this.usuarioService.getInfo(token).subscribe((res:any)=>{
         console.log(res);
 
-        if (res.role = "USER_BP") {
+        
+        if (res.data.role == "USER_BP") {
 
           this.router.navigate(['tabs/mapa'])
           
-        }else{
+        }
+
+        if(res.data.role == "USER_PP"){
 
           this.router.navigate(['tabs2/mis-parqueaderos'])
           
         }
+
       })
       
     }

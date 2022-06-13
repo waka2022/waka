@@ -10,7 +10,7 @@
             <ion-select #p interface="popover" [value]="this.parqueaderos[0].id" >
 
               <ion-select-option *ngFor="let parqueadero of this.parqueaderos" class="option"
-                value="{{parqueadero.id}}">{{parqueadero.direccion}}
+                value="{{parqueadero[0].id}}">{{parqueadero.direccion}}
               </ion-select-option>
 
             </ion-select>
@@ -33,7 +33,7 @@
   </div>
 
   <div id="text-nada" *ngIf="this.noHayDatos == true">
-    <h2>parece que no hay nada para mostrar</h2>
+    <h2 class="animate__animated animate__zoomIn animate__faste">parece que no hay nada para mostrar</h2>
   </div>
 
   <ion-button *ngIf="this.cargarParq == true" id="contenedor-ingresos" expand="full" size="large" class="fixed-bottom m-0 p-0 verde">

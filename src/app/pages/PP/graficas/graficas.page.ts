@@ -64,11 +64,13 @@ export class GraficasPage implements OnInit {
 
   ionViewWillEnter() {
 
+    this.cargarParq = true
     let token = localStorage.getItem('token')
     this.traerParqueaderos(token)
   }
 
   ionViewDidLeave() {
+    
     this.parqueaderos = []
   }
 
