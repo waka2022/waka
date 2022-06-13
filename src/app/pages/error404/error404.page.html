@@ -1,6 +1,8 @@
 <ion-header>
-  <ion-toolbar>
-    <app-menu></app-menu>
+    <ion-toolbar color="primarioApp">
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -30,11 +32,12 @@
         <h2 class="texto"> ¿Te perdiste?</h2><br>
         <h2 class="texto2">{{this.infoUser.names}}</h2>
         <br>
-        <ion-button routerLink ='/inicio' id="btn-volver" class="verde mt-3">
-          Volver
-        </ion-button>
       </ion-col>
     </ion-row>
+
+    <ion-button routerLink ='/inicio' id="btn-volver" class="verde">
+      Volver
+    </ion-button>
 
   </ion-grid>
 

@@ -1,12 +1,9 @@
 <ion-content color="segundarioApp">
 
-  <h2 class="mx-4">WAKA Términos y condiciones <i id="cerrar" (click)="dismiss()" class="fa-solid fa-xmark"></i>
-  </h2>
+  <h2 class="mx-4 text-center">WAKA Términos y condiciones</h2>
   <hr>
-
-  <ion-grid m-3 p-5>
+  <ion-grid class="m-3 p-5 mt-0 pt-0">
     <ion-row >
-
       <ion-col size="12" class="ion-padding">
         <h1>En WAKA implementamos funciones donde todo usuario <b>registrado</b>:</h1>
 
@@ -42,10 +39,10 @@
     </ion-row>
     <hr>
     <ion-row >
-      <ion-col size="12" class="ion-padding">
-        <p>He leído y Acepto las condiciones del servicio y la política de WAKA.</p>
-        <h5><small>-Acepta los terminos y condiciones para usar WAKA.-</small></h5>
-        <ion-button  (click)="dismiss()" color="success">Continuar</ion-button>
+      <ion-col size="12" class="ion-padding text-center">
+        <p class="m-0">He leído y Acepto las condiciones del servicio y la política de WAKA.</p>
+        <small>-Acepta los terminos y condiciones para usar WAKA.-</small>
+        <ion-button class="w-100 mt-4" (click)="dismiss()" color="success">Continuar</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

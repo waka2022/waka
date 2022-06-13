@@ -20,16 +20,28 @@
 
 
             <ion-col size="12" class="text-center">
-              <i class="fas fa-car fa-3x "></i><br>
-              {{this.infoUser.id_vehicle.type_vehi.placa}}
+              <i class="fa-solid fa-file-invoice-dollar fa-5x mb-5"></i><br>
             </ion-col>
 
-       
+
             <ion-col size="12">
               <h5 class="mt-1">Nombres: {{this.infoUser.id_user_res.names}}</h5>
               <h5>Telefono: {{this.infoUser.id_user_res.phone}}</h5>
+              <h5>Placas: {{this.infoUser.id_vehicle.type_vehi.placa}}</h5>
               <h5>Marca: {{this.infoUser.id_vehicle.type_vehi.mark}}</h5>
               <h5>Modelo: {{this.infoUser.id_vehicle.type_vehi.model}}</h5>
+
+              <h5 *ngIf="this.infoUser.status.global_status === false">
+                Hora entrada: {{this.infoUser.status.on_park.moment |date:"short"}}
+              </h5>
+
+              <h5 *ngIf="this.infoUser.status.global_status === false">
+                Hora salida: {{this.infoUser.status.end_park.moment |date:"short"}}
+              </h5>
+
+              <h5 *ngIf="this.infoUser.status.global_status === false">
+                Valor: {{this.infoUser.parnet.totals}}
+              </h5>
             </ion-col>
 
           </ion-row>

@@ -155,7 +155,7 @@ export class MapaPage implements OnInit {
 
     setTimeout(() => {
       this.map = this.servicioMapBox.cargarMapa(this.latitud, this.longitud, this.parqueaderos)
-    }, 1000);
+    }, 3500);
 
     this.cargarmapa()
 
@@ -176,7 +176,7 @@ export class MapaPage implements OnInit {
 
     setTimeout(() => {
       this.btnRefresh = false
-    }, 1000);
+    }, 1500);
 
 
   }
@@ -293,7 +293,7 @@ export class MapaPage implements OnInit {
         }
       }, 4000);
 
-    }, 1000);
+    }, 7000);
   }
 
   crearRuta(lat, lon) {

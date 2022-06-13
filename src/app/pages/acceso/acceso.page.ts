@@ -35,8 +35,28 @@ export class AccesoPage implements OnInit {
   ngOnInit() {
     //llamndo la funcion para la key de google 
     this.googleInitialize();
-  }
 
+    let token = localStorage.getItem('token')
+    
+    if (!!token == true) {
+
+      this.usuarioService.getInfo(token).subscribe((res:any)=>{
+        console.log(res);
+
+        if (res.role = "USER_BP") {
+
+          this.router.navigate(['tabs/mapa'])
+          
+        }else{
+
+          this.router.navigate(['tabs2/mis-parqueaderos'])
+          
+        }
+      })
+      
+    }
+    
+  }
   async Loading() {
     const loading = await this.loadingController.create({
       cssClass: 'my-custom-class',

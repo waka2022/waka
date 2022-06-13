@@ -4,7 +4,7 @@
     
     <ion-grid id="grid-contenedor" class="heightConteiner centrar-contenedores referenciaPosicion" *ngIf="id_parqueadero === true">
 
-        <ion-row class="centrarVertText text-white">
+        <ion-row class="centrarVertText text-white mb-5">
 
             <ion-col size=12 size-sm="4" class="p-3 centrar-contenedores animate__animated animate__fadeInLeft">
                 <img src="../../../assets/parqueadero.jpg" width="100%" />
@@ -12,7 +12,7 @@
 
             <ion-col size=12 size-sm="4" class="p-2 animate__animated animate__fadeInRight">
 
-                <p class="fs-4">Dueño</p>
+                <p class="fs-4 mt-5">Dueño</p>
                 <p class="fs-5 mb-4">{{infoparqueadero.id_user.names}}</p>
 
                 <p class="fs-4">Direccion</p>
@@ -35,7 +35,7 @@
 
             </ion-col>
 
-            <ion-col size=12 size-sm="4" class="p-2 animate__animated animate__fadeInRight">
+            <ion-col size=12 size-sm="4" class="p-2 mb-5 animate__animated animate__fadeInRight">
 
                 <p class="fs-4">Calificacion </p>
 
@@ -82,7 +82,7 @@
                 <p class="fs-5 mb-4">{{infoparqueadero.descript}}</p>
 
                 <p class="fs-4">Precio hora</p>
-                <p class="fs-5 mb-4">{{infoparqueadero.price}}</p>
+                <p class="fs-5 mb-5">{{infoparqueadero.price}}</p>
 
             </ion-col>
 

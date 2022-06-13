@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primarioApp">
     <app-menu></app-menu>
   </ion-toolbar>
 </ion-header>
@@ -8,6 +8,13 @@
 
   <div id="contenedorFormulario">
 
+    <ion-toolbar color="primarioApp">
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+    
+
     <form [formGroup]="info" (ngSubmit)="actualizarInfoUser()">
 
 
@@ -15,13 +22,7 @@
         <ion-label color="dark" position="floating">nombres</ion-label>
         <ion-input class="text-white" formControlName="names" value="{{ this.usuario.names }}"></ion-input>
       </ion-item>
-
-      <ion-item color="primarioApp" class="border-abajo">
-        <ion-label color="dark" position="floating">Email</ion-label>
-        <ion-input class="text-white" formControlName="email" value="{{ this.usuario.email_t.email }}"></ion-input>
-      </ion-item>
-
-    
+  
   
       <ion-button class="animate__animated animate__pulse animate__fast mt-5 d-flex justify-content-center verde"
         expand="block" size="large" type="submit">

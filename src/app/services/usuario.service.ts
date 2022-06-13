@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { User } from '../model/user.model';
 
 @Injectable({
@@ -267,9 +267,21 @@ export class UsuarioService {
 
   //estadisticas - mostrara el total de los vehiculos parqueados por un rango de fecha y el id del parqueadero
   estTotalVehiculos(token, inicio, fin,id_parq) {
-    return this.http.get(`${this.url}/statistics/${inicio}T05:00:00.000Z/${fin}T05:00:00.000/${id_parq}`, { headers: { authorization_token: token } })
+    return this.http.get(`${this.url}/statistics/graff/${inicio}T05:00:00.000Z/${fin}T05:00:00.000/false/${id_parq}`, { headers: { authorization_token: token } })
   }
 
+  //mostrara el total de ganancias de un parqueadero segun su id por rango de fechas o por dia
+  estTotalGanancias(token, inicio, fin,id_parq) {
+
+    // Initialize Params Object
+    let params = new HttpParams();
+
+    // Begin assigning parameters
+    params = params.append('start', inicio);
+    params = params.append('end', fin);
+    
+    return this.http.get(`${this.url}/statistics/totals/${id_parq}/true?T00:00:00.000Z&2022-05-12T00:00:00.000Z}`, { headers: { authorization_token: token }, params: params })
+  }
 
 
 }

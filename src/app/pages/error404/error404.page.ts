@@ -8,7 +8,7 @@ import { UsuarioService } from '../../services/usuario.service';
 })
 export class Error404Page implements OnInit {
 
-  infoUser = {}
+  infoUser:any = {}
 
   constructor(private usuarioService: UsuarioService) {
 
@@ -18,6 +18,7 @@ export class Error404Page implements OnInit {
 
   ngOnInit() {
   }
+  
 
   getInfo(){
 

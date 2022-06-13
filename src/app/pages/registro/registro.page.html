@@ -38,10 +38,12 @@
         </ion-item>
         <ion-label color="danger" *ngIf="users.controls.password.errors?.pattern && (users.touched || users.dirty)">* La contraseña debe tener carácteres, mayusculas y números. </ion-label>
 
-        <ion-item>
-          <ion-label class="text-white">Terminos y condiciones</ion-label>
-          <ion-checkbox  formControlName="tercond"  color="dark" slot="start" (click)="openTerms()"></ion-checkbox>
-        </ion-item>    
+     
+        <div class="mt-4">
+          <ion-checkbox formControlName="tercond" class="me-2" color="dark"></ion-checkbox>
+          <h2 id="tex-terCond" (click)="openTerms()" >Terminos y condiciones</h2>
+        </div>
+        
 
 
         <ion-button class="animate__animated animate__pulse animate__fast verde mt-5 btn-registro"

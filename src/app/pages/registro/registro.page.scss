@@ -35,6 +35,12 @@
   --border-color-checked :rgb(255, 255, 255);
 }
 
+#tex-terCond{
+  display: inline;
+  cursor: pointer;
+  color: white;
+}
+
 @media (max-width: 1000px)
   {
     .card{

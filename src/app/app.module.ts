@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 @NgModule({
@@ -24,6 +25,9 @@ import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
   providers: [{ 
               provide: RouteReuseStrategy,
               useClass: IonicRouteStrategy 
+             },{
+              provide: LocationStrategy,
+              useClass: HashLocationStrategy
              },
              Geolocation],
 

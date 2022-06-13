@@ -2,7 +2,7 @@
 
 <ion-content color="segundarioApp">
 
-    <ion-row class="px-4">
+    <ion-row class="px-4" *ngIf="this.cargarParq == true">
       <ion-col size="12" sizeMd="11">
         <form id="formulario">
           <ion-item color="segundarioApp" class="border-abajo mb-2">
@@ -17,34 +17,28 @@
           </ion-item>
         </form>
       </ion-col>
+
+      <div id="cont-date">
+        <input type="date" id="start" #fs name="trip-start" [value]="this.fechaInicio">
+        <input type="date" id="end" #fe name="trip-start" [value]="this.fechaFinal">
+        <ion-button (click)="traerDatosGraficas(p.value, fs.value, fe.value)" class="verde">
+          Buscar
+        </ion-button>
+      </div>
     </ion-row>
 
-  <div id="cont-date">
-    <input type="date" id="start" name="trip-start" [value]="this.fecha">
-    <input type="date" id="end" name="trip-start" [value]="this.fecha">
-  </div>
-
-  <div class="contenedor-grafica">
-    <canvas id="chart-line"></canvas>
-  </div>
-
-  <hr>
-
-  <div class="contenedor-grafica">
-    <canvas id="chart-doughnut"></canvas>
-  </div>
-
-  <hr>
-
+  
   <div class="contenedor-grafica margin-bott">
     <canvas id="chart-circle"></canvas>
   </div>
 
+  <div id="text-nada" *ngIf="this.noHayDatos == true">
+    <h2>parece que no hay nada para mostrar</h2>
+  </div>
 
-
-  <ion-button id="contenedor-ingresos" expand="full" size="large" class="fixed-bottom m-0 p-0 verde">
+  <ion-button *ngIf="this.cargarParq == true" id="contenedor-ingresos" expand="full" size="large" class="fixed-bottom m-0 p-0 verde">
     <h4 class="d-inline izquierda-text">INGRESO</h4>
-    <h4 class="d-inline derecha-text">800.000</h4>
+    <h4 class="d-inline derecha-text">${{this.ingresos}}</h4>
   </ion-button>
 
 </ion-content>

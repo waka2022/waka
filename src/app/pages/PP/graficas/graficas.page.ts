@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { UsuarioService } from '../../../services/usuario.service';
+import { ToastController } from '@ionic/angular';
 Chart.register(...registerables);
 
 
@@ -11,21 +12,23 @@ Chart.register(...registerables);
 })
 export class GraficasPage implements OnInit {
 
-  mes
-  dia
-  año
-  fecha
-  parqueaderos: any = []
+  public mes
+  public dia
+  public año
+  public fechaInicio
+  public fechaFinal
+  public ingresos
+  public cargarParq: boolean = false
+  public parqueaderos: any = []
+  public numCarros
+  public numMotos
+  public numBiciclcetas
+  public chart
+  public noHayDatos: boolean
 
-  constructor(private userServices: UsuarioService) {
 
-  }
+  constructor(private userServices: UsuarioService, public toastController: ToastController) {
 
-  ngOnInit() {
-
-
-    let token = localStorage.getItem('token')
-    this.traerParqueaderos(token)
 
     this.mes = new Date().getMonth()
     this.dia = new Date().getDate()
@@ -45,29 +48,50 @@ export class GraficasPage implements OnInit {
 
     }
 
-    this.fecha = `${this.año}-${this.mes}-${this.dia}`
-
-    setTimeout(() => {
-
-      let id_parq = this.parqueaderos[0].id      
-      this.traerDatosGraficas(id_parq)
-
-    }, 500);
-
-    setTimeout(() => {
-      this.generarGrafica();
-    }, 1000);
-
+    this.fechaInicio = `${this.año - 1}-${this.mes}-${this.dia}`
+    this.fechaFinal = `${this.año + 1}-${this.mes}-${this.dia}`
 
   }
 
-  traerDatosGraficas(id_parq){
+  ngOnInit() {
+
+    this.noHayDatos = false
 
     let token = localStorage.getItem('token')
+    this.traerParqueaderos(token)
 
-    this.userServices.estTotalVehiculos(token, this.fecha,this.fecha,id_parq).subscribe(res =>{
-      console.log(res);
-    })
+  }
+
+  ionViewWillEnter() {
+
+    let token = localStorage.getItem('token')
+    this.traerParqueaderos(token)
+  }
+
+  ionViewDidLeave() {
+    this.parqueaderos = []
+  }
+
+  async msgError(res: string) {
+    const toast = await this.toastController.create({
+      message: res,
+      duration: 3500,
+      cssClass: "rojo",
+      mode: "ios",
+      position: 'top'
+    });
+    toast.present();
+  }
+
+  async msgBien(res: string) {
+    const toast = await this.toastController.create({
+      message: res,
+      duration: 3500,
+      mode: "ios",
+      color: "celeste",
+      position: 'top'
+    });
+    toast.present();
   }
 
   traerParqueaderos(token) {
@@ -84,83 +108,71 @@ export class GraficasPage implements OnInit {
         this.parqueaderos.push(parqueadero)
       }
 
+      let id_parq = this.parqueaderos[0].id
+      this.cargarParq = true
+      this.traerDatosGraficas(id_parq, this.fechaInicio, this.fechaFinal)
+
     })
 
   }
 
-  ionViewDidLeave() {
-    this.parqueaderos = []
+  traerDatosGraficas(id_parq, fechaInicio, fechaFinal) {
+
+    let token = localStorage.getItem('token')
+
+    this.userServices.estTotalVehiculos(token, fechaInicio, fechaFinal, id_parq).subscribe((res: any) => {
+      console.log(res);
+      this.numMotos = res.data[0].value
+      this.numCarros = res.data[1].value
+      this.numBiciclcetas = res.data[2].value
+    })
+
+    this.userServices.estTotalGanancias(token, fechaInicio, fechaFinal, id_parq).subscribe((res: any) => {
+
+      //console.log(res.data.value);
+
+      this.msgBien(res.msg)
+
+      if (res.data.value == null) {
+
+        this.ingresos = 0
+
+      } else {
+
+        this.ingresos = res.data.value
+      }
+
+    }, error => {
+
+      this.msgError(error.error.msg)
+
+    })
+
+    setTimeout(() => {
+      this.generarGrafica(this.numMotos, this.numCarros, this.numBiciclcetas);
+    }, 1000);
   }
 
-  generarGrafica() {
-    const chartLine: any = document.getElementById('chart-line');
-    new Chart(chartLine, {
-      type: 'bar',
 
-      data: {
-        labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'],
+  generarGrafica(numMotos, numCarros, numBiciclcetas) {
 
-        datasets: [{
-          label: 'Numero de parqueos',
+    this.noHayDatos = false
 
-          data: [12, 19, 3, 5, 2, 3, 3],
+    if (this.chart) {
+      this.chart.destroy();
+    }
 
-          backgroundColor: [
-            'rgba(32, 158, 60, 0.64)',
-            'rgba(158, 32, 32, 0.64)',
-            'rgba(32, 158, 122, 0.64)'
-          ],
+    if (numMotos == 0 && numCarros == 0 && numBiciclcetas == 0) {
+      
+      this.noHayDatos = true
+      return
+    }
 
-          borderColor: [
-            'rgb(32, 158, 60)',
-            'rgb(158, 32, 32)',
-            'rgb(32, 158, 122)'
-          ],
-          borderWidth: 1
-        }]
-      },
-
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
-
-
-    const chartDoughnut: any = document.getElementById('chart-doughnut');
-    new Chart(chartDoughnut, {
-      type: 'doughnut',
-
-      data: {
-        labels: ['Dia', 'Noche'],
-
-        datasets: [{
-
-          data: [12, 19],
-
-          backgroundColor: [
-            'rgba(32, 158, 60, 0.64)',
-            'rgba(158, 32, 32, 0.64)',
-            'rgba(32, 158, 122, 0.64)'
-          ],
-
-          borderColor: [
-            'rgb(32, 158, 60)',
-            'rgb(158, 32, 32)',
-            'rgb(32, 158, 122)'
-          ],
-          borderWidth: 1
-        }]
-      },
-
-
-    });
+  
+    this.noHayDatos = false
 
     const chartCircle: any = document.getElementById('chart-circle');
-    new Chart(chartCircle, {
+    this.chart = new Chart(chartCircle, {
       type: 'pie',
 
       data: {
@@ -170,7 +182,7 @@ export class GraficasPage implements OnInit {
         datasets: [{
           label: 'Numero de parqueos',
 
-          data: [12, 19, 3],
+          data: [numMotos, numCarros, numBiciclcetas],
 
           backgroundColor: [
             'rgba(32, 158, 60, 0.64)',
@@ -186,10 +198,9 @@ export class GraficasPage implements OnInit {
           borderWidth: 1
         }]
       },
-
-
     });
 
-
   }
+
+
 }

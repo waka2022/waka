@@ -106,7 +106,7 @@ export class MisParqueaderosPage implements OnInit {
 
     }, error => {
 
-      this.msgError(error.msg)
+      this.msgError(error.error.msg)
 
     })
   }

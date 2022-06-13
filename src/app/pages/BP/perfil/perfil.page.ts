@@ -183,7 +183,7 @@ export class PerfilPage implements OnInit {
   }
 
   cerrarSesion() {
-    localStorage.removeItem('token')
+    localStorage.clear()
     this.router.navigate(['inicio'])
   }
 

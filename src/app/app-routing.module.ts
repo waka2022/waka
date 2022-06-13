@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { Error404Page } from './pages/error404/error404.page';
 
 const routes: Routes = [
   
@@ -92,9 +93,14 @@ const routes: Routes = [
   {
     path: 'graficas',
     loadChildren: () => import('./pages/PP/graficas/graficas.module').then( m => m.GraficasPageModule)
-  },  {
+  },
+  {
     path: 'term-condi',
     loadChildren: () => import('./pages/term-condi/term-condi.module').then( m => m.TermCondiPageModule)
+  },
+  {
+    path: '**',
+    component: Error404Page
   },
 
 

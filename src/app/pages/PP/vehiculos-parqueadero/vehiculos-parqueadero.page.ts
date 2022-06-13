@@ -10,8 +10,6 @@ import { ToastController, AlertController } from '@ionic/angular';
 })
 export class VehiculosParqueaderoPage implements OnInit {
 
-  constructor(private userServices: UsuarioService, public toastController: ToastController,
-    public alertController: AlertController) { }
 
   parqueaderos: any = []
   enCamino: boolean = true
@@ -19,6 +17,12 @@ export class VehiculosParqueaderoPage implements OnInit {
   ya: boolean = false
   tiempoReserva: number
   estado:boolean = false
+
+  constructor(private userServices: UsuarioService, public toastController: ToastController,
+    public alertController: AlertController) { 
+
+      
+    }
 
   parqueadero = new FormGroup({
     id_parqueadero: new FormControl('', [Validators.required]),
@@ -74,8 +78,7 @@ export class VehiculosParqueaderoPage implements OnInit {
 
       this.reservas = res.data
 
-      //console.log(this.reservas);
-      //console.log(this.reservas);
+      console.log(this.reservas);
 
     })
 
