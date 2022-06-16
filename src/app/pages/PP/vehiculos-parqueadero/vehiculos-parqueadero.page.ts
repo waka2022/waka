@@ -65,9 +65,6 @@ export class VehiculosParqueaderoPage implements OnInit {
 
     })
 
-    this.socketWebService.callback.subscribe(res =>{
-      console.log(res);
-    })
   }
 
   ionViewDidLeave() {

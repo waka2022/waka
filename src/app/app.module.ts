@@ -9,9 +9,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { SocketIoModule } from 'ngx-socket-io';
+import { SocketIoModule, SocketIoConfig  } from 'ngx-socket-io';
 
 
+const config: SocketIoConfig = { url: 'https://wakasocket.herokuapp.com/v1/socket', options: {} };
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import { SocketIoModule } from 'ngx-socket-io';
   imports: [
             BrowserModule,
             IonicModule.forRoot(),
+            SocketIoModule.forRoot(config),
             AppRoutingModule,
             HttpClientModule,
             SocketIoModule

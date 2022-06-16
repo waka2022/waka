@@ -104,6 +104,15 @@
   cursor: pointer;
 }
 
+.markerOpacity {
+  background-size: cover;
+  width: 40px;
+  height: 63px;
+  background: url("assets/marcador.png");
+  cursor: pointer;
+  opacity: 0.4;
+}
+
 .marker2 {
   background-size: cover;
   width: 23px;

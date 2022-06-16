@@ -18,6 +18,9 @@ export class MapaPage implements OnInit {
   latitud: number = 4.677532439351083
   longitud: number = -74.15661997403409
 
+  latParq
+  lonParq
+
   map: Mapboxgl
 
   constructor(
@@ -40,12 +43,32 @@ export class MapaPage implements OnInit {
 
     });
 
+
   }
 
   ngOnInit() {
 
+  }
+
+  ionViewWillEnter() {
+
+    this.crearDivMapa()
+
+    let token = localStorage.getItem('token')
+
+    let id = this.activatedRoute.snapshot.paramMap.get('id')
+    this.userServices.getParkingForId(token,id).subscribe((res:any) =>{
+
+      this.latParq = res.data.ubi.lat
+      this.lonParq = res.data.ubi.lon    
+
+    },error=>{
+      this.msgError(error.error.msg)
+    })
+    
     setTimeout(() => {
-      this.map = this.mapaMarketService.cargarMapa(this.latitud, this.longitud)
+
+      this.map = this.mapaMarketService.cargarMapa(this.latitud, this.longitud, this.latParq, this.lonParq)
 
       this.map.on('click', function (e) {
 
@@ -58,7 +81,12 @@ export class MapaPage implements OnInit {
       });
       
     }, 2000);
+    
 
+  }
+
+  ionViewDidLeave(){
+    this.eliminarMapa()
   }
 
   actualizarUbicacion() {
@@ -111,6 +139,45 @@ export class MapaPage implements OnInit {
       position: 'top'
     });
     toast.present();
+  }
+
+  eliminarMapa() {
+
+    let contenedorMapa = document.getElementById("contenedor");
+    let mapa: any = document.getElementById('map')
+
+    if (mapa === null) {
+
+    } else {
+
+      // eliminamos el mapa en caso de que exista
+      contenedorMapa.removeChild(mapa);
+    }
+
+
+  }
+
+  crearDivMapa() {
+
+    let mapaexiste = !!document.getElementById("map")
+
+    if (mapaexiste === true) {
+
+      //console.log("mapa existe");
+      // el mapa existe asi que no se crea
+
+    } else {
+
+      //console.log("mapa no existe");
+      // el mapa NO existe asi que se crea
+
+      let contenedor2 = document.getElementById("contenedor")
+      let mapa2 = document.createElement("div");
+      mapa2.id = "map";
+      mapa2.className = "map";
+      contenedor2.appendChild(mapa2);
+
+    }
   }
 
 

@@ -5,22 +5,27 @@ import { EventEmitter, Output } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class SocketWebService extends Socket {
+export class SocketWebService {
 
-  outEven = new EventEmitter();
-  @Output() callback = new EventEmitter();
 
-  constructor() {
+  statusSocket:boolean
 
-    super({
-      url: 'http://localhost:2105/v1/socket/new-invoiced',
-    })
-
-    this.ioSocket.on('emit-booking', res => this.callback.emit(res))
+  constructor(private socket: Socket) {
+    this.checkStatus()
   }
 
-  // emitEvent = (payload = {}) => {
-  //   this.ioSocket.on('emit-parkings', payload)
-  // }
+  //? -_ Metodo que chequeara el estado del servidor
+  checkStatus(){
+
+    this.socket.on('connect', () => {
+      this.statusSocket = true
+      console.log('conectado');
+    })
+
+    this.socket.on('disconnect', () => {
+      this.statusSocket = false
+      console.log('desconectado');
+    })
+  }
 
 }
