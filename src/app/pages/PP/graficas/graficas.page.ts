@@ -55,16 +55,10 @@ export class GraficasPage implements OnInit {
 
   ngOnInit() {
 
-    this.noHayDatos = false
-
-    let token = localStorage.getItem('token')
-    this.traerParqueaderos(token)
-
   }
 
   ionViewWillEnter() {
 
-    this.cargarParq = true
     let token = localStorage.getItem('token')
     this.traerParqueaderos(token)
   }
@@ -72,6 +66,7 @@ export class GraficasPage implements OnInit {
   ionViewDidLeave() {
     
     this.parqueaderos = []
+    this.cargarParq = false
   }
 
   async msgError(res: string) {
@@ -154,7 +149,6 @@ export class GraficasPage implements OnInit {
       this.generarGrafica(this.numMotos, this.numCarros, this.numBiciclcetas);
     }, 1000);
   }
-
 
   generarGrafica(numMotos, numCarros, numBiciclcetas) {
 

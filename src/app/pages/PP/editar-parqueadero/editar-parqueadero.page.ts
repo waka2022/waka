@@ -25,7 +25,7 @@ export class EditarParqueaderoPage implements OnInit {
         vigilant: false
       },
       descript: '',
-      availability: false,
+      availability: true,
       quotas: {
         totals: 0
       },
@@ -124,7 +124,7 @@ export class EditarParqueaderoPage implements OnInit {
         vigilant: this.info.value.vigilant
       },
       descript: this.info.value.descript,
-      availability: false,
+      availability: this.parqueadero.availability,
       quotas: {
         totals: this.info.value.cupos
       },
@@ -140,7 +140,7 @@ export class EditarParqueaderoPage implements OnInit {
 
       this.router.navigate(['tabs2/mis-parqueaderos'])
     }, error =>{
-      this.msgError(error.msg)
+      this.msgError(error.error.msg)
     })
 
   }

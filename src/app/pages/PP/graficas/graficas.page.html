@@ -10,7 +10,7 @@
             <ion-select #p interface="popover" [value]="this.parqueaderos[0].id" >
 
               <ion-select-option *ngFor="let parqueadero of this.parqueaderos" class="option"
-                value="{{parqueadero[0].id}}">{{parqueadero.direccion}}
+                value="{{parqueadero.id}}">{{parqueadero.direccion}}
               </ion-select-option>
 
             </ion-select>

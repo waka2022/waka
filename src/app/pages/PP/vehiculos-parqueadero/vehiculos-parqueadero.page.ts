@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../../services/usuario.service';
 import { AbstractControl, FormControl, FormGroup, PatternValidator, Validators } from '@angular/forms';
 import { ToastController, AlertController } from '@ionic/angular';
+import { SocketWebService } from '../../../services/socket-web.service';
 
 @Component({
   selector: 'app-vehiculos-parqueadero',
@@ -19,9 +20,7 @@ export class VehiculosParqueaderoPage implements OnInit {
   estado:boolean = false
 
   constructor(private userServices: UsuarioService, public toastController: ToastController,
-    public alertController: AlertController) { 
-
-      
+    public alertController: AlertController, private socketWebService:SocketWebService) { 
     }
 
   parqueadero = new FormGroup({
@@ -64,6 +63,10 @@ export class VehiculosParqueaderoPage implements OnInit {
         this.parqueaderos.push(parqueadero)
       }
 
+    })
+
+    this.socketWebService.callback.subscribe(res =>{
+      console.log(res);
     })
   }
 

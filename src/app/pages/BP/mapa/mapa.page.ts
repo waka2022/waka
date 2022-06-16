@@ -33,6 +33,7 @@ export class MapaPage implements OnInit {
     public alertController: AlertController, private geolocation: Geolocation,
     private userservice: UsuarioService, public toastController: ToastController) {
 
+    // obtengo las cordenadas para cargar el mapa
     this.obtenerCordenadas()
 
   }
@@ -46,11 +47,24 @@ export class MapaPage implements OnInit {
 
     ]
   };
-
   map: Mapboxgl
+
+  obtenerCordenadas() {
+
+    this.geolocation.watchPosition().subscribe((res: any) => {
+
+      this.latitud = res.coords.latitude
+      this.longitud = res.coords.longitude
+
+      this.cordenadas.push([res.coords.longitude, res.coords.latitude])
+
+    });
+
+  }
 
   ngOnInit(): void {
 
+    // llamo a cargat todo
     this.cargarTodo()
 
   }
@@ -59,12 +73,9 @@ export class MapaPage implements OnInit {
 
     let id_parq = !!localStorage.getItem('id-parq')
 
-    this.crearDivMapa()
     if (id_parq === true) {
 
       this.doRefresh()
-
-    } else {
 
     }
 
@@ -80,13 +91,14 @@ export class MapaPage implements OnInit {
 
       let token = localStorage.getItem('token')
 
-
       setTimeout(() => {
 
+        //traemos todas las reservaciones del ususario
         this.userservice.getAllReservatiosUser(token, true).subscribe((res: any) => {
 
           let reservas: any = res.data
 
+          // si las reservas estan vacias quiere decir que el usuario no tiene resevas 
           if (reservas.length === 0) {
 
             this.estado = false
@@ -99,15 +111,17 @@ export class MapaPage implements OnInit {
 
           } else {
 
+            // tramos un true o un false esto cambiara el btn
             this.onRoute = res.data[0].status.on_route
-            //console.log(this.onRoute);
 
+            // traemos el id de la reserva del usuario
             let id_reserv = reservas[0]._id
 
+
+            // entra si el usuario ya llego y trae el timepo que lleva estacionado
             if (this.estado === true && this.onRoute === false) {
 
               this.userservice.getTimeReservation(token, id_reserv).subscribe((res: any) => {
-                //console.log(res.data);
                 this.time_reserva = res.data
               })
             }
@@ -122,6 +136,7 @@ export class MapaPage implements OnInit {
 
     let token = localStorage.getItem('token')
 
+    // traemos todos los parqueaderos para mostrarlos en el mapap
     this.userservice.getparkingMap(token).subscribe((res: any) => {
 
       for (let i = 0; i < res.data.length; i++) {
@@ -155,29 +170,158 @@ export class MapaPage implements OnInit {
 
     setTimeout(() => {
       this.map = this.servicioMapBox.cargarMapa(this.latitud, this.longitud, this.parqueaderos)
-    }, 3500);
+    }, 5000);
 
     this.cargarmapa()
 
-
+    // traemos latitud y longitud de un parqueadero
     let lat = localStorage.getItem('lat-parq')
     let lon = localStorage.getItem('lon-parq')
 
     if (lat === null || lon === null) {
 
+      // No se puede crear la ruta
+      this.btnRefresh = false
+
     } else {
 
+      // pasamos de texto a numero para poder crear la ruta
       let latiNum = Number(lat)
       let loniNum = Number(lon)
 
-      this.crearRuta(latiNum, loniNum)
+      // llamamos la funcion crear ruta
+
+
+      setTimeout(() => {
+        this.crearRuta(latiNum, loniNum)
+        this.btnRefresh = false
+      }, 6000);
 
     }
 
-    setTimeout(() => {
-      this.btnRefresh = false
-    }, 1500);
+  }
 
+  crearRuta(lat, lon) {
+
+    let cordenadasPar = []
+    cordenadasPar.push(lat, lon)
+
+    this.servicioMapBox.dibujarRuta(this.cordenadas[0], cordenadasPar).subscribe((res: any) => {
+
+      let route = res.routes[0].geometry.coordinates
+
+      this.map.addSource('route', {
+        type: 'geojson',
+        data: {
+          type: 'Feature',
+          properties: {},
+          geometry: {
+            type: 'LineString',
+            coordinates: route
+          }
+        }
+      })
+
+      this.map.addLayer({
+        id: 'route',
+        type: 'line',
+        source: 'route',
+        layout: {
+          'line-join': 'round',
+          'line-cap': 'round'
+        },
+        paint: {
+          'line-color': 'white',
+          'line-width': 5
+        }
+      })
+
+      this.map.fitBounds([route[0], route[route.length - 1]], {
+        padding: 180
+      })
+
+    })
+
+  }
+
+  cambiarEstado() {
+
+    // traemos el id del parqueadero
+    let id_parq = localStorage.getItem('id-parq')
+
+    // si es null quire decir que no ha hecho una reserva
+    if (id_parq === null) {
+
+      // establecemos como false para cambiar el btn
+      this.estado = false
+
+    } else {
+
+      // establecemos como true para cambiar el btn
+      this.estado = true
+    }
+  }
+
+  cargarmapa() {
+
+    setTimeout(() => {
+
+      const marcador2 = document.createElement('div');
+      marcador2.className = 'marker2';
+      // agregarmos el marcador(ubicacion del usuario) al mapa
+      new Mapboxgl.Marker(marcador2).setLngLat([this.longitud, this.latitud]).addTo(this.map);
+
+      //hacemos refencia a los marcadores (ubicacion del usuario)
+      let market2: any = document.getElementsByClassName('marker2')
+
+      setInterval(() => {
+
+        if (market2.length <= 0) {
+
+          //no existe
+
+          const marcador2 = document.createElement('div');
+          marcador2.className = 'marker2';
+          // agregarmos el marcador al mapa
+          new Mapboxgl.Marker(marcador2).setLngLat([this.longitud, this.latitud]).addTo(this.map);
+
+        } else {
+
+
+          // controlamos un error en el que se creaban dos marcadores (ubicacion del usuario) y lo eliminamos para solo tener uno
+          if (market2.length > 1) {
+
+            let contenedorMapa = document.getElementsByClassName('mapboxgl-canvas-container');
+            let market2: any = document.getElementsByClassName('marker2')
+            contenedorMapa[0].removeChild(market2[0]);
+            
+          }
+
+          // recorremos y eliminamos los marcadores (ubicacion del usuario) para mantener la ubicacion actual en el mapa esto cada 5 segundos
+          for (let i = 0; i < this.cordenadas.length; i++) {
+
+            let contenedorMapa = document.getElementsByClassName('mapboxgl-canvas-container');
+            let market2: any = document.getElementsByClassName('marker2')
+            contenedorMapa[0].removeChild(market2[0]);
+
+            let marcador2 = document.createElement('div');
+            marcador2.className = 'marker2';
+            // agregarmos el marcador al mapa
+            new Mapboxgl.Marker(marcador2).setLngLat(this.cordenadas[i]).addTo(this.map);
+
+          }
+        }
+      }, 5000);
+
+    }, 6000);
+  }
+
+  // funcion para refrescar la pantalla 
+  doRefresh() {
+
+    this.eliminarMapa()
+    this.crearDivMapa()
+    this.cargarTodo()
 
   }
 
@@ -190,6 +334,7 @@ export class MapaPage implements OnInit {
 
     } else {
 
+      // eliminamos el mapa en caso de que exista
       contenedorMapa.removeChild(mapa);
       this.parqueaderos.features = []
     }
@@ -197,6 +342,28 @@ export class MapaPage implements OnInit {
 
   }
 
+  crearDivMapa() {
+
+    let mapaexiste = !!document.getElementById("map")
+
+    if (mapaexiste === true) {
+
+      //console.log("mapa existe");
+      // el mapa existe asi que no se crea
+
+    } else {
+
+      //console.log("mapa no existe");
+      // el mapa NO existe asi que se crea
+
+      let contenedor2 = document.getElementById("contenedor")
+      let mapa2 = document.createElement("div");
+      mapa2.id = "map";
+      mapa2.className = "map";
+      contenedor2.appendChild(mapa2);
+
+    }
+  }
 
   async msgError(res: string) {
     const toast = await this.toastController.create({
@@ -220,148 +387,6 @@ export class MapaPage implements OnInit {
     toast.present();
   }
 
-  obtenerCordenadas() {
-
-    this.geolocation.watchPosition().subscribe((res: any) => {
-
-      this.latitud = res.coords.latitude
-      this.longitud = res.coords.longitude
-
-      this.cordenadas.push([res.coords.longitude, res.coords.latitude])
-
-    });
-
-  }
-
-  crearDivMapa() {
-
-    let mapaexiste = !!document.getElementById("map")
-
-    if (mapaexiste === true) {
-
-      //console.log("mapa existe");
-
-    } else {
-
-      //console.log("mapa no existe");
-
-      let contenedor2 = document.getElementById("contenedor")
-      let mapa2 = document.createElement("div");
-      mapa2.id = "map";
-      mapa2.className = "map";
-      contenedor2.appendChild(mapa2);
-
-    }
-  }
-
-  cargarmapa() {
-
-    setTimeout(() => {
-
-      const marcador2 = document.createElement('div');
-      marcador2.className = 'marker2';
-      // agregarmos el marcador al mapa
-      new Mapboxgl.Marker(marcador2).setLngLat([this.longitud, this.latitud]).addTo(this.map);
-
-      let market2: any = document.getElementsByClassName('marker2')
-      setInterval(() => {
-
-        if (market2.length <= 0) {
-
-          //no existe
-
-          const marcador2 = document.createElement('div');
-          marcador2.className = 'marker2';
-          // agregarmos el marcador al mapa
-          new Mapboxgl.Marker(marcador2).setLngLat([this.longitud, this.latitud]).addTo(this.map);
-
-        } else {
-          //console.log("existe");
-
-          for (let i = 0; i < this.cordenadas.length; i++) {
-
-            let contenedorMapa = document.getElementsByClassName('mapboxgl-canvas-container');
-            let market2: any = document.getElementsByClassName('marker2')
-            contenedorMapa[0].removeChild(market2[0]);
-
-            let marcador2 = document.createElement('div');
-            marcador2.className = 'marker2';
-            // agregarmos el marcador al mapa
-            new Mapboxgl.Marker(marcador2).setLngLat(this.cordenadas[i]).addTo(this.map);
-
-          }
-        }
-      }, 4000);
-
-    }, 7000);
-  }
-
-  crearRuta(lat, lon) {
-
-    setTimeout(() => {
-
-      let cordenadasPar = []
-      cordenadasPar.push(lat, lon)
-
-
-      this.servicioMapBox.dibujarRuta(this.cordenadas[0], cordenadasPar).subscribe((res: any) => {
-
-        let route = res.routes[0].geometry.coordinates
-
-        this.map.addSource('route', {
-          type: 'geojson',
-          data: {
-            type: 'Feature',
-            properties: {},
-            geometry: {
-              type: 'LineString',
-              coordinates: route
-            }
-          }
-        })
-
-        this.map.addLayer({
-          id: 'route',
-          type: 'line',
-          source: 'route',
-          layout: {
-            'line-join': 'round',
-            'line-cap': 'round'
-          },
-          paint: {
-            'line-color': 'white',
-            'line-width': 5
-          }
-        })
-
-        this.map.fitBounds([route[0], route[route.length - 1]], {
-          padding: 180
-        })
-
-      })
-
-    }, 1300);
-  }
-
-  cambiarEstado() {
-
-    let id_parq = localStorage.getItem('id-parq')
-
-    if (id_parq === null) {
-      this.estado = false
-    } else {
-      this.estado = true
-    }
-  }
-
-  doRefresh() {
-
-    this.eliminarMapa()
-    this.crearDivMapa()
-    this.cargarTodo()
-
-  }
-
   async presentModal() {
 
     const modal = await this.modalController.create({
@@ -376,6 +401,7 @@ export class MapaPage implements OnInit {
     await modal.present();
   }
 
+  // funcion para cancelar una reserva
   cancelarReserva() {
 
     let token = localStorage.getItem('token')
