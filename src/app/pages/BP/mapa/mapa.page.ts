@@ -66,7 +66,6 @@ export class MapaPage implements OnInit {
 
     // llamo a cargat todo
     this.cargarTodo()
-
   }
 
   ionViewWillEnter() {
@@ -170,6 +169,7 @@ export class MapaPage implements OnInit {
 
     setTimeout(() => {
       this.map = this.servicioMapBox.cargarMapa(this.latitud, this.longitud, this.parqueaderos)
+
     }, 5000);
 
     this.cargarmapa()

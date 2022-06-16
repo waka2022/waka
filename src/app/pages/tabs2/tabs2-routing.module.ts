@@ -42,6 +42,10 @@ const routes: Routes = [
         path: 'agregar-parqueadero',
         loadChildren: () => import('../PP/agregar-parqueadero/agregar-parqueadero.module').then( m => m.AgregarParqueaderoPageModule)
       },
+      {
+        path: 'mapa/:id',
+        loadChildren: () => import('../PP/mapa/mapa.module').then( m => m.MapaPageModule)
+      },
     ]
   }
 ];

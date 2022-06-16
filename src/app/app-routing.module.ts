@@ -101,11 +101,7 @@ const routes: Routes = [
   {
     path: '**',
     component: Error404Page
-  },
-
-
-
- 
+  }, 
 
 ];
 
