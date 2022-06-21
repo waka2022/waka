@@ -30,9 +30,9 @@
     
                             <ion-row class="posicionAbajo">
                                 <ion-col>
-                                    <ion-button routerLink="/novedades" expand="block" color="primary">
+                                    <!-- <ion-button routerLink="/novedades" expand="block" color="primary">
                                         Novedades
-                                    </ion-button>
+                                    </ion-button> -->
 
                                     <ion-button *ngIf="reserva.status.on_route === false && reserva.status.global_status === true" color="celeste2" expand="block"  (click)="verPago(reserva._id, reserva.id_park.price)" >Monto a pagar</ion-button>
                                     <ion-button *ngIf="reserva.status.on_route === true && reserva.status.global_status === true" disabled="true" expand="block"  >Monto a pagar</ion-button>

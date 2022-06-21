@@ -17,11 +17,21 @@ export class VehiculosParqueaderoPage implements OnInit {
   reservas: any = []
   ya: boolean = false
   tiempoReserva: number
-  estado:boolean = false
+  estado: boolean = false
+  id:string = '0'
 
   constructor(private userServices: UsuarioService, public toastController: ToastController,
-    public alertController: AlertController, private socketWebService:SocketWebService) { 
-    }
+    public alertController: AlertController, private socketWebService: SocketWebService,
+    private socketService: SocketWebService) {
+
+    //* |-> Cargara el socket y cargara de nuevo el mapa
+    this.socketService.listenSocket('emit-booking').subscribe(
+      resp => {
+        console.log(resp);
+        this.buscarReservas(this.id)
+      }
+    )
+  }
 
   parqueadero = new FormGroup({
     id_parqueadero: new FormControl('', [Validators.required]),
@@ -30,24 +40,24 @@ export class VehiculosParqueaderoPage implements OnInit {
   ngOnInit() {
 
   }
-  
-  obtenerEstado(value,id){
+
+  obtenerEstado(value, id) {
 
     this.estado = value
     this.buscarReservas(id)
-    
+
   }
 
-  recargar(id){
-    this.buscarReservas(id)   
+  recargar(id) {
+    this.buscarReservas(id)
   }
 
   ionViewWillEnter() {
 
     this.traerParqueaderos()
   }
-  
-  traerParqueaderos(){  
+
+  traerParqueaderos() {
 
     let token = localStorage.getItem('token')
 
@@ -61,7 +71,7 @@ export class VehiculosParqueaderoPage implements OnInit {
         }
 
         this.parqueaderos.push(parqueadero)
-      }
+      }      
 
     })
 
@@ -73,16 +83,22 @@ export class VehiculosParqueaderoPage implements OnInit {
 
   buscarReservas(id) {
 
+    this.id = id
+
     let token = localStorage.getItem('token')
     this.userServices.getAllReservatios(token, id, !this.estado).subscribe((res: any) => {
 
       this.reservas = res.data
-
       console.log(this.reservas);
 
     })
 
-    this.ya = true
+    if (id == '0') {
+      this.ya = false
+    }else{
+      this.ya = true
+    }
+    
 
   }
 
@@ -200,13 +216,13 @@ export class VehiculosParqueaderoPage implements OnInit {
 
       if (estado === 2) {
 
-        this.userServices.crearFactura(token, id_reser).subscribe(res=>{
+        this.userServices.crearFactura(token, id_reser).subscribe(res => {
           console.log(res);
-          this.userServices.finalizarPago(token,id_reser).subscribe((res:any)=>{
+          this.userServices.finalizarPago(token, id_reser).subscribe((res: any) => {
 
             this.msgBien(res.msg)
 
-          }, error =>{
+          }, error => {
             this.msgError(error.error.msg)
           })
         })

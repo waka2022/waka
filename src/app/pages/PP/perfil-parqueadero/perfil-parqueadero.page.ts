@@ -67,7 +67,8 @@ export class PerfilParqueaderoPage implements OnInit {
       this.usuario = res.data
       this.email = this.usuario.email_t.email;
       console.log(res)
-      if (this.usuario.google == false) {
+
+      if (this.usuario.google == true) {
         document.getElementById("btn-cambiar").style.visibility  = "hidden";
         document.getElementById("btn-eliminar").style.visibility  = "hidden";
         document.getElementById("btn-cambiarimg").style.visibility  = "hidden";

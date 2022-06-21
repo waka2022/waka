@@ -17,7 +17,7 @@ import { SocketWebService } from '../../../services/socket-web.service';
 export class MapaPage implements OnInit {
 
   estado: boolean = false
-  btnRefresh: boolean = false
+  btnRefresh: boolean = true
   cordenadas = []
 
   latitud = 7.0620153
@@ -25,28 +25,7 @@ export class MapaPage implements OnInit {
 
   time_reserva: number
 
-  onRoute: boolean = false
-
-
-  constructor(
-    private routerOutlet: IonRouterOutlet, private modalController: ModalController,
-    private servicioMapBox: MapboxService, private renderer: Renderer2,
-    public alertController: AlertController, private geolocation: Geolocation,
-    private userservice: UsuarioService, public toastController: ToastController,
-    private socketService : SocketWebService
-  ) {
-
-    // obtengo las cordenadas para cargar el mapa
-    this.obtenerCordenadas()
-    //* |-> Cargara el socket y cargara de nuevo el mapa
-    this.socketService.listenSocket('emit-booking').subscribe(
-      resp => {
-        console.log(resp);
-        
-        this.obtenerCordenadas()
-      }
-    )
-  }
+  onRoute: boolean = true
 
   // marcadores
   parqueaderos = {
@@ -58,6 +37,99 @@ export class MapaPage implements OnInit {
     ]
   };
   map: Mapboxgl
+
+  constructor(
+    private routerOutlet: IonRouterOutlet, private modalController: ModalController,
+    private servicioMapBox: MapboxService, private renderer: Renderer2,
+    public alertController: AlertController, private geolocation: Geolocation,
+    private userservice: UsuarioService, public toastController: ToastController,
+    private socketService: SocketWebService
+  ) {
+
+    // obtengo las cordenadas para cargar el mapa
+    this.obtenerCordenadas()
+
+    //* |-> Cargara el socket y cargara de nuevo el mapa
+    this.socketService.listenSocket('emit-parkings').subscribe(
+      resp => {
+        console.log(resp);
+
+        let token = localStorage.getItem('token')
+
+        // traemos todos los parqueaderos para mostrarlos en el mapap
+        this.userservice.getparkingMap(token).subscribe((res: any) => {
+
+          for (let i = 0; i < res.data.length; i++) {
+
+            let datapar = {
+              //tipo
+              type: 'Feature',
+              geometry: {
+                type: 'Point',
+                //cordenadas
+                coordinates: [res.data[i].ubi.lat, res.data[i].ubi.lon]
+              },
+              // informacion al darle click al marcador
+              properties: {
+                id: res.data[i]._id,
+                precio: res.data[i].price,
+                direccion: res.data[i].address,
+                moto: `<i class='fa-solid fa-motorcycle ${res.data[i].type_parks._0}'></i>`,
+                carro: `<i class='fas fa-car-side ${res.data[i].type_parks._1}'></i>`,
+                bicicleta: `<i class='fa-solid fa-bicycle ${res.data[i].type_parks._2}'></i>`,
+
+              }
+            }
+
+            this.parqueaderos.features = []
+            this.parqueaderos.features.push(datapar)
+
+          }
+
+        })
+
+        this.servicioMapBox.eliminarMarcadores()
+
+        // traemos todos los parqueaderos para mostrarlos en el mapap
+        this.userservice.getparkingMap(token).subscribe((res: any) => {
+
+          for (let i = 0; i < res.data.length; i++) {
+
+            let datapar = {
+              //tipo
+              type: 'Feature',
+              geometry: {
+                type: 'Point',
+                //cordenadas
+                coordinates: [res.data[i].ubi.lat, res.data[i].ubi.lon]
+              },
+              // informacion al darle click al marcador
+              properties: {
+                id: res.data[i]._id,
+                precio: res.data[i].price,
+                direccion: res.data[i].address,
+                moto: `<i class='fa-solid fa-motorcycle ${res.data[i].type_parks._0}'></i>`,
+                carro: `<i class='fas fa-car-side ${res.data[i].type_parks._1}'></i>`,
+                bicicleta: `<i class='fa-solid fa-bicycle ${res.data[i].type_parks._2}'></i>`,
+
+              }
+            }
+
+            this.parqueaderos.features.push(datapar)
+
+          }
+
+          this.servicioMapBox.marcadores(this.parqueaderos)
+
+        })
+
+        this.cambiarEstadoRuta()
+
+
+      }
+    )
+
+  }
 
   obtenerCordenadas() {
 
@@ -84,7 +156,32 @@ export class MapaPage implements OnInit {
 
     if (id_parq === true) {
 
-      this.doRefresh()
+      this.cambiarEstado()
+      // traemos latitud y longitud de un parqueadero
+      let lat = localStorage.getItem('lat-parq')
+      let lon = localStorage.getItem('lon-parq')
+
+      if (lat === null || lon === null) {
+
+        // No se puede crear la ruta
+        setTimeout(() => {
+          this.btnRefresh = false
+        }, 2000);
+
+      } else {
+
+        // pasamos de texto a numero para poder crear la ruta
+        let latiNum = Number(lat)
+        let loniNum = Number(lon)
+
+        // llamamos la funcion crear ruta
+
+
+        setTimeout(() => {
+          this.crearRuta(latiNum, loniNum)
+        }, 2000);
+
+      }
 
     }
 
@@ -94,52 +191,7 @@ export class MapaPage implements OnInit {
 
     this.btnRefresh = true
 
-    let id_parqueadero = localStorage.getItem('id-parq')
-
-    if (!!id_parqueadero === true) {
-
-      let token = localStorage.getItem('token')
-
-      setTimeout(() => {
-
-        //traemos todas las reservaciones del ususario
-        this.userservice.getAllReservatiosUser(token, true).subscribe((res: any) => {
-
-          let reservas: any = res.data
-
-          // si las reservas estan vacias quiere decir que el usuario no tiene resevas 
-          if (reservas.length === 0) {
-
-            this.estado = false
-
-            console.log("no hay reservas");
-            localStorage.removeItem('lat-parq')
-            localStorage.removeItem('lon-parq')
-            localStorage.removeItem('id-parq')
-            localStorage.removeItem('calificacion')
-
-          } else {
-
-            // tramos un true o un false esto cambiara el btn
-            this.onRoute = res.data[0].status.on_route
-
-            // traemos el id de la reserva del usuario
-            let id_reserv = reservas[0]._id
-
-
-            // entra si el usuario ya llego y trae el timepo que lleva estacionado
-            if (this.estado === true && this.onRoute === false) {
-
-              this.userservice.getTimeReservation(token, id_reserv).subscribe((res: any) => {
-                this.time_reserva = res.data
-              })
-            }
-
-          }
-
-        })
-      }, 1000);
-    }
+    this.cambiarEstadoRuta()
 
     this.cambiarEstado()
 
@@ -191,7 +243,9 @@ export class MapaPage implements OnInit {
     if (lat === null || lon === null) {
 
       // No se puede crear la ruta
-      this.btnRefresh = false
+      setTimeout(() => {
+        this.btnRefresh = false
+      }, 6000);
 
     } else {
 
@@ -209,6 +263,61 @@ export class MapaPage implements OnInit {
 
     }
 
+  }
+
+
+  cambiarEstadoRuta() {
+
+    let id_parqueadero = localStorage.getItem('id-parq')
+    if (!!id_parqueadero === true) {
+
+      let token = localStorage.getItem('token')
+
+      //traemos todas las reservaciones del ususario
+      this.userservice.getAllReservatiosUser(token, true).subscribe((res: any) => {
+
+        let reservas: any = res.data
+
+        // si las reservas estan vacias quiere decir que el usuario no tiene resevas 
+        if (reservas.length === 0) {
+
+          this.estado = false
+
+          console.log("no hay reservas");
+          localStorage.removeItem('lat-parq')
+          localStorage.removeItem('lon-parq')
+          localStorage.removeItem('id-parq')
+          localStorage.removeItem('calificacion')
+
+
+
+          this.doRefresh()
+
+
+
+
+        } else {
+
+          // tramos un true o un false esto cambiara el btn
+          this.onRoute = res.data[0].status.on_route
+
+          // traemos el id de la reserva del usuario
+          let id_reserv = reservas[0]._id
+
+
+          // entra si el usuario ya llego y trae el timepo que lleva estacionado
+          if (this.estado === true && this.onRoute === false) {
+
+            this.userservice.getTimeReservation(token, id_reserv).subscribe((res: any) => {
+              this.time_reserva = res.data
+            })
+          }
+
+        }
+
+      })
+
+    }
   }
 
   crearRuta(lat, lon) {
@@ -247,7 +356,7 @@ export class MapaPage implements OnInit {
       })
 
       this.map.fitBounds([route[0], route[route.length - 1]], {
-        padding: 180
+        padding: 90
       })
 
     })
@@ -304,7 +413,7 @@ export class MapaPage implements OnInit {
             let contenedorMapa = document.getElementsByClassName('mapboxgl-canvas-container');
             let market2: any = document.getElementsByClassName('marker2')
             contenedorMapa[0].removeChild(market2[0]);
-            
+
           }
 
           // recorremos y eliminamos los marcadores (ubicacion del usuario) para mantener la ubicacion actual en el mapa esto cada 5 segundos

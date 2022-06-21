@@ -10,6 +10,9 @@ import { Router } from '@angular/router';
 })
 export class MapboxService {
 
+  map: Mapboxgl
+  mapMarkers = []
+
   constructor(private http: HttpClient, private router: Router) { }
 
   cargarMapa(latitud: number, longitud: number, parqueaderos) {
@@ -17,19 +20,19 @@ export class MapboxService {
     // token proporcionado por mapbox
     Mapboxgl.accessToken = environment.tokenMapbox;
     // creamos la constante del mapa
-    const map = new Mapboxgl.Map({
+    this.map = new Mapboxgl.Map({
       //con sus estilos
       style: 'mapbox://styles/kevinfc/ckyqjgmhc11yx15pin5y5qeip',
       // la posición en la que se va centrar el mapa al abrirse en ese caso la posición de nuestro usuario
       center: [longitud, latitud],
       // el zoom predeterminado al abrirse el mapa
-      zoom: 15.3,
+      zoom: 13.3,
       // el div donde se va cargar el mapa
       container: 'map',
     });
 
-    map.addControl(new Mapboxgl.FullscreenControl(), 'top-left');
-    map.addControl(new Mapboxgl.NavigationControl(), 'top-left');
+    this.map.addControl(new Mapboxgl.FullscreenControl(), 'top-left');
+    this.map.addControl(new Mapboxgl.NavigationControl(), 'top-left');
 
 
     /*let token = localStorage.getItem("token")
@@ -37,8 +40,16 @@ export class MapboxService {
       console.log(res);
     })*/
 
+    this.marcadores(parqueaderos)
+
+
+    return this.map
+  }
+
+  marcadores(parqueaderos) {
 
     //recorremos lso marcadores
+
     for (const feature of parqueaderos.features) {
       // creamos un HTML element para cada feactures
       const popupContent = document.createElement('div');
@@ -103,13 +114,25 @@ export class MapboxService {
       }).setDOMContent(popupContent);
 
 
-      const marcador = document.createElement('div');
+      let marcador = document.createElement('div');
       marcador.className = 'marker';
       // agregarmos el marcador al mapa
-      new Mapboxgl.Marker(marcador).setLngLat(feature.geometry.coordinates).setPopup(popup).addTo(map);
+      let marker = new Mapboxgl.Marker(marcador).setLngLat(feature.geometry.coordinates).setPopup(popup).addTo(this.map);
+
+      this.mapMarkers.push(marker)
+
+      
+      
     }
 
-    return map
+ 
+
+  }
+
+  eliminarMarcadores() {
+
+    this.mapMarkers.forEach((marker) => marker.remove())
+    this.mapMarkers = []
   }
 
   dibujarRuta(cordenadasCar, cordenadasPar) {
