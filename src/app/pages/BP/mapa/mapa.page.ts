@@ -6,6 +6,7 @@ import { AlertController } from '@ionic/angular';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 import * as Mapboxgl from 'mapbox-gl';
 import { UsuarioService } from '../../../services/usuario.service';
+import { SocketWebService } from '../../../services/socket-web.service';
 
 @Component({
   selector: 'app-mapa',
@@ -31,11 +32,20 @@ export class MapaPage implements OnInit {
     private routerOutlet: IonRouterOutlet, private modalController: ModalController,
     private servicioMapBox: MapboxService, private renderer: Renderer2,
     public alertController: AlertController, private geolocation: Geolocation,
-    private userservice: UsuarioService, public toastController: ToastController) {
+    private userservice: UsuarioService, public toastController: ToastController,
+    private socketService : SocketWebService
+  ) {
 
     // obtengo las cordenadas para cargar el mapa
     this.obtenerCordenadas()
-
+    //* |-> Cargara el socket y cargara de nuevo el mapa
+    this.socketService.listenSocket('emit-booking').subscribe(
+      resp => {
+        console.log(resp);
+        
+        this.obtenerCordenadas()
+      }
+    )
   }
 
   // marcadores

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SocketWebService } from './services/socket-web.service';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  constructor() {
-
-  }
+  constructor(
+    private socketService: SocketWebService
+  ) {}
 }

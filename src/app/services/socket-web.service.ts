@@ -16,7 +16,6 @@ export class SocketWebService {
 
   //? -_ Metodo que chequeara el estado del servidor
   checkStatus(){
-
     this.socket.on('connect', () => {
       this.statusSocket = true
       console.log('conectado');
@@ -26,6 +25,23 @@ export class SocketWebService {
       this.statusSocket = false
       console.log('desconectado');
     })
+  }
+
+  //? -_ Metodo que escuchara cualquier evento
+  listenSocket( evento: string ) {
+    /**
+     * ***> //? Explicacion de  de conexion socket
+     *     ***> //* Consta de 4 eventos:
+     *         - Socket parqueaderos
+     *           //? -> emit-parkings
+     *         - Socket Vehiculo
+     *           //? -> emit-vehicle
+     *         - Socket Reserva
+     *           //? -> emit-booking
+     *         - Socket Factura
+     *           //? -> emit-invoiced
+     */
+    return this.socket.fromEvent(evento)
   }
 
 }
