@@ -29,14 +29,21 @@ export class MapaMarketService {
     map.addControl(new Mapboxgl.NavigationControl(), 'top-left');
 
 
+    if (latParq == 0 && LonParq == 0) {
+
+    } else {
+
+      let elOpacity = document.createElement('div');
+      elOpacity.className = 'markerOpacity';
+
+      new Mapboxgl.Marker(elOpacity).setLngLat([latParq, LonParq]).addTo(map);
+    }
+
+
     let el = document.createElement('div');
     el.className = 'marker';
     let marker = new Mapboxgl.Marker(el, { anchor: 'bottom' });
 
-    let elOpacity = document.createElement('div');
-    elOpacity.className = 'markerOpacity';  
-  
-    new Mapboxgl.Marker(elOpacity).setLngLat([latParq, LonParq]).addTo(map);
 
     map.on("click", function (e) {
       marker.setLngLat(e.lngLat).addTo(map);

@@ -20,22 +20,16 @@ export class ModalCalificarComponent implements OnInit {
   ngOnInit() {
 
     let token = localStorage.getItem('token')
-    this.token = token    
-
-    let calificacion = !!localStorage.getItem('calificacion')
-
-    if (calificacion) {
-
-      localStorage.setItem('calificacion','true')
-      this.disabled = true
+    this.token = token 
     
+    let calificacion = localStorage.getItem('calificacion')
+
+    if(calificacion == 'true'){
+      this.disabled = true
+
     }else{
-
-      localStorage.setItem('calificacion','false')
       this.disabled = false
-      
     }
-
 
   }
 
@@ -70,7 +64,7 @@ export class ModalCalificarComponent implements OnInit {
       buttons: [
         {
           cssClass: 'rating__star far fa-star',
-          text: '',
+          text: '1',
           id: 'rating',
           handler: () => {
 
@@ -86,7 +80,7 @@ export class ModalCalificarComponent implements OnInit {
         },
         {
           cssClass: 'rating__star far fa-star',
-          text: '',
+          text: '2',
           id: 'rating',
           handler: () => {
             let calificacion = {
@@ -101,7 +95,7 @@ export class ModalCalificarComponent implements OnInit {
         },
         {
           cssClass: 'rating__star far fa-star',
-          text: '',
+          text: '3',
           id: 'rating',
           handler: () => {
             let calificacion = {
@@ -116,7 +110,7 @@ export class ModalCalificarComponent implements OnInit {
         },
         {
           cssClass: 'rating__star far fa-star',
-          text: '',
+          text: '4',
           id: 'rating',
           handler: () => {
             let calificacion = {
@@ -131,7 +125,7 @@ export class ModalCalificarComponent implements OnInit {
         },
         {
           cssClass: 'rating__star far fa-star',
-          text: '',
+          text: '5',
           id: 'rating',
           handler: () => {
             let calificacion = {
@@ -156,6 +150,7 @@ export class ModalCalificarComponent implements OnInit {
     this.usuarioService.calificarParqueadero(this.token, calificacion).subscribe((res:any) => {
               
       this.msgBien(res.msg)
+      localStorage.setItem('calificacion','true')
 
       this.ngOnInit()
 

@@ -18,8 +18,8 @@ export class MapaPage implements OnInit {
   latitud: number = 4.677532439351083
   longitud: number = -74.15661997403409
 
-  latParq
-  lonParq
+  latParq:number = 0
+  lonParq:number = 0
 
   map: Mapboxgl
 

@@ -169,6 +169,7 @@ export class InfoParqueaderoPage implements OnInit {
         localStorage.setItem('lat-parq', this.latparq)
         localStorage.setItem('lon-parq', this.lonparq)
         localStorage.setItem('id-parq', this.infoparqueadero._id)
+        localStorage.setItem('calificacion', 'false')
 
         let idparq = localStorage.getItem('id-parq')
 

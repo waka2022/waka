@@ -120,9 +120,7 @@ export class MapboxService {
       let marker = new Mapboxgl.Marker(marcador).setLngLat(feature.geometry.coordinates).setPopup(popup).addTo(this.map);
 
       this.mapMarkers.push(marker)
-
-      
-      
+    
     }
 
  
