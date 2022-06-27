@@ -1,6 +1,9 @@
 # WAKA RAMA KEVIN 😎
 
-_Acá va un párrafo que describa lo que es el proyecto_
+_Diseñamos y Desarrollamos un sistema
+de Información para Encontrar,
+Visualizar y Facturar Parqueaderos
+Cercanos, en Colombia._
 
 ## Comenzando 🚀
 
